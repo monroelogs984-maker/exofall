@@ -1,0 +1,64 @@
+plugins {
+    id 'net.neoforged.gradle.userdev' version '7.1.38'
+}
+
+version = '0.0.1-1.21.1'
+group = 'com.bromax.exofall'
+
+base {
+    archivesName = 'exofall'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+runs {
+    configureEach {
+        systemProperty 'neoforge.logging.console.level', 'info'
+        modSource project.sourceSets.main
+    }
+    client {}
+    server {}
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:21.1.233"
+}
+
+jar {
+    from('LICENSE') { rename { "LICENSE_exofall" } }
+    manifest {
+        attributes([
+            'Specification-Title'   : 'exofall',
+            'Specification-Vendor'  : 'BROMAX',
+            'Specification-Version' : '1',
+            'Implementation-Title'  : project.name,
+            'Implementation-Version': "${version}",
+            'Implementation-Vendor' : 'BROMAX',
+        ])
+    }
+}
+
+// Copies the built jar into a TEST instance (never the shipping S202 instance, its mods folder gets exported).
+// Override with: ./gradlew deploy -PdeployInstance="Some Instance". Only run with the game closed.
+tasks.register('deploy') {
+    dependsOn build
+    doLast {
+        def instance = project.findProperty('deployInstance') ?: 'Exofall testing'
+        def modsDir = file("/home/glenn/Documents/curseforge/minecraft/Instances/${instance}/mods")
+        if (!modsDir.isDirectory()) {
+            throw new GradleException("[DEPLOY] No mods folder at ${modsDir}. Create the instance or pass -PdeployInstance=...")
+        }
+        // Copy to a temp name, then move, so a running game never sees a half-written jar.
+        def tmp = new File(modsDir, ".exofall-deploy.tmp")
+        copy {
+            from layout.buildDirectory.file("libs/exofall-${version}.jar")
+            into modsDir
+            rename { tmp.name }
+        }
+        delete fileTree(dir: modsDir, include: 'exofall-*.jar')
+        tmp.renameTo(new File(modsDir, "exofall-${version}.jar"))
+        println "[DEPLOY] exofall ${version} -> ${instance}"
+    }
+}
