@@ -34,6 +34,15 @@ A plain stone sphere that spawns half-buried, with a placeholder interior biome 
 ## First meteor: swamp (locked 2026-11-09)
 Buggy swamp meteor: dragonflies, mosquitoes and similar insects. Mob roster, plants and names not decided yet.
 
+## Meteor kinds (locked 2026-11-09)
+Four kinds to start, one structure each, all in structure set `exofall:meteors` (spacing 53 / separation 24, equal weight,
+so total density stays ~1 per 850 blocks). Interior generators in `world/interior/`, picked by the `style` field.
+1. **Swamp** (bugs: dragonflies, mosquitoes...): mud/moss floor, pools, lily pads, bog plants, verdant froglights
+2. **Wasp hive**: parallel honeycomb sheets floor to ceiling, noise holes + regular doorways, honey floor patches, bee nests, shroomlights
+3. **Desert beetle**: sand/red-sand dunes over sandstone with buried bone, banded sandstone pillars, cactus, dead bushes, ochre froglights
+4. **Hemlock rainforest**: grass/podzol/moss, pools, ferns, tiered conifers (placeholder spruce, built block by block), glow-berry vines, pearlescent froglights
+All currently spawn in any overworld biome. Spawns are vanilla stand-ins.
+
 ## Prototype result (2026-11-09)
 Working in a dev server: `exofall:swamp_meteor` structure (radius 26-38, spacing 53 / separation 24 chunks),
 centre at the median ground height, sealed placeholder crust, mud/moss floor with pools, lily pads, test plant,

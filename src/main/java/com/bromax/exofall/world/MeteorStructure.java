@@ -24,18 +24,21 @@ public class MeteorStructure extends Structure {
             settingsCodec(i),
             Codec.intRange(12, 56).fieldOf("min_radius").forGetter(s -> s.minRadius),
             Codec.intRange(12, 56).fieldOf("max_radius").forGetter(s -> s.maxRadius),
-            ResourceKey.codec(Registries.BIOME).fieldOf("interior_biome").forGetter(s -> s.interiorBiome)
+            ResourceKey.codec(Registries.BIOME).fieldOf("interior_biome").forGetter(s -> s.interiorBiome),
+            MeteorStyle.CODEC.fieldOf("style").forGetter(s -> s.style)
     ).apply(i, MeteorStructure::new));
 
     private final int minRadius;
     private final int maxRadius;
     private final ResourceKey<Biome> interiorBiome;
+    private final MeteorStyle style;
 
-    public MeteorStructure(StructureSettings settings, int minRadius, int maxRadius, ResourceKey<Biome> interiorBiome) {
+    public MeteorStructure(StructureSettings settings, int minRadius, int maxRadius, ResourceKey<Biome> interiorBiome, MeteorStyle style) {
         super(settings);
         this.minRadius = minRadius;
         this.maxRadius = Math.max(minRadius, maxRadius);
         this.interiorBiome = interiorBiome;
+        this.style = style;
     }
 
     @Override
@@ -69,7 +72,7 @@ public class MeteorStructure extends Structure {
         BlockPos centre = new BlockPos(x, y, z);
         long seed = ctx.random().nextLong();
         return Optional.of(new GenerationStub(centre, builder ->
-                builder.addPiece(new MeteorPiece(centre, radius, seed, interiorBiome))));
+                builder.addPiece(new MeteorPiece(centre, radius, seed, interiorBiome, style))));
     }
 
     private static int height(GenerationContext ctx, int x, int z, Heightmap.Types type) {

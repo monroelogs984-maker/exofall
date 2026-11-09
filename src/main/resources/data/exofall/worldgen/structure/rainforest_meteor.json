@@ -1,0 +1,11 @@
+{
+  "type": "exofall:meteor",
+  "biomes": "#exofall:has_structure/rainforest_meteor",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none",
+  "min_radius": 30,
+  "max_radius": 42,
+  "interior_biome": "exofall:rainforest_meteor",
+  "style": "rainforest"
+}

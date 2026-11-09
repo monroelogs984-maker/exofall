@@ -2,5 +2,8 @@
   "itemGroup.exofall": "BROMAX's Exofall",
   "block.exofall.placeholder_crust": "Placeholder Meteor Crust",
   "block.exofall.placeholder_bog_plant": "Placeholder Bog Plant",
-  "biome.exofall.swamp_meteor": "Swamp Meteor"
+  "biome.exofall.swamp_meteor": "Swamp Meteor",
+  "biome.exofall.hive_meteor": "Hive Meteor",
+  "biome.exofall.desert_meteor": "Desert Meteor",
+  "biome.exofall.rainforest_meteor": "Rainforest Meteor"
 }

@@ -6,5 +6,6 @@
   "terrain_adaptation": "none",
   "min_radius": 26,
   "max_radius": 38,
-  "interior_biome": "exofall:swamp_meteor"
+  "interior_biome": "exofall:swamp_meteor",
+  "style": "swamp"
 }

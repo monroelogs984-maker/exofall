@@ -1,0 +1,26 @@
+{
+  "structures": [
+    {
+      "structure": "exofall:swamp_meteor",
+      "weight": 1
+    },
+    {
+      "structure": "exofall:hive_meteor",
+      "weight": 1
+    },
+    {
+      "structure": "exofall:desert_meteor",
+      "weight": 1
+    },
+    {
+      "structure": "exofall:rainforest_meteor",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 53,
+    "separation": 24,
+    "salt": 728163049
+  }
+}
