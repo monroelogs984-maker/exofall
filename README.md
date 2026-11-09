@@ -14,7 +14,7 @@ Inspired by **The Erebus** by vadis365 and team. Exofall is an original mod: no 
 ## Building
 ```bash
 ./gradlew build     # jar in build/libs/
-./gradlew deploy    # build + copy into the "Exofall testing" CurseForge instance (-PdeployInstance=... to change)
+./gradlew deploy    # build + copy into the "Exofall Testing" CurseForge instance (-PdeployInstance=... to change)
 ```
 Requires Java 21.
 

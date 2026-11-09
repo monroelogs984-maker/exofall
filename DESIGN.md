@@ -31,7 +31,17 @@ A plain stone sphere that spawns half-buried, with a placeholder interior biome 
   are dropped/crash at decoration; (2) compatibility with S202 biome-injection mods hooking the same step.
 - Fallback: structure `spawn_overrides` + client-side "inside a meteor" check for fog/sky/music.
 
+## First meteor: swamp (locked 2026-11-09)
+Buggy swamp meteor: dragonflies, mosquitoes and similar insects. Mob roster, plants and names not decided yet.
+
+## Prototype result (2026-11-09)
+Working in a dev server: `exofall:swamp_meteor` structure (radius 26-38, spacing 53 / separation 24 chunks),
+centre at the median ground height, sealed placeholder crust, mud/moss floor with pools, lily pads, test plant,
+froglight ceiling lights. Interior biome `exofall:swamp_meteor` is written into the chunk's 4x4x4 cells from
+`MeteorPiece.postProcess` (like /fillbiome). The BIOMES-step hook turned out unnecessary: decoration only runs
+features for biomes the biome source knows, so the piece decorates the interior itself, and the overwritten
+biome cells keep biome-filtered overworld features out. Not done yet: crater ring, tool-tier gating, sub-structures.
+
 ## Open questions
-- Theme of the first meteor
 - Locator item for finding a specific meteor type (1 per 850 blocks split across 5-7 types is a long hunt)
 - Ways past the crust to block: TNT, creepers, ender pearls, chorus fruit, mods in S202

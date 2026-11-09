@@ -4,6 +4,7 @@ import com.bromax.exofall.config.ExofallConfig;
 import com.bromax.exofall.registry.ModBlocks;
 import com.bromax.exofall.registry.ModCreativeTabs;
 import com.bromax.exofall.registry.ModItems;
+import com.bromax.exofall.registry.ModWorldgen;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -21,6 +22,8 @@ public final class Exofall {
         ModBlocks.BLOCKS.register(modBus);
         ModItems.ITEMS.register(modBus);
         ModCreativeTabs.TABS.register(modBus);
+        ModWorldgen.STRUCTURE_TYPES.register(modBus);
+        ModWorldgen.STRUCTURE_PIECES.register(modBus);
         container.registerConfig(ModConfig.Type.COMMON, ExofallConfig.SPEC);
         LOGGER.info("BROMAX's Exofall loading");
     }

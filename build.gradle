@@ -45,7 +45,7 @@ jar {
 tasks.register('deploy') {
     dependsOn build
     doLast {
-        def instance = project.findProperty('deployInstance') ?: 'Exofall testing'
+        def instance = project.findProperty('deployInstance') ?: 'Exofall Testing'
         def modsDir = file("/home/glenn/Documents/curseforge/minecraft/Instances/${instance}/mods")
         if (!modsDir.isDirectory()) {
             throw new GradleException("[DEPLOY] No mods folder at ${modsDir}. Create the instance or pass -PdeployInstance=...")
