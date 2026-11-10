@@ -126,6 +126,19 @@ the files in `tools/.generated`. Real textures replace the vanilla texture refs 
   Ribwood, Chitinstone pillars; rainforest = Glowmarl floor with Umbrella Ferns/Mistcaps, Veilpines, Glowmoss
   Curtains. All vanilla plants removed from the interiors.
 
+## Textures, saplings, boats (2026-11-10)
+- All textures are Exofall's own (no vanilla placeholders left). Sources in `textures-src/` (gen_stones, gen_woods,
+  gen_plants, entity/gen_boats, item/gen_boat_items + hand .px); rebuild with `python3 textures-src/build_textures.py`,
+  then `python3 tools/gen_placeholder_assets.py` so models pick up new textures. Palettes: `textures-src/texlib.py`.
+- Colours: Shellrock iridescent white (animated pearl shimmer), Chitinstone brown, Glowmarl mint (Glenn's picks);
+  woods/plants picked from the design text (Stiltreed olive reed, Combwood amber + hex comb, Ribwood bone, Veilpine
+  slate blue + cyan lichen).
+- Saplings for all 4 woods (alien soil only, bone meal or random ticks, grow the same shapes as world gen).
+  Sources: Stiltreed/Veilpine leaves 5%, Nectar Bell 8% -> Combwood, Rattlegrass 8% -> Ribwood (they have no leaves).
+  `/exofall grow <pos>` (ops) grows one instantly for testing.
+- Boats + chest boats for all 4 woods: own entities (`exofall:boat`, `exofall:chest_boat`, wood stored by name),
+  own renderer; skins use only vanilla's boat UV mask, painted with our planks. No dispenser behaviour yet.
+
 ## Open questions
 - Locator item for finding a specific meteor type (1 per 850 blocks split across 5-7 types is a long hunt)
 - Ways past the crust to block: TNT, creepers, ender pearls, chorus fruit, mods in S202

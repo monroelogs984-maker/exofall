@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/door_bottom_left",
   "textures": {
-    "bottom": "minecraft:block/birch_door_bottom",
-    "top": "minecraft:block/birch_door_top"
+    "bottom": "exofall:block/ribwood_door_bottom",
+    "top": "exofall:block/ribwood_door_top"
   },
   "render_type": "minecraft:cutout"
 }

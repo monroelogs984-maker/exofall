@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "minecraft:block/warped_stem_top",
-    "side": "minecraft:block/warped_stem"
+    "end": "exofall:block/veilpine_log_top",
+    "side": "exofall:block/veilpine_log"
   }
 }

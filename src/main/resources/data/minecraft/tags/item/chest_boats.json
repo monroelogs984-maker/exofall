@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:combwood_chest_boat",
+    "exofall:ribwood_chest_boat",
+    "exofall:stiltreed_chest_boat",
+    "exofall:veilpine_chest_boat"
+  ]
+}

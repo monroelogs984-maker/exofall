@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/template_orientable_trapdoor_bottom",
   "textures": {
-    "texture": "minecraft:block/acacia_trapdoor"
+    "texture": "exofall:block/combwood_trapdoor"
   },
   "render_type": "minecraft:cutout"
 }

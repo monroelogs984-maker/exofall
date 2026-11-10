@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/fence_side",
   "textures": {
-    "texture": "minecraft:block/birch_planks"
+    "texture": "exofall:block/ribwood_planks"
   }
 }

@@ -1,8 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "minecraft:block/big_dripleaf_top",
-    "texture": "minecraft:block/big_dripleaf_top"
+    "particle": "exofall:block/bladderpad",
+    "texture": "exofall:block/bladderpad"
   },
   "render_type": "minecraft:cutout",
   "elements": [

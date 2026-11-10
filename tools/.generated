@@ -12,6 +12,7 @@ assets/exofall/blockstates/combwood_fence_gate.json
 assets/exofall/blockstates/combwood_log.json
 assets/exofall/blockstates/combwood_planks.json
 assets/exofall/blockstates/combwood_pressure_plate.json
+assets/exofall/blockstates/combwood_sapling.json
 assets/exofall/blockstates/combwood_slab.json
 assets/exofall/blockstates/combwood_stairs.json
 assets/exofall/blockstates/combwood_trapdoor.json
@@ -35,6 +36,7 @@ assets/exofall/blockstates/ribwood_fence_gate.json
 assets/exofall/blockstates/ribwood_log.json
 assets/exofall/blockstates/ribwood_planks.json
 assets/exofall/blockstates/ribwood_pressure_plate.json
+assets/exofall/blockstates/ribwood_sapling.json
 assets/exofall/blockstates/ribwood_slab.json
 assets/exofall/blockstates/ribwood_stairs.json
 assets/exofall/blockstates/ribwood_trapdoor.json
@@ -51,6 +53,7 @@ assets/exofall/blockstates/stiltreed_leaves.json
 assets/exofall/blockstates/stiltreed_log.json
 assets/exofall/blockstates/stiltreed_planks.json
 assets/exofall/blockstates/stiltreed_pressure_plate.json
+assets/exofall/blockstates/stiltreed_sapling.json
 assets/exofall/blockstates/stiltreed_slab.json
 assets/exofall/blockstates/stiltreed_stairs.json
 assets/exofall/blockstates/stiltreed_trapdoor.json
@@ -72,6 +75,7 @@ assets/exofall/blockstates/veilpine_leaves.json
 assets/exofall/blockstates/veilpine_log.json
 assets/exofall/blockstates/veilpine_planks.json
 assets/exofall/blockstates/veilpine_pressure_plate.json
+assets/exofall/blockstates/veilpine_sapling.json
 assets/exofall/blockstates/veilpine_slab.json
 assets/exofall/blockstates/veilpine_stairs.json
 assets/exofall/blockstates/veilpine_trapdoor.json
@@ -115,6 +119,7 @@ assets/exofall/models/block/combwood_log_horizontal.json
 assets/exofall/models/block/combwood_planks.json
 assets/exofall/models/block/combwood_pressure_plate.json
 assets/exofall/models/block/combwood_pressure_plate_down.json
+assets/exofall/models/block/combwood_sapling.json
 assets/exofall/models/block/combwood_slab.json
 assets/exofall/models/block/combwood_slab_top.json
 assets/exofall/models/block/combwood_stairs.json
@@ -162,6 +167,7 @@ assets/exofall/models/block/ribwood_log_horizontal.json
 assets/exofall/models/block/ribwood_planks.json
 assets/exofall/models/block/ribwood_pressure_plate.json
 assets/exofall/models/block/ribwood_pressure_plate_down.json
+assets/exofall/models/block/ribwood_sapling.json
 assets/exofall/models/block/ribwood_slab.json
 assets/exofall/models/block/ribwood_slab_top.json
 assets/exofall/models/block/ribwood_stairs.json
@@ -200,6 +206,7 @@ assets/exofall/models/block/stiltreed_log_horizontal.json
 assets/exofall/models/block/stiltreed_planks.json
 assets/exofall/models/block/stiltreed_pressure_plate.json
 assets/exofall/models/block/stiltreed_pressure_plate_down.json
+assets/exofall/models/block/stiltreed_sapling.json
 assets/exofall/models/block/stiltreed_slab.json
 assets/exofall/models/block/stiltreed_slab_top.json
 assets/exofall/models/block/stiltreed_stairs.json
@@ -245,6 +252,7 @@ assets/exofall/models/block/veilpine_log.json
 assets/exofall/models/block/veilpine_planks.json
 assets/exofall/models/block/veilpine_pressure_plate.json
 assets/exofall/models/block/veilpine_pressure_plate_down.json
+assets/exofall/models/block/veilpine_sapling.json
 assets/exofall/models/block/veilpine_slab.json
 assets/exofall/models/block/veilpine_slab_top.json
 assets/exofall/models/block/veilpine_stairs.json
@@ -263,13 +271,16 @@ assets/exofall/models/item/chitinstone_brick_stairs.json
 assets/exofall/models/item/chitinstone_brick_wall.json
 assets/exofall/models/item/chitinstone_bricks.json
 assets/exofall/models/item/chitinstone_pillar.json
+assets/exofall/models/item/combwood_boat.json
 assets/exofall/models/item/combwood_button.json
+assets/exofall/models/item/combwood_chest_boat.json
 assets/exofall/models/item/combwood_door.json
 assets/exofall/models/item/combwood_fence.json
 assets/exofall/models/item/combwood_fence_gate.json
 assets/exofall/models/item/combwood_log.json
 assets/exofall/models/item/combwood_planks.json
 assets/exofall/models/item/combwood_pressure_plate.json
+assets/exofall/models/item/combwood_sapling.json
 assets/exofall/models/item/combwood_slab.json
 assets/exofall/models/item/combwood_stairs.json
 assets/exofall/models/item/combwood_trapdoor.json
@@ -286,13 +297,16 @@ assets/exofall/models/item/polished_chitinstone.json
 assets/exofall/models/item/polished_chitinstone_slab.json
 assets/exofall/models/item/polished_chitinstone_stairs.json
 assets/exofall/models/item/rattlegrass.json
+assets/exofall/models/item/ribwood_boat.json
 assets/exofall/models/item/ribwood_button.json
+assets/exofall/models/item/ribwood_chest_boat.json
 assets/exofall/models/item/ribwood_door.json
 assets/exofall/models/item/ribwood_fence.json
 assets/exofall/models/item/ribwood_fence_gate.json
 assets/exofall/models/item/ribwood_log.json
 assets/exofall/models/item/ribwood_planks.json
 assets/exofall/models/item/ribwood_pressure_plate.json
+assets/exofall/models/item/ribwood_sapling.json
 assets/exofall/models/item/ribwood_slab.json
 assets/exofall/models/item/ribwood_stairs.json
 assets/exofall/models/item/ribwood_trapdoor.json
@@ -301,7 +315,9 @@ assets/exofall/models/item/royal_amber.json
 assets/exofall/models/item/sapcane.json
 assets/exofall/models/item/shellrock.json
 assets/exofall/models/item/snaretongue.json
+assets/exofall/models/item/stiltreed_boat.json
 assets/exofall/models/item/stiltreed_button.json
+assets/exofall/models/item/stiltreed_chest_boat.json
 assets/exofall/models/item/stiltreed_door.json
 assets/exofall/models/item/stiltreed_fence.json
 assets/exofall/models/item/stiltreed_fence_gate.json
@@ -309,6 +325,7 @@ assets/exofall/models/item/stiltreed_leaves.json
 assets/exofall/models/item/stiltreed_log.json
 assets/exofall/models/item/stiltreed_planks.json
 assets/exofall/models/item/stiltreed_pressure_plate.json
+assets/exofall/models/item/stiltreed_sapling.json
 assets/exofall/models/item/stiltreed_slab.json
 assets/exofall/models/item/stiltreed_stairs.json
 assets/exofall/models/item/stiltreed_trapdoor.json
@@ -322,7 +339,9 @@ assets/exofall/models/item/stripped_stiltreed_wood.json
 assets/exofall/models/item/stripped_veilpine_log.json
 assets/exofall/models/item/stripped_veilpine_wood.json
 assets/exofall/models/item/umbrella_fern.json
+assets/exofall/models/item/veilpine_boat.json
 assets/exofall/models/item/veilpine_button.json
+assets/exofall/models/item/veilpine_chest_boat.json
 assets/exofall/models/item/veilpine_door.json
 assets/exofall/models/item/veilpine_fence.json
 assets/exofall/models/item/veilpine_fence_gate.json
@@ -330,6 +349,7 @@ assets/exofall/models/item/veilpine_leaves.json
 assets/exofall/models/item/veilpine_log.json
 assets/exofall/models/item/veilpine_planks.json
 assets/exofall/models/item/veilpine_pressure_plate.json
+assets/exofall/models/item/veilpine_sapling.json
 assets/exofall/models/item/veilpine_slab.json
 assets/exofall/models/item/veilpine_stairs.json
 assets/exofall/models/item/veilpine_trapdoor.json
@@ -350,6 +370,7 @@ data/exofall/loot_table/blocks/combwood_fence_gate.json
 data/exofall/loot_table/blocks/combwood_log.json
 data/exofall/loot_table/blocks/combwood_planks.json
 data/exofall/loot_table/blocks/combwood_pressure_plate.json
+data/exofall/loot_table/blocks/combwood_sapling.json
 data/exofall/loot_table/blocks/combwood_slab.json
 data/exofall/loot_table/blocks/combwood_stairs.json
 data/exofall/loot_table/blocks/combwood_trapdoor.json
@@ -373,6 +394,7 @@ data/exofall/loot_table/blocks/ribwood_fence_gate.json
 data/exofall/loot_table/blocks/ribwood_log.json
 data/exofall/loot_table/blocks/ribwood_planks.json
 data/exofall/loot_table/blocks/ribwood_pressure_plate.json
+data/exofall/loot_table/blocks/ribwood_sapling.json
 data/exofall/loot_table/blocks/ribwood_slab.json
 data/exofall/loot_table/blocks/ribwood_stairs.json
 data/exofall/loot_table/blocks/ribwood_trapdoor.json
@@ -389,6 +411,7 @@ data/exofall/loot_table/blocks/stiltreed_leaves.json
 data/exofall/loot_table/blocks/stiltreed_log.json
 data/exofall/loot_table/blocks/stiltreed_planks.json
 data/exofall/loot_table/blocks/stiltreed_pressure_plate.json
+data/exofall/loot_table/blocks/stiltreed_sapling.json
 data/exofall/loot_table/blocks/stiltreed_slab.json
 data/exofall/loot_table/blocks/stiltreed_stairs.json
 data/exofall/loot_table/blocks/stiltreed_trapdoor.json
@@ -410,6 +433,7 @@ data/exofall/loot_table/blocks/veilpine_leaves.json
 data/exofall/loot_table/blocks/veilpine_log.json
 data/exofall/loot_table/blocks/veilpine_planks.json
 data/exofall/loot_table/blocks/veilpine_pressure_plate.json
+data/exofall/loot_table/blocks/veilpine_sapling.json
 data/exofall/loot_table/blocks/veilpine_slab.json
 data/exofall/loot_table/blocks/veilpine_stairs.json
 data/exofall/loot_table/blocks/veilpine_trapdoor.json
@@ -435,7 +459,9 @@ data/exofall/recipe/chitinstone_pillar.json
 data/exofall/recipe/chitinstone_pillar_from_chitinstone_bricks_stonecutting.json
 data/exofall/recipe/chitinstone_pillar_from_chitinstone_stonecutting.json
 data/exofall/recipe/chitinstone_pillar_from_polished_chitinstone_stonecutting.json
+data/exofall/recipe/combwood_boat.json
 data/exofall/recipe/combwood_button.json
+data/exofall/recipe/combwood_chest_boat.json
 data/exofall/recipe/combwood_door.json
 data/exofall/recipe/combwood_fence.json
 data/exofall/recipe/combwood_fence_gate.json
@@ -453,7 +479,9 @@ data/exofall/recipe/polished_chitinstone_slab_from_polished_chitinstone_stonecut
 data/exofall/recipe/polished_chitinstone_stairs.json
 data/exofall/recipe/polished_chitinstone_stairs_from_chitinstone_stonecutting.json
 data/exofall/recipe/polished_chitinstone_stairs_from_polished_chitinstone_stonecutting.json
+data/exofall/recipe/ribwood_boat.json
 data/exofall/recipe/ribwood_button.json
+data/exofall/recipe/ribwood_chest_boat.json
 data/exofall/recipe/ribwood_door.json
 data/exofall/recipe/ribwood_fence.json
 data/exofall/recipe/ribwood_fence_gate.json
@@ -463,7 +491,9 @@ data/exofall/recipe/ribwood_slab.json
 data/exofall/recipe/ribwood_stairs.json
 data/exofall/recipe/ribwood_trapdoor.json
 data/exofall/recipe/ribwood_wood.json
+data/exofall/recipe/stiltreed_boat.json
 data/exofall/recipe/stiltreed_button.json
+data/exofall/recipe/stiltreed_chest_boat.json
 data/exofall/recipe/stiltreed_door.json
 data/exofall/recipe/stiltreed_fence.json
 data/exofall/recipe/stiltreed_fence_gate.json
@@ -477,7 +507,9 @@ data/exofall/recipe/stripped_combwood_wood.json
 data/exofall/recipe/stripped_ribwood_wood.json
 data/exofall/recipe/stripped_stiltreed_wood.json
 data/exofall/recipe/stripped_veilpine_wood.json
+data/exofall/recipe/veilpine_boat.json
 data/exofall/recipe/veilpine_button.json
+data/exofall/recipe/veilpine_chest_boat.json
 data/exofall/recipe/veilpine_door.json
 data/exofall/recipe/veilpine_fence.json
 data/exofall/recipe/veilpine_fence_gate.json
@@ -507,6 +539,7 @@ data/minecraft/tags/block/mineable/hoe.json
 data/minecraft/tags/block/mineable/pickaxe.json
 data/minecraft/tags/block/planks.json
 data/minecraft/tags/block/replaceable.json
+data/minecraft/tags/block/saplings.json
 data/minecraft/tags/block/slabs.json
 data/minecraft/tags/block/stairs.json
 data/minecraft/tags/block/sword_efficient.json
@@ -518,11 +551,14 @@ data/minecraft/tags/block/wooden_pressure_plates.json
 data/minecraft/tags/block/wooden_slabs.json
 data/minecraft/tags/block/wooden_stairs.json
 data/minecraft/tags/block/wooden_trapdoors.json
+data/minecraft/tags/item/boats.json
+data/minecraft/tags/item/chest_boats.json
 data/minecraft/tags/item/fence_gates.json
 data/minecraft/tags/item/leaves.json
 data/minecraft/tags/item/logs.json
 data/minecraft/tags/item/logs_that_burn.json
 data/minecraft/tags/item/planks.json
+data/minecraft/tags/item/saplings.json
 data/minecraft/tags/item/slabs.json
 data/minecraft/tags/item/stairs.json
 data/minecraft/tags/item/walls.json

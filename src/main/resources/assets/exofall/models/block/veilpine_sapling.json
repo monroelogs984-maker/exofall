@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "exofall:block/veilpine_sapling"
+  },
+  "render_type": "minecraft:cutout"
+}

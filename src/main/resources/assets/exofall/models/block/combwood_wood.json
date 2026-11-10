@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "minecraft:block/acacia_log",
-    "side": "minecraft:block/acacia_log"
+    "end": "exofall:block/combwood_log",
+    "side": "exofall:block/combwood_log"
   }
 }

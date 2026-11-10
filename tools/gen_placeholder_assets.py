@@ -82,6 +82,7 @@ CLONES.update({
 })
 FAMILY_WORDS |= {"tuff", "quartz", "obsidian", "calcite", "amethyst"}
 TEXTURE_OVERRIDES = {"chitinstone_pillar": {"end": "minecraft:block/chiseled_tuff_top", "side": "minecraft:block/chiseled_tuff"}}
+OWN_OVERRIDES = {"chitinstone_pillar": {"end": "block/chitinstone_pillar_top", "side": "block/chitinstone_pillar"}}
 
 # Plants drawn as crosses (or flat pads) from vanilla textures.
 CROSS = {
@@ -90,7 +91,13 @@ CROSS = {
     "waxcap": "minecraft:block/brown_mushroom", "dunespine": "minecraft:block/crimson_fungus",
     "nightbloom": "minecraft:block/blue_orchid", "rattlegrass": "minecraft:block/dead_bush",
     "mistcap": "minecraft:block/warped_fungus", "glowmoss_curtain": "minecraft:block/cave_vines_plant_lit",
+    "stiltreed_sapling": "minecraft:block/mangrove_propagule", "combwood_sapling": "minecraft:block/acacia_sapling",
+    "ribwood_sapling": "minecraft:block/birch_sapling", "veilpine_sapling": "minecraft:block/spruce_sapling",
 }
+SAPLINGS = ["stiltreed_sapling", "combwood_sapling", "ribwood_sapling", "veilpine_sapling"]
+# extra loot: (block, item, chance) rolled on top of the normal drop, not with shears/silk touch
+EXTRA_DROPS = {"stiltreed_leaves": ("stiltreed_sapling", 0.05), "veilpine_leaves": ("veilpine_sapling", 0.05),
+               "nectar_bell": ("combwood_sapling", 0.08), "rattlegrass": ("ribwood_sapling", 0.08)}
 DOUBLE = {"sapcane": ("minecraft:block/tall_seagrass_bottom", "minecraft:block/tall_seagrass_top"),
           "umbrella_fern": ("minecraft:block/lilac_bottom", "minecraft:block/lilac_top")}
 PADS = {"bladderpad": "minecraft:block/big_dripleaf_top", "driftmoss": "minecraft:block/moss_block"}
@@ -113,6 +120,29 @@ def remap(obj):
 def leftover_family(obj):
     text = json.dumps(obj)
     return any(re.search(rf'"#?minecraft:[a-z_]*{w}[a-z_]*"', text) for w in FAMILY_WORDS)
+
+# ---------------------------------------------------------------- textures
+TEX_DIR = os.path.join(RES, f"assets/{NS}/textures")
+def ours_tex(ref):
+    """Use our texture when one exists: vanilla 'minecraft:block/mangrove_log_top' -> 'exofall:block/stiltreed_log_top'."""
+    if not ref.startswith("minecraft:") or "/" not in ref:
+        return ref
+    folder, name = ref.split(":")[1].split("/", 1)
+    for ours_id, (src, _) in sorted(CLONES.items(), key=lambda kv: -len(kv[1][0])):
+        if name == src or name.startswith(src + "_"):
+            cand = f"{folder}/{ours_id}{name[len(src):]}"
+            if os.path.exists(os.path.join(TEX_DIR, cand + ".png")):
+                return f"{NS}:{cand}"
+            break
+    return ref
+
+def own_or(ref_ours, fallback):
+    return f"{NS}:{ref_ours}" if os.path.exists(os.path.join(TEX_DIR, ref_ours + ".png")) else fallback
+
+def retexture(model):
+    for k, v in list(model.get("textures", {}).items()):
+        if not v.startswith("#"):
+            model["textures"][k] = ours_tex(v)
 
 # ---------------------------------------------------------------- clones
 RENDER = {"door": "minecraft:cutout", "trapdoor": "minecraft:cutout", "leaves": "minecraft:cutout_mipped", "crystal": "minecraft:cutout"}
@@ -147,6 +177,7 @@ def clone(ours, src, kind):
         new = rename_model_ref(item["parent"], src, ours)
         if new:
             models.add(item["parent"].split("/", 1)[1]); item["parent"] = new
+    retexture(item)
     write(f"assets/{NS}/models/item/{ours}.json", item)
 
     for name in sorted(models):
@@ -158,17 +189,33 @@ def clone(ours, src, kind):
             if new: mdl["parent"] = new
         if ours in TEXTURE_OVERRIDES:
             mdl.setdefault("textures", {}).update(TEXTURE_OVERRIDES[ours])
+        retexture(mdl)
+        for k, v in OWN_OVERRIDES.get(ours, {}).items():
+            mdl["textures"][k] = own_or(v, mdl["textures"][k])
         if kind in RENDER:
             mdl["render_type"] = RENDER[kind]
         write(f"assets/{NS}/models/block/{ours}{name[len(src):]}.json", mdl)
 
     if kind in ("leaves", "crystal"):
-        write(f"data/{NS}/loot_table/blocks/{ours}.json", self_loot(ours, silk_or_shears=(kind == "leaves")))
+        write(f"data/{NS}/loot_table/blocks/{ours}.json", with_extra(ours, self_loot(ours, silk_or_shears=(kind == "leaves"))))
     else:
         loot = vjson(f"data/minecraft/loot_table/blocks/{src}.json")
         loot = remap(loot)
         loot.pop("random_sequence", None)
         write(f"data/{NS}/loot_table/blocks/{ours}.json", loot)
+
+def with_extra(ours, loot):
+    if ours not in EXTRA_DROPS:
+        return loot
+    item, chance = EXTRA_DROPS[ours]
+    no_tool = {"condition": "minecraft:inverted", "term": {"condition": "minecraft:any_of", "terms": [
+        {"condition": "minecraft:match_tool", "predicate": {"items": "minecraft:shears"}},
+        {"condition": "minecraft:match_tool", "predicate": {"predicates": {"minecraft:enchantments": [
+            {"enchantments": "minecraft:silk_touch", "levels": {"min": 1}}]}}}]}}
+    loot["pools"].append({"rolls": 1.0, "bonus_rolls": 0.0, "entries": [{"type": "minecraft:item", "name": f"{NS}:{item}"}],
+                          "conditions": [no_tool, {"condition": "minecraft:random_chance", "chance": chance},
+                                         {"condition": "minecraft:survives_explosion"}]})
+    return loot
 
 def self_loot(ours, silk_or_shears=False, lower_half=False):
     entry = {"type": "minecraft:item", "name": f"{NS}:{ours}"}
@@ -191,12 +238,14 @@ def cross_model(ours, tex, suffix=""):
           {"parent": "minecraft:block/cross", "textures": {"cross": tex}, "render_type": "minecraft:cutout"})
 
 for ours, tex in CROSS.items():
+    tex = own_or(f"block/{ours}", tex)
     cross_model(ours, tex)
     write(f"assets/{NS}/blockstates/{ours}.json", {"variants": {"": {"model": f"{NS}:block/{ours}"}}})
     write(f"assets/{NS}/models/item/{ours}.json", {"parent": "minecraft:item/generated", "textures": {"layer0": tex}})
-    write(f"data/{NS}/loot_table/blocks/{ours}.json", self_loot(ours))
+    write(f"data/{NS}/loot_table/blocks/{ours}.json", with_extra(ours, self_loot(ours)))
 
 for ours, (bottom, top) in DOUBLE.items():
+    bottom, top = own_or(f"block/{ours}_bottom", bottom), own_or(f"block/{ours}_top", top)
     cross_model(ours, bottom, "_bottom"); cross_model(ours, top, "_top")
     write(f"assets/{NS}/blockstates/{ours}.json", {"variants": {
         "half=lower": {"model": f"{NS}:block/{ours}_bottom"}, "half=upper": {"model": f"{NS}:block/{ours}_top"}}})
@@ -204,6 +253,7 @@ for ours, (bottom, top) in DOUBLE.items():
     write(f"data/{NS}/loot_table/blocks/{ours}.json", self_loot(ours, lower_half=True))
 
 for ours, tex in PADS.items():
+    tex = own_or(f"block/{ours}", tex)
     write(f"assets/{NS}/models/block/{ours}.json", {
         "ambientocclusion": False, "textures": {"particle": tex, "texture": tex}, "render_type": "minecraft:cutout",
         "elements": [{"from": [0, 0.25, 0], "to": [16, 0.25, 16], "faces": {
@@ -238,6 +288,18 @@ for src in ("chitinstone", "polished_chitinstone", "chitinstone_bricks"):
     write(f"data/{NS}/recipe/chitinstone_pillar_from_{src}_stonecutting.json", {"type": "minecraft:stonecutting",
           "ingredient": {"item": f"{NS}:{src}"}, "result": {"id": f"{NS}:chitinstone_pillar", "count": 1}})
 
+# ---------------------------------------------------------------- boats
+BOAT_SRC = {"stiltreed": "mangrove", "combwood": "acacia", "ribwood": "birch", "veilpine": "oak"}
+for w, v in BOAT_SRC.items():
+    for chest in (False, True):
+        iid = f"{w}_chest_boat" if chest else f"{w}_boat"
+        tex = own_or(f"item/{iid}", f"minecraft:item/{v}_chest_boat" if chest else f"minecraft:item/{v}_boat")
+        write(f"assets/{NS}/models/item/{iid}.json", {"parent": "minecraft:item/generated", "textures": {"layer0": tex}})
+    write(f"data/{NS}/recipe/{w}_boat.json", {"type": "minecraft:crafting_shaped", "category": "misc", "group": "boat",
+          "pattern": ["# #", "###"], "key": {"#": {"item": f"{NS}:{w}_planks"}}, "result": {"id": f"{NS}:{w}_boat", "count": 1}})
+    write(f"data/{NS}/recipe/{w}_chest_boat.json", {"type": "minecraft:crafting_shapeless", "category": "misc", "group": "chest_boat",
+          "ingredients": [{"tag": "c:chests/wooden"}, {"item": f"{NS}:{w}_boat"}], "result": {"id": f"{NS}:{w}_chest_boat", "count": 1}})
+
 # ---------------------------------------------------------------- tags
 TAG_ALLOW = re.compile(r"^(mineable/.*|logs|logs_that_burn|planks|wooden_.*|fence_gates|fences|walls|stairs|slabs|doors|"
                        r"trapdoors|buttons|pressure_plates|leaves|completes_find_tree_tutorial|dragon_immune|wither_immune|"
@@ -265,6 +327,10 @@ for reg in ("block", "item"):
         adds.setdefault("replaceable", []).extend(f"{NS}:{c}" for c in ("driftmoss",))
         adds.setdefault("sword_efficient", []).extend(f"{NS}:{c}" for c in list(CROSS) + list(DOUBLE) + list(PADS))
         adds.setdefault("mineable/pickaxe", []).append(f"{NS}:shellrock")
+    adds.setdefault("saplings", []).extend(f"{NS}:{s}" for s in SAPLINGS)
+    if reg == "item":
+        adds.setdefault("boats", []).extend(f"{NS}:{w}_boat" for w in BOAT_SRC)
+        adds.setdefault("chest_boats", []).extend(f"{NS}:{w}_chest_boat" for w in BOAT_SRC)
     for tag, vals in adds.items():
         existing = os.path.join(RES, f"data/minecraft/tags/{reg}/{tag}.json")
         keep = []
@@ -288,6 +354,13 @@ for k in [k for k in lang if k.startswith(f"block.{NS}.")]:
     del lang[k]
 for ours in list(CLONES) + list(CROSS) + list(DOUBLE) + list(PADS):
     lang[f"block.{NS}.{ours}"] = " ".join(w.capitalize() for w in ours.split("_"))
+for k in [k for k in lang if k.startswith(f"item.{NS}.") and k.endswith("boat")]:
+    del lang[k]
+for w in BOAT_SRC:
+    lang[f"item.{NS}.{w}_boat"] = f"{w.capitalize()} Boat"
+    lang[f"item.{NS}.{w}_chest_boat"] = f"{w.capitalize()} Boat with Chest"
+lang[f"entity.{NS}.boat"] = "Boat"
+lang[f"entity.{NS}.chest_boat"] = "Boat with Chest"
 with open(lang_path, "w") as f:
     json.dump(dict(sorted(lang.items())), f, indent=2); f.write("\n")
 

@@ -1,8 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "minecraft:block/moss_block",
-    "texture": "minecraft:block/moss_block"
+    "particle": "exofall:block/driftmoss",
+    "texture": "exofall:block/driftmoss"
   },
   "render_type": "minecraft:cutout",
   "elements": [

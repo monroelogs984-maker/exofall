@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "exofall:ribwood_planks"
+    }
+  },
+  "result": {
+    "id": "exofall:ribwood_boat",
+    "count": 1
+  }
+}

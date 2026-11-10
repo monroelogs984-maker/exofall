@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/dead_bush"
+    "cross": "exofall:block/rattlegrass"
   },
   "render_type": "minecraft:cutout"
 }

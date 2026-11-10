@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "minecraft:block/stripped_mangrove_log",
-    "side": "minecraft:block/stripped_mangrove_log"
+    "end": "exofall:block/stripped_stiltreed_log",
+    "side": "exofall:block/stripped_stiltreed_log"
   }
 }

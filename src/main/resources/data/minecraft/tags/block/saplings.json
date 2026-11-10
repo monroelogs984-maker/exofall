@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:combwood_sapling",
+    "exofall:ribwood_sapling",
+    "exofall:stiltreed_sapling",
+    "exofall:veilpine_sapling"
+  ]
+}

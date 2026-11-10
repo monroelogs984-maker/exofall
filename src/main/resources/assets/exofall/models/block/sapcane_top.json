@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/tall_seagrass_top"
+    "cross": "exofall:block/sapcane_top"
   },
   "render_type": "minecraft:cutout"
 }

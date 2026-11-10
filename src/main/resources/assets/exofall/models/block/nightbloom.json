@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/blue_orchid"
+    "cross": "exofall:block/nightbloom"
   },
   "render_type": "minecraft:cutout"
 }

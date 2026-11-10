@@ -1,7 +1,11 @@
 package com.bromax.exofall.registry;
 
 import com.bromax.exofall.Exofall;
+import com.bromax.exofall.entity.BoatWood;
+import com.bromax.exofall.item.ExofallBoatItem;
 import com.bromax.exofall.item.ModTiers;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
@@ -35,6 +39,18 @@ public final class ModItems {
                 if (b instanceof WaterlilyBlock) return new PlaceOnWaterBlockItem(b, new Item.Properties());
                 return new net.minecraft.world.item.BlockItem(b, new Item.Properties());
             });
+        }
+    }
+
+    /** Boats and chest boats per alien wood, keyed by item id. */
+    public static final Map<String, DeferredItem<ExofallBoatItem>> BOATS = new LinkedHashMap<>();
+
+    static {
+        for (BoatWood w : BoatWood.values()) {
+            for (boolean chest : new boolean[] {false, true}) {
+                String id = w.name + (chest ? "_chest_boat" : "_boat");
+                BOATS.put(id, ITEMS.register(id, () -> new ExofallBoatItem(w, chest, new Item.Properties().stacksTo(1))));
+            }
         }
     }
 

@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "bottom": "minecraft:block/birch_planks",
-    "side": "minecraft:block/birch_planks",
-    "top": "minecraft:block/birch_planks"
+    "bottom": "exofall:block/ribwood_planks",
+    "side": "exofall:block/ribwood_planks",
+    "top": "exofall:block/ribwood_planks"
   }
 }

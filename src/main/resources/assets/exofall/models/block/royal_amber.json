@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/amethyst_cluster"
+    "cross": "exofall:block/royal_amber"
   },
   "render_type": "minecraft:cutout"
 }

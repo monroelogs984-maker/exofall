@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/crimson_roots"
+    "cross": "exofall:block/snaretongue"
   },
   "render_type": "minecraft:cutout"
 }

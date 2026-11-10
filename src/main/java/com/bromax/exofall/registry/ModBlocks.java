@@ -99,5 +99,15 @@ public final class ModBlocks {
     public static final DeferredBlock<HangingPlantBlock> GLOWMOSS_CURTAIN = BLOCKS.register("glowmoss_curtain",
             () -> new HangingPlantBlock(plant(MapColor.COLOR_CYAN).lightLevel(s -> 7).sound(SoundType.MOSS_CARPET), true));
 
+    // Saplings (only grow on meteor soil)
+    public static final DeferredBlock<AlienSaplingBlock> STILTREED_SAPLING = sapling("stiltreed_sapling", AlienSaplingBlock.Species.STILTREED);
+    public static final DeferredBlock<AlienSaplingBlock> COMBWOOD_SAPLING = sapling("combwood_sapling", AlienSaplingBlock.Species.COMBWOOD);
+    public static final DeferredBlock<AlienSaplingBlock> RIBWOOD_SAPLING = sapling("ribwood_sapling", AlienSaplingBlock.Species.RIBWOOD);
+    public static final DeferredBlock<AlienSaplingBlock> VEILPINE_SAPLING = sapling("veilpine_sapling", AlienSaplingBlock.Species.VEILPINE);
+
+    private static DeferredBlock<AlienSaplingBlock> sapling(String id, AlienSaplingBlock.Species species) {
+        return BLOCKS.register(id, () -> new AlienSaplingBlock(species, Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    }
+
     private ModBlocks() {}
 }

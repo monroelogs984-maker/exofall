@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:combwood_boat",
+    "exofall:ribwood_boat",
+    "exofall:stiltreed_boat",
+    "exofall:veilpine_boat"
+  ]
+}

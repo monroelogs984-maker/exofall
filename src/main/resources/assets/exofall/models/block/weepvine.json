@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/twisting_vines_plant"
+    "cross": "exofall:block/weepvine"
   },
   "render_type": "minecraft:cutout"
 }

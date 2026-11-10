@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "exofall:stiltreed_planks"
+    }
+  },
+  "result": {
+    "id": "exofall:stiltreed_boat",
+    "count": 1
+  }
+}

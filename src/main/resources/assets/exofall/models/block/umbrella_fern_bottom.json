@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/lilac_bottom"
+    "cross": "exofall:block/umbrella_fern_bottom"
   },
   "render_type": "minecraft:cutout"
 }

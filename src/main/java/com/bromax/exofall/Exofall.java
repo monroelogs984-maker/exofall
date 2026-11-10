@@ -4,6 +4,7 @@ import com.bromax.exofall.block.Stripping;
 import com.bromax.exofall.config.ExofallConfig;
 import com.bromax.exofall.registry.ModBlocks;
 import com.bromax.exofall.registry.ModCreativeTabs;
+import com.bromax.exofall.registry.ModEntities;
 import com.bromax.exofall.registry.ModItems;
 import com.bromax.exofall.registry.ModWorldgen;
 import com.mojang.logging.LogUtils;
@@ -24,9 +25,11 @@ public final class Exofall {
         ModBlocks.BLOCKS.register(modBus);
         ModItems.ITEMS.register(modBus);
         ModCreativeTabs.TABS.register(modBus);
+        ModEntities.ENTITIES.register(modBus);
         ModWorldgen.STRUCTURE_TYPES.register(modBus);
         ModWorldgen.STRUCTURE_PIECES.register(modBus);
         NeoForge.EVENT_BUS.addListener(Stripping::onToolModify);
+        NeoForge.EVENT_BUS.addListener(ExofallCommands::register);
         container.registerConfig(ModConfig.Type.COMMON, ExofallConfig.SPEC);
         LOGGER.info("BROMAX's Exofall loading");
     }

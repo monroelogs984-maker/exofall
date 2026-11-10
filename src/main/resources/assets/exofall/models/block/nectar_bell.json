@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/lily_of_the_valley"
+    "cross": "exofall:block/nectar_bell"
   },
   "render_type": "minecraft:cutout"
 }

@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "exofall:bladderpad",
+    "exofall:combwood_sapling",
     "exofall:driftmoss",
     "exofall:dunespine",
     "exofall:glowmoss_curtain",
@@ -10,9 +11,12 @@
     "exofall:nectar_bell",
     "exofall:nightbloom",
     "exofall:rattlegrass",
+    "exofall:ribwood_sapling",
     "exofall:sapcane",
     "exofall:snaretongue",
+    "exofall:stiltreed_sapling",
     "exofall:umbrella_fern",
+    "exofall:veilpine_sapling",
     "exofall:waxcap",
     "exofall:weepvine"
   ]

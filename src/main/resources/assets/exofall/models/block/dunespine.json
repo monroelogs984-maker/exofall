@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "minecraft:block/crimson_fungus"
+    "cross": "exofall:block/dunespine"
   },
   "render_type": "minecraft:cutout"
 }

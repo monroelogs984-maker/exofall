@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "exofall:veilpine_planks"
+    }
+  },
+  "result": {
+    "id": "exofall:veilpine_boat",
+    "count": 1
+  }
+}
