@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "exofall:polished_chitinstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "exofall:chitinstone_brick_wall"
+  }
+}

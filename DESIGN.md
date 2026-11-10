@@ -107,6 +107,25 @@ beetles). Rainforest: umbrella fern, mistcap mushroom, glowmoss curtains.
 **Boss rooms** are sealed and opened with a sigil in a sigil socket. Sigils come from the dungeons; exactly how is not
 decided yet.
 
+## Interior blocks built (2026-11-10, placeholder textures)
+80 blocks, all in the Exofall creative tab. Resources come from `tools/gen_placeholder_assets.py`, which clones vanilla
+look-alikes (mangrove->Stiltreed, acacia->Combwood, birch->Ribwood, warped->Veilpine, tuff->Chitinstone, obsidian->Shellrock,
+calcite->Glowmarl, amethyst cluster->Royal Amber) and keeps vanilla textures. Re-run it after adding blocks; it owns
+the files in `tools/.generated`. Real textures replace the vanilla texture refs later.
+- Shell: 3 layers Shellrock outside, 2 layers Chitinstone lining. Everything over 3 blocks under a floor is Chitinstone.
+- Woods: log, wood, stripped log/wood (axe-strippable), planks, stairs, slab, fence, gate, door, trapdoor, button,
+  pressure plate; leaves for Stiltreed and Veilpine. No saplings, signs or boats yet (trees are built by the
+  generator, not grown).
+- Plants only survive on `#exofall:alien_soil` (Glowmarl). Pads sit on water. Behaviours: Snaretongue/Dunespine slow
+  and nip like berry bushes; Bladderpad pops into a slowness cloud; Rattlegrass rattles + emits a vibration (silent
+  when sneaking); Weepvine and Glowmoss Curtain are climbable; glowing plants: Lanternpod 12, Royal Amber 9,
+  Glowmoss 7, Glowmarl 6, Nightbloom 5, Nectar Bell 4, Mistcap 3.
+- Generation: swamp = Glowmarl banks + Stiltreed on stilt roots, Driftmoss/Bladderpads on pools, Lanternpods and
+  Weepvines from the ceiling; hive = Glowmarl beds with Nectar Bells/Waxcaps, Royal Amber, 3x3 hollow Combwood
+  trunks floor to ceiling; desert = Glowmarl flats in dune troughs with Rattlegrass/Dunespine/Nightbloom and twin-helix
+  Ribwood, Chitinstone pillars; rainforest = Glowmarl floor with Umbrella Ferns/Mistcaps, Veilpines, Glowmoss
+  Curtains. All vanilla plants removed from the interiors.
+
 ## Open questions
 - Locator item for finding a specific meteor type (1 per 850 blocks split across 5-7 types is a long hunt)
 - Ways past the crust to block: TNT, creepers, ender pearls, chorus fruit, mods in S202

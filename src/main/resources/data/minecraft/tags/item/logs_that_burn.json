@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#exofall:combwood_logs",
+    "#exofall:ribwood_logs",
+    "#exofall:stiltreed_logs",
+    "#exofall:veilpine_logs"
+  ]
+}

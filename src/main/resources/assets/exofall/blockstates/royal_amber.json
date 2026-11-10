@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "exofall:block/royal_amber",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "exofall:block/royal_amber",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "exofall:block/royal_amber",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "exofall:block/royal_amber",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "exofall:block/royal_amber"
+    },
+    "facing=west": {
+      "model": "exofall:block/royal_amber",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:combwood_pressure_plate",
+    "exofall:ribwood_pressure_plate",
+    "exofall:stiltreed_pressure_plate",
+    "exofall:veilpine_pressure_plate"
+  ]
+}

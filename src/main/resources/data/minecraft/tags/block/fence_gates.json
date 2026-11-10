@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:combwood_fence_gate",
+    "exofall:ribwood_fence_gate",
+    "exofall:stiltreed_fence_gate",
+    "exofall:veilpine_fence_gate"
+  ]
+}

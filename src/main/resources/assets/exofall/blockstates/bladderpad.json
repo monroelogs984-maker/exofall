@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "exofall:block/bladderpad"
+      },
+      {
+        "model": "exofall:block/bladderpad",
+        "y": 90
+      },
+      {
+        "model": "exofall:block/bladderpad",
+        "y": 180
+      },
+      {
+        "model": "exofall:block/bladderpad",
+        "y": 270
+      }
+    ]
+  }
+}

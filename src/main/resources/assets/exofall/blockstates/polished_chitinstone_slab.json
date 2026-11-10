@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "exofall:block/polished_chitinstone_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/polished_tuff"
+    },
+    "type=top": {
+      "model": "exofall:block/polished_chitinstone_slab_top"
+    }
+  }
+}

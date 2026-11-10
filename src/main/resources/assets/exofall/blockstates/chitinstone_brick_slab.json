@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "exofall:block/chitinstone_brick_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/tuff_bricks"
+    },
+    "type=top": {
+      "model": "exofall:block/chitinstone_brick_slab_top"
+    }
+  }
+}

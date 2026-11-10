@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "exofall:chitinstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "exofall:polished_chitinstone_stairs"
+  }
+}

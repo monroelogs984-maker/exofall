@@ -1,6 +1,17 @@
 {
   "replace": false,
   "values": [
-    "exofall:placeholder_crust"
+    "exofall:chitinstone",
+    "exofall:chitinstone_brick_slab",
+    "exofall:chitinstone_brick_stairs",
+    "exofall:chitinstone_brick_wall",
+    "exofall:chitinstone_bricks",
+    "exofall:chitinstone_pillar",
+    "exofall:glowmarl",
+    "exofall:polished_chitinstone",
+    "exofall:polished_chitinstone_slab",
+    "exofall:polished_chitinstone_stairs",
+    "exofall:royal_amber",
+    "exofall:shellrock"
   ]
 }

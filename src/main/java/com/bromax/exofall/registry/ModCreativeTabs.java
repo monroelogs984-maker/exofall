@@ -15,7 +15,7 @@ public final class ModCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = TABS.register("main",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.exofall"))
-                    .icon(() -> new ItemStack(ModItems.PLACEHOLDER_CRUST.get()))
+                    .icon(() -> new ItemStack(ModBlocks.SHELLROCK.get()))
                     .displayItems((params, output) ->
                             ModItems.ITEMS.getEntries().forEach(item -> output.accept(item.get())))
                     .build());

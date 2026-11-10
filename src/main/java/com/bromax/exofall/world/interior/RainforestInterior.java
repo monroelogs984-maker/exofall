@@ -1,10 +1,9 @@
 package com.bromax.exofall.world.interior;
 
+import com.bromax.exofall.registry.ModBlocks;
 import com.bromax.exofall.world.MeteorInterior;
 import com.bromax.exofall.world.MeteorPiece;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CaveVines;
-import net.minecraft.world.level.block.CaveVinesBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -12,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Hemlock rainforest: grass, podzol and moss over dirt, a few pools, ferns, tall conical conifers
- * (placeholder spruce), and glow-berry vines from the ceiling. Trees are built block by block from a
+ * Hemlock rainforest: Glowmarl, podzol and moss over dirt, a few pools, Umbrella Ferns and Mistcaps, tall
+ * conical Veilpines, and Glowmoss Curtains from the ceiling. Trees are built block by block from a
  * jittered grid so they cross chunk borders cleanly.
  */
 public class RainforestInterior implements MeteorInterior {
@@ -35,11 +34,11 @@ public class RainforestInterior implements MeteorInterior {
                 if (t != null && Math.abs(t.x - x) <= TREE_REACH && Math.abs(t.z - z) <= TREE_REACH) trees.add(t);
             }
         }
-        int ceiling = m.ceilingAbove(x, ft, z, 128);
+        int ceiling = m.ceilingAbove(x, ft, z, Interiors.CEILING_SCAN);
         double vh = m.hash(x, 0, z, 30);
-        int vineLength = vh < 0.03 ? 2 + (int) (vh / 0.03 * 7) : 0;
+        int vineLength = vh < 0.03 ? 3 + (int) (vh / 0.03 * 10) : 0;
         double kind = m.noiseB(x * 0.09, 6.6, z * 0.09);
-        int topKind = kind > 0.35 ? 1 : kind < -0.4 ? 2 : 0; // 0 grass, 1 podzol, 2 moss
+        int topKind = kind > 0.35 ? 1 : kind < -0.4 ? 2 : 0; // 0 glowmarl, 1 podzol, 2 moss
         return new Column(ft, 0, 0, new Extra(trees, ceiling, vineLength, topKind));
     }
 
@@ -57,7 +56,7 @@ public class RainforestInterior implements MeteorInterior {
             int tz = gz * TREE_GRID + 1 + (int) (m.hash(gx, 2, gz, 42) * (TREE_GRID - 2));
             int ft = floorTop(m, tx, tz);
             if (ft > m.baseFloor() && m.classify(tx, ft + 1, tz) == MeteorPiece.INTERIOR) {
-                int ceiling = m.ceilingAbove(tx, ft, tz, 128);
+                int ceiling = m.ceilingAbove(tx, ft, tz, Interiors.CEILING_SCAN);
                 int base = ft + 1;
                 int top = base + 10 + (int) (m.hash(gx, 3, gz, 43) * 9);
                 if (ceiling > 0) top = Math.min(top, ceiling - 3);
@@ -78,35 +77,37 @@ public class RainforestInterior implements MeteorInterior {
                 return switch (e.topKind()) {
                     case 1 -> Blocks.PODZOL.defaultBlockState();
                     case 2 -> Blocks.MOSS_BLOCK.defaultBlockState();
-                    default -> Blocks.GRASS_BLOCK.defaultBlockState();
+                    default -> Interiors.glowmarl();
                 };
             }
+            if (ft - y >= Interiors.SURFACE_DEPTH) return Interiors.chitinstone();
             return Blocks.DIRT.defaultBlockState();
         }
         if (y <= water) return Blocks.WATER.defaultBlockState();
 
         for (Tree t : e.trees()) {
-            if (x == t.x && z == t.z && y >= t.base && y <= t.top) return Blocks.SPRUCE_LOG.defaultBlockState();
+            if (x == t.x && z == t.z && y >= t.base && y <= t.top) return ModBlocks.VEILPINE.log.get().defaultBlockState();
         }
         for (Tree t : e.trees()) {
-            if (leaf(m, t, x, y, z)) return Blocks.SPRUCE_LEAVES.defaultBlockState().setValue(LeavesBlock.PERSISTENT, true);
+            if (leaf(m, t, x, y, z)) return ModBlocks.VEILPINE.leaves.get().defaultBlockState().setValue(LeavesBlock.PERSISTENT, true);
         }
 
         int ceil = e.ceiling();
         if (ceil > 0) {
             if (e.vineLength() > 0 && y < ceil && y >= ceil - e.vineLength()) {
-                boolean berries = m.hash(x, y, z, 31) < 0.45;
-                BlockState vine = (y == ceil - e.vineLength() ? Blocks.CAVE_VINES.defaultBlockState().setValue(CaveVinesBlock.AGE, 25)
-                        : Blocks.CAVE_VINES_PLANT.defaultBlockState());
-                return vine.setValue(CaveVines.BERRIES, berries);
+                return ModBlocks.GLOWMOSS_CURTAIN.get().defaultBlockState();
             }
-            if (y == ceil - 1 && m.hash(x, y, z, 4) < 0.02) return Blocks.PEARLESCENT_FROGLIGHT.defaultBlockState();
+            if (y == ceil - 1 && m.hash(x, y, z, 4) < 0.008) return Blocks.PEARLESCENT_FROGLIGHT.defaultBlockState();
         }
 
-        if (y == ft + 1 && e.topKind() != 2) {
-            double h = m.hash(x, y, z, 2);
-            if (h < 0.18) return Blocks.FERN.defaultBlockState();
-            if (h < 0.32) return Blocks.SHORT_GRASS.defaultBlockState();
+        if (ft >= water && e.topKind() == 0) { // Glowmarl: alien plants
+            double h = m.hash(x, ft + 1, z, 2);
+            if (h < 0.08) {
+                if (y == ft + 1) return Interiors.lower(ModBlocks.UMBRELLA_FERN.get());
+                if (y == ft + 2) return Interiors.upper(ModBlocks.UMBRELLA_FERN.get());
+            } else if (h < 0.13 && y == ft + 1) {
+                return ModBlocks.MISTCAP.get().defaultBlockState();
+            }
         }
         return Blocks.AIR.defaultBlockState();
     }

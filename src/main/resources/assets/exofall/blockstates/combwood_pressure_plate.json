@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "exofall:block/combwood_pressure_plate"
+    },
+    "powered=true": {
+      "model": "exofall:block/combwood_pressure_plate_down"
+    }
+  }
+}

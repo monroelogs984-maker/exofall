@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "exofall:block/driftmoss"
+      },
+      {
+        "model": "exofall:block/driftmoss",
+        "y": 90
+      },
+      {
+        "model": "exofall:block/driftmoss",
+        "y": 180
+      },
+      {
+        "model": "exofall:block/driftmoss",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "minecraft:block/twisting_vines_plant"
+  },
+  "render_type": "minecraft:cutout"
+}

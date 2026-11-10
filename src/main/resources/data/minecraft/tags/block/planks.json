@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:combwood_planks",
+    "exofall:ribwood_planks",
+    "exofall:stiltreed_planks",
+    "exofall:veilpine_planks"
+  ]
+}

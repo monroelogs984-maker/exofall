@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "exofall:block/sapcane_bottom"
+    },
+    "half=upper": {
+      "model": "exofall:block/sapcane_top"
+    }
+  }
+}

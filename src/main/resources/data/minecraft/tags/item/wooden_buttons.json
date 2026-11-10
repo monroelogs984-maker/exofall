@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:combwood_button",
+    "exofall:ribwood_button",
+    "exofall:stiltreed_button",
+    "exofall:veilpine_button"
+  ]
+}

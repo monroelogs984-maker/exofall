@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "exofall:block/umbrella_fern_bottom"
+    },
+    "half=upper": {
+      "model": "exofall:block/umbrella_fern_top"
+    }
+  }
+}

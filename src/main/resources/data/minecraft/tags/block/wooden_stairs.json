@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:combwood_stairs",
+    "exofall:ribwood_stairs",
+    "exofall:stiltreed_stairs",
+    "exofall:veilpine_stairs"
+  ]
+}

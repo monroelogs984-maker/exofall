@@ -43,6 +43,7 @@ public class MeteorPiece extends StructurePiece {
     private static final double Y_SQUASH = 1.0;      // vertical radius as a fraction of horizontal (1.0 = round)
     private static final double SHELL_WARP = 0.13;   // radius varies by up to ±13%
     private static final double CRUST_THICKNESS = 5.0;
+    private static final double SHELLROCK_LAYERS = 3.0;
     private static final double FLOOR_FRACTION = 0.30; // base floor sits 30% of the vertical radius below centre
 
     // Crater, in multiples of the radius (t = horizontal distance / radius, warped by noise).
@@ -138,13 +139,19 @@ public class MeteorPiece extends StructurePiece {
     // ---- helpers for styles ----
 
     public int classify(int x, int y, int z) {
+        double depth = shellDepth(x, y, z);
+        if (depth < 0) return OUTSIDE;
+        return depth < CRUST_THICKNESS ? CRUST : INTERIOR;
+    }
+
+    /** How far (x, y, z) lies inside the outer shell surface; negative outside. */
+    public double shellDepth(int x, int y, int z) {
         double dx = x - centre.getX();
         double dy = (y - centre.getY()) / Y_SQUASH;
         double dz = z - centre.getZ();
         double d = Math.sqrt(dx * dx + dy * dy + dz * dz);
         double outer = radius * (1 + SHELL_WARP * shellNoise.noise(x * 0.045, y * 0.045, z * 0.045));
-        if (d > outer) return OUTSIDE;
-        return d > outer - CRUST_THICKNESS ? CRUST : INTERIOR;
+        return outer - d;
     }
 
     /** Base floor height; swamp pools fill to exactly this level. */
@@ -195,7 +202,9 @@ public class MeteorPiece extends StructurePiece {
             }
         }
 
-        BlockState crust = ModBlocks.PLACEHOLDER_CRUST.get().defaultBlockState();
+        // Shell: 3 blast-proof Shellrock layers outside, a Chitinstone lining inside.
+        BlockState crust = ModBlocks.SHELLROCK.get().defaultBlockState();
+        BlockState lining = ModBlocks.CHITINSTONE.get().defaultBlockState();
         MeteorInterior interior = style.interior();
         boolean anyInterior = false;
 
@@ -208,7 +217,7 @@ public class MeteorPiece extends StructurePiece {
                     if (c == OUTSIDE) continue;
                     pos.set(x, y, z);
                     if (c == CRUST) {
-                        level.setBlock(pos, crust, 2);
+                        level.setBlock(pos, shellDepth(x, y, z) < SHELLROCK_LAYERS ? crust : lining, 2);
                         continue;
                     }
                     anyInterior = true;

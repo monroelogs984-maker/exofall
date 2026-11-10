@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "exofall:block/stiltreed_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/mangrove_planks"
+    },
+    "type=top": {
+      "model": "exofall:block/stiltreed_slab_top"
+    }
+  }
+}

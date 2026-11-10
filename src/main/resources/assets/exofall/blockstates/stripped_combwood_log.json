@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "exofall:block/stripped_combwood_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "exofall:block/stripped_combwood_log"
+    },
+    "axis=z": {
+      "model": "exofall:block/stripped_combwood_log_horizontal",
+      "x": 90
+    }
+  }
+}
