@@ -4,8 +4,8 @@
   "step": "surface_structures",
   "spawn_overrides": {},
   "terrain_adaptation": "none",
-  "min_radius": 26,
-  "max_radius": 38,
+  "min_radius": 55,
+  "max_radius": 75,
   "interior_biome": "exofall:swamp_meteor",
   "style": "swamp"
 }

@@ -4,8 +4,8 @@
   "step": "surface_structures",
   "spawn_overrides": {},
   "terrain_adaptation": "none",
-  "min_radius": 28,
-  "max_radius": 40,
+  "min_radius": 57,
+  "max_radius": 77,
   "interior_biome": "exofall:hive_meteor",
   "style": "hive"
 }

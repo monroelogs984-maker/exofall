@@ -40,7 +40,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * meteor its own fog, sky, music, particles and spawns, and keeps biome-filtered overworld features out.
  */
 public class MeteorPiece extends StructurePiece {
-    private static final double Y_SQUASH = 0.8;      // vertical radius = 80% of horizontal
+    private static final double Y_SQUASH = 1.0;      // vertical radius as a fraction of horizontal (1.0 = round)
     private static final double SHELL_WARP = 0.13;   // radius varies by up to ±13%
     private static final double CRUST_THICKNESS = 5.0;
     private static final double FLOOR_FRACTION = 0.30; // base floor sits 30% of the vertical radius below centre
@@ -52,6 +52,11 @@ public class MeteorPiece extends StructurePiece {
     private static final double RIM_PEAK = 1.45, RIM_HALF_WIDTH = 0.40, RIM_HEIGHT = 0.12;
     private static final double CRATER_END = RIM_PEAK + RIM_HALF_WIDTH; // ejecta fades out here too
     private static final double RING_WARP = 0.10;
+    /**
+     * Hard cap on how far the piece may reach from the centre. Chunks only reference structure starts up to
+     * 8 chunks away, so blocks past ~135 never place. Big meteors get a crater squeezed into what's left.
+     */
+    private static final int MAX_REACH = 132;
 
     public static final int OUTSIDE = 0, CRUST = 1, INTERIOR = 2;
 
@@ -100,7 +105,12 @@ public class MeteorPiece extends StructurePiece {
 
     /** How far the crater ring reaches from the centre. */
     static int craterReach(int radius) {
-        return (int) Math.ceil(radius * CRATER_END * (1 + RING_WARP)) + 1;
+        return (int) Math.ceil(radius * craterEnd(radius) * (1 + RING_WARP)) + 1;
+    }
+
+    /** Crater end in multiples of the radius: CRATER_END, or less if that would pass MAX_REACH. */
+    private static double craterEnd(int radius) {
+        return Math.min(CRATER_END, (MAX_REACH - 1) / (radius * (1 + RING_WARP)));
     }
 
     static int verticalReach(int radius) {
@@ -228,7 +238,10 @@ public class MeteorPiece extends StructurePiece {
         double dx = x - centre.getX(), dz = z - centre.getZ();
         double warp = 1 + RING_WARP * noiseB.noise(x * 0.025, 91.7, z * 0.025);
         double t = Math.sqrt(dx * dx + dz * dz) / (radius * warp);
-        if (t >= CRATER_END) return;
+        double end = craterEnd(radius);
+        if (t >= end) return;
+        // Squeeze the part of the profile outside the shell into [1, end] (no-op when end == CRATER_END).
+        if (t > 1) t = 1 + (t - 1) * (CRATER_END - 1) / (end - 1);
 
         int floorTop = level.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z) - 1;
         int surfaceTop = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z) - 1;

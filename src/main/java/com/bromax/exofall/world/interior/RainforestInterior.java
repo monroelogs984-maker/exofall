@@ -35,7 +35,7 @@ public class RainforestInterior implements MeteorInterior {
                 if (t != null && Math.abs(t.x - x) <= TREE_REACH && Math.abs(t.z - z) <= TREE_REACH) trees.add(t);
             }
         }
-        int ceiling = m.ceilingAbove(x, ft, z, 96);
+        int ceiling = m.ceilingAbove(x, ft, z, 128);
         double vh = m.hash(x, 0, z, 30);
         int vineLength = vh < 0.03 ? 2 + (int) (vh / 0.03 * 7) : 0;
         double kind = m.noiseB(x * 0.09, 6.6, z * 0.09);
@@ -57,7 +57,7 @@ public class RainforestInterior implements MeteorInterior {
             int tz = gz * TREE_GRID + 1 + (int) (m.hash(gx, 2, gz, 42) * (TREE_GRID - 2));
             int ft = floorTop(m, tx, tz);
             if (ft > m.baseFloor() && m.classify(tx, ft + 1, tz) == MeteorPiece.INTERIOR) {
-                int ceiling = m.ceilingAbove(tx, ft, tz, 96);
+                int ceiling = m.ceilingAbove(tx, ft, tz, 128);
                 int base = ft + 1;
                 int top = base + 10 + (int) (m.hash(gx, 3, gz, 43) * 9);
                 if (ceiling > 0) top = Math.min(top, ceiling - 3);

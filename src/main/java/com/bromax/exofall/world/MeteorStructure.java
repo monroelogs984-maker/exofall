@@ -22,8 +22,8 @@ import java.util.Optional;
 public class MeteorStructure extends Structure {
     public static final MapCodec<MeteorStructure> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
             settingsCodec(i),
-            Codec.intRange(12, 56).fieldOf("min_radius").forGetter(s -> s.minRadius),
-            Codec.intRange(12, 56).fieldOf("max_radius").forGetter(s -> s.maxRadius),
+            Codec.intRange(12, 80).fieldOf("min_radius").forGetter(s -> s.minRadius),
+            Codec.intRange(12, 80).fieldOf("max_radius").forGetter(s -> s.maxRadius),
             ResourceKey.codec(Registries.BIOME).fieldOf("interior_biome").forGetter(s -> s.interiorBiome),
             MeteorStyle.CODEC.fieldOf("style").forGetter(s -> s.style)
     ).apply(i, MeteorStructure::new));

@@ -67,6 +67,46 @@ biome cells keep biome-filtered overworld features out. Not done yet: crater rin
 - Caveat: modded pickaxes whose tier uses its own empty `incorrect_for` tag can still mine crust. Check S202's
   above-netherite tools when the pack integration happens.
 
+## Size (locked 2026-11-10, option 2)
+Radius 55-75 (hive 57-77, rainforest 60-78), round (vertical = horizontal radius), about 10x the old interior volume:
+room for stacked dungeon levels, sub-structures, a boss room and open spawning areas. Hard limit: a piece can't reach
+more than ~135 blocks from its centre (chunks only reference starts 8 chunks away), so `MAX_REACH` = 132 squeezes the
+crater on the biggest meteors. Separation raised to 18 so craters can't overlap.
+
+## Interior content (locked 2026-11-10; names locked as written)
+Shared rules: no Overworld mobs spawn inside; light from glowing plants/stone, not the sun; alien plants only grow on
+meteor soil (can be carried out, won't spread); mobs hunt each other (food chains); every ambush mob has a visible or
+audible tell.
+
+**Stones (shared):** Shellrock (crust, Crustbreaker only, dark fused glass with oil-slick sheen), Chitinstone (main interior
+stone, layered fossil-shell plates, polished/brick/pillar variants for dungeons, tinted per meteor), Glowmarl (soft
+glowing soil-stone the alien plants grow on).
+
+**Woods:** Swamp = Stiltreed (segmented reed-trees on arching stilt roots, frond caps); Hive = Combwood (wax-coated,
+hollow larva-nest cores, amber planks); Desert = Ribwood (pale leafless spiralling ribcage trunks); Rainforest = Veilpine
+(blue-grey conifer with glowing lichen curtains; replaces placeholder spruce).
+
+**Plants:** Swamp: Lanternpod (glowing hanging bulb, drops lantern jelly), Bladderpad (lily pad, pops into slowing gas),
+Snaretongue (pitcher plant, eats small bugs, nips players), Sapcane (tall reed, sweet sap = food + mosquito bait),
+Driftmoss (spreading water carpet), Weepvine (climbable ceiling vine). Hive: nectar bells, waxcap fungus, royal amber
+crystals. Desert: dunespine (hollow cactus, beetle nests), nightbloom, rattlegrass (rattles when walked through, alerts
+beetles). Rainforest: umbrella fern, mistcap mushroom, glowmoss curtains.
+
+**Mobs:**
+- Swamp: Glasswing (dragonfly, hover then dive), Bloodgnat (mosquito swarm 3-5, drains + Weakness, smoke scatters),
+  Divebell Beetle (neutral diver, drops bubble sacs), Reedmantis (ambush in Sapcane, reeds rustle first), Mudgrub
+  (passive larva, prey, farmable). **Boss: Terror of the Bog** (giant water scorpion).
+- Hive: Combwasp workers, Stinger soldiers (slow visible wind-up), Nursemaids (heal others), Waxmites (scavengers),
+  larva cocoons that hatch if left. **Boss: Waxen Queen.**
+- Desert: Sanddivers (burrow ambush, sand-puff tell), Shieldbacks (armoured front), Ember beetles (light, prey), Rollers
+  (push boulders down corridors). **Boss: Dozen-legged Wrath** (red centipede), summoned via a sigil dropped by a
+  golden-encrusted scarab.
+- Rainforest: Twigwalkers (stick insects), Bloommantis (flower mimic), Leafcutter columns (neutral unless blocked),
+  Lantern moths (drawn to the player's light). **Boss: Apex Mantis** (large green mantis with blade-arms).
+
+**Boss rooms** are sealed and opened with a sigil in a sigil socket. Sigils come from the dungeons; exactly how is not
+decided yet.
+
 ## Open questions
 - Locator item for finding a specific meteor type (1 per 850 blocks split across 5-7 types is a long hunt)
 - Ways past the crust to block: TNT, creepers, ender pearls, chorus fruit, mods in S202
