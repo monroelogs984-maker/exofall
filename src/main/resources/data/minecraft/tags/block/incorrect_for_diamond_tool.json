@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "exofall:placeholder_crust"
+    "#exofall:needs_meteoric_tool"
   ]
 }

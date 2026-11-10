@@ -15,6 +15,8 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -42,6 +44,14 @@ public class MeteorPiece extends StructurePiece {
     private static final double SHELL_WARP = 0.13;   // radius varies by up to ±13%
     private static final double CRUST_THICKNESS = 5.0;
     private static final double FLOOR_FRACTION = 0.30; // base floor sits 30% of the vertical radius below centre
+
+    // Crater, in multiples of the radius (t = horizontal distance / radius, warped by noise).
+    private static final double BOWL_DEPTH = 0.15;   // bowl floor sits this far below the centre height
+    private static final double BOWL_FLAT = 1.15;    // ground fully levelled to the bowl floor inside this
+    private static final double BOWL_EDGE = 1.45;    // levelling fades out by here
+    private static final double RIM_PEAK = 1.45, RIM_HALF_WIDTH = 0.40, RIM_HEIGHT = 0.12;
+    private static final double CRATER_END = RIM_PEAK + RIM_HALF_WIDTH; // ejecta fades out here too
+    private static final double RING_WARP = 0.10;
 
     public static final int OUTSIDE = 0, CRUST = 1, INTERIOR = 2;
 
@@ -88,12 +98,17 @@ public class MeteorPiece extends StructurePiece {
         return (int) Math.ceil(radius * (1 + SHELL_WARP)) + 1;
     }
 
+    /** How far the crater ring reaches from the centre. */
+    static int craterReach(int radius) {
+        return (int) Math.ceil(radius * CRATER_END * (1 + RING_WARP)) + 1;
+    }
+
     static int verticalReach(int radius) {
         return (int) Math.ceil(radius * Y_SQUASH * (1 + SHELL_WARP)) + 1;
     }
 
     private static BoundingBox box(BlockPos c, int radius) {
-        int h = horizontalReach(radius), v = verticalReach(radius);
+        int h = craterReach(radius), v = verticalReach(radius);
         return new BoundingBox(c.getX() - h, c.getY() - v, c.getZ() - h, c.getX() + h, c.getY() + v, c.getZ() + h);
     }
 
@@ -163,6 +178,13 @@ public class MeteorPiece extends StructurePiece {
         int minY = Math.max(bb.minY(), level.getMinBuildHeight()), maxY = Math.min(bb.maxY(), level.getMaxBuildHeight() - 1);
         if (minX > maxX || minZ > maxZ) return;
 
+        // Crater first, so the shell pass overwrites anything the levelling touched.
+        for (int x = minX; x <= maxX; x++) {
+            for (int z = minZ; z <= maxZ; z++) {
+                craterColumn(level, x, z, chunkBox);
+            }
+        }
+
         BlockState crust = ModBlocks.PLACEHOLDER_CRUST.get().defaultBlockState();
         MeteorInterior interior = style.interior();
         boolean anyInterior = false;
@@ -189,6 +211,65 @@ public class MeteorPiece extends StructurePiece {
         if (anyInterior) {
             writeInteriorBiome(level, chunkPos);
         }
+    }
+
+    private static double smooth(double e0, double e1, double v) {
+        double t = Math.clamp((v - e0) / (e1 - e0), 0.0, 1.0);
+        return t * t * (3 - 2 * t);
+    }
+
+    /**
+     * Impact crater around the meteor: ground near the shell is levelled to a bowl floor a little below the
+     * centre (cutting uphill terrain away, filling downhill terrain in), then a raised rim, then natural
+     * ground. Works on each column's own terrain, so it stays deterministic per chunk. Columns under water
+     * are left alone.
+     */
+    private void craterColumn(WorldGenLevel level, int x, int z, BoundingBox chunkBox) {
+        double dx = x - centre.getX(), dz = z - centre.getZ();
+        double warp = 1 + RING_WARP * noiseB.noise(x * 0.025, 91.7, z * 0.025);
+        double t = Math.sqrt(dx * dx + dz * dz) / (radius * warp);
+        if (t >= CRATER_END) return;
+
+        int floorTop = level.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z) - 1;
+        int surfaceTop = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z) - 1;
+        if (surfaceTop > floorTop) return; // water or other non-solid cover
+        int minY = chunkBox.minY(), maxY = chunkBox.maxY();
+        if (floorTop < minY || floorTop > maxY) return;
+
+        double bowlFloor = centre.getY() - radius * Y_SQUASH * BOWL_DEPTH;
+        double level01 = 1 - smooth(BOWL_FLAT, BOWL_EDGE, t);
+        double rim = RIM_HEIGHT * radius * Math.max(0, Math.cos(Math.PI / 2 * (t - RIM_PEAK) / RIM_HALF_WIDTH));
+        if (Math.abs(t - RIM_PEAK) >= RIM_HALF_WIDTH) rim = 0;
+        double bump = 1.5 * noiseA.noise(x * 0.09, 13.3, z * 0.09) * Math.max(level01, rim > 0 ? 1 : 0);
+        int target = (int) Math.round(floorTop + (bowlFloor - floorTop) * level01 + rim + bump);
+        target = Math.clamp(target, minY, maxY);
+
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(x, floorTop, z);
+        BlockState top = level.getBlockState(pos);
+        BlockState below = level.getBlockState(pos.setY(floorTop - 1));
+        BlockState filler = below.isSolid() ? below : Blocks.DIRT.defaultBlockState();
+
+        if (target < floorTop) {
+            for (int y = target + 1; y <= floorTop; y++) {
+                if (classify(x, y, z) == OUTSIDE) level.setBlock(pos.setY(y), Blocks.AIR.defaultBlockState(), 2);
+            }
+        } else if (target > floorTop) {
+            for (int y = floorTop; y < target; y++) {
+                if (classify(x, y, z) == OUTSIDE) level.setBlock(pos.setY(y), filler, 2);
+            }
+        }
+        if (classify(x, target, z) != OUTSIDE) return;
+
+        // Ejecta: scorched ground, thickest in the bowl, thinning out past the rim.
+        double ejecta = 0.75 * (1 - smooth(1.0, CRATER_END, t));
+        double roll = hash(x, 0, z, 7);
+        BlockState surface = top;
+        if (roll < ejecta) {
+            double pick = roll / ejecta;
+            surface = (pick < 0.40 ? Blocks.COARSE_DIRT : pick < 0.70 ? Blocks.GRAVEL
+                    : pick < 0.92 ? Blocks.TUFF : Blocks.COBBLED_DEEPSLATE).defaultBlockState();
+        }
+        level.setBlock(pos.setY(target), surface, 2);
     }
 
     /** Rewrites the biome cells of this chunk whose centre lies inside the meteor interior. */

@@ -14,10 +14,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public final class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Exofall.MOD_ID);
 
-    /** Meteor shell. Obsidian-hard and blast-proof for now; tool-tier gating comes with the crust-breaker pickaxe. */
+    /** Meteor shell. Blast-proof, harder than obsidian; only drops to the meteoric tier (see ModTiers). */
     public static final DeferredBlock<Block> PLACEHOLDER_CRUST = BLOCKS.register("placeholder_crust",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE)
-                    .strength(50.0F, 3_600_000.0F)
+                    .strength(60.0F, 3_600_000.0F)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.DEEPSLATE)));
 
