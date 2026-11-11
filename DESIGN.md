@@ -147,7 +147,9 @@ the files in `tools/.generated`. Real textures replace the vanilla texture refs 
 GeckoLib 4.9.3 (S202 ships it; jar in git-ignored `libs/`, required dependency in mods.toml). Models, textures and
 animations come from `tools/mobs/gen_mobs.py` (builder `mobkit.py` and `preview.py` adapted from Pestilence's tools);
 rerun it after edits, preview with `python3 tools/mobs/preview.py <geo> <png> <out.png>`. Textures are first-pass
-generated, not /pixelart-polished. Sounds are pitched vanilla stand-ins. All stats are placeholders, not tuned yet.
+generated, not /pixelart-polished. 2026-11-11 later: rebuilt at 2x size with more 3D detail (Glenn's call, Erebus
+art as a detail-level reference only): legs/antennae/abdomens are bone chains (`chain_x`/`chain_z`; +rz bends a +X limb
+down, +rx bends a +Z segment down). Hitboxes: Mudgrub 1.0x0.9, Glasswing 1.6x1.2, Bloodgnat 0.9x1.1. Sounds are pitched vanilla stand-ins. All stats are placeholders, not tuned yet.
 - **Mudgrub** (creature, 8 HP): slow pale larva, panics, bred and tempted with Sapcane, babies half size. Prey for both
   flyers. Spawns 2-4 on Glowmarl/mud/moss at any light. No drop yet (what it's farmed for is undecided).
 - **Glasswing** (monster, 20 HP, 7 dmg, 2 armour): hovers ~6 out and ~4 up from its target, winds up for 1 s
