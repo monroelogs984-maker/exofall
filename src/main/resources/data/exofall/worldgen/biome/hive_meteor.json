@@ -31,27 +31,38 @@
   "spawners": {
     "monster": [
       {
-        "type": "minecraft:cave_spider",
-        "weight": 60,
-        "minCount": 1,
-        "maxCount": 3
+        "type": "exofall:combwasp",
+        "weight": 50,
+        "minCount": 2,
+        "maxCount": 4
       },
       {
-        "type": "minecraft:spider",
-        "weight": 30,
+        "type": "exofall:stinger",
+        "weight": 25,
         "minCount": 1,
         "maxCount": 2
+      },
+      {
+        "type": "exofall:nursemaid",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "exofall:waxmite",
+        "weight": 30,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "exofall:larva_cocoon",
+        "weight": 20,
+        "minCount": 1,
+        "maxCount": 3
       }
     ],
     "creature": [],
-    "ambient": [
-      {
-        "type": "minecraft:bat",
-        "weight": 10,
-        "minCount": 1,
-        "maxCount": 3
-      }
-    ],
+    "ambient": [],
     "water_creature": [],
     "water_ambient": [],
     "underground_water_creature": [],

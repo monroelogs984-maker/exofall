@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "misc.idle": {
+      "loop": true,
+      "animation_length": 1.0,
+      "bones": {
+        "ball": {
+          "rotation": [
+            "query.anim_time * -540",
+            0,
+            0
+          ]
+        }
+      }
+    }
+  }
+}

@@ -19,6 +19,23 @@ public final class ExofallClient {
         event.registerEntityRenderer(ModEntities.MUDGRUB.get(), MobRenderers.Mudgrub::new);
         event.registerEntityRenderer(ModEntities.GLASSWING.get(), ctx -> new MobRenderers.SeeThrough<>(ctx, "glasswing", 0.9f));
         event.registerEntityRenderer(ModEntities.BLOODGNAT.get(), ctx -> new MobRenderers.SeeThrough<>(ctx, "bloodgnat", 0.4f));
+        event.registerEntityRenderer(ModEntities.DIVEBELL_BEETLE.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "divebell_beetle", 0.6f, true, false));
+        event.registerEntityRenderer(ModEntities.REEDMANTIS.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "reedmantis", 0.5f, true, false));
+        event.registerEntityRenderer(ModEntities.COMBWASP.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "combwasp", 0.4f, true, false));
+        event.registerEntityRenderer(ModEntities.STINGER.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "stinger", 0.7f, true, false));
+        event.registerEntityRenderer(ModEntities.NURSEMAID.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "nursemaid", 0.5f, true, true));
+        event.registerEntityRenderer(ModEntities.WAXMITE.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "waxmite", 0.5f, false, false));
+        event.registerEntityRenderer(ModEntities.LARVA_COCOON.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "larva_cocoon", 0.45f, false, true));
+        event.registerEntityRenderer(ModEntities.SANDDIVER.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "sanddiver", 0.6f, false, false));
+        event.registerEntityRenderer(ModEntities.SHIELDBACK.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "shieldback", 0.9f, false, false));
+        event.registerEntityRenderer(ModEntities.EMBER_BEETLE.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "ember_beetle", 0.35f, false, true));
+        event.registerEntityRenderer(ModEntities.ROLLER.get(), MobRenderers.RollerRenderer::new);
+        event.registerEntityRenderer(ModEntities.GOLDEN_SCARAB.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "golden_scarab", 0.45f, false, true));
+        event.registerEntityRenderer(ModEntities.TWIGWALKER.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "twigwalker", 0.6f, false, false));
+        event.registerEntityRenderer(ModEntities.BLOOMMANTIS.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "bloommantis", 0.5f, true, false));
+        event.registerEntityRenderer(ModEntities.LEAFCUTTER.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "leafcutter", 0.4f, false, false));
+        event.registerEntityRenderer(ModEntities.LANTERN_MOTH.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "lantern_moth", 0.3f, true, true));
+        event.registerEntityRenderer(ModEntities.ROLLED_BOULDER.get(), MobRenderers.BoulderRenderer::new);
     }
 
     @SubscribeEvent

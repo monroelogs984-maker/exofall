@@ -63,5 +63,42 @@ public final class ModItems {
     public static final DeferredItem<DeferredSpawnEggItem> BLOODGNAT_SPAWN_EGG = ITEMS.register("bloodgnat_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.BLOODGNAT, 0x2A2224, 0x8E1F24, new Item.Properties()));
 
+    public static final DeferredItem<DeferredSpawnEggItem> DIVEBELL_BEETLE_SPAWN_EGG = ITEMS.register("divebell_beetle_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.DIVEBELL_BEETLE, 0x1F3A2C, 0xC9B13A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> REEDMANTIS_SPAWN_EGG = ITEMS.register("reedmantis_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.REEDMANTIS, 0x7D8A3A, 0xB7B56A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> COMBWASP_SPAWN_EGG = ITEMS.register("combwasp_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.COMBWASP, 0x2A1E14, 0xD89A2A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> STINGER_SPAWN_EGG = ITEMS.register("stinger_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.STINGER, 0x2A1410, 0xB8562A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> NURSEMAID_SPAWN_EGG = ITEMS.register("nursemaid_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.NURSEMAID, 0xF2E6C8, 0xE8C070, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> WAXMITE_SPAWN_EGG = ITEMS.register("waxmite_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.WAXMITE, 0xEFE6CF, 0xC89A40, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> LARVA_COCOON_SPAWN_EGG = ITEMS.register("larva_cocoon_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.LARVA_COCOON, 0xECE2C6, 0xFF9A2A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> SANDDIVER_SPAWN_EGG = ITEMS.register("sanddiver_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.SANDDIVER, 0xD8BF8A, 0x8A6A3E, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> SHIELDBACK_SPAWN_EGG = ITEMS.register("shieldback_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.SHIELDBACK, 0x8A3A22, 0xB08A4A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> EMBER_BEETLE_SPAWN_EGG = ITEMS.register("ember_beetle_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.EMBER_BEETLE, 0x2A2422, 0xFF8A2A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> ROLLER_SPAWN_EGG = ITEMS.register("roller_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.ROLLER, 0x1E2A3E, 0x8A6A42, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> GOLDEN_SCARAB_SPAWN_EGG = ITEMS.register("golden_scarab_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.GOLDEN_SCARAB, 0xE0B040, 0x38D0C0, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> TWIGWALKER_SPAWN_EGG = ITEMS.register("twigwalker_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.TWIGWALKER, 0x6A5A48, 0x58C8C0, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> BLOOMMANTIS_SPAWN_EGG = ITEMS.register("bloommantis_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.BLOOMMANTIS, 0xF0D8E4, 0xE04A8A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> LEAFCUTTER_SPAWN_EGG = ITEMS.register("leafcutter_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.LEAFCUTTER, 0x9A3A1E, 0x5AB048, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> LANTERN_MOTH_SPAWN_EGG = ITEMS.register("lantern_moth_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.LANTERN_MOTH, 0x5A6478, 0x7FF0E8, new Item.Properties()));
+
+    /** Divebell Beetle drop. Placeholder use: 30 s of Water Breathing. */
+    public static final DeferredItem<com.bromax.exofall.item.BubbleSacItem> BUBBLE_SAC = ITEMS.register("bubble_sac",
+            () -> new com.bromax.exofall.item.BubbleSacItem(new Item.Properties().stacksTo(16)));
+
     private ModItems() {}
 }

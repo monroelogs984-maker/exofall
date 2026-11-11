@@ -153,7 +153,10 @@ def pack(rects, width):
     return placed, y + shelf
 
 
-def build(name, bones, cubes, seed, out_geo, out_tex, identifier, bounds=(2, 3, 1.25), mats=None):
+GLOW_KEYS = set()   # palette keys that light up in the glowmask when used by decor
+
+
+def build(name, bones, cubes, seed, out_geo, out_tex, identifier, bounds=(2, 3, 1.25), mats=None, out_glow=None):
     """mats: {colour key: material} for cubes that don't name their own material (remastered models)."""
     rects = []
     for i, c in enumerate(cubes):
@@ -169,6 +172,7 @@ def build(name, bones, cubes, seed, out_geo, out_tex, identifier, bounds=(2, 3, 
             break
         width *= 2
     img = [[(0, 0, 0, 0)] * width for _ in range(height)]
+    mask = [[(0, 0, 0, 0)] * width for _ in range(height)]
     rng = random.Random(seed)
 
     for i, c in enumerate(cubes):
@@ -188,11 +192,15 @@ def build(name, bones, cubes, seed, out_geo, out_tex, identifier, bounds=(2, 3, 
                         if c['rim'] and w >= 3 and h >= 3 and (xx in (0, w - 1) or yy in (0, h - 1)):
                             col = scale(col, 0.85)
                     img[v + yy][u + xx] = col
+                    if c.get('glow') or mat == 'glow':
+                        mask[v + yy][u + xx] = col
             decor = c['decor'].get(face) or c['decor'].get('all')
             if decor:
                 def put(x, y, color, face=face, u=u, v=v, w=w, h=h, mat=mat):
                     if 0 <= x < w and 0 <= y < h:
                         img[v + y][u + x] = tone(rgba(color), FACE_T[face] * 0.6) if mat else scale(rgba(color), FACE_LIGHT[face])
+                        if color.split('@')[0] in GLOW_KEYS:
+                            mask[v + y][u + x] = img[v + y][u + x]
                 decor(put, w, h)
 
     geo_bones = []
@@ -230,6 +238,8 @@ def build(name, bones, cubes, seed, out_geo, out_tex, identifier, bounds=(2, 3, 
         }],
     })
     write_png(out_tex, img)
+    if out_glow:
+        write_png(out_glow, mask)
     print(f'{name}: {len(cubes)} cubes, texture {width}x{height}')
 
 

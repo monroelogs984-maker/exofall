@@ -31,32 +31,32 @@
   "spawners": {
     "monster": [
       {
-        "type": "minecraft:spider",
-        "weight": 60,
+        "type": "exofall:bloommantis",
+        "weight": 30,
         "minCount": 1,
-        "maxCount": 2
-      },
-      {
-        "type": "minecraft:cave_spider",
-        "weight": 50,
-        "minCount": 1,
-        "maxCount": 3
+        "maxCount": 1
       }
     ],
     "creature": [
       {
-        "type": "minecraft:rabbit",
-        "weight": 8,
-        "minCount": 2,
+        "type": "exofall:twigwalker",
+        "weight": 25,
+        "minCount": 1,
         "maxCount": 3
+      },
+      {
+        "type": "exofall:leafcutter",
+        "weight": 30,
+        "minCount": 4,
+        "maxCount": 6
       }
     ],
     "ambient": [
       {
-        "type": "minecraft:bat",
-        "weight": 10,
-        "minCount": 1,
-        "maxCount": 3
+        "type": "exofall:lantern_moth",
+        "weight": 40,
+        "minCount": 2,
+        "maxCount": 4
       }
     ],
     "water_creature": [],

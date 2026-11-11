@@ -1,7 +1,13 @@
 package com.bromax.exofall.client;
 
 import com.bromax.exofall.Exofall;
+import com.bromax.exofall.entity.mob.Hideable;
+import com.bromax.exofall.entity.mob.desert.Roller;
+import com.bromax.exofall.entity.mob.desert.RolledBoulder;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -26,6 +32,60 @@ public final class MobRenderers {
         @Override
         public RenderType getRenderType(T animatable, ResourceLocation texture, @Nullable MultiBufferSource buffers, float partialTick) {
             return RenderType.entityTranslucent(texture);
+        }
+    }
+
+    /**
+     * Generic bug renderer. translucent: drawn see-through (glass wings, wing covers, bubbles).
+     * glow: adds the emissive layer from textures/entity/<model>_glowmask.png. Hideable mobs
+     * (burrowed Sanddivers) are not drawn at all, shadow included.
+     */
+    public static class BugRenderer<T extends Mob & GeoEntity> extends GeoEntityRenderer<T> {
+        private final boolean translucent;
+        private final float shadow;
+
+        public BugRenderer(EntityRendererProvider.Context ctx, String model, float shadow, boolean translucent, boolean glow) {
+            super(ctx, new DefaultedEntityGeoModel<>(Exofall.id(model), false));
+            this.shadowRadius = shadow;
+            this.shadow = shadow;
+            this.translucent = translucent;
+            if (glow) addRenderLayer(new AutoGlowingGeoLayer<>(this));
+        }
+
+        @Override
+        public RenderType getRenderType(T animatable, ResourceLocation texture, @Nullable MultiBufferSource buffers, float partialTick) {
+            return translucent ? RenderType.entityTranslucent(texture) : super.getRenderType(animatable, texture, buffers, partialTick);
+        }
+
+        @Override
+        public void render(T mob, float yaw, float partialTick, PoseStack pose, MultiBufferSource buffers, int light) {
+            if (mob instanceof Hideable h && h.isHidden()) {
+                shadowRadius = 0;
+                return;
+            }
+            shadowRadius = shadow;
+            super.render(mob, yaw, partialTick, pose, buffers, light);
+        }
+    }
+
+    /** Roller: the boulder it pushes is only drawn while it has one. */
+    public static class RollerRenderer extends BugRenderer<Roller> {
+        public RollerRenderer(EntityRendererProvider.Context ctx) {
+            super(ctx, "roller", 0.7f, false, false);
+        }
+
+        @Override
+        public void preRender(PoseStack pose, Roller roller, BakedGeoModel model, @Nullable MultiBufferSource buffers, @Nullable VertexConsumer buffer,
+                              boolean isReRender, float partialTick, int light, int overlay, int colour) {
+            model.getBone("boulder").ifPresent(b -> b.setHidden(!roller.hasBoulder()));
+            super.preRender(pose, roller, model, buffers, buffer, isReRender, partialTick, light, overlay, colour);
+        }
+    }
+
+    public static class BoulderRenderer extends GeoEntityRenderer<RolledBoulder> {
+        public BoulderRenderer(EntityRendererProvider.Context ctx) {
+            super(ctx, new DefaultedEntityGeoModel<>(Exofall.id("rolled_boulder"), false));
+            this.shadowRadius = 0.4f;
         }
     }
 

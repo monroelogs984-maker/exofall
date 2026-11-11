@@ -1,0 +1,414 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "misc.idle": {
+      "loop": true,
+      "animation_length": 6.0,
+      "bones": {
+        "wing_fl": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 2400 + 0) * 30"
+          ]
+        },
+        "wing_bl": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 2400 + 60) * 30"
+          ]
+        },
+        "wing_fr": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 2400 + 0) * -30"
+          ]
+        },
+        "wing_br": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 2400 + 60) * -30"
+          ]
+        },
+        "body": {
+          "position": [
+            0,
+            "math.sin(query.anim_time * 200 + 0) * 0.7",
+            0
+          ]
+        },
+        "leg0l0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 40) * 6",
+            0,
+            0
+          ]
+        },
+        "leg0r0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 0) * 6",
+            0,
+            0
+          ]
+        },
+        "leg1l0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 110) * 6",
+            0,
+            0
+          ]
+        },
+        "leg1r0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 70) * 6",
+            0,
+            0
+          ]
+        },
+        "leg2l0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 180) * 6",
+            0,
+            0
+          ]
+        },
+        "leg2r0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 140) * 6",
+            0,
+            0
+          ]
+        },
+        "ab0": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + 0) * 3",
+            0,
+            0
+          ]
+        },
+        "ab1": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -50) * 3",
+            0,
+            0
+          ]
+        },
+        "ab2": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -100) * 3",
+            0,
+            0
+          ]
+        },
+        "ab3": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -150) * 3",
+            0,
+            0
+          ]
+        },
+        "ab4": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -200) * 3",
+            0,
+            0
+          ]
+        },
+        "ab5": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -250) * 3",
+            0,
+            0
+          ]
+        },
+        "antenna_l1": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 120 + 0) * 8"
+          ]
+        },
+        "antenna_r1": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 120 + 90) * 8"
+          ]
+        }
+      }
+    },
+    "move.fly": {
+      "loop": true,
+      "animation_length": 6.0,
+      "bones": {
+        "wing_fl": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 2800 + 0) * 38"
+          ]
+        },
+        "wing_bl": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 2800 + 60) * 38"
+          ]
+        },
+        "wing_fr": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 2800 + 0) * -38"
+          ]
+        },
+        "wing_br": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 2800 + 60) * -38"
+          ]
+        },
+        "body": {
+          "rotation": [
+            -8,
+            0,
+            0
+          ]
+        },
+        "leg0l0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 40) * 6",
+            0,
+            0
+          ]
+        },
+        "leg0r0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 0) * 6",
+            0,
+            0
+          ]
+        },
+        "leg1l0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 110) * 6",
+            0,
+            0
+          ]
+        },
+        "leg1r0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 70) * 6",
+            0,
+            0
+          ]
+        },
+        "leg2l0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 180) * 6",
+            0,
+            0
+          ]
+        },
+        "leg2r0": {
+          "rotation": [
+            "math.sin(query.anim_time * 130 + 140) * 6",
+            0,
+            0
+          ]
+        },
+        "ab0": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + 0) * 3",
+            0,
+            0
+          ]
+        },
+        "ab1": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -50) * 3",
+            0,
+            0
+          ]
+        },
+        "ab2": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -100) * 3",
+            0,
+            0
+          ]
+        },
+        "ab3": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -150) * 3",
+            0,
+            0
+          ]
+        },
+        "ab4": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -200) * 3",
+            0,
+            0
+          ]
+        },
+        "ab5": {
+          "rotation": [
+            "math.sin(query.anim_time * 160 + -250) * 3",
+            0,
+            0
+          ]
+        },
+        "antenna_l1": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 120 + 0) * 8"
+          ]
+        },
+        "antenna_r1": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.anim_time * 120 + 90) * 8"
+          ]
+        }
+      }
+    },
+    "attack.strike": {
+      "loop": false,
+      "animation_length": 0.4,
+      "bones": {
+        "ab0": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.12": [
+              -55,
+              0,
+              0
+            ],
+            "0.4": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "ab1": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.12": [
+              -20,
+              0,
+              0
+            ],
+            "0.4": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "mandible_l": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.1": [
+              0,
+              -25,
+              0
+            ],
+            "0.3": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "mandible_r": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.1": [
+              0,
+              25,
+              0
+            ],
+            "0.3": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "attack.tend": {
+      "loop": false,
+      "animation_length": 0.8,
+      "bones": {
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.2": [
+              25,
+              0,
+              0
+            ],
+            "0.5": [
+              25,
+              0,
+              0
+            ],
+            "0.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "ab1": {
+          "scale": {
+            "0.0": [
+              1,
+              1,
+              1
+            ],
+            "0.3": [
+              1.12,
+              1.12,
+              1.05
+            ],
+            "0.8": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      }
+    }
+  }
+}

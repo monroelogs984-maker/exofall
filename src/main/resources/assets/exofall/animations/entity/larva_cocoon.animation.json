@@ -1,0 +1,58 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "misc.idle": {
+      "loop": true,
+      "animation_length": 6.0,
+      "bones": {
+        "pod": {
+          "rotation": [
+            "math.sin(query.anim_time * 60 + 0) * 3",
+            0,
+            "math.sin(query.anim_time * 45 + 90) * 3"
+          ],
+          "scale": [
+            "1 + math.sin(query.anim_time * 120 + 0) * 0.03",
+            "1 + math.sin(query.anim_time * 120 + 180) * 0.03",
+            "1 + math.sin(query.anim_time * 120 + 0) * 0.03"
+          ]
+        }
+      }
+    },
+    "misc.shake": {
+      "loop": false,
+      "animation_length": 0.5,
+      "bones": {
+        "pod": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.1": [
+              0,
+              0,
+              12
+            ],
+            "0.2": [
+              0,
+              0,
+              -10
+            ],
+            "0.3": [
+              0,
+              0,
+              6
+            ],
+            "0.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    }
+  }
+}
