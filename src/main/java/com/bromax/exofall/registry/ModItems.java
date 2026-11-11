@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.WaterlilyBlock;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -53,6 +54,14 @@ public final class ModItems {
             }
         }
     }
+
+    // ---- Spawn eggs (colours: body, markings)
+    public static final DeferredItem<DeferredSpawnEggItem> MUDGRUB_SPAWN_EGG = ITEMS.register("mudgrub_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.MUDGRUB, 0xC8B083, 0x4A3424, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> GLASSWING_SPAWN_EGG = ITEMS.register("glasswing_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.GLASSWING, 0x2E8A80, 0x8FF0D8, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> BLOODGNAT_SPAWN_EGG = ITEMS.register("bloodgnat_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.BLOODGNAT, 0x2A2224, 0x8E1F24, new Item.Properties()));
 
     private ModItems() {}
 }

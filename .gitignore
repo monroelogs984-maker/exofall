@@ -7,3 +7,4 @@ run/
 .vscode/
 libs/
 *.log
+__pycache__/

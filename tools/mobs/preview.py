@@ -1,0 +1,242 @@
+#!/usr/bin/env python3
+"""Renders geo.json models to PNG contact sheets (rest pose, no animation) for quick review.
+
+    python3 tools/preview.py <model.geo.json> <texture.png> <out.png>
+
+Orthographic views: front, right side, back, and a 3/4 view. Bone rotations are ignored (the
+generated models don't use any). Face texel orientation is approximate.
+"""
+import json
+import math
+import struct
+import sys
+import zlib
+
+sys.path.insert(0, __import__('os').path.dirname(__file__))
+from mobkit import write_png  # noqa: E402
+
+
+def read_png(path):
+    """8-bit PNG reader for RGBA, RGB, palette and greyscale images; always returns RGBA rows."""
+    data = open(path, 'rb').read()
+    pos, idat, plte, trns = 8, b'', b'', b''
+    while pos < len(data):
+        n, tag = struct.unpack('>I4s', data[pos:pos + 8])
+        body = data[pos + 8:pos + 8 + n]
+        if tag == b'IHDR':
+            w, h, depth, ctype = struct.unpack('>IIBB', body[:10])
+        elif tag == b'IDAT':
+            idat += body
+        elif tag == b'PLTE':
+            plte = body
+        elif tag == b'tRNS':
+            trns = body
+        pos += 12 + n
+    channels = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}[ctype]
+    bpp = max(1, channels * depth // 8)
+    raw = zlib.decompress(idat)
+    stride = (w * channels * depth + 7) // 8
+    rows, prev, i = [], bytearray(stride), 0
+    for _ in range(h):
+        f = raw[i]
+        line = bytearray(raw[i + 1:i + 1 + stride])
+        i += 1 + stride
+        for x in range(stride):
+            a = line[x - bpp] if x >= bpp else 0
+            b = prev[x]
+            c = prev[x - bpp] if x >= bpp else 0
+            if f == 1:
+                line[x] = (line[x] + a) & 255
+            elif f == 2:
+                line[x] = (line[x] + b) & 255
+            elif f == 3:
+                line[x] = (line[x] + (a + b) // 2) & 255
+            elif f == 4:
+                p = a + b - c
+                pa, pb, pc = abs(p - a), abs(p - b), abs(p - c)
+                line[x] = (line[x] + (a if pa <= pb and pa <= pc else b if pb <= pc else c)) & 255
+        prev = bytearray(line)
+        if depth < 8:   # unpack 1/2/4-bit samples to one byte each
+            per = 8 // depth
+            line = bytearray((line[k // per] >> (8 - depth * (k % per + 1))) & ((1 << depth) - 1) for k in range(w))
+            if ctype == 0:
+                line = bytearray(v * 255 // ((1 << depth) - 1) for v in line)
+        row = []
+        step = channels
+        for j in range(0, w * step, step):
+            px = line[j:j + step]
+            if ctype == 6:
+                row.append(tuple(px))
+            elif ctype == 2:
+                row.append((px[0], px[1], px[2], 255))
+            elif ctype == 3:
+                k = px[0]
+                alpha = trns[k] if k < len(trns) else 255
+                row.append((plte[3 * k], plte[3 * k + 1], plte[3 * k + 2], alpha))
+            elif ctype == 0:
+                row.append((px[0], px[0], px[0], 255))
+            else:
+                row.append((px[0], px[0], px[0], px[1]))
+        rows.append(row)
+    return rows
+
+
+def faces_of(cube):
+    (x0, y0, z0), (sx, sy, sz) = cube['origin'], cube['size']
+    inf = cube.get('inflate', 0)
+    x0, y0, z0 = x0 - inf, y0 - inf, z0 - inf
+    x1, y1, z1 = x0 + sx + 2 * inf, y0 + sy + 2 * inf, z0 + sz + 2 * inf
+    # corner order: top-left, top-right, bottom-right, bottom-left as seen from outside
+    return {
+        'north': [(x1, y1, z0), (x0, y1, z0), (x0, y0, z0), (x1, y0, z0)],
+        'south': [(x0, y1, z1), (x1, y1, z1), (x1, y0, z1), (x0, y0, z1)],
+        'east': [(x0, y1, z0), (x0, y1, z1), (x0, y0, z1), (x0, y0, z0)],
+        'west': [(x1, y1, z1), (x1, y1, z0), (x1, y0, z0), (x1, y0, z1)],
+        'up': [(x0, y1, z1), (x1, y1, z1), (x1, y1, z0), (x0, y1, z0)],
+        'down': [(x0, y0, z0), (x1, y0, z0), (x1, y0, z1), (x0, y0, z1)],
+    }
+
+
+def face_uvs(cube):
+    """Per-face (u, v, w, h) for either per-face UV dicts or Bedrock box UV."""
+    uv = cube['uv']
+    if isinstance(uv, dict):
+        return {f: (*uv[f]['uv'], *uv[f]['uv_size']) for f in uv}
+    u, v = uv
+    w, h, d = (int(math.floor(x + 0.5)) if x >= 1 else max(1, int(math.ceil(x))) for x in cube['size'])
+    rects = {'up': (u + d, v, w, d), 'down': (u + d + w, v, w, d), 'east': (u, v + d, d, h),
+             'north': (u + d, v + d, w, h), 'west': (u + d + w, v + d, d, h), 'south': (u + 2 * d + w, v + d, w, h)}
+    if cube.get('mirror'):
+        rects['east'], rects['west'] = rects['west'], rects['east']
+    return rects
+
+
+def mat_mul(a, b):
+    return [[sum(a[i][k] * b[k][j] for k in range(4)) for j in range(4)] for i in range(4)]
+
+
+def rot(axis, deg):
+    c, s = math.cos(math.radians(deg)), math.sin(math.radians(deg))
+    m = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    i, j = {'x': (1, 2), 'y': (2, 0), 'z': (0, 1)}[axis]
+    m[i][i], m[i][j], m[j][i], m[j][j] = c, -s, s, c
+    return m
+
+
+def trans(x, y, z):
+    return [[1, 0, 0, x], [0, 1, 0, y], [0, 0, 1, z], [0, 0, 0, 1]]
+
+
+def bone_transforms(bones):
+    """World transform per bone in GeckoLib render space (x mirrored; rot X/Y negated, Z kept; Z*Y*X order)."""
+    by_name = {b['name']: b for b in bones}
+    cache = {}
+
+    def get(name):
+        if name in cache:
+            return cache[name]
+        b = by_name[name]
+        parent = get(b['parent']) if b.get('parent') in by_name else [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+        px, py, pz = b.get('pivot', [0, 0, 0])
+        rx, ry, rz = b.get('rotation', [0, 0, 0])
+        m = mat_mul(parent, trans(-px, py, pz))
+        m = mat_mul(m, mat_mul(rot('z', rz), mat_mul(rot('y', -ry), rot('x', -rx))))
+        m = mat_mul(m, trans(px, -py, -pz))
+        cache[name] = m
+        return m
+    return {b['name']: get(b['name']) for b in bones}
+
+
+def render(geo, tex, yaw, pitch, scale, size):
+    w, h = size
+    img = [[(0, 0, 0, 0)] * w for _ in range(h)]
+    zbuf = [[1e9] * w for _ in range(h)]
+    cy, sy_ = math.cos(math.radians(yaw)), math.sin(math.radians(yaw))
+    cp, sp = math.cos(math.radians(pitch)), math.sin(math.radians(pitch))
+    bones = geo['minecraft:geometry'][0]['bones']
+    xforms = bone_transforms(bones)
+    items = [(b['name'], c) for b in bones for c in b.get('cubes', [])]
+    ys = [c['origin'][1] for _, c in items] + [c['origin'][1] + c['size'][1] for _, c in items]
+    mid = (min(ys) + max(ys)) / 2
+
+    def to_render(m, p):
+        x, y, z = -p[0], p[1], p[2]      # Bedrock -> GeckoLib render space
+        return tuple(m[i][0] * x + m[i][1] * y + m[i][2] * z + m[i][3] for i in range(3))
+
+    def proj(p):
+        x, y, z = p[0], p[1] - mid, p[2]
+        x, z = x * cy - z * sy_, x * sy_ + z * cy
+        y, z = y * cp - z * sp, y * sp + z * cp
+        return (w / 2 - x * scale, h / 2 - y * scale, z)
+
+    for bone, c in items:
+        uvs = face_uvs(c)
+        for face, quad in faces_of(c).items():
+            if face not in uvs:
+                continue
+            u0, v0, uw, vh = uvs[face]
+            if uw <= 0 or vh <= 0:
+                continue
+            pts = [proj(to_render(xforms[bone], p)) for p in quad]
+            for tv in range(vh):
+                for tu in range(uw):
+                    if v0 + tv >= len(tex) or u0 + tu >= len(tex[0]):
+                        continue
+                    col = tex[v0 + tv][u0 + tu]
+                    if col[3] == 0:
+                        continue
+
+                    def lerp(a, b, t):
+                        return tuple(a[k] + (b[k] - a[k]) * t for k in range(3))
+
+                    def at(s, t):
+                        return lerp(lerp(pts[0], pts[1], s), lerp(pts[3], pts[2], s), t)
+                    q = [at(tu / uw, tv / vh), at((tu + 1) / uw, tv / vh),
+                         at((tu + 1) / uw, (tv + 1) / vh), at(tu / uw, (tv + 1) / vh)]
+                    fill_quad(img, zbuf, q, col)
+    return img
+
+
+def fill_quad(img, zbuf, q, col):
+    h, w = len(img), len(img[0])
+    xs, ys = [p[0] for p in q], [p[1] for p in q]
+    z = sum(p[2] for p in q) / 4
+    for py in range(max(0, int(min(ys))), min(h, int(max(ys)) + 1)):
+        for px in range(max(0, int(min(xs))), min(w, int(max(xs)) + 1)):
+            x, y = px + 0.5, py + 0.5
+            inside = True
+            sign = 0
+            for i in range(4):
+                a, b = q[i], q[(i + 1) % 4]
+                cr = (b[0] - a[0]) * (y - a[1]) - (b[1] - a[1]) * (x - a[0])
+                if abs(cr) < 1e-9:
+                    continue
+                s = 1 if cr > 0 else -1
+                if sign == 0:
+                    sign = s
+                elif s != sign:
+                    inside = False
+                    break
+            if inside and z < zbuf[py][px]:
+                zbuf[py][px] = z
+                img[py][px] = col
+
+
+def main():
+    geo = json.load(open(sys.argv[1]))
+    tex = read_png(sys.argv[2])
+    scale = float(sys.argv[4]) if len(sys.argv) > 4 else 8
+    cell = int(48 * scale)
+    views = [(0, 0), (90, 0), (180, 0), (35, -20)]
+    sheet = [[(40, 44, 52, 255)] * (cell * len(views)) for _ in range(cell)]
+    for i, (yaw, pitch) in enumerate(views):
+        img = render(geo, tex, yaw, pitch, scale, (cell, cell))
+        for y in range(cell):
+            for x in range(cell):
+                if img[y][x][3]:
+                    sheet[y][i * cell + x] = img[y][x]
+    write_png(sys.argv[3], sheet)
+
+
+if __name__ == '__main__':
+    main()

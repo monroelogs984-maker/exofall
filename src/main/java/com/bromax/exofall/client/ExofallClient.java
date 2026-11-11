@@ -16,6 +16,9 @@ public final class ExofallClient {
     public static void renderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.BOAT.get(), ctx -> new ExofallBoatRenderer(ctx, false));
         event.registerEntityRenderer(ModEntities.CHEST_BOAT.get(), ctx -> new ExofallBoatRenderer(ctx, true));
+        event.registerEntityRenderer(ModEntities.MUDGRUB.get(), MobRenderers.Mudgrub::new);
+        event.registerEntityRenderer(ModEntities.GLASSWING.get(), ctx -> new MobRenderers.SeeThrough<>(ctx, "glasswing", 0.4f));
+        event.registerEntityRenderer(ModEntities.BLOODGNAT.get(), ctx -> new MobRenderers.SeeThrough<>(ctx, "bloodgnat", 0.15f));
     }
 
     @SubscribeEvent

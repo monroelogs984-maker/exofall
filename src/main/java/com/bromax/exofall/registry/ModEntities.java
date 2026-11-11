@@ -3,6 +3,9 @@ package com.bromax.exofall.registry;
 import com.bromax.exofall.Exofall;
 import com.bromax.exofall.entity.ExofallBoat;
 import com.bromax.exofall.entity.ExofallChestBoat;
+import com.bromax.exofall.entity.mob.Bloodgnat;
+import com.bromax.exofall.entity.mob.Glasswing;
+import com.bromax.exofall.entity.mob.Mudgrub;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -18,6 +21,17 @@ public final class ModEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<ExofallChestBoat>> CHEST_BOAT = ENTITIES.register("chest_boat",
             () -> EntityType.Builder.<ExofallChestBoat>of(ExofallChestBoat::new, MobCategory.MISC)
                     .sized(1.375F, 0.5625F).eyeHeight(0.5625F).clientTrackingRange(10).build("exofall:chest_boat"));
+
+    // ---- Swamp meteor mobs
+    public static final DeferredHolder<EntityType<?>, EntityType<Mudgrub>> MUDGRUB = ENTITIES.register("mudgrub",
+            () -> EntityType.Builder.of(Mudgrub::new, MobCategory.CREATURE)
+                    .sized(0.6F, 0.4F).eyeHeight(0.25F).clientTrackingRange(8).build("exofall:mudgrub"));
+    public static final DeferredHolder<EntityType<?>, EntityType<Glasswing>> GLASSWING = ENTITIES.register("glasswing",
+            () -> EntityType.Builder.of(Glasswing::new, MobCategory.MONSTER)
+                    .sized(0.9F, 0.5F).eyeHeight(0.4F).clientTrackingRange(10).build("exofall:glasswing"));
+    public static final DeferredHolder<EntityType<?>, EntityType<Bloodgnat>> BLOODGNAT = ENTITIES.register("bloodgnat",
+            () -> EntityType.Builder.of(Bloodgnat::new, MobCategory.MONSTER)
+                    .sized(0.4F, 0.35F).eyeHeight(0.25F).clientTrackingRange(8).build("exofall:bloodgnat"));
 
     private ModEntities() {}
 }

@@ -98,5 +98,11 @@
   "item.exofall.stiltreed_chest_boat": "Stiltreed Boat with Chest",
   "item.exofall.veilpine_boat": "Veilpine Boat",
   "item.exofall.veilpine_chest_boat": "Veilpine Boat with Chest",
-  "itemGroup.exofall": "BROMAX's Exofall"
+  "itemGroup.exofall": "BROMAX's Exofall",
+  "entity.exofall.mudgrub": "Mudgrub",
+  "item.exofall.mudgrub_spawn_egg": "Mudgrub Spawn Egg",
+  "entity.exofall.glasswing": "Glasswing",
+  "item.exofall.glasswing_spawn_egg": "Glasswing Spawn Egg",
+  "entity.exofall.bloodgnat": "Bloodgnat",
+  "item.exofall.bloodgnat_spawn_egg": "Bloodgnat Spawn Egg"
 }

@@ -24,6 +24,9 @@ runs {
 
 dependencies {
     implementation "net.neoforged:neoforge:21.1.233"
+    // Mob models/animations. Compiled against the exact GeckoLib jar S202 ships (copy it into libs/,
+    // libs/ is git-ignored: ~/Documents/curseforge/minecraft/Instances/S202Neoforge/mods/).
+    implementation files('libs/geckolib-neoforge-1.21.1-4.9.3.jar')
 }
 
 jar {

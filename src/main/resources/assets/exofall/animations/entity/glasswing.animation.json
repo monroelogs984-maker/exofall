@@ -1,0 +1,232 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "misc.idle": {
+      "loop": true,
+      "animation_length": 2.0,
+      "bones": {
+        "wing_fl": {
+          "rotation": [
+            0,
+            0,
+            "8 + math.sin(query.anim_time * 2400 + 0) * 35"
+          ]
+        },
+        "wing_fr": {
+          "rotation": [
+            0,
+            0,
+            "-8 + math.sin(query.anim_time * 2400 + 0) * -35"
+          ]
+        },
+        "wing_bl": {
+          "rotation": [
+            0,
+            0,
+            "8 + math.sin(query.anim_time * 2400 + 90) * 35"
+          ]
+        },
+        "wing_br": {
+          "rotation": [
+            0,
+            0,
+            "-8 + math.sin(query.anim_time * 2400 + 90) * -35"
+          ]
+        },
+        "body": {
+          "position": [
+            0,
+            "math.sin(query.anim_time * 180 + 0) * 0.6",
+            0
+          ]
+        },
+        "abdomen": {
+          "rotation": [
+            "math.sin(query.anim_time * 90 + 0) * 3",
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "move.fly": {
+      "loop": true,
+      "animation_length": 2.0,
+      "bones": {
+        "wing_fl": {
+          "rotation": [
+            0,
+            0,
+            "8 + math.sin(query.anim_time * 2600 + 0) * 40"
+          ]
+        },
+        "wing_fr": {
+          "rotation": [
+            0,
+            0,
+            "-8 + math.sin(query.anim_time * 2600 + 0) * -40"
+          ]
+        },
+        "wing_bl": {
+          "rotation": [
+            0,
+            0,
+            "8 + math.sin(query.anim_time * 2600 + 90) * 40"
+          ]
+        },
+        "wing_br": {
+          "rotation": [
+            0,
+            0,
+            "-8 + math.sin(query.anim_time * 2600 + 90) * -40"
+          ]
+        },
+        "body": {
+          "rotation": [
+            -8,
+            0,
+            0
+          ]
+        },
+        "abdomen": {
+          "rotation": [
+            4,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "attack.windup": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 1.0,
+      "bones": {
+        "wing_fl": {
+          "rotation": [
+            0,
+            0,
+            "8 + math.sin(query.anim_time * 3600 + 0) * 45"
+          ]
+        },
+        "wing_fr": {
+          "rotation": [
+            0,
+            0,
+            "-8 + math.sin(query.anim_time * 3600 + 0) * -45"
+          ]
+        },
+        "wing_bl": {
+          "rotation": [
+            0,
+            0,
+            "8 + math.sin(query.anim_time * 3600 + 90) * 45"
+          ]
+        },
+        "wing_br": {
+          "rotation": [
+            0,
+            0,
+            "-8 + math.sin(query.anim_time * 3600 + 90) * -45"
+          ]
+        },
+        "abdomen": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -28,
+              0,
+              0
+            ]
+          }
+        },
+        "abdomen_tip": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -20,
+              0,
+              0
+            ]
+          }
+        },
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              18,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "position": [
+            0,
+            "math.sin(query.anim_time * 1800 + 0) * 0.25",
+            0
+          ]
+        }
+      }
+    },
+    "attack.dive": {
+      "loop": true,
+      "animation_length": 1.0,
+      "bones": {
+        "body": {
+          "rotation": [
+            -15,
+            0,
+            0
+          ]
+        },
+        "wing_fl": {
+          "rotation": [
+            0,
+            -55,
+            4
+          ]
+        },
+        "wing_fr": {
+          "rotation": [
+            0,
+            55,
+            -4
+          ]
+        },
+        "wing_bl": {
+          "rotation": [
+            0,
+            -65,
+            4
+          ]
+        },
+        "wing_br": {
+          "rotation": [
+            0,
+            65,
+            -4
+          ]
+        },
+        "abdomen": {
+          "rotation": [
+            6,
+            0,
+            0
+          ]
+        }
+      }
+    }
+  }
+}

@@ -142,3 +142,23 @@ the files in `tools/.generated`. Real textures replace the vanilla texture refs 
 ## Open questions
 - Locator item for finding a specific meteor type (1 per 850 blocks split across 5-7 types is a long hunt)
 - Ways past the crust to block: TNT, creepers, ender pearls, chorus fruit, mods in S202
+
+## First mobs: swamp lesser mobs (2026-11-11)
+GeckoLib 4.9.3 (S202 ships it; jar in git-ignored `libs/`, required dependency in mods.toml). Models, textures and
+animations come from `tools/mobs/gen_mobs.py` (builder `mobkit.py` and `preview.py` adapted from Pestilence's tools);
+rerun it after edits, preview with `python3 tools/mobs/preview.py <geo> <png> <out.png>`. Textures are first-pass
+generated, not /pixelart-polished. Sounds are pitched vanilla stand-ins. All stats are placeholders, not tuned yet.
+- **Mudgrub** (creature, 8 HP): slow pale larva, panics, bred and tempted with Sapcane, babies half size. Prey for both
+  flyers. Spawns 2-4 on Glowmarl/mud/moss at any light. No drop yet (what it's farmed for is undecided).
+- **Glasswing** (monster, 20 HP, 7 dmg, 2 armour): hovers ~6 out and ~4 up from its target, winds up for 1 s
+  (high-pitched phantom swoop + abdomen curl = the tell), then dives in a straight line at where the target was.
+  Sidestep to dodge; hitting it during the wind-up breaks it off. Climbs away 1.5 s, repeats (~5 s per dive). Also
+  hunts Bloodgnats and Mudgrubs. Spawns 1-2.
+- **Bloodgnat** (monster, 4 HP, 2 dmg): swarms of 3-5 with a constant high whine. Each bite heals it 2 and gives
+  Weakness I (5 s). After 3 bites it is sated and leaves for 30 s, so a swarm wears out. A lit campfire up to 10 below
+  / 3 to the side scatters it sideways for 5 s. Also drinks from Mudgrubs.
+- Swamp meteor spawners now hold only these three (spider/cave spider/slime/frog/bat stand-ins removed). The other three
+  meteors still use vanilla stand-ins.
+- Verified on the dev server (no player): Glasswing dive loop kills Mudgrubs, swarm drains + sates, smoke scatters.
+  Not verified yet: against a player, natural spawning inside a real meteor, client rendering/animations.
+- Remaining swamp mobs: Divebell Beetle, Reedmantis; boss Terror of the Bog.
