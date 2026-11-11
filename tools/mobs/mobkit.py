@@ -120,6 +120,16 @@ def material_t(mat, xx, yy, w, h, face, rng, cell):
         t += (cell(xx // 2, yy // 2) % 5 - 2) * 0.07
     elif mat == 'glow':
         t = 0.1
+    elif mat == 'chitin':
+        # glossy shell: bright sheen line near the top of side faces, faint mottling
+        t += (cell(xx // 2, yy // 2) % 5 - 2) * 0.03
+        if side and h >= 3 and yy == 1:
+            t += 0.28
+        if face == 'up' and (xx + yy) % 5 == 0:
+            t += 0.12
+    elif mat == 'facet':
+        # compound eye: checker of lenses with a highlight corner
+        t = (0.18 if (xx + yy) % 2 == 0 else -0.12) + (0.3 if xx <= 1 and yy <= 1 else 0)
     if mat != 'glow' and w >= 3 and h >= 3 and (xx == w - 1 or yy == h - 1):
         t -= 0.1
     return t

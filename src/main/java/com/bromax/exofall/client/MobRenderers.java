@@ -33,7 +33,7 @@ public final class MobRenderers {
     public static class Mudgrub extends GeoEntityRenderer<com.bromax.exofall.entity.mob.Mudgrub> {
         public Mudgrub(EntityRendererProvider.Context ctx) {
             super(ctx, new DefaultedEntityGeoModel<>(Exofall.id("mudgrub"), false));
-            this.shadowRadius = 0.35f;
+            this.shadowRadius = 0.6f;
         }
 
         @Override

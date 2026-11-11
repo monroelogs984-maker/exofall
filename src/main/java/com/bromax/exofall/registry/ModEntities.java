@@ -25,13 +25,13 @@ public final class ModEntities {
     // ---- Swamp meteor mobs
     public static final DeferredHolder<EntityType<?>, EntityType<Mudgrub>> MUDGRUB = ENTITIES.register("mudgrub",
             () -> EntityType.Builder.of(Mudgrub::new, MobCategory.CREATURE)
-                    .sized(0.6F, 0.4F).eyeHeight(0.25F).clientTrackingRange(8).build("exofall:mudgrub"));
+                    .sized(1.0F, 0.9F).eyeHeight(0.6F).clientTrackingRange(8).build("exofall:mudgrub"));
     public static final DeferredHolder<EntityType<?>, EntityType<Glasswing>> GLASSWING = ENTITIES.register("glasswing",
             () -> EntityType.Builder.of(Glasswing::new, MobCategory.MONSTER)
-                    .sized(0.9F, 0.5F).eyeHeight(0.4F).clientTrackingRange(10).build("exofall:glasswing"));
+                    .sized(1.6F, 1.2F).eyeHeight(1.0F).clientTrackingRange(10).build("exofall:glasswing"));
     public static final DeferredHolder<EntityType<?>, EntityType<Bloodgnat>> BLOODGNAT = ENTITIES.register("bloodgnat",
             () -> EntityType.Builder.of(Bloodgnat::new, MobCategory.MONSTER)
-                    .sized(0.4F, 0.35F).eyeHeight(0.25F).clientTrackingRange(8).build("exofall:bloodgnat"));
+                    .sized(0.9F, 1.1F).eyeHeight(0.8F).clientTrackingRange(8).build("exofall:bloodgnat"));
 
     private ModEntities() {}
 }

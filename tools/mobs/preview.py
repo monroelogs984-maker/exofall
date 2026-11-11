@@ -226,8 +226,11 @@ def main():
     geo = json.load(open(sys.argv[1]))
     tex = read_png(sys.argv[2])
     scale = float(sys.argv[4]) if len(sys.argv) > 4 else 8
-    cell = int(48 * scale)
-    views = [(0, 0), (90, 0), (180, 0), (35, -20)]
+    bones = geo['minecraft:geometry'][0]['bones']
+    ext = max([abs(v) for b in bones for c in b.get('cubes', []) for v in
+               (c['origin'][0], c['origin'][0] + c['size'][0], c['origin'][2], c['origin'][2] + c['size'][2])] + [24])
+    cell = int(max(48, ext * 2.3) * scale)
+    views = [(0, 0), (90, 0), (35, -25), (0, -89)]   # front, side, 3/4, top
     sheet = [[(40, 44, 52, 255)] * (cell * len(views)) for _ in range(cell)]
     for i, (yaw, pitch) in enumerate(views):
         img = render(geo, tex, yaw, pitch, scale, (cell, cell))
