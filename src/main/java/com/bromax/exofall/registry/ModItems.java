@@ -100,5 +100,30 @@ public final class ModItems {
     public static final DeferredItem<com.bromax.exofall.item.BubbleSacItem> BUBBLE_SAC = ITEMS.register("bubble_sac",
             () -> new com.bromax.exofall.item.BubbleSacItem(new Item.Properties().stacksTo(16)));
 
+    // ---- Boss arenas: one sigil per meteor. The desert's drops whole from the Gold-Encrusted Scarab; the
+    // others are crafted from 4 fragments that each meteor's toughest lesser mob drops.
+    public static final Map<com.bromax.exofall.world.MeteorStyle, DeferredItem<com.bromax.exofall.item.SigilItem>> SIGILS = new java.util.EnumMap<>(com.bromax.exofall.world.MeteorStyle.class);
+    public static final Map<com.bromax.exofall.world.MeteorStyle, DeferredItem<Item>> SIGIL_FRAGMENTS = new java.util.EnumMap<>(com.bromax.exofall.world.MeteorStyle.class);
+
+    static {
+        for (com.bromax.exofall.world.MeteorStyle st : com.bromax.exofall.world.MeteorStyle.values()) {
+            SIGILS.put(st, ITEMS.register(st.getSerializedName() + "_sigil", () -> new com.bromax.exofall.item.SigilItem(st,
+                    new Item.Properties().stacksTo(1).rarity(net.minecraft.world.item.Rarity.RARE).fireResistant())));
+            if (st != com.bromax.exofall.world.MeteorStyle.DESERT) {
+                SIGIL_FRAGMENTS.put(st, ITEMS.register(st.getSerializedName() + "_sigil_fragment",
+                        () -> new Item(new Item.Properties().rarity(net.minecraft.world.item.Rarity.UNCOMMON))));
+            }
+        }
+    }
+
+    public static final DeferredItem<DeferredSpawnEggItem> TERROR_OF_THE_BOG_SPAWN_EGG = ITEMS.register("terror_of_the_bog_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.TERROR_OF_THE_BOG, 0x4A3A22, 0x8A9A3A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> WAXEN_QUEEN_SPAWN_EGG = ITEMS.register("waxen_queen_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.WAXEN_QUEEN, 0xE8C070, 0x3A2414, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> DOZEN_LEGGED_WRATH_SPAWN_EGG = ITEMS.register("dozen_legged_wrath_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.DOZEN_LEGGED_WRATH, 0xB0281C, 0x2A0E0A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> APEX_MANTIS_SPAWN_EGG = ITEMS.register("apex_mantis_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.APEX_MANTIS, 0x5AA040, 0xD8E87A, new Item.Properties()));
+
     private ModItems() {}
 }

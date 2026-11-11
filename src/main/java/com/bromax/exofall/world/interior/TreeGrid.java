@@ -49,7 +49,7 @@ final class TreeGrid<T extends TreeGrid.Placed> {
             int margin = Math.min(2, grid / 4);
             int tx = gx * grid + margin + (int) (m.hash(gx, salt + 1, gz, 41) * (grid - 2 * margin));
             int tz = gz * grid + margin + (int) (m.hash(gx, salt + 2, gz, 42) * (grid - 2 * margin));
-            result = factory.make(m, tx, tz);
+            result = com.bromax.exofall.world.ArenaGen.excludes(m, tx, tz) ? null : factory.make(m, tx, tz);
         }
         m.cache.put(key, result == null ? Boolean.FALSE : result);
         return result;

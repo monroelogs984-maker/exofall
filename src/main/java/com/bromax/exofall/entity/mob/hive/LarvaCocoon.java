@@ -54,6 +54,11 @@ public class LarvaCocoon extends Bug implements Enemy, HiveMob {
         builder.define(RIPENESS, 0);
     }
 
+    /** Sets how ripe the cocoon is (0..1); the Waxen Queen lays nearly ripe ones. */
+    public void setRipeness(float f) {
+        entityData.set(RIPENESS, (int) (Math.clamp(f, 0f, 1f) * HATCH_TICKS));
+    }
+
     public float ripeness() {
         return entityData.get(RIPENESS) / (float) HATCH_TICKS;
     }

@@ -36,6 +36,11 @@ public final class ExofallClient {
         event.registerEntityRenderer(ModEntities.LEAFCUTTER.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "leafcutter", 0.4f, false, false));
         event.registerEntityRenderer(ModEntities.LANTERN_MOTH.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "lantern_moth", 0.3f, true, true));
         event.registerEntityRenderer(ModEntities.ROLLED_BOULDER.get(), MobRenderers.BoulderRenderer::new);
+        event.registerEntityRenderer(ModEntities.TERROR_OF_THE_BOG.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "terror_of_the_bog", 1.6f, false, true));
+        event.registerEntityRenderer(ModEntities.WAXEN_QUEEN.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "waxen_queen", 1.4f, true, true));
+        event.registerEntityRenderer(ModEntities.DOZEN_LEGGED_WRATH.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, new MobRenderers.WrathModel(), 1.2f, false, true));
+        event.registerEntityRenderer(ModEntities.APEX_MANTIS.get(), ctx -> new MobRenderers.BugRenderer<>(ctx, "apex_mantis", 1.3f, true, true));
+        event.registerEntityRenderer(ModEntities.BOSS_GLOB.get(), ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 1.6f, false));
     }
 
     @SubscribeEvent

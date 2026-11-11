@@ -1,0 +1,31 @@
+size 16 16
+// Sigil Socket front: chitinstone brick face with a round socket in the middle, faint violet glow round the rim.
+gradramp hole 6 #120c1a #241a34 #3a2c52
+gradramp rim 6 #4a3a62 #8a6ab8 #d8b8ff
+layer bricks
+import /home/glenn/mc-modding/mod-dev/exofall-1211/src/main/resources/assets/exofall/textures/block/chitinstone_bricks.png 0 0
+layer socket
+key R #8a6ab8
+key H #241a34
+grid 4 4
+..RRRR..
+.RHHHHR.
+RHHHHHHR
+RHHHHHHR
+RHHHHHHR
+RHHHHHHR
+.RHHHHR.
+..RRRR..
+end
+layer depth
+key D #120c1a
+grid 5 5
+..DD..
+.D....
+D.....
+D.....
+end
+px 6 5 rim.5
+px 5 6 rim.4
+px 10 10 rim.1
+px 9 11 rim.1

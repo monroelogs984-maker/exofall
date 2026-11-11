@@ -86,5 +86,21 @@ public final class ModEntities {
             () -> EntityType.Builder.<com.bromax.exofall.entity.mob.desert.RolledBoulder>of(com.bromax.exofall.entity.mob.desert.RolledBoulder::new, MobCategory.MISC)
                     .sized(0.75F, 0.75F).clientTrackingRange(8).updateInterval(1).noSummon().build("exofall:rolled_boulder"));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.boss.TerrorOfTheBog>> TERROR_OF_THE_BOG = ENTITIES.register("terror_of_the_bog",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.boss.TerrorOfTheBog::new, MobCategory.MONSTER)
+                    .sized(3.2F, 1.7F).eyeHeight(1.3F).clientTrackingRange(16).fireImmune().build("exofall:terror_of_the_bog"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.boss.WaxenQueen>> WAXEN_QUEEN = ENTITIES.register("waxen_queen",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.boss.WaxenQueen::new, MobCategory.MONSTER)
+                    .sized(2.6F, 3.0F).eyeHeight(2.2F).clientTrackingRange(16).fireImmune().build("exofall:waxen_queen"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.boss.DozenLeggedWrath>> DOZEN_LEGGED_WRATH = ENTITIES.register("dozen_legged_wrath",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.boss.DozenLeggedWrath::new, MobCategory.MONSTER)
+                    .sized(2.0F, 1.5F).eyeHeight(1.1F).clientTrackingRange(16).fireImmune().build("exofall:dozen_legged_wrath"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.boss.ApexMantis>> APEX_MANTIS = ENTITIES.register("apex_mantis",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.boss.ApexMantis::new, MobCategory.MONSTER)
+                    .sized(2.2F, 4.8F).eyeHeight(4.2F).clientTrackingRange(16).fireImmune().build("exofall:apex_mantis"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.boss.BossGlob>> BOSS_GLOB = ENTITIES.register("boss_glob",
+            () -> EntityType.Builder.<com.bromax.exofall.entity.boss.BossGlob>of(com.bromax.exofall.entity.boss.BossGlob::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(8).updateInterval(2).noSummon().build("exofall:boss_glob"));
+
     private ModEntities() {}
 }

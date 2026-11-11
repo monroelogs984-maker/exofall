@@ -47,6 +47,18 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> GLOWMARL = BLOCKS.register("glowmarl",
             () -> new Block(Properties.ofFullCopy(Blocks.CALCITE).strength(0.8F).lightLevel(s -> 6).sound(SoundType.MUD_BRICKS)));
 
+    // ---- boss arenas ----
+
+    /** Fills the arena door until the sigil opens it; closes again behind the players while the boss fight lasts. */
+    public static final DeferredBlock<Block> SIGIL_SEAL = BLOCKS.register("sigil_seal",
+            () -> new Block(Properties.ofFullCopy(Blocks.BEDROCK).strength(-1.0F, 3_600_000.0F).noLootTable()
+                    .lightLevel(s -> 9).sound(SoundType.AMETHYST).mapColor(MapColor.COLOR_PURPLE)
+                    .pushReaction(net.minecraft.world.level.material.PushReaction.BLOCK)));
+    public static final DeferredBlock<SigilSocketBlock> SIGIL_SOCKET = BLOCKS.register("sigil_socket",
+            () -> new SigilSocketBlock(Properties.ofFullCopy(Blocks.BEDROCK).strength(-1.0F, 3_600_000.0F).noLootTable()
+                    .lightLevel(s -> 5).sound(SoundType.DEEPSLATE_BRICKS)
+                    .pushReaction(net.minecraft.world.level.material.PushReaction.BLOCK)));
+
     // ---- woods ----
 
     public static final WoodSet STILTREED = new WoodSet(BLOCKS, "stiltreed", Blocks.MANGROVE_PLANKS, true);

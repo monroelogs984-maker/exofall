@@ -1,0 +1,24 @@
+size 16 16
+// Sigil Seal: the arena door. Dark violet membrane, tileable, with glowing veins that cross tile edges cleanly.
+gradramp mem 9 #2c2040 #3e2c5a #54407a #6a5494
+gradramp vein 6 #8a4ac8 #c07af0 #f0d0ff
+layer base
+rect 0 0 16 16 mem.3
+shade mem light=-1,-1 depth=1 contrast=0.2 base=0.4
+jitter mem 0.35 7
+layer veins
+line 0 3 4 5 vein.2
+line 4 5 7 4 vein.3
+line 7 4 11 7 vein.2
+line 11 7 15 6 vein.2
+line 7 4 8 0 vein.1
+line 8 15 9 12 vein.1
+line 9 12 6 10 vein.2
+line 6 10 2 12 vein.2
+line 2 12 0 11 vein.1
+line 15 11 12 13 vein.1
+line 12 13 9 12 vein.2
+px 7 4 vein.5
+px 11 7 vein.4
+px 9 12 vein.5
+px 4 5 vein.4

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "exofall:swamp_sigil_fragment"
+    },
+    {
+      "item": "exofall:swamp_sigil_fragment"
+    },
+    {
+      "item": "exofall:swamp_sigil_fragment"
+    },
+    {
+      "item": "exofall:swamp_sigil_fragment"
+    }
+  ],
+  "result": {
+    "id": "exofall:swamp_sigil",
+    "count": 1
+  }
+}

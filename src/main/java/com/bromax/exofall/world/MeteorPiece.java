@@ -162,6 +162,7 @@ public class MeteorPiece extends StructurePiece {
     public BlockPos centre() { return centre; }
     public int radius() { return radius; }
     public long seed() { return seed; }
+    public MeteorStyle style() { return style; }
 
     /** Smooth 2D/3D noise in about [-1, 1]. */
     public double noiseA(double x, double y, double z) { return noiseA.noise(x, y, z); }
@@ -222,7 +223,7 @@ public class MeteorPiece extends StructurePiece {
                     }
                     anyInterior = true;
                     if (col == null) col = interior.column(this, x, z);
-                    level.setBlock(pos, interior.block(this, col, x, y, z), 2);
+                    level.setBlock(pos, ArenaGen.apply(this, style, col.floorTop(), x, y, z, interior.block(this, col, x, y, z)), 2);
                 }
             }
         }

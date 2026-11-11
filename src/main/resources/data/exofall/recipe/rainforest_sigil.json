@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "exofall:rainforest_sigil_fragment"
+    },
+    {
+      "item": "exofall:rainforest_sigil_fragment"
+    },
+    {
+      "item": "exofall:rainforest_sigil_fragment"
+    },
+    {
+      "item": "exofall:rainforest_sigil_fragment"
+    }
+  ],
+  "result": {
+    "id": "exofall:rainforest_sigil",
+    "count": 1
+  }
+}

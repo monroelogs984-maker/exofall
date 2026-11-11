@@ -15,7 +15,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-MODULES = ['mobs_swamp', 'mobs_hive', 'mobs_desert', 'mobs_rainforest']
+MODULES = ['mobs_swamp', 'mobs_hive', 'mobs_desert', 'mobs_rainforest', 'mobs_bosses']
 
 if __name__ == '__main__':
     only = set(sys.argv[1:])

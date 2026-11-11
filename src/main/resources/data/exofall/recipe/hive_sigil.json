@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "exofall:hive_sigil_fragment"
+    },
+    {
+      "item": "exofall:hive_sigil_fragment"
+    },
+    {
+      "item": "exofall:hive_sigil_fragment"
+    },
+    {
+      "item": "exofall:hive_sigil_fragment"
+    }
+  ],
+  "result": {
+    "id": "exofall:hive_sigil",
+    "count": 1
+  }
+}

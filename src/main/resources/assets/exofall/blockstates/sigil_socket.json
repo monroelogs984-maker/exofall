@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,kind=swamp": {
+      "model": "exofall:block/sigil_socket"
+    },
+    "facing=north,kind=hive": {
+      "model": "exofall:block/sigil_socket"
+    },
+    "facing=north,kind=desert": {
+      "model": "exofall:block/sigil_socket"
+    },
+    "facing=north,kind=rainforest": {
+      "model": "exofall:block/sigil_socket"
+    },
+    "facing=east,kind=swamp": {
+      "model": "exofall:block/sigil_socket",
+      "y": 90
+    },
+    "facing=east,kind=hive": {
+      "model": "exofall:block/sigil_socket",
+      "y": 90
+    },
+    "facing=east,kind=desert": {
+      "model": "exofall:block/sigil_socket",
+      "y": 90
+    },
+    "facing=east,kind=rainforest": {
+      "model": "exofall:block/sigil_socket",
+      "y": 90
+    },
+    "facing=south,kind=swamp": {
+      "model": "exofall:block/sigil_socket",
+      "y": 180
+    },
+    "facing=south,kind=hive": {
+      "model": "exofall:block/sigil_socket",
+      "y": 180
+    },
+    "facing=south,kind=desert": {
+      "model": "exofall:block/sigil_socket",
+      "y": 180
+    },
+    "facing=south,kind=rainforest": {
+      "model": "exofall:block/sigil_socket",
+      "y": 180
+    },
+    "facing=west,kind=swamp": {
+      "model": "exofall:block/sigil_socket",
+      "y": 270
+    },
+    "facing=west,kind=hive": {
+      "model": "exofall:block/sigil_socket",
+      "y": 270
+    },
+    "facing=west,kind=desert": {
+      "model": "exofall:block/sigil_socket",
+      "y": 270
+    },
+    "facing=west,kind=rainforest": {
+      "model": "exofall:block/sigil_socket",
+      "y": 270
+    }
+  }
+}

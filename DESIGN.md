@@ -190,3 +190,44 @@ Stats, sounds (vanilla stand-ins) and textures are placeholders. Each meteor now
 - Gotchas found: goal canUse()/tick() is polled every other tick, so `tickCount % N` there never fires for odd
   entity ids (use countdowns); a plain Entity collides with pushable mobs like a boat (boulder shattered on its own
   Roller; override canCollideWith); NeoForge makes canBreatheUnderwater final (override canDrownInFluidType).
+
+## Pets (locked 2026-11-11, not built yet)
+Glenn: "very trimmed down". One pet per meteor. Each pet is ridden, flown or neither, depending on the pet. Some pets
+have a gear-making job (feed them X, after a while they drop Y). They come BEFORE each meteor's boss, but you get one by
+capturing and breeding that meteor's existing bugs (not by taming a rare wild spawn). Which bugs, the capture item and
+each pet's stats are still open. Keep them below Ice and Fire dragon power but still strong.
+
+## Bosses, arenas, sigils (2026-11-11; Glenn: "detailed and have a short cinematic after you encounter them. Worry about the arenas too and how to unlock them; then make them spawn in the middle of each meteor (we can later build AROUND them)")
+- **Arena** (`world/ArenaLayout`, `world/ArenaGen`): sealed dome at every meteor's centre, inner 15 x 12 tall, on a
+  paved plaza (radius 24, cleared 16 up) that blends back into the ground by 32; trees/pillars are kept out to 38.
+  One door (3x4, direction from the seed) shut by an unbreakable **Sigil Seal**, with the **Sigil Socket** in the
+  right-hand post. Themed inside: swamp = mud + 2-deep pools, driftmoss, lanternpods, verdant froglights; hive =
+  honeycomb floor + honey patches, 6 comb pillars, royal amber, shroomlights; desert = 2-deep sand (the Wrath
+  burrows), polished ring path, 4 bone pillars; rainforest = moss, grass/ferns, 5 Veilpine trees, glowmoss curtains.
+  Old meteors in already-generated chunks have no arena.
+- **Unlocking (my proposal, not locked):** each meteor has a sigil. Desert Sigil drops from the Gold-Encrusted
+  Scarab (Glenn's design). The others are crafted from 4 fragments (shapeless); every Glasswing / Stinger /
+  Bloommantis killed by a player drops one. Meant to move into dungeon loot once dungeons exist.
+- **Fight flow** (`entity/boss/ExofallBoss`): sigil on socket -> seal opens, boss lies dormant (invulnerable) in the
+  centre -> a player walks 2+ blocks inside -> seal closes behind them, 5 s intro cinematic for players who
+  haven't seen this boss's (camera swings in on the boss while it roars, letterbox, name + subtitle; player frozen
+  and invulnerable; client `client/BossCinematic`, packet `network/CinematicPayload`) -> fight with a boss bar.
+  Nobody left for 10 s -> boss heals, goes home, dormant, seal reopens. Death -> seal opens; another sigil wakes a
+  new boss. 500 XP, no loot yet. Debuffs on bosses are capped at 5 s / level II.
+- **Bosses** (stats placeholder; every attack has a wind-up tell; enraged = cooldowns x0.65, damage x1.15):
+  - Terror of the Bog (420 HP): snap, grab (held 2.5 s, 30 damage frees you and stuns it), submerge then burst up
+    under a bubble boil, mud spit (3 when enraged), enraged at 50% calls Bloodgnats.
+  - Waxen Queen (380 HP, flies): sting dive then 1.5 s dazed on the floor, wax spray fan, lays nearly-ripe Larva
+    Cocoons, wing buffet if you stand under her, enraged calls 2 Stingers; hive mobs defend her, Nursemaids heal her.
+  - Dozen-legged Wrath (450 HP, 12 legs, ~11 blocks long): bite, charge (stunned if it hits a wall; double when
+    enraged), burrow + sand-puff tell, tail sweep if you're beside/behind; enraged at 40% = faster. Body segments
+    follow the head's path (yaw history); 7 hittable PartEntity segments.
+  - Apex Mantis (400 HP): 3-hit blade combo, leap, guard after 3 quick hits (front melee parried + riposte),
+    enraged camouflage (rustle/chime tells, loud chime 0.5 s before the strike; hitting it reveals it).
+- Models in `tools/mobs/mobs_bosses.py`. Test commands: `/exofall arena socket` (inside a meteor),
+  `/exofall arena wake <socket>`, `/exofall boss fight`.
+- Dev-server verified (no player, iron golem as the opponent): all four arenas generate with socket + seal +
+  theme; wake opens the seal; all four bosses fight (Queen dives/lays cocoons, Wrath/Mantis kill the golem) and
+  reset to dormant after 10 s. **Not verified (needs a client):** the cinematic, intro trigger, boss bars, every
+  model/animation in game, Wrath body-follow direction (sign of the segment turn is reasoned, not seen; flip it in
+  `MobRenderers.WrathModel` if the body bends the wrong way), Queen flight feel, grab teleporting a real player.

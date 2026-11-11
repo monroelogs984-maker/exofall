@@ -35,6 +35,10 @@ public final class MobSetup {
         event.put(ModEntities.BLOOMMANTIS.get(), com.bromax.exofall.entity.mob.rainforest.Bloommantis.createAttributes().build());
         event.put(ModEntities.LEAFCUTTER.get(), com.bromax.exofall.entity.mob.rainforest.Leafcutter.createAttributes().build());
         event.put(ModEntities.LANTERN_MOTH.get(), com.bromax.exofall.entity.mob.rainforest.LanternMoth.createAttributes().build());
+        event.put(ModEntities.TERROR_OF_THE_BOG.get(), com.bromax.exofall.entity.boss.TerrorOfTheBog.createAttributes().build());
+        event.put(ModEntities.WAXEN_QUEEN.get(), com.bromax.exofall.entity.boss.WaxenQueen.createAttributes().build());
+        event.put(ModEntities.DOZEN_LEGGED_WRATH.get(), com.bromax.exofall.entity.boss.DozenLeggedWrath.createAttributes().build());
+        event.put(ModEntities.APEX_MANTIS.get(), com.bromax.exofall.entity.boss.ApexMantis.createAttributes().build());
     }
 
     /** Meteor interiors are lit by plants, so monsters ignore light; they only spawn in meteor biomes anyway. */

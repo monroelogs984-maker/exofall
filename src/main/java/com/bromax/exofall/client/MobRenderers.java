@@ -45,7 +45,11 @@ public final class MobRenderers {
         private final float shadow;
 
         public BugRenderer(EntityRendererProvider.Context ctx, String model, float shadow, boolean translucent, boolean glow) {
-            super(ctx, new DefaultedEntityGeoModel<>(Exofall.id(model), false));
+            this(ctx, new DefaultedEntityGeoModel<>(Exofall.id(model), false), shadow, translucent, glow);
+        }
+
+        public BugRenderer(EntityRendererProvider.Context ctx, software.bernie.geckolib.model.GeoModel<T> model, float shadow, boolean translucent, boolean glow) {
+            super(ctx, model);
             this.shadowRadius = shadow;
             this.shadow = shadow;
             this.translucent = translucent;
@@ -86,6 +90,29 @@ public final class MobRenderers {
         public BoulderRenderer(EntityRendererProvider.Context ctx) {
             super(ctx, new DefaultedEntityGeoModel<>(Exofall.id("rolled_boulder"), false));
             this.shadowRadius = 0.4f;
+        }
+    }
+
+    /**
+     * Dozen-legged Wrath: each trailing body segment turns by how much the heading changed between it and the
+     * segment ahead, so the body follows the head's path (see DozenLeggedWrath#segmentYaw).
+     */
+    public static class WrathModel extends DefaultedEntityGeoModel<com.bromax.exofall.entity.boss.DozenLeggedWrath> {
+        public WrathModel() {
+            super(Exofall.id("dozen_legged_wrath"), false);
+        }
+
+        @Override
+        public void setCustomAnimations(com.bromax.exofall.entity.boss.DozenLeggedWrath w, long id,
+                                        software.bernie.geckolib.animation.AnimationState<com.bromax.exofall.entity.boss.DozenLeggedWrath> state) {
+            super.setCustomAnimations(w, id, state);
+            float pt = state.getPartialTick();
+            for (int i = 1; i <= com.bromax.exofall.entity.boss.DozenLeggedWrath.SEGMENTS; i++) {
+                int k = i;
+                float turn = net.minecraft.util.Mth.wrapDegrees(w.segmentYaw(k - 1, pt) - w.segmentYaw(k, pt));
+                var bone = getAnimationProcessor().getBone("seg" + k);
+                if (bone != null) bone.setRotY(bone.getRotY() + turn * net.minecraft.util.Mth.DEG_TO_RAD);
+            }
         }
     }
 

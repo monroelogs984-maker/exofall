@@ -25,6 +25,48 @@ public final class ExofallCommands {
                     if (ok) ctx.getSource().sendSuccess(() -> Component.literal("Grew the tree"), true);
                     else ctx.getSource().sendFailure(Component.literal("No room for the tree"));
                     return ok ? 1 : 0;
+                })))
+                // /exofall arena wake <socket>: what a sigil does, without one
+                .then(Commands.literal("arena").then(Commands.literal("wake").then(Commands.argument("socket", BlockPosArgument.blockPos()).executes(ctx -> {
+                    BlockPos pos = BlockPosArgument.getLoadedBlockPos(ctx, "socket");
+                    var level = ctx.getSource().getLevel();
+                    var state = level.getBlockState(pos);
+                    if (!(state.getBlock() instanceof com.bromax.exofall.block.SigilSocketBlock)) {
+                        ctx.getSource().sendFailure(Component.literal("No Sigil Socket there"));
+                        return 0;
+                    }
+                    boolean ok = com.bromax.exofall.entity.boss.Arenas.awaken(level, pos, state, null);
+                    ctx.getSource().sendSuccess(() -> Component.literal(ok ? "Boss woken" : "A boss is already awake there"), true);
+                    return ok ? 1 : 0;
+                })))
+                // /exofall arena find: where this meteor's arena socket is (nearest meteor start)
+                .then(Commands.literal("socket").executes(ctx -> {
+                    var src = ctx.getSource();
+                    var level = src.getLevel();
+                    BlockPos here = BlockPos.containing(src.getPosition());
+                    for (var start : level.structureManager().startsForStructure(new net.minecraft.world.level.ChunkPos(here),
+                            s -> level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.STRUCTURE).getKey(s) != null
+                                    && level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.STRUCTURE).getKey(s).getNamespace().equals("exofall"))) {
+                        for (var piece : start.getPieces()) {
+                            if (piece instanceof com.bromax.exofall.world.MeteorPiece m) {
+                                BlockPos c = com.bromax.exofall.world.ArenaGen.centre(m);
+                                BlockPos sock = com.bromax.exofall.world.ArenaLayout.socket(c, com.bromax.exofall.world.ArenaGen.door(m));
+                                src.sendSuccess(() -> Component.literal("Arena centre " + c.toShortString() + ", socket " + sock.toShortString()), false);
+                                return 1;
+                            }
+                        }
+                    }
+                    src.sendFailure(Component.literal("Not inside a meteor"));
+                    return 0;
+                })))
+                // /exofall boss fight: skip the nearest boss's dormant and intro steps (testing)
+                .then(Commands.literal("boss").then(Commands.literal("fight").executes(ctx -> {
+                    var src = ctx.getSource();
+                    var list = src.getLevel().getEntitiesOfClass(com.bromax.exofall.entity.boss.ExofallBoss.class,
+                            new net.minecraft.world.phys.AABB(BlockPos.containing(src.getPosition())).inflate(48));
+                    for (var b : list) b.forceFight();
+                    src.sendSuccess(() -> Component.literal(list.size() + " boss(es) fighting"), true);
+                    return list.size();
                 }))));
     }
 

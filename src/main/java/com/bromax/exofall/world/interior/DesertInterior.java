@@ -57,6 +57,7 @@ public class DesertInterior implements MeteorInterior {
                 if (m.hash(cx, 0, cz, 20) > 0.5) continue;
                 double px = cx * PILLAR_GRID + 2 + m.hash(cx, 1, cz, 21) * (PILLAR_GRID - 4);
                 double pz = cz * PILLAR_GRID + 2 + m.hash(cx, 2, cz, 22) * (PILLAR_GRID - 4);
+                if (com.bromax.exofall.world.ArenaGen.excludes(m, (int) px, (int) pz)) continue;
                 double r = 1.6 + m.hash(cx, 3, cz, 23) * 1.4;
                 double dx = x + 0.5 - px, dz = z + 0.5 - pz;
                 if (dx * dx + dz * dz <= r * r) return true;
