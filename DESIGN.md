@@ -281,3 +281,20 @@ software preview renderer in `model3d.py`); icons: `tools/weapons/gen_icons.py` 
   `exofall:bleed` bypasses the hit cooldown (never eats a sword hit), no knockback, armour still applies.
 - Verified: `/exofall weapontest` (dev server) checks every effect; dev client loads all models with no warnings.
   Not verified: how they look/feel in hand in game.
+
+## Baubles (2026-11-12, Glenn: "I do really like all of those; add them"; ~6 total planned, Glenn adds his own later)
+Curios (now a required dependency, 9.5.1 like S202; jar in libs/). `item/BaubleItem` (ICurioItem) + `item/BaubleEvents`.
+Uncraftable for now, RARE, 32x32 icons (`textures-src/item/bauble/gen_baubles.py`). Slots via curios item tags;
+`data/exofall/curios/entities` gives players necklace/body/charm/ring. Two necklaces and two charms compete for
+the single default slot of each (a choice, easy to retag).
+- **Divebell Locket** (necklace, swamp): breathe underwater (LivingBreatheEvent), submerged mining speed +0.8 (= normal).
+- **Ember Beetle Brooch** (body, desert): fire damage x0.5; ember particles (no real light; Gloaming hook possible later).
+- **Golden Scarab Ward** (charm, desert): a killing blow (not /kill or void) leaves you at 1 heart, 5 min cooldown kept in
+  player data and shown on the item; totem particles + sound.
+- **Stinger Fang Ring** (ring, hive): fully charged hits that land add Poison I for 2 s.
+- **Nursemaid's Wax Charm** (charm, hive): food gives +50% hunger/saturation; heal 1 every 2 s on `exofall:wax_blocks`
+  (honey/honeycomb blocks + warded twins).
+- **Lantern Moth Pendant** (necklace, rainforest): wearer in light < 7 -> hostiles within 8 get Glowing (server-side,
+  so other players see the outline too).
+- Verified (`/exofall baubletest`, damageable fake player): locket breathing + mining speed, brooch 4 -> 2 fire damage,
+  ward saves at 1 heart then respects cooldown, wax charm +3 food from bread. Not verified: ring, pendant, icons in game.

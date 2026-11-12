@@ -1,0 +1,25 @@
+// comb cells on the inner tablet: dark wax walls around 3-px cells
+layer m_i
+px 8 9 #a87a28
+px 12 9 #a87a28
+px 16 9 #a87a28
+px 20 9 #a87a28
+px 24 9 #a87a28
+px 10 12 #a87a28
+px 14 12 #a87a28
+px 18 12 #a87a28
+px 22 12 #a87a28
+px 8 15 #a87a28
+px 12 15 #a87a28
+px 16 15 #a87a28
+px 20 15 #a87a28
+px 24 15 #a87a28
+px 10 18 #a87a28
+px 14 18 #a87a28
+px 18 18 #a87a28
+px 22 18 #a87a28
+px 8 21 #a87a28
+px 12 21 #a87a28
+px 16 21 #a87a28
+px 20 21 #a87a28
+px 24 21 #a87a28

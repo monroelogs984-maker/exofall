@@ -207,5 +207,18 @@
   "effect.exofall.bleeding": "Bleeding",
   "effect.exofall.sandbound": "Sandbound",
   "death.attack.exofall.bleed": "%1$s bled out",
-  "death.attack.exofall.bleed.player": "%1$s bled out while fighting %2$s"
+  "death.attack.exofall.bleed.player": "%1$s bled out while fighting %2$s",
+  "item.exofall.divebell_locket": "Divebell Locket",
+  "item.exofall.divebell_locket.desc": "Breathe underwater; mine at normal speed underwater",
+  "item.exofall.ember_beetle_brooch": "Ember Beetle Brooch",
+  "item.exofall.ember_beetle_brooch.desc": "Fire damage halved",
+  "item.exofall.golden_scarab_ward": "Golden Scarab Ward",
+  "item.exofall.golden_scarab_ward.desc": "A killing blow leaves you at 1 heart instead (5 min cooldown)",
+  "item.exofall.golden_scarab_ward.saved": "The Golden Scarab Ward shatters the blow!",
+  "item.exofall.stinger_fang_ring": "Stinger Fang Ring",
+  "item.exofall.stinger_fang_ring.desc": "Fully charged hits poison for 2 s",
+  "item.exofall.nursemaids_wax_charm": "Nursemaid's Wax Charm",
+  "item.exofall.nursemaids_wax_charm.desc": "Food fills 50% more; heal while standing on honey or honeycomb",
+  "item.exofall.lantern_moth_pendant": "Lantern Moth Pendant",
+  "item.exofall.lantern_moth_pendant.desc": "In the dark, outlines hostile mobs within 8 blocks"
 }

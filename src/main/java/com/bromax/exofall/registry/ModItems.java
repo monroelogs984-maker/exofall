@@ -164,6 +164,19 @@ public final class ModItems {
     public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> SERRATED_LONGSWORD =
             legendary("serrated_longsword", com.bromax.exofall.item.ExofallWeaponItem.Kind.LONGSWORD, 9.0, 1.7);
 
+    // ---- Baubles (Curios; uncraftable for now)
+    private static DeferredItem<com.bromax.exofall.item.BaubleItem> bauble(com.bromax.exofall.item.BaubleItem.Kind kind) {
+        return ITEMS.register(kind.name().toLowerCase(java.util.Locale.ROOT), () -> new com.bromax.exofall.item.BaubleItem(kind,
+                new Item.Properties().stacksTo(1).rarity(net.minecraft.world.item.Rarity.RARE).fireResistant()));
+    }
+
+    public static final DeferredItem<com.bromax.exofall.item.BaubleItem> DIVEBELL_LOCKET = bauble(com.bromax.exofall.item.BaubleItem.Kind.DIVEBELL_LOCKET);
+    public static final DeferredItem<com.bromax.exofall.item.BaubleItem> EMBER_BEETLE_BROOCH = bauble(com.bromax.exofall.item.BaubleItem.Kind.EMBER_BEETLE_BROOCH);
+    public static final DeferredItem<com.bromax.exofall.item.BaubleItem> GOLDEN_SCARAB_WARD = bauble(com.bromax.exofall.item.BaubleItem.Kind.GOLDEN_SCARAB_WARD);
+    public static final DeferredItem<com.bromax.exofall.item.BaubleItem> STINGER_FANG_RING = bauble(com.bromax.exofall.item.BaubleItem.Kind.STINGER_FANG_RING);
+    public static final DeferredItem<com.bromax.exofall.item.BaubleItem> NURSEMAIDS_WAX_CHARM = bauble(com.bromax.exofall.item.BaubleItem.Kind.NURSEMAIDS_WAX_CHARM);
+    public static final DeferredItem<com.bromax.exofall.item.BaubleItem> LANTERN_MOTH_PENDANT = bauble(com.bromax.exofall.item.BaubleItem.Kind.LANTERN_MOTH_PENDANT);
+
     /** Main-hand modifiers for a weapon that shows {@code damage} attack damage and {@code speed} attack speed. */
     private static net.minecraft.world.item.component.ItemAttributeModifiers weapon(double damage, double speed) {
         var hand = net.minecraft.world.entity.EquipmentSlotGroup.MAINHAND;

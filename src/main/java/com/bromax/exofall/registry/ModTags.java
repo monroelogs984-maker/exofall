@@ -9,5 +9,8 @@ public final class ModTags {
     /** Meteor soil. Alien plants only grow on these, so they never spread in the Overworld. */
     public static final TagKey<Block> ALIEN_SOIL = TagKey.create(Registries.BLOCK, Exofall.id("alien_soil"));
 
+    /** Nursemaid's Wax Charm heals its wearer while standing on these. */
+    public static final TagKey<Block> WAX_BLOCKS = TagKey.create(Registries.BLOCK, Exofall.id("wax_blocks"));
+
     private ModTags() {}
 }

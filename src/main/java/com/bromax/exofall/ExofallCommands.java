@@ -74,6 +74,13 @@ public final class ExofallCommands {
                     for (String line : com.bromax.exofall.item.WeaponSelfTest.run(src.getLevel(), BlockPos.containing(src.getPosition())))
                         src.sendSuccess(() -> Component.literal(line), false);
                     return 1;
+                }))
+                // /exofall baubletest: checks the baubles' hooks on a fake player (testing)
+                .then(Commands.literal("baubletest").executes(ctx -> {
+                    var src = ctx.getSource();
+                    for (String line : com.bromax.exofall.item.BaubleSelfTest.run(src.getLevel(), BlockPos.containing(src.getPosition())))
+                        src.sendSuccess(() -> Component.literal(line), false);
+                    return 1;
                 })));
     }
 
