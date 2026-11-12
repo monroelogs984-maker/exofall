@@ -249,3 +249,16 @@ each pet's stats are still open. Keep them below Ice and Fire dragon power but s
 - **Boss drops** (always, fixed counts): Terror of the Bog = Lethal Proboscis + 2 Bog Eye; Waxen Queen = 4 Royal Honey
   Drop + 2 Crystallized Wing; Dozen-legged Wrath = 16 Terror Leg + Venomjaw; Apex Mantis = Mantis Eye + Mantis
   Greatclaw (sword, 8 damage, 1.3 speed, deliberately weak: base for a greater weapon). "Bog Eye" is my name.
+
+## Armour sets (2026-11-12; perks locked by Glenn, stat numbers my proposal)
+Each piece = tier material + 1 dungeon loot item, crafted in the Shellrock Crafting Table (loot item = stand-in until
+dungeons exist). Armour may or may not end up separate from the weapons. Ladder: swamp/hive -> rainforest -> desert.
+- **Mireweave** (swamp): mobs notice you at half range (bosses ignore it; check the Lycanites port's targeting),
+  ambush damage bonus on mobs that haven't noticed you. Diamond-to-Netherite protection, Netherite durability.
+  Proposed 20 armour / 2.5 toughness / 1x Netherite durability.
+- **Crystallized honey** (hive, name open): diamond protection, Netherite durability. FULL SET only: +15% speed
+  (attribute) + permanent Regen I.
+- **Reinforced Carapace** (rainforest): "9-damage-sword tier". Projectile protection. Proposed 22 armour / 4
+  toughness / 0.1 KB / ~1.15x Netherite durability.
+- **Ancientstone** (desert): "10-damage-sword tier" tank, -2.5% speed per piece. Proposed 24 armour / 6 toughness /
+  0.2 KB / 2x Netherite durability.
