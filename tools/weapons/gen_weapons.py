@@ -202,6 +202,11 @@ def display_for(m):
     fixed["rotation"] = [0, 180, 0]
     s = gui["scale"][0]
     return {
+        "thirdperson_righthand": {"rotation": [0, -90, 55], "translation": [0, 4.0, 0.5], "scale": [0.85] * 3},
+        "thirdperson_lefthand": {"rotation": [0, 90, -55], "translation": [0, 4.0, 0.5], "scale": [0.85] * 3},
+        "firstperson_righthand": {"rotation": [0, -90, 25], "translation": [1.13, 3.2, 1.13], "scale": [0.68] * 3},
+        "firstperson_lefthand": {"rotation": [0, 90, -25], "translation": [1.13, 3.2, 1.13], "scale": [0.68] * 3},
+        "head": {"rotation": [0, 180, 0], "translation": [0, 13, 7], "scale": [1, 1, 1]},
         "gui": gui,
         "fixed": fixed,
         "ground": {"rotation": [0, 0, 0], "translation": [0, 2, 0], "scale": [round(s * 0.6, 4)] * 3},

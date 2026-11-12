@@ -12,6 +12,30 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 @EventBusSubscriber(modid = Exofall.MOD_ID, value = Dist.CLIENT)
 public final class ExofallClient {
+    /** Logs how many quads each legendary weapon bakes to, in hand and in the GUI (0 = invisible model). */
+    @SubscribeEvent
+    public static void checkWeaponModels(net.neoforged.neoforge.client.event.ModelEvent.BakingCompleted event) {
+        var rand = net.minecraft.util.RandomSource.create(0);
+        for (var w : java.util.List.of(com.bromax.exofall.registry.ModItems.QUADBLADE_OF_THE_SANDS,
+                com.bromax.exofall.registry.ModItems.ROYAL_GRANDHAMMER, com.bromax.exofall.registry.ModItems.GLASSWING_SCYTHE,
+                com.bromax.exofall.registry.ModItems.SERRATED_LONGSWORD)) {
+            var model = event.getModels().get(net.minecraft.client.resources.model.ModelResourceLocation.inventory(w.getId()));
+            if (model == null) {
+                com.bromax.exofall.Exofall.LOGGER.error("Exofall weapon model missing: {}", w.getId());
+                continue;
+            }
+            StringBuilder sb = new StringBuilder();
+            for (var ctx : new net.minecraft.world.item.ItemDisplayContext[] {
+                    net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_RIGHT_HAND, net.minecraft.world.item.ItemDisplayContext.GUI}) {
+                var m = model.applyTransform(ctx, new com.mojang.blaze3d.vertex.PoseStack(), false);
+                int n = m.getQuads(null, null, rand).size();
+                for (var d : net.minecraft.core.Direction.values()) n += m.getQuads(null, d, rand).size();
+                sb.append(' ').append(ctx.getSerializedName()).append('=').append(n);
+            }
+            com.bromax.exofall.Exofall.LOGGER.info("Exofall weapon model {}:{}", w.getId(), sb);
+        }
+    }
+
     @SubscribeEvent
     public static void screens(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
         event.register(com.bromax.exofall.registry.ModRecipes.SHELLROCK_TABLE_MENU.get(), ShellrockTableScreen::new);

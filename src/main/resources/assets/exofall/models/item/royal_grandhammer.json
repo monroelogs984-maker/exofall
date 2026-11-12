@@ -7,18 +7,21 @@
  "perspectives": {
   "gui": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/royal_grandhammer"
    }
   },
   "ground": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/royal_grandhammer"
    }
   },
   "fixed": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/royal_grandhammer"
    }

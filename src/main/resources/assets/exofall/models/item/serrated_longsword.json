@@ -7,18 +7,21 @@
  "perspectives": {
   "gui": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/serrated_longsword"
    }
   },
   "ground": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/serrated_longsword"
    }
   },
   "fixed": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/serrated_longsword"
    }

@@ -179,7 +179,9 @@ class Model:
             if b.tag:
                 el["name"] = b.tag
             elements.append(el)
-        out = {"parent": "minecraft:item/handheld", "gui_light": "front",
+        # No parent: a model whose parent chain reaches item/generated is rebuilt from texture layers and its
+        # elements are dropped. The vanilla handheld transforms are copied in instead.
+        out = {"gui_light": "front",
                "textures": {"t": texture, "particle": texture}, "elements": elements, "display": display}
         if self.render_type:
             out["render_type"] = self.render_type
@@ -328,9 +330,12 @@ def write(model, materials, out_model_dir, out_tex_dir, display, seed=1):
     # ground and in item frames (NeoForge separate_transforms), like the vanilla trident.
     with open(os.path.join(out_model_dir, model.name + "_3d.json"), "w") as fh:
         json.dump(model.to_json("exofall:item/weapon/" + model.name, display), fh, indent=1)
-    flat = {"parent": "minecraft:item/generated", "textures": {"layer0": "exofall:item/weapon_icon/" + model.name}}
+    # item/generated only works for top-level models; nested ones need NeoForge's item_layers geometry.
+    flat = {"parent": "minecraft:item/generated", "loader": "neoforge:item_layers",
+            "textures": {"layer0": "exofall:item/weapon_icon/" + model.name}}
     wrapper = {"loader": "neoforge:separate_transforms", "gui_light": "front",
-               "base": {"parent": "exofall:item/" + model.name + "_3d"},
+               "base": dict({"parent": "exofall:item/" + model.name + "_3d"},
+                            **({"render_type": model.render_type} if model.render_type else {})),
                "perspectives": {"gui": flat, "ground": flat, "fixed": flat}}
     with open(os.path.join(out_model_dir, model.name + ".json"), "w") as fh:
         json.dump(wrapper, fh, indent=1)

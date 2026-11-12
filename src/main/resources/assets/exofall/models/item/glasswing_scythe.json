@@ -2,23 +2,27 @@
  "loader": "neoforge:separate_transforms",
  "gui_light": "front",
  "base": {
-  "parent": "exofall:item/glasswing_scythe_3d"
+  "parent": "exofall:item/glasswing_scythe_3d",
+  "render_type": "minecraft:translucent"
  },
  "perspectives": {
   "gui": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/glasswing_scythe"
    }
   },
   "ground": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/glasswing_scythe"
    }
   },
   "fixed": {
    "parent": "minecraft:item/generated",
+   "loader": "neoforge:item_layers",
    "textures": {
     "layer0": "exofall:item/weapon_icon/glasswing_scythe"
    }
