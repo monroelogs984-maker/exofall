@@ -289,12 +289,14 @@ Uncraftable for now, RARE, 32x32 icons (`textures-src/item/bauble/gen_baubles.py
 the single default slot of each (a choice, easy to retag).
 - **Divebell Locket** (necklace, swamp): breathe underwater (LivingBreatheEvent), submerged mining speed +0.8 (= normal).
 - **Ember Beetle Brooch** (body, desert): fire damage x0.5; ember particles (no real light; Gloaming hook possible later).
-- **Golden Scarab Ward** (charm, desert): a killing blow (not /kill or void) leaves you at 1 heart, 5 min cooldown kept in
-  player data and shown on the item; totem particles + sound.
+- **Leafcutter Charm** (charm, rainforest; replaced the Golden Scarab Ward 2026-11-12, Glenn: the Ward was "effectively an
+  infinite totem of undying"): cobwebs and berry bushes don't slow you (`mixin/EntityMixin` cancels `makeStuckInBlock`
+  for `exofall:leafcutter_passable`, both sides), berry bushes don't hurt, `exofall:leafcutter_cuttable` (leaves, vines,
+  webs, bushes, weepvine) breaks instantly (BreakSpeed 1000). Leaves stay solid (passing through them was dropped).
 - **Stinger Fang Ring** (ring, hive): fully charged hits that land add Poison I for 2 s.
 - **Nursemaid's Wax Charm** (charm, hive): food gives +50% hunger/saturation; heal 1 every 2 s on `exofall:wax_blocks`
   (honey/honeycomb blocks + warded twins).
 - **Lantern Moth Pendant** (necklace, rainforest): wearer in light < 7 -> hostiles within 8 get Glowing (server-side,
   so other players see the outline too).
 - Verified (`/exofall baubletest`, damageable fake player): locket breathing + mining speed, brooch 4 -> 2 fire damage,
-  ward saves at 1 heart then respects cooldown, wax charm +3 food from bread. Not verified: ring, pendant, icons in game.
+  leafcutter (berry damage cancelled, web slowdown skipped, leaves speed 1000), wax charm +3 food from bread. Not verified: ring, pendant, icons in game.

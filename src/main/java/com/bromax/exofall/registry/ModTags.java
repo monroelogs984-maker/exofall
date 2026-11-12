@@ -12,5 +12,11 @@ public final class ModTags {
     /** Nursemaid's Wax Charm heals its wearer while standing on these. */
     public static final TagKey<Block> WAX_BLOCKS = TagKey.create(Registries.BLOCK, Exofall.id("wax_blocks"));
 
+    /** Leafcutter Charm: its wearer isn't slowed by these (cobwebs, berry bushes). */
+    public static final TagKey<Block> LEAFCUTTER_PASSABLE = TagKey.create(Registries.BLOCK, Exofall.id("leafcutter_passable"));
+
+    /** Leafcutter Charm: its wearer breaks these instantly (leaves, vines, webs, bushes). */
+    public static final TagKey<Block> LEAFCUTTER_CUTTABLE = TagKey.create(Registries.BLOCK, Exofall.id("leafcutter_cuttable"));
+
     private ModTags() {}
 }

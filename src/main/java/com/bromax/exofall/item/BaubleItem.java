@@ -28,10 +28,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
  * attacks are in {@link BaubleEvents}. Slots come from the item tags in data/curios/tags/item.
  */
 public class BaubleItem extends Item implements ICurioItem {
-    public enum Kind { DIVEBELL_LOCKET, EMBER_BEETLE_BROOCH, GOLDEN_SCARAB_WARD, STINGER_FANG_RING, NURSEMAIDS_WAX_CHARM, LANTERN_MOTH_PENDANT }
+    public enum Kind { DIVEBELL_LOCKET, EMBER_BEETLE_BROOCH, LEAFCUTTER_CHARM, STINGER_FANG_RING, NURSEMAIDS_WAX_CHARM, LANTERN_MOTH_PENDANT }
 
-    /** Golden Scarab Ward: 5 minutes between saves. */
-    public static final int SCARAB_COOLDOWN = 6000;
     /** Lantern Moth Pendant: hostiles this close are outlined while the wearer stands in the dark. */
     public static final double MOTH_RANGE = 8.0;
     public static final int MOTH_DARK = 7;

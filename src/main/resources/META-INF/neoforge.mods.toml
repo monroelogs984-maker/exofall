@@ -13,6 +13,9 @@ description='''
 Huge half-buried meteors, each a self-contained biome of insects, strange plants, dungeons and legendary gear.
 '''
 
+[[mixins]]
+config="exofall.mixins.json"
+
 [[dependencies.exofall]]
 modId="neoforge"
 type="required"

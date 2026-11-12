@@ -138,30 +138,38 @@ def build_all():
         ("h", "body", "contrast=0.6 depth=2"), ("k", "body", "contrast=0.7 depth=4"),
         ("e", "ember", "contrast=0.5 depth=1"), ("l", "leg", "contrast=0.2 depth=1"), ("d", "seam", "contrast=0.1 depth=1")], "#140a06"
 
-    # 3. Golden Scarab Ward: gold scarab with spread wings, turquoise wing inlays, a sun disc held over its head
+    # 3. Leafcutter Charm: a crescent-cut leaf fragment held in a pair of amber ant mandibles, hung from a cord loop
     c = Canvas()
-    c.poly([(16, 12), (2, 9), (1, 13), (4, 17), (9, 20), (14, 19)], "g")
-    c.poly([(15, 13), (5, 11), (5, 14), (9, 17), (14, 17)], "t")
-    c.mirror()
-    c.ellipse(16, 5, 3.6, 3.6, "s")
-    for (x0, y0, x1, y1) in ((12, 25, 8, 29), (11, 21, 7, 23)):
-        c.line(x0, y0, x1, y1, "l")
-    c.poly([(12, 11), (20, 11), (21, 9), (18.5, 8), (13.5, 8), (11, 9)], "h")
-    c.ellipse(16, 13.5, 5, 3, "g")
-    c.ellipse(16, 21.5, 6.5, 7.5, "g")
-    c.mirror()
-    c.line(16, 16, 16, 28, "d")
-    c.line(11, 16, 21, 16, "d")
-    c.ellipse(16, 13.5, 1.5, 1.2, "t")
-    yield "golden_scarab_ward", c, {
-        "gold": "12 #3c2406 #7c4c0e #c08418 #eeb434 #ffe07a #fff8d8",
-        "turq": "8 #072e34 #0e5c62 #1c9892 #40d0c0 #a8fff0",
-        "sun": "8 #8a2a04 #d06010 #ff9a2a #ffd060",
-        "seam": "4 #4a2c06 #6a4210",
-        "leg": "4 #4a2c06 #8a5a12"}, [
-        ("g", "gold", "contrast=0.7 depth=3"), ("h", "gold", "contrast=0.5 depth=1"), ("t", "turq", "contrast=0.6 depth=1"),
-        ("s", "sun", "contrast=0.7 depth=2"),
-        ("d", "seam", "contrast=0.2 depth=1"), ("l", "leg", "contrast=0.2 depth=1")], "#2a1404"
+    c.ring(16, 3, 2.6, 2.6, 1.3, "c")
+    # almond leaf, pointed at the top (where the cord ties on) and at the stem
+    pts = []
+    for i in range(41):
+        t = i / 40 * 2 * math.pi
+        y = 15 - 11 * math.cos(t)
+        x = 16 + 11.5 * math.sin(t) * (math.sin(t / 2 + 0.0) ** 0 if False else 1) * (1 - 0.15 * abs(math.cos(t)) ** 2)
+        pts.append((x, y))
+    c.poly(pts, "f")
+    c.ellipse(28.5, 13, 5.5, 5.5, ".")  # the leafcutter's crescent bite
+    c.line(16, 5, 16, 25, "v")
+    for (x0, y0, x1, y1) in ((16, 10, 11, 7), (16, 14, 8, 11), (16, 18, 9, 17), (16, 9, 20, 6), (16, 19, 21, 17)):
+        c.line(x0, y0, x1, y1, "w")
+    # mandibles: two hooked jaws gripping the stem from below
+    c.line(14, 28, 10, 26, "m", 2)
+    c.line(10, 26, 8, 22, "m", 2)
+    c.put(9, 21, "m")
+    c.line(17, 28, 21, 26, "m", 2)
+    c.line(21, 26, 23, 22, "m", 2)
+    c.put(23, 21, "m")
+    c.ellipse(16, 28.5, 3.2, 2.4, "h")
+    yield "leafcutter_charm", c, {
+        "leaf": "10 #0c2a0e #1a4a16 #2e7020 #4e9a2c #84c450 #c8ec90",
+        "vein": "6 #a8d060 #d4f098",
+        "rib": "6 #1a3a10 #2e5a18",
+        "mand": "10 #2a1004 #5a2a08 #9a5212 #d8862a #ffc870",
+        "head": "8 #1a0c06 #3a1e0e #6a3a1a #9a5a2a",
+        "cord": "6 #2a1a0c #5a3a1a #8a6030"}, [
+        ("f", "leaf", "contrast=0.5 depth=4"), ("w", "vein", "contrast=0.2 depth=1"), ("v", "vein", "contrast=0.3 depth=1"),
+        ("m", "mand", "contrast=0.7 depth=1"), ("h", "head", "contrast=0.6 depth=2"), ("c", "cord", "contrast=0.4 depth=1")], "#0e1808"
 
     # 4. Stinger Fang Ring: dark chitin band seen at an angle, a big amber-rooted stinger fang set on top
     c = Canvas()

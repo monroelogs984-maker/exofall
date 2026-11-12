@@ -39,16 +39,18 @@ public final class BaubleSelfTest {
         fp.hurt(level.damageSources().inFire(), 4);
         out.add("ember: 4 fire damage -> health " + fp.getHealth());
 
-        equip(fp, "charm", ModItems.GOLDEN_SCARAB_WARD.get());
+        equip(fp, "charm", ModItems.LEAFCUTTER_CHARM.get());
         fp.setHealth(20);
         fp.invulnerableTime = 0;
-        fp.hurt(level.damageSources().generic(), 100);
-        out.add("scarab: 100 damage -> health " + fp.getHealth() + ", alive " + fp.isAlive());
-        fp.setHealth(20);
-        fp.invulnerableTime = 0;
-        fp.hurt(level.damageSources().generic(), 100);
-        out.add("scarab again (cooldown): health " + fp.getHealth());
-        fp.setHealth(20);
+        fp.hurt(level.damageSources().sweetBerryBush(), 1);
+        var web = net.minecraft.world.level.block.Blocks.COBWEB.defaultBlockState();
+        var leaves = net.minecraft.world.level.block.Blocks.OAK_LEAVES.defaultBlockState();
+        var cut = new net.neoforged.neoforge.event.entity.player.PlayerEvent.BreakSpeed(fp, leaves, 1F, fp.blockPosition());
+        NeoForge.EVENT_BUS.post(cut);
+        fp.fallDistance = 5;
+        fp.makeStuckInBlock(web, new net.minecraft.world.phys.Vec3(0.25, 0.05, 0.25));
+        out.add("leafcutter: berry bush 1 -> health " + fp.getHealth() + ", web passes " + BaubleEvents.leafcutterPasses(fp, web)
+                + ", leaf break speed " + cut.getNewSpeed() + ", web ignored (fall distance kept) " + (fp.fallDistance == 5));
 
         equip(fp, "charm", ModItems.NURSEMAIDS_WAX_CHARM.get());
         fp.getFoodData().setFoodLevel(0);
