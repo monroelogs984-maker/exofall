@@ -274,8 +274,9 @@ public abstract class ExofallBoss extends Bug implements Enemy, Hideable {
     protected List<Player> arenaPlayers(double radius, boolean includeCreative) {
         BlockPos c = home != null ? home : blockPosition();
         AABB box = new AABB(c).inflate(radius, 0, radius).expandTowards(0, ArenaLayout.INNER_V + 2, 0).move(0, -3, 0).expandTowards(0, 3, 0);
+        // Creative players count too: they wake and hold the boss (it targets them, but hittable() keeps its attacks
+        // off them). Ignoring them mid-fight made the fight reset every 10 s and re-wake: the boss looked like it respawned.
         return level().getEntitiesOfClass(Player.class, box, p -> !p.isSpectator() && p.isAlive()
-                && (includeCreative || !p.isCreative() || state() != FIGHT)
                 && p.distanceToSqr(c.getX() + 0.5, p.getY(), c.getZ() + 0.5) <= radius * radius);
     }
 
@@ -290,7 +291,7 @@ public abstract class ExofallBoss extends Bug implements Enemy, Hideable {
             retargetIn = 40;
             Player best = null;
             for (Player p : arenaPlayers(ArenaLayout.INNER_R, false)) {
-                if (!p.isCreative() && (best == null || distanceToSqr(p) < distanceToSqr(best))) best = p;
+                if (best == null || distanceToSqr(p) < distanceToSqr(best)) best = p;
             }
             if (best != null) t = best;
             else if (t == null && getLastHurtByMob() != null && canTarget(getLastHurtByMob())) t = getLastHurtByMob();
@@ -306,7 +307,7 @@ public abstract class ExofallBoss extends Bug implements Enemy, Hideable {
     }
 
     private boolean canTarget(LivingEntity e) {
-        if (e instanceof Player p) return !p.isCreative() && !p.isSpectator();
+        if (e instanceof Player p) return !p.isSpectator();
         return !(e instanceof Bug);
     }
 

@@ -66,13 +66,28 @@ FACE_DEFS = {
 }
 
 
+CENTRE = np.array([8.0, 8.0, 8.0])
+
+
 class Model:
-    def __init__(self, name, density=2, render_type=None):
+    """scale < 1 shrinks the geometry about the model centre (so long weapons fit the -16..32 element limit); the
+    hand transforms scale it back up by 1/scale. mirror = True builds the weapon mirrored across its own axis (the
+    v side flips): the boxes turn +45 about a mirrored grip and the hand transforms turn the result -90 back onto
+    the vanilla diagonal. 1.21.1 only allows -45..45 element angles, so a blade curling down on the -v side can only
+    be built this way."""
+
+    def __init__(self, name, density=2, render_type=None, scale=1.0, mirror=False):
         self.name, self.density, self.render_type = name, density, render_type
+        self.scale, self.mirror = scale, mirror
         self.boxes = []
 
     def add(self, *a, **k):
         b = Box(*a, **k)
+        if self.mirror:
+            b.lo[0], b.hi[0] = -b.hi[0], -b.lo[0]
+            b.pivot = np.array([-b.pivot[0], b.pivot[1]])
+            b.tilt = -b.tilt
+            b.mirrored = True
         self.boxes.append(b)
         return b
 
@@ -80,15 +95,19 @@ class Model:
     def element_geometry(self, b):
         """from/to/origin/angle for a box, plus the 4x4-free mapping box point -> model point (pre element rotation)."""
         q = np.array([b.pivot[0], b.pivot[1], 0.0])
+        main = -MAIN_ANGLE if self.mirror else MAIN_ANGLE
+        grip = np.array([16 - GRIP[0], GRIP[1], GRIP[2]]) if self.mirror else GRIP
         # Outer turn: about the grip by -45. Inner: about q by tilt. Combined = turn by (-45 + tilt) about
         # O = outer(q), applied to the box shifted by (O - q) (derivation in the module docstring's spirit).
         o_local = q
-        o_model = GRIP + rz(MAIN_ANGLE) @ o_local
+        o_model = grip + rz(main) @ o_local
         shift = o_model - o_local  # box point p (local) -> element point p + shift
-        angle = MAIN_ANGLE + b.tilt
+        angle = main + b.tilt
         if angle not in ALLOWED:
             raise ValueError(f"{self.name}: tilt {b.tilt} not allowed")
         frm, to = b.lo + shift, b.hi + shift
+        k = self.scale
+        frm, to, o_model = CENTRE + k * (frm - CENTRE), CENTRE + k * (to - CENTRE), CENTRE + k * (o_model - CENTRE)
         if frm.min() < -16 or to.max() > 32:
             raise ValueError(f"{self.name}: box out of range {frm} {to} ({b.tag})")
         return frm, to, o_model, angle

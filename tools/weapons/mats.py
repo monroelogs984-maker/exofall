@@ -133,6 +133,8 @@ def wing(membrane, vein, alpha=150):
         bp, b = ctx["bp"], ctx["box"]
         lo, hi = b.lo, b.hi
         tv = (bp[0] - lo[0]) / max(1e-6, hi[0] - lo[0])
+        if getattr(b, "mirrored", False):
+            tv = 1 - tv
         tu = (bp[1] - lo[1]) / max(1e-6, hi[1] - lo[1])
         if ctx["face"] not in ("north", "south"):
             return pick(vein, len(vein) - 2, 235)  # the blade's thin edge is a solid vein

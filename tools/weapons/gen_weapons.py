@@ -27,7 +27,7 @@ def sq(m, cv, cw, half, u0, u1, mat, **k):
 
 # ---- Quadblade of the Sands (desert) --------------------------------------------------------------------------------
 def quadblade():
-    m = Model("quadblade_of_the_sands", density=2)
+    m = Model("quadblade_of_the_sands", density=2, scale=0.7)
     mats = {
         "gold": M.metal(M.GOLD, base=0.55, streak=0.8),
         "bronze": M.metal(M.PBRONZE, base=0.42, streak=0.5, jit=0.8),
@@ -54,9 +54,10 @@ def quadblade():
     m.add(-4.5, -4.0, 7, 8.6, -1, 1, "turq", tag="gem_w")
     # four estoc blades in a + pattern, tapering and drawing slightly together near the tip
     for dv, dw in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-        segs = [(3.0, 0.85, 9.4, 21.5), (2.85, 0.65, 21.5, 24.8), (2.7, 0.45, 24.8, 27), (2.6, 0.25, 27, 28)]
-        sq(m, dv * 3.0, dw * 3.0, 1.1, 9.4, 10.8, "gold", tag="collar")
-        sq(m, dv * 3.0, dw * 3.0, 1.05, 16.4, 17.2, "gold", tag="mid_ring")
+        # 1.5x the old 18.6-long blades, thinner (estocs)
+        segs = [(3.0, 0.55, 9.4, 27.0), (2.85, 0.42, 27.0, 32.5), (2.7, 0.3, 32.5, 35.8), (2.6, 0.16, 35.8, 37.3)]
+        sq(m, dv * 3.0, dw * 3.0, 0.85, 9.4, 10.8, "gold", tag="collar")
+        sq(m, dv * 3.0, dw * 3.0, 0.75, 19.4, 20.2, "gold", tag="mid_ring")
         for off, half, u0, u1 in segs:
             sq(m, dv * off, dw * off, half, u0, u1, "blade", tag="blade")
     # a sun-disc finial between the blades
@@ -111,7 +112,7 @@ def grandhammer():
 
 # ---- Glasswing Scythe (swamp) --------------------------------------------------------------------------------------
 def scythe():
-    m = Model("glasswing_scythe", density=2, render_type="minecraft:translucent")
+    m = Model("glasswing_scythe", density=2, render_type="minecraft:translucent", mirror=True)
     mats = {
         "reed": M.reed(M.REED, node_pitch=5.5, node_off=1.0),
         "root": M.metal(M.REED[:5], base=0.4, streak=1.2),
@@ -197,15 +198,22 @@ BUILDERS = {"quadblade_of_the_sands": quadblade, "royal_grandhammer": grandhamme
 
 
 def display_for(m):
-    gui = m.fit_display(15.5)
+    k = 1.0 / m.scale
+    dz = -90 if m.mirror else 0
+
+    def hand(rot, tr, sc):
+        # left-hand transforms get y/z negated by the game, so the extra turn is negated there too
+        z = rot[2] + (dz if rot[1] < 0 else -dz)
+        return {"rotation": [rot[0], rot[1], z], "translation": tr, "scale": [round(sc * k, 4)] * 3}
+    gui = m.fit_display(15.5, rot=(0, 0, dz))
     fixed = dict(gui)
     fixed["rotation"] = [0, 180, 0]
     s = gui["scale"][0]
     return {
-        "thirdperson_righthand": {"rotation": [0, -90, 55], "translation": [0, 4.0, 0.5], "scale": [0.85] * 3},
-        "thirdperson_lefthand": {"rotation": [0, 90, -55], "translation": [0, 4.0, 0.5], "scale": [0.85] * 3},
-        "firstperson_righthand": {"rotation": [0, -90, 25], "translation": [1.13, 3.2, 1.13], "scale": [0.68] * 3},
-        "firstperson_lefthand": {"rotation": [0, 90, -25], "translation": [1.13, 3.2, 1.13], "scale": [0.68] * 3},
+        "thirdperson_righthand": hand([0, -90, 55], [0, 4.0, 0.5], 0.85),
+        "thirdperson_lefthand": hand([0, 90, -55], [0, 4.0, 0.5], 0.85),
+        "firstperson_righthand": hand([0, -90, 25], [1.13, 3.2, 1.13], 0.68),
+        "firstperson_lefthand": hand([0, 90, -25], [1.13, 3.2, 1.13], 0.68),
         "head": {"rotation": [0, 180, 0], "translation": [0, 13, 7], "scale": [1, 1, 1]},
         "gui": gui,
         "fixed": fixed,
@@ -219,19 +227,23 @@ def preview(m, out_dir):
     disp = display_for(m)
     gui4 = render(q, m.atlas, disp["gui"], size=64, extent=0.5)
     gui1 = gui4.resize((16, 16), Image.BOX).resize((64, 64), Image.NEAREST)
-    pts = m.model_points()
-    ctr = {"translation": list(-((pts.min(0) + pts.max(0)) / 2 / 16 - 0.5) * 16)}
-    head = {"translation": list(-((pts[pts[:, 1] > np.percentile(pts[:, 1], 70)].mean(0)) / 16 - 0.5) * 16)}
-    big = render(q, m.atlas, ctr, view=(-25, 35, 0), size=512, extent=1.25)
-    front = render(q, m.atlas, ctr, size=512, extent=1.25)
+    # held framing: as the hand transforms see it (scaled back up, mirrored models turned back onto the diagonal),
+    # beside a vanilla iron sword in the same frame
+    held = {"rotation": [0, 0, -90 if m.mirror else 0], "scale": [1 / m.scale] * 3}
+    big = render(q, m.atlas, held, view=(-25, 35, 0), size=512, extent=1.6)
+    front = render(q, m.atlas, held, size=512, extent=1.6)
     sq_, sim = sprite_quads(os.path.join(os.path.dirname(__file__), "ref", "iron_sword.png"))
-    sword = render(sq_, sim, None, size=512, extent=1.2)
+    sword = np.array(render(sq_, sim, None, size=512, extent=1.6, bg=(0, 0, 0)))
+    f = np.array(front)
+    mask = sword.sum(-1) > 0
+    f[mask] = (f[mask] * 0.35 + sword[mask] * 0.65).astype(np.uint8)
+    front = Image.fromarray(f)
     sheet = Image.new("RGB", (64 * 2 + 512 * 3 + 40, 520), (24, 24, 28))
     sheet.paste(gui1, (4, 4))
     sheet.paste(gui4, (4, 72))
     sheet.paste(front, (136, 4))
     sheet.paste(big, (136 + 516, 4))
-    close = render(q, m.atlas, head, view=(-25, 35, 0), size=512, extent=0.6)
+    close = render(q, m.atlas, held, view=(-25, 35, 0), size=512, extent=0.8)
     sheet.paste(close, (136 + 1032, 4))
     path = os.path.join(out_dir, m.name + "_preview.png")
     sheet.save(path)
