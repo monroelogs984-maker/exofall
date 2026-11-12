@@ -6,6 +6,7 @@ import com.bromax.exofall.registry.ModBlocks;
 import com.bromax.exofall.registry.ModCreativeTabs;
 import com.bromax.exofall.registry.ModEntities;
 import com.bromax.exofall.registry.ModItems;
+import com.bromax.exofall.registry.ModRecipes;
 import com.bromax.exofall.registry.ModWorldgen;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +27,9 @@ public final class Exofall {
         ModItems.ITEMS.register(modBus);
         ModCreativeTabs.TABS.register(modBus);
         ModEntities.ENTITIES.register(modBus);
+        ModRecipes.TYPES.register(modBus);
+        ModRecipes.SERIALIZERS.register(modBus);
+        ModRecipes.MENUS.register(modBus);
         ModWorldgen.STRUCTURE_TYPES.register(modBus);
         ModWorldgen.STRUCTURE_PIECES.register(modBus);
         NeoForge.EVENT_BUS.addListener(Stripping::onToolModify);

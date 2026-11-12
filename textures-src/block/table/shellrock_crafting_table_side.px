@@ -1,0 +1,69 @@
+size 16 16
+// Side: polished chitin panel between pearl Shellrock corner legs, under a Shellrock table-top band.
+gradramp body 8 #3a2818 #5a4028 #7c5c3a #9c7c54 #b89870
+gradramp pearl 8 #5e5a76 #847e9e #aaa4c2 #ccc6dc #e4e0ec
+gradramp bone 6 #8a7a5c #c2b28e #efe6cc
+layer body
+import /home/glenn/mc-modding/mod-dev/exofall-1211/src/main/resources/assets/exofall/textures/block/polished_chitinstone.png 0 0
+remap body
+layer pearl
+import shellrock_frame0.png 0 0
+key x none
+grid 0 0
+................
+................
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+end
+remap pearl
+layer shadow
+key d #2a1c10
+grid 0 0
+................
+................
+..dddddddddddd..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+end
+// bone saw hanging on a peg: looped grip, toothed blade
+layer tools
+key b #c2b28e
+key k #8a7a5c
+key t #efe6cc
+grid 6 3
+.kkk..
+.k.k..
+.kkk..
+.bbb..
+.bbbt.
+.bbb..
+.bbbt.
+.bbb..
+.bbbt.
+.bbb..
+.bbbt.
+..bb..
+end

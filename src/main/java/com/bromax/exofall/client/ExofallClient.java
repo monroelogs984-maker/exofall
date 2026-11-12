@@ -13,6 +13,11 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 @EventBusSubscriber(modid = Exofall.MOD_ID, value = Dist.CLIENT)
 public final class ExofallClient {
     @SubscribeEvent
+    public static void screens(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
+        event.register(com.bromax.exofall.registry.ModRecipes.SHELLROCK_TABLE_MENU.get(), ShellrockTableScreen::new);
+    }
+
+    @SubscribeEvent
     public static void renderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.BOAT.get(), ctx -> new ExofallBoatRenderer(ctx, false));
         event.registerEntityRenderer(ModEntities.CHEST_BOAT.get(), ctx -> new ExofallBoatRenderer(ctx, true));

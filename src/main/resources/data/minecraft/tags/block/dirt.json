@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:warded_moss_block",
+    "exofall:warded_mud",
+    "exofall:warded_rooted_dirt"
+  ]
+}

@@ -50,12 +50,34 @@ public final class ArenaGen {
         return b.isSolid() && b.getFluidState().isEmpty();
     }
 
-    /** The block at (x, y, z) once the arena is built; {@code base} is what the interior would put there. */
+    private static volatile java.util.Map<Block, Block> wardMap;
+
+    /** The unbreakable twin of {@code b} (same properties), or {@code b} itself if it has none (air, water, plants). */
+    public static BlockState ward(BlockState b) {
+        java.util.Map<Block, Block> map = wardMap;
+        if (map == null) {
+            map = new java.util.IdentityHashMap<>();
+            for (ModBlocks.Ward w : ModBlocks.WARDED) map.put(w.source().get(), w.block().get());
+            wardMap = map;
+        }
+        Block w = map.get(b.getBlock());
+        return w == null ? b : w.withPropertiesOf(b);
+    }
+
+    /** The block at (x, y, z) once the arena is built; {@code base} is what the interior would put there.
+     *  Everything inside and encasing the dome (porch, floor, walls, pillars, trees) is warded; the plaza is not. */
     public static BlockState apply(MeteorPiece m, MeteorStyle style, int naturalFloor, int x, int y, int z, BlockState base) {
+        BlockState arena = arena(m, style, x, y, z);
+        if (arena != null) return ward(arena);
+        return outside(m, style, naturalFloor, x, y, z, base);
+    }
+
+    /** Porch, floor and dome blocks, or null outside them. */
+    private static BlockState arena(MeteorPiece m, MeteorStyle style, int x, int y, int z) {
         int cx = m.centre().getX(), cz = m.centre().getZ(), floor = m.baseFloor() + 2;
         int dx = x - cx, dz = z - cz, dy = y - floor;
         int r2 = dx * dx + dz * dz;
-        if (r2 > BLEND_R * BLEND_R || dy < -12 || dy > CLEAR_H + OUTER_V) return base;
+        if (r2 > BLEND_R * BLEND_R || dy < -12 || dy > CLEAR_H + OUTER_V) return null;
         double r = Math.sqrt(r2);
 
         // Door and porch
@@ -90,6 +112,16 @@ public final class ArenaGen {
                 return wall(m, style, x, y, z, dx, dz, dy, r, eIn);
             }
         }
+
+        return null;
+    }
+
+    private static BlockState outside(MeteorPiece m, MeteorStyle style, int naturalFloor, int x, int y, int z, BlockState base) {
+        int cx = m.centre().getX(), cz = m.centre().getZ(), floor = m.baseFloor() + 2;
+        int dx = x - cx, dz = z - cz, dy = y - floor;
+        int r2 = dx * dx + dz * dz;
+        if (r2 > BLEND_R * BLEND_R || dy < -12 || dy > CLEAR_H + OUTER_V) return base;
+        double r = Math.sqrt(r2);
 
         // Plaza: paved and levelled, cleared of everything for CLEAR_H blocks
         if (r <= PLAZA_R) {

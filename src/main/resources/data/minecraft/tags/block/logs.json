@@ -4,6 +4,7 @@
     "#exofall:combwood_logs",
     "#exofall:ribwood_logs",
     "#exofall:stiltreed_logs",
-    "#exofall:veilpine_logs"
+    "#exofall:veilpine_logs",
+    "exofall:warded_veilpine_log"
   ]
 }

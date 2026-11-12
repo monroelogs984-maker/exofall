@@ -125,5 +125,40 @@ public final class ModItems {
     public static final DeferredItem<DeferredSpawnEggItem> APEX_MANTIS_SPAWN_EGG = ITEMS.register("apex_mantis_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.APEX_MANTIS, 0x5AA040, 0xD8E87A, new Item.Properties()));
 
+
+    // ---- Boss drops: materials for each meteor's boss gear (crafted in the Shellrock Crafting Table)
+    private static DeferredItem<Item> bossDrop(String id, net.minecraft.world.item.Rarity rarity) {
+        return ITEMS.register(id, () -> new Item(new Item.Properties().rarity(rarity).fireResistant()));
+    }
+
+    // Terror of the Bog
+    public static final DeferredItem<Item> LETHAL_PROBOSCIS = bossDrop("lethal_proboscis", net.minecraft.world.item.Rarity.RARE);
+    public static final DeferredItem<Item> BOG_EYE = bossDrop("bog_eye", net.minecraft.world.item.Rarity.RARE);
+    // Waxen Queen
+    public static final DeferredItem<Item> ROYAL_HONEY_DROP = bossDrop("royal_honey_drop", net.minecraft.world.item.Rarity.UNCOMMON);
+    public static final DeferredItem<Item> CRYSTALLIZED_WING = bossDrop("crystallized_wing", net.minecraft.world.item.Rarity.RARE);
+    // Dozen-legged Wrath
+    public static final DeferredItem<Item> TERROR_LEG = bossDrop("terror_leg", net.minecraft.world.item.Rarity.UNCOMMON);
+    public static final DeferredItem<Item> VENOMJAW = bossDrop("venomjaw", net.minecraft.world.item.Rarity.RARE);
+    // Apex Mantis
+    public static final DeferredItem<Item> MANTIS_EYE = bossDrop("mantis_eye", net.minecraft.world.item.Rarity.RARE);
+    /** Deliberately weak (8 damage, 1.3 speed): it's the base for a greater weapon, not an end in itself. */
+    public static final DeferredItem<net.minecraft.world.item.SwordItem> MANTIS_GREATCLAW = ITEMS.register("mantis_greatclaw",
+            () -> new net.minecraft.world.item.SwordItem(ModTiers.METEORIC, new Item.Properties()
+                    .rarity(net.minecraft.world.item.Rarity.RARE).fireResistant()
+                    .attributes(weapon(8.0, 1.3))));
+
+    /** Main-hand modifiers for a weapon that shows {@code damage} attack damage and {@code speed} attack speed. */
+    private static net.minecraft.world.item.component.ItemAttributeModifiers weapon(double damage, double speed) {
+        var hand = net.minecraft.world.entity.EquipmentSlotGroup.MAINHAND;
+        var add = net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE;
+        return net.minecraft.world.item.component.ItemAttributeModifiers.builder()
+                .add(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE,
+                        new net.minecraft.world.entity.ai.attributes.AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, damage - 1.0, add), hand)
+                .add(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_SPEED,
+                        new net.minecraft.world.entity.ai.attributes.AttributeModifier(Item.BASE_ATTACK_SPEED_ID, speed - 4.0, add), hand)
+                .build();
+    }
+
     private ModItems() {}
 }

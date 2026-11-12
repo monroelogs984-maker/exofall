@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "S S",
+    " C ",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "item": "exofall:shellrock"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "result": {
+    "id": "exofall:shellrock_crafting_table",
+    "count": 1
+  }
+}

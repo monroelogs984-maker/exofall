@@ -9,7 +9,10 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Meteor stones, woods and plants. Textures are vanilla placeholders (see tools/gen_placeholder_assets.py).
@@ -46,6 +49,11 @@ public final class ModBlocks {
     /** Soft glowing soil-stone; the only ground alien plants grow on. */
     public static final DeferredBlock<Block> GLOWMARL = BLOCKS.register("glowmarl",
             () -> new Block(Properties.ofFullCopy(Blocks.CALCITE).strength(0.8F).lightLevel(s -> 6).sound(SoundType.MUD_BRICKS)));
+
+    /** 5x5 crafting table for meteor gear; also crafts everything a normal crafting table does. */
+    public static final DeferredBlock<ShellrockTableBlock> SHELLROCK_CRAFTING_TABLE = BLOCKS.register("shellrock_crafting_table",
+            () -> new ShellrockTableBlock(Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE).strength(5.0F, 1200.0F)
+                    .requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE_TILES).mapColor(MapColor.TERRACOTTA_WHITE)));
 
     // ---- boss arenas ----
 
@@ -119,6 +127,54 @@ public final class ModBlocks {
 
     private static DeferredBlock<AlienSaplingBlock> sapling(String id, AlienSaplingBlock.Species species) {
         return BLOCKS.register(id, () -> new AlienSaplingBlock(species, Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    }
+
+
+    // ---- warded arena blocks ----
+    // Unbreakable twins of every block the boss arenas are built from (dome, floor, porch, pillars, trees), so a
+    // fight can't be cheesed by digging in, tunnelling out or walling the boss off. They look and behave like the
+    // block they copy (honey still sticks, mud still sinks) but can't be mined, blown up, pushed or griefed by
+    // withers, and mobs never spawn on them. ArenaGen swaps blocks for their warded twin through WARDED.
+
+    /** A warded block and the block it copies. */
+    public record Ward(Supplier<? extends Block> source, DeferredBlock<? extends Block> block) {}
+
+    public static final List<Ward> WARDED = new ArrayList<>();
+
+    private static Properties wardedProps(Block src) {
+        return Properties.ofFullCopy(src).strength(-1.0F, 3_600_000.0F).noLootTable()
+                .pushReaction(net.minecraft.world.level.material.PushReaction.BLOCK).isValidSpawn(Blocks::never);
+    }
+
+    private static void ward(String name, Supplier<? extends Block> src, Function<Properties, ? extends Block> ctor) {
+        WARDED.add(new Ward(src, BLOCKS.register("warded_" + name, () -> ctor.apply(wardedProps(src.get())))));
+    }
+
+    private static void ward(String name, Supplier<? extends Block> src) {
+        ward(name, src, Block::new);
+    }
+
+    static {
+        ward("chitinstone_bricks", CHITINSTONE_BRICKS);
+        ward("polished_chitinstone", POLISHED_CHITINSTONE);
+        ward("chitinstone_pillar", CHITINSTONE_PILLAR, RotatedPillarBlock::new);
+        ward("mud", () -> Blocks.MUD, MudBlock::new);
+        ward("packed_mud", () -> Blocks.PACKED_MUD);
+        ward("mud_bricks", () -> Blocks.MUD_BRICKS);
+        ward("honeycomb_block", () -> Blocks.HONEYCOMB_BLOCK);
+        ward("honey_block", () -> Blocks.HONEY_BLOCK, HoneyBlock::new);
+        ward("sand", () -> Blocks.SAND);
+        ward("red_sand", () -> Blocks.RED_SAND);
+        ward("bone_block", () -> Blocks.BONE_BLOCK, RotatedPillarBlock::new);
+        ward("moss_block", () -> Blocks.MOSS_BLOCK);
+        ward("rooted_dirt", () -> Blocks.ROOTED_DIRT);
+        ward("mossy_stone_bricks", () -> Blocks.MOSSY_STONE_BRICKS);
+        ward("veilpine_log", VEILPINE.log, RotatedPillarBlock::new);
+        ward("veilpine_leaves", VEILPINE.leaves, LeavesBlock::new);
+        ward("verdant_froglight", () -> Blocks.VERDANT_FROGLIGHT, RotatedPillarBlock::new);
+        ward("ochre_froglight", () -> Blocks.OCHRE_FROGLIGHT, RotatedPillarBlock::new);
+        ward("pearlescent_froglight", () -> Blocks.PEARLESCENT_FROGLIGHT, RotatedPillarBlock::new);
+        ward("shroomlight", () -> Blocks.SHROOMLIGHT);
     }
 
     private ModBlocks() {}

@@ -350,8 +350,7 @@ print("tags skipped (not allowlisted):", ", ".join(sorted(skipped)) or "none")
 # ---------------------------------------------------------------- lang
 lang_path = os.path.join(RES, f"assets/{NS}/lang/en_us.json")
 lang = json.load(open(lang_path)) if os.path.exists(lang_path) else {}
-for k in [k for k in lang if k.startswith(f"block.{NS}.")]:
-    del lang[k]
+# Block names are overwritten, never cleared: hand-written ones (sigil blocks, warded blocks, tables) must survive.
 for ours in list(CLONES) + list(CROSS) + list(DOUBLE) + list(PADS):
     lang[f"block.{NS}.{ours}"] = " ".join(w.capitalize() for w in ours.split("_"))
 for k in [k for k in lang if k.startswith(f"item.{NS}.") and k.endswith("boat")]:

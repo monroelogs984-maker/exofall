@@ -1,0 +1,82 @@
+size 16 16
+// Front: same frame as the side, with a green mantis-claw blade and a bone mallet hung on it.
+gradramp body 8 #3a2818 #5a4028 #7c5c3a #9c7c54 #b89870
+gradramp pearl 8 #5e5a76 #847e9e #aaa4c2 #ccc6dc #e4e0ec
+gradramp claw 6 #1e4a1a #3a7a2a #6aac44 #b0e07a
+gradramp bone 6 #6e604a #a8987a #e8dec4
+layer body
+import /home/glenn/mc-modding/mod-dev/exofall-1211/src/main/resources/assets/exofall/textures/block/polished_chitinstone.png 0 0
+remap body
+layer pearl
+import shellrock_frame0.png 0 0
+key x none
+grid 0 0
+................
+................
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+..xxxxxxxxxxxx..
+end
+remap pearl
+layer shadow
+key d #2a1c10
+grid 0 0
+................
+................
+..dddddddddddd..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+..d..........d..
+end
+layer claw
+key c #6aac44
+key h #3a7a2a
+key s #b0e07a
+grid 3 4
+.cc...
+.hcc..
+..hcc.
+..hcc.
+..hcs.
+..hc..
+.hcs..
+.hc...
+hcs...
+h.....
+end
+layer mallet
+key b #e8dec4
+key m #a8987a
+key k #6e604a
+grid 9 4
+.bbbb.
+bmmmmk
+.kkkk.
+..mk..
+..mk..
+..mk..
+..mk..
+..mk..
+..kk..
+end

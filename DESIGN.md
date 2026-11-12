@@ -231,3 +231,21 @@ each pet's stats are still open. Keep them below Ice and Fire dragon power but s
   reset to dormant after 10 s. **Not verified (needs a client):** the cinematic, intro trigger, boss bars, every
   model/animation in game, Wrath body-follow direction (sign of the segment turn is reasoned, not seen; flip it in
   `MobRenderers.WrathModel` if the body bends the wrong way), Queen flight feel, grab teleporting a real player.
+
+## Warded arena blocks (2026-11-11; Glenn: "make unbreakable versions of all the blocks in and encasing each of the boss arenas so they arent easily cheesable")
+- 20 `warded_*` twins (`ModBlocks.WARDED`, assets from `tools/gen_warded.py`): same look/behaviour as the source (honey
+  sticks, mud sinks), unbreakable (-1 hardness, 3.6M blast), no loot, piston-proof, wither/dragon immune, no mob spawns.
+- `ArenaGen.apply` wards everything in the porch, the 5-deep floor and the dome (walls, lamps, pillars, Veilpine trees).
+  Plants, water and the plaza stay normal (the plaza is where Glenn builds around the arena). Verified: TNT leaves the
+  dome intact, craters the plaza.
+
+## Gear (2026-11-11, structure locked by Glenn; specifics open)
+- Per meteor: **1 gear tier, 2 unique baubles (5x5 table), 2-3 unique boss gear pieces (5x5 table, from boss drops)**.
+- **Shellrock Crafting Table** (`block/ShellrockTableBlock`, `crafting/ShellrockTableMenu`, `crafting/ShellrockRecipe`):
+  recipe = shellrock in the 4 corners + crafting table in the middle (3x3). 5x5 grid; crafts `exofall:shellrock_crafting`
+  recipes (shaped, up to 5x5, mirrorable, JSON `pattern`/`key`/`result`) and every vanilla crafting recipe.
+  Verified with a fake-player test: vanilla 2x2 off-centre, a 5x5 + its mirror, wrong ingredient rejected, cake
+  returns buckets. No 5x5 recipes exist yet. No JEI category yet.
+- **Boss drops** (always, fixed counts): Terror of the Bog = Lethal Proboscis + 2 Bog Eye; Waxen Queen = 4 Royal Honey
+  Drop + 2 Crystallized Wing; Dozen-legged Wrath = 16 Terror Leg + Venomjaw; Apex Mantis = Mantis Eye + Mantis
+  Greatclaw (sword, 8 damage, 1.3 speed, deliberately weak: base for a greater weapon). "Bog Eye" is my name.

@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:sigil_seal",
+    "exofall:sigil_socket",
+    "exofall:warded_bone_block",
+    "exofall:warded_chitinstone_bricks",
+    "exofall:warded_chitinstone_pillar",
+    "exofall:warded_honey_block",
+    "exofall:warded_honeycomb_block",
+    "exofall:warded_moss_block",
+    "exofall:warded_mossy_stone_bricks",
+    "exofall:warded_mud",
+    "exofall:warded_mud_bricks",
+    "exofall:warded_ochre_froglight",
+    "exofall:warded_packed_mud",
+    "exofall:warded_pearlescent_froglight",
+    "exofall:warded_polished_chitinstone",
+    "exofall:warded_red_sand",
+    "exofall:warded_rooted_dirt",
+    "exofall:warded_sand",
+    "exofall:warded_shroomlight",
+    "exofall:warded_veilpine_leaves",
+    "exofall:warded_veilpine_log",
+    "exofall:warded_verdant_froglight"
+  ]
+}

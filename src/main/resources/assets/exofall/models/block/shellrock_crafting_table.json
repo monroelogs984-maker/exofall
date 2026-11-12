@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "exofall:block/shellrock_crafting_table_front",
+    "up": "exofall:block/shellrock_crafting_table_top",
+    "down": "exofall:block/polished_chitinstone",
+    "north": "exofall:block/shellrock_crafting_table_front",
+    "south": "exofall:block/shellrock_crafting_table_side",
+    "east": "exofall:block/shellrock_crafting_table_side",
+    "west": "exofall:block/shellrock_crafting_table_front"
+  }
+}
