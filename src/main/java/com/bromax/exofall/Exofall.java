@@ -25,6 +25,7 @@ public final class Exofall {
     public Exofall(IEventBus modBus, ModContainer container) {
         ModBlocks.BLOCKS.register(modBus);
         ModItems.ITEMS.register(modBus);
+        com.bromax.exofall.registry.ModEffects.EFFECTS.register(modBus);
         ModCreativeTabs.TABS.register(modBus);
         ModEntities.ENTITIES.register(modBus);
         ModRecipes.TYPES.register(modBus);

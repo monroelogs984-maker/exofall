@@ -1,0 +1,26 @@
+// honeycomb walls on the core (generated pattern, see gen in session)
+layer comb
+px 22 5 #8e5a14
+px 21 6 #8e5a14
+px 22 6 #8e5a14
+px 23 6 #8e5a14
+px 20 7 #8e5a14
+px 24 7 #8e5a14
+px 20 8 #8e5a14
+px 24 8 #8e5a14
+px 18 9 #8e5a14
+px 19 9 #8e5a14
+px 20 9 #8e5a14
+px 21 9 #8e5a14
+px 22 9 #8e5a14
+px 23 9 #8e5a14
+px 24 9 #8e5a14
+px 25 9 #8e5a14
+px 26 9 #8e5a14
+px 18 10 #8e5a14
+px 22 10 #8e5a14
+px 22 11 #8e5a14
+px 20 12 #8e5a14
+px 21 12 #8e5a14
+px 22 12 #8e5a14
+px 23 12 #8e5a14

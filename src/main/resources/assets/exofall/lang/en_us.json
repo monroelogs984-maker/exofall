@@ -195,5 +195,17 @@
   "item.exofall.venomjaw": "Venomjaw",
   "item.exofall.waxen_queen_spawn_egg": "Waxen Queen Spawn Egg",
   "item.exofall.waxmite_spawn_egg": "Waxmite Spawn Egg",
-  "itemGroup.exofall": "BROMAX's Exofall"
+  "itemGroup.exofall": "BROMAX's Exofall",
+  "item.exofall.quadblade_of_the_sands": "Quadblade of the Sands",
+  "item.exofall.quadblade_of_the_sands.desc": "Hits slow the target by 10% for 3 s",
+  "item.exofall.royal_grandhammer": "Royal Grandhammer",
+  "item.exofall.royal_grandhammer.desc": "Heals you for 10% of the damage it deals",
+  "item.exofall.glasswing_scythe": "Glasswing Scythe",
+  "item.exofall.glasswing_scythe.desc": "Hits launch the target 2 blocks up (4 s cooldown; not bosses)",
+  "item.exofall.serrated_longsword": "Serrated Longsword",
+  "item.exofall.serrated_longsword.desc": "Hits cause Bleeding: 1 damage a second per stack, up to 3 stacks",
+  "effect.exofall.bleeding": "Bleeding",
+  "effect.exofall.sandbound": "Sandbound",
+  "death.attack.exofall.bleed": "%1$s bled out",
+  "death.attack.exofall.bleed.player": "%1$s bled out while fighting %2$s"
 }

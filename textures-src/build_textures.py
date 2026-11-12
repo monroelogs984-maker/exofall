@@ -20,6 +20,6 @@ for folder in sorted(d for d in os.listdir(HERE) if os.path.isdir(os.path.join(H
         rel = os.path.relpath(script, src)[:-3] + ".png"
         out = os.path.join(OUT, folder, rel)
         os.makedirs(os.path.dirname(out), exist_ok=True)
-        subprocess.run([sys.executable, PX, "build", script, out], check=True, stdout=subprocess.DEVNULL)
+        subprocess.run([sys.executable, PX, "build", script, out], check=True, stdout=subprocess.DEVNULL, cwd=os.path.dirname(script))
         count += 1
 print(f"exofall textures rebuilt: {count}")

@@ -252,7 +252,8 @@ each pet's stats are still open. Keep them below Ice and Fire dragon power but s
 
 ## Armour sets (2026-11-12; perks locked by Glenn, stat numbers my proposal)
 Each piece = tier material + 1 dungeon loot item, crafted in the Shellrock Crafting Table (loot item = stand-in until
-dungeons exist). Armour may or may not end up separate from the weapons. Ladder: swamp/hive -> rainforest -> desert.
+dungeons exist). Armour may or may not end up separate from the weapons. Meteors are NOT done in order (Glenn,
+2026-11-12): no progression ladder; the sets differ in role, not in unlock order.
 - **Mireweave** (swamp): mobs notice you at half range (bosses ignore it; check the Lycanites port's targeting),
   ambush damage bonus on mobs that haven't noticed you. Diamond-to-Netherite protection, Netherite durability.
   Proposed 20 armour / 2.5 toughness / 1x Netherite durability.
@@ -262,3 +263,21 @@ dungeons exist). Armour may or may not end up separate from the weapons. Ladder:
   toughness / 0.1 KB / ~1.15x Netherite durability.
 - **Ancientstone** (desert): "10-damage-sword tier" tank, -2.5% speed per piece. Proposed 24 armour / 6 toughness /
   0.2 KB / 2x Netherite durability.
+
+## Legendary weapons (2026-11-12, Glenn's designs + numbers; built, uncraftable for now)
+One per meteor, standalone `ExofallWeaponItem` (SwordItem on the METEORIC tier, 3000 uses placeholder), EPIC, in the
+creative tab. 3D in hand, flat 32x32 sprite in inventory/ground/item frame (NeoForge `separate_transforms`, like the
+trident). Models: `tools/weapons/gen_weapons.py` (boxes on the vanilla sword diagonal + per-texel painted atlas,
+software preview renderer in `model3d.py`); icons: `tools/weapons/gen_icons.py` -> material-ID maps ->
+`textures-src/item/weapon_icon/gen_weapon_px.py` (+ `<name>.fix` hand touches).
+- **Quadblade of the Sands** (desert): 15 dmg / 0.7 speed (10.5 DPS), hit = Sandbound (-10% speed, 3 s). Four bronze
+  estoc blades in a + on a gold-trimmed bronze mount, turquoise gems.
+- **Royal Grandhammer** (hive): 20 / 0.5 (10 DPS), 10% lifesteal of damage dealt (LivingDamageEvent.Post), no sweep.
+  Honeycomb core in a gold frame, ends dip toward the haft, wax drips.
+- **Glasswing Scythe** (swamp): 11 / 1.2 (13.2 DPS), hit launches ~2 blocks up (vy 0.54), 4 s cooldown shown on the
+  item, bosses (ExofallBoss or c:bosses) immune. Translucent wing blade, glowing (fullbright) Bog Eye, reed haft.
+- **Serrated Longsword** (rainforest): 9 / 1.7 (15.3 DPS), stacking Bleeding: 1 dmg/s per stack, max 3 (up to ~18 DPS
+  with full stacks); a hit tops the timer to >= 2 s but keeps its 1 s rhythm so combos bleed. Bleed damage type
+  `exofall:bleed` bypasses the hit cooldown (never eats a sword hit), no knockback, armour still applies.
+- Verified: `/exofall weapontest` (dev server) checks every effect; dev client loads all models with no warnings.
+  Not verified: how they look/feel in hand in game.

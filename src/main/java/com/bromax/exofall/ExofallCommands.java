@@ -67,7 +67,14 @@ public final class ExofallCommands {
                     for (var b : list) b.forceFight();
                     src.sendSuccess(() -> Component.literal(list.size() + " boss(es) fighting"), true);
                     return list.size();
-                }))));
+                })))
+                // /exofall weapontest: checks every legendary weapon's on-hit effect against husks (testing)
+                .then(Commands.literal("weapontest").executes(ctx -> {
+                    var src = ctx.getSource();
+                    for (String line : com.bromax.exofall.item.WeaponSelfTest.run(src.getLevel(), BlockPos.containing(src.getPosition())))
+                        src.sendSuccess(() -> Component.literal(line), false);
+                    return 1;
+                })));
     }
 
     private ExofallCommands() {}

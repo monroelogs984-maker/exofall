@@ -148,6 +148,22 @@ public final class ModItems {
                     .rarity(net.minecraft.world.item.Rarity.RARE).fireResistant()
                     .attributes(weapon(8.0, 1.3))));
 
+    // ---- Legendary boss weapons (3D models; uncraftable for now, Shellrock Crafting Table recipes come later)
+    private static DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> legendary(String id,
+            com.bromax.exofall.item.ExofallWeaponItem.Kind kind, double damage, double speed) {
+        return ITEMS.register(id, () -> new com.bromax.exofall.item.ExofallWeaponItem(kind, new Item.Properties()
+                .rarity(net.minecraft.world.item.Rarity.EPIC).fireResistant().attributes(weapon(damage, speed))));
+    }
+
+    public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> QUADBLADE_OF_THE_SANDS =
+            legendary("quadblade_of_the_sands", com.bromax.exofall.item.ExofallWeaponItem.Kind.QUADBLADE, 15.0, 0.7);
+    public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> ROYAL_GRANDHAMMER =
+            legendary("royal_grandhammer", com.bromax.exofall.item.ExofallWeaponItem.Kind.GRANDHAMMER, 20.0, 0.5);
+    public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> GLASSWING_SCYTHE =
+            legendary("glasswing_scythe", com.bromax.exofall.item.ExofallWeaponItem.Kind.SCYTHE, 11.0, 1.2);
+    public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> SERRATED_LONGSWORD =
+            legendary("serrated_longsword", com.bromax.exofall.item.ExofallWeaponItem.Kind.LONGSWORD, 9.0, 1.7);
+
     /** Main-hand modifiers for a weapon that shows {@code damage} attack damage and {@code speed} attack speed. */
     private static net.minecraft.world.item.component.ItemAttributeModifiers weapon(double damage, double speed) {
         var hand = net.minecraft.world.entity.EquipmentSlotGroup.MAINHAND;

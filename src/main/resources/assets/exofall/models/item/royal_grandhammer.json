@@ -1,0 +1,27 @@
+{
+ "loader": "neoforge:separate_transforms",
+ "gui_light": "front",
+ "base": {
+  "parent": "exofall:item/royal_grandhammer_3d"
+ },
+ "perspectives": {
+  "gui": {
+   "parent": "minecraft:item/generated",
+   "textures": {
+    "layer0": "exofall:item/weapon_icon/royal_grandhammer"
+   }
+  },
+  "ground": {
+   "parent": "minecraft:item/generated",
+   "textures": {
+    "layer0": "exofall:item/weapon_icon/royal_grandhammer"
+   }
+  },
+  "fixed": {
+   "parent": "minecraft:item/generated",
+   "textures": {
+    "layer0": "exofall:item/weapon_icon/royal_grandhammer"
+   }
+  }
+ }
+}
