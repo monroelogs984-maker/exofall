@@ -35,6 +35,14 @@ public final class MobSetup {
         event.put(ModEntities.BLOOMMANTIS.get(), com.bromax.exofall.entity.mob.rainforest.Bloommantis.createAttributes().build());
         event.put(ModEntities.LEAFCUTTER.get(), com.bromax.exofall.entity.mob.rainforest.Leafcutter.createAttributes().build());
         event.put(ModEntities.LANTERN_MOTH.get(), com.bromax.exofall.entity.mob.rainforest.LanternMoth.createAttributes().build());
+        event.put(ModEntities.BOGSPINNER.get(), com.bromax.exofall.entity.mob.swamp.Bogspinner.createAttributes().build());
+        event.put(ModEntities.MIRE_LEECH.get(), com.bromax.exofall.entity.mob.swamp.MireLeech.createAttributes().build());
+        event.put(ModEntities.HONEYGUARD.get(), com.bromax.exofall.entity.mob.hive.Honeyguard.createAttributes().build());
+        event.put(ModEntities.PROPOLIS_SPITTER.get(), com.bromax.exofall.entity.mob.hive.PropolisSpitter.createAttributes().build());
+        event.put(ModEntities.ANTLION.get(), com.bromax.exofall.entity.mob.desert.Antlion.createAttributes().build());
+        event.put(ModEntities.TOMB_SCORPION.get(), com.bromax.exofall.entity.mob.desert.TombScorpion.createAttributes().build());
+        event.put(ModEntities.CANOPY_ASSASSIN.get(), com.bromax.exofall.entity.mob.rainforest.CanopyAssassin.createAttributes().build());
+        event.put(ModEntities.POUNCER.get(), com.bromax.exofall.entity.mob.rainforest.Pouncer.createAttributes().build());
         event.put(ModEntities.TERROR_OF_THE_BOG.get(), com.bromax.exofall.entity.boss.TerrorOfTheBog.createAttributes().build());
         event.put(ModEntities.WAXEN_QUEEN.get(), com.bromax.exofall.entity.boss.WaxenQueen.createAttributes().build());
         event.put(ModEntities.DOZEN_LEGGED_WRATH.get(), com.bromax.exofall.entity.boss.DozenLeggedWrath.createAttributes().build());
@@ -81,6 +89,22 @@ public final class MobSetup {
         event.register(ModEntities.LEAFCUTTER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 MobSetup::anySolidGround, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(ModEntities.LANTERN_MOTH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                MobSetup::anyLightHostile, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.BOGSPINNER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                MobSetup::anyLightHostile, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.MIRE_LEECH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.bromax.exofall.entity.mob.swamp.MireLeech::checkSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.HONEYGUARD.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                MobSetup::anyLightHostile, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.PROPOLIS_SPITTER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                MobSetup::anyLightHostile, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.ANTLION.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                MobSetup::anyLightHostile, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.TOMB_SCORPION.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                MobSetup::anyLightHostile, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.CANOPY_ASSASSIN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                MobSetup::anyLightHostile, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.POUNCER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 MobSetup::anyLightHostile, RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 

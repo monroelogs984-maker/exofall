@@ -102,5 +102,33 @@ public final class ModEntities {
             () -> EntityType.Builder.<com.bromax.exofall.entity.boss.BossGlob>of(com.bromax.exofall.entity.boss.BossGlob::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(8).updateInterval(2).noSummon().build("exofall:boss_glob"));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.swamp.Bogspinner>> BOGSPINNER = ENTITIES.register("bogspinner",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.mob.swamp.Bogspinner::new, MobCategory.MONSTER)
+                    .sized(1.4F, 0.9F).eyeHeight(0.6F).clientTrackingRange(10).build("exofall:bogspinner"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.swamp.MireLeech>> MIRE_LEECH = ENTITIES.register("mire_leech",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.mob.swamp.MireLeech::new, MobCategory.MONSTER)
+                    .sized(0.7F, 0.35F).eyeHeight(0.2F).clientTrackingRange(10).updateInterval(1).build("exofall:mire_leech"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.hive.Honeyguard>> HONEYGUARD = ENTITIES.register("honeyguard",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.mob.hive.Honeyguard::new, MobCategory.MONSTER)
+                    .sized(1.4F, 2.1F).eyeHeight(1.6F).clientTrackingRange(10).build("exofall:honeyguard"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.hive.PropolisSpitter>> PROPOLIS_SPITTER = ENTITIES.register("propolis_spitter",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.mob.hive.PropolisSpitter::new, MobCategory.MONSTER)
+                    .sized(1.0F, 1.0F).eyeHeight(0.7F).clientTrackingRange(10).build("exofall:propolis_spitter"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.desert.Antlion>> ANTLION = ENTITIES.register("antlion",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.mob.desert.Antlion::new, MobCategory.MONSTER)
+                    .sized(1.2F, 0.8F).eyeHeight(0.5F).clientTrackingRange(10).build("exofall:antlion"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.desert.TombScorpion>> TOMB_SCORPION = ENTITIES.register("tomb_scorpion",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.mob.desert.TombScorpion::new, MobCategory.MONSTER)
+                    .sized(1.3F, 0.9F).eyeHeight(0.6F).clientTrackingRange(10).build("exofall:tomb_scorpion"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.rainforest.CanopyAssassin>> CANOPY_ASSASSIN = ENTITIES.register("canopy_assassin",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.mob.rainforest.CanopyAssassin::new, MobCategory.MONSTER)
+                    .sized(1.0F, 0.7F).eyeHeight(0.5F).clientTrackingRange(10).build("exofall:canopy_assassin"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.rainforest.Pouncer>> POUNCER = ENTITIES.register("pouncer",
+            () -> EntityType.Builder.of(com.bromax.exofall.entity.mob.rainforest.Pouncer::new, MobCategory.MONSTER)
+                    .sized(1.0F, 0.7F).eyeHeight(0.5F).clientTrackingRange(10).build("exofall:pouncer"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.bromax.exofall.entity.mob.SpitGlob>> SPIT_GLOB = ENTITIES.register("spit_glob",
+            () -> EntityType.Builder.<com.bromax.exofall.entity.mob.SpitGlob>of(com.bromax.exofall.entity.mob.SpitGlob::new, MobCategory.MISC)
+                    .sized(0.3F, 0.3F).clientTrackingRange(6).updateInterval(5).noSummon().build("exofall:spit_glob"));
+
     private ModEntities() {}
 }

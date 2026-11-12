@@ -81,6 +81,13 @@ public final class ExofallCommands {
                     for (String line : com.bromax.exofall.item.BaubleSelfTest.run(src.getLevel(), BlockPos.containing(src.getPosition())))
                         src.sendSuccess(() -> Component.literal(line), false);
                     return 1;
+                }))
+                // /exofall mobtest: runs the dungeon mobs' mechanics on a test pad 40 blocks up (testing)
+                .then(Commands.literal("mobtest").executes(ctx -> {
+                    var src = ctx.getSource();
+                    for (String line : com.bromax.exofall.entity.mob.MobSelfTest.run(src.getLevel(), BlockPos.containing(src.getPosition())))
+                        src.sendSuccess(() -> Component.literal(line), false);
+                    return 1;
                 })));
     }
 

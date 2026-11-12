@@ -123,13 +123,17 @@ def wasp(name, pal, seed, k=1.0, kind='worker'):
                   box('body', (S(-3.4), S(12), S(-1)), (1, I(4), I(5)), P('plate'), 'metal')]
     if kind == 'nurse':
         cubes.append(box('body', (0, S(12), S(-1)), (I(6), I(6), I(7)), P('fuzz'), 'fur', inflate=0.6))
-    swell = 1.35 if kind == 'nurse' else 1.0
+    swell = 1.35 if kind == 'nurse' else 1.25 if kind == 'spitter' else 1.0
     bandc = [P('band'), P('dark')]
     segs = []
     for i, (L, w, h, rx) in enumerate([(3, 6, 6, -18), (3, 7, 7, -4), (3, 7, 6, -4), (3, 6, 5, -4), (2, 4, 4, -4), (2, 2, 2, -4)]):
         col = bandc[i % 2] if kind != 'nurse' else (P('band') if i % 2 == 0 else P('fuzz'))
-        segs.append((I(L), I(w * swell), I(h * swell), S(11.5), rx, col, 'fur' if kind == 'nurse' else 'chitin',
-                     {'up': edge(P('dark'), 'left'), 'east': edge(P('dark')), 'west': edge(P('dark'), 'left')}))
+        dec = {'up': edge(P('dark'), 'left'), 'east': edge(P('dark')), 'west': edge(P('dark'), 'left')}
+        if kind == 'spitter' and 0 < i < 5:   # glowing resin belly showing through the plates
+            dec['down'] = both(stripes_y(P('resin'), 1, 0), edge(P('dark'), 'left'))
+            dec['east'] = both(stripes_y(P('resin'), 99, I(h * swell) - 2), stripes_y(P('resin'), 99, I(h * swell) - 1), edge(P('dark')))
+            dec['west'] = both(stripes_y(P('resin'), 99, I(h * swell) - 2), stripes_y(P('resin'), 99, I(h * swell) - 1), edge(P('dark'), 'left'))
+        segs.append((I(L), I(w * swell), I(h * swell), S(11.5), rx, col, 'fur' if kind == 'nurse' else 'chitin', dec))
     abdomen, end = chain_z('ab', 'body', S(4.5), segs, bones, cubes)
     sting = 5 if kind == 'soldier' else 3
     cubes.append(box(abdomen[-1], (0, S(11.5), end + sting / 2), (1, 1, sting), P('sting'), 'chitin'))
@@ -148,6 +152,9 @@ def wasp(name, pal, seed, k=1.0, kind='worker'):
         cubes.append(box(n, (S(1.5) * side, S(10.5), S(-8.5) - mand[2] / 2), mand, P('dark'), 'chitin'))
         chain_x(f'antenna_{"l" if side > 0 else "r"}', 'head', (S(1.2) * side, S(14.5), S(-8)), side,
                 [(0, 1, [0, 65, 0], P('dark'), None), (I(4), 1, [0, 0, -50], P('dark'), None), (I(6), 1, [0, 0, 65], P('band'), None)], bones, cubes)
+    if kind == 'spitter':   # swollen resin crop under the head and a drip at the mouth
+        cubes += [box('head', (0, S(10), S(-6)), (I(4), I(2), I(3)), P('resin'), 'glow', glow=True),
+                  box('head', (0, S(9), S(-8.5)), (1, 1, 1), P('resin'), 'glow', glow=True)]
     if kind == 'nurse':   # glowing wax drop held in the mandibles
         cubes.append(box('head', (0, S(9.5), S(-10)), (3, 3, 3), P('wax'), 'glow', glow=True))
     # wings
@@ -168,7 +175,7 @@ def wasp(name, pal, seed, k=1.0, kind='worker'):
         ((S(2.5), S(9.5), S(-1)), [(I(4), 1, [0, 0, 45], P('dark'), 'chitin'), (I(5), 1, [0, 0, 55], P('band'), None), (I(4), 1, [0, 0, -25], P('band'), None)]),
         ((S(2.5), S(9.5), S(1)), [(I(5), 1, [0, -30, 45], P('dark'), 'chitin'), (I(6), 1, [0, 0, 55], P('band'), None), (I(4), 1, [0, 0, -25], P('band'), None)]),
     ], bones, cubes)
-    make(name, bones, cubes, seed, bounds=(3 * k, 2.5 * k, 0.8), glow=(kind == 'nurse'))
+    make(name, bones, cubes, seed, bounds=(3 * k, 2.5 * k, 0.8), glow=(kind in ('nurse', 'spitter')))
 
     def fly(speed, amp):
         out = flap(wings, speed, amp, lambda n: 0 if n.startswith('wing_f') else 60)
@@ -196,8 +203,45 @@ def wasp(name, pal, seed, k=1.0, kind='worker'):
         windup['body'] = {'rotation': {'0.0': [0, 0, 0], '1.0': [-15, 0, 0]}, 'position': [sin(1500, 0.3), 0, 0]}
         anims['attack.windup'] = {'loop': 'hold_on_last_frame', 'animation_length': 1.2, 'bones': windup}
         anims['attack.strike']['bones']['ab0'] = {'rotation': {'0.0': [-70, 0, 0], '0.08': [-95, 0, 0], '0.4': [0, 0, 0]}}
+    if kind == 'spitter':   # tell: hovers still, head tips back, the glowing belly pumps for 1 s
+        windup = flap(wings, 3000, 34)
+        windup['head'] = {'rotation': {'0.0': [0, 0, 0], '1.0': [-22, 0, 0]}}
+        windup['body'] = {'rotation': {'0.0': [0, 0, 0], '1.0': [-10, 0, 0]}}
+        for i, b in enumerate(abdomen[1:5]):
+            windup[b] = {'scale': [f'1 + math.max(0, math.sin(query.anim_time * 720 - {i * 40})) * 0.14'] * 3}
+        anims['attack.windup'] = {'loop': 'hold_on_last_frame', 'animation_length': 1.0, 'bones': windup}
+        anims['attack.strike'] = {'loop': False, 'animation_length': 0.4, 'bones': {
+            'head': {'rotation': {'0.0': [-22, 0, 0], '0.08': [18, 0, 0], '0.4': [0, 0, 0]}},
+            'body': {'position': {'0.0': [0, 0, 0], '0.08': [0, 0, 1.5], '0.4': [0, 0, 0]}}}}
     if kind == 'nurse':
         anims['attack.tend'] = {'loop': False, 'animation_length': 0.8, 'bones': {
             'head': {'rotation': {'0.0': [0, 0, 0], '0.2': [25, 0, 0], '0.5': [25, 0, 0], '0.8': [0, 0, 0]}},
             'ab1': {'scale': {'0.0': [1, 1, 1], '0.3': [1.12, 1.12, 1.05], '0.8': [1, 1, 1]}}}}
     anim(name, anims)
+
+
+# ---- Spider --------------------------------------------------------------------------------
+
+def spider_legs(P, pairs, femur, tibia, tarsus, bones, cubes, root_y, thick=2, raise_front=0):
+    """Four leg pairs on the cephalothorax. pairs: [(x, z, yaw)], front first. femur/tibia/tarsus: lengths.
+    Each leg rises from the body (knee up), then drops to the floor: the classic spider stance."""
+    specs = []
+    for i, (x, z, yaw) in enumerate(pairs):
+        k = 1.15 if i in (0, 3) else 1.0          # front and back pairs are the longest
+        up = -40 - (raise_front if i == 0 else 0)
+        specs.append(((x, root_y, z), [(int(round(femur * k)), thick, [0, yaw, up], P('body'), 'fur' if thick > 1 else 'chitin'),
+                                       (int(round(tibia * k)), 1, [0, 0, 95 + (raise_front * 0.5 if i == 0 else 0)], P('legband'), 'chitin'),
+                                       (tarsus, 1, [0, 0, 30], P('dark'), None)]))
+    return leg_pairs('leg', 'body', specs, bones, cubes)
+
+
+def chevrons(color, step=3, start=1):
+    """Arrow-head marks pointing forward (y=0 is the front edge on an 'up' face)."""
+    def d(put, w, h):
+        mid = (w - 1) / 2
+        for y0 in range(start, h, step):
+            for x in range(w):
+                y = y0 + int(abs(x - mid) * 0.6)
+                if y < h:
+                    put(x, y, color)
+    return d

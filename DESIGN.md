@@ -191,6 +191,37 @@ Stats, sounds (vanilla stand-ins) and textures are placeholders. Each meteor now
   entity ids (use countdowns); a plain Entity collides with pushable mobs like a boat (boulder shattered on its own
   Roller; override canCollideWith); NeoForge makes canBreatheUnderwater final (override canDrownInFluidType).
 
+## Dungeon-era mobs (2026-11-12, Glenn: "Add all those, they passed"; 2 more per meteor for dungeon variety)
+Same 2x GeckoLib style (`tools/mobs`; shared `spider_legs`/`chevrons` + wasp `kind='spitter'` in mobs_templates.py).
+Stats/sounds are placeholders. Each has a readable tell. `/exofall mobtest` (entity/mob/MobSelfTest) runs every
+mechanic on a pad 40 blocks up with a damageable fake player (added to the level so mobs can find it).
+- **Bogspinner** (swamp): fishing spider. Idle: strings `exofall:bogsilk_web` across 1-block gaps (max 3 within 6).
+  Fight: 4-14 blocks, 0.75 s rear-up tell, spits a silk `SpitGlob` (cobweb look) -> 2 dmg + a web. Bites webbed
+  targets x1.5. Webs (BogsilkWebBlock) vanish after 30 s; Leafcutter Charm passes/cuts them.
+- **Mire Leech** (swamp, spawns in water): hunts only things in water; tell = FISHING ripples on the surface above
+  it. A landed bite latches (follows the host's legs, synced host id), drains 2 hp / 2 s and heals itself; lets go
+  when the host is out of water 0.5 s, when hit (knocked off), or after 30 s.
+- **Honeyguard** (hive): slow shield wasp, 50 hp, armour 10, KB res 1, attack knockback 2.5. Front hits do 15% and
+  wear a 24-point shield by the damage (x2 for hits >= 12): Grandhammer breaks it in one. Reseals after 30 s.
+  Renderer hides the `shield` bone when broken.
+- **Propolis Spitter** (hive, flying): holds 6-12 blocks out, 1 s belly-pump tell (glowmask belly + honey drips),
+  propolis `SpitGlob` -> 4 dmg + Slowness II 3 s + `exofall:propolis` puddles (honey-like speed 0.35, 10 s).
+- **Antlion** (desert): on first settling on sand digs a funnel (r 3, 2 deep) and sits buried (misc.buried anim).
+  Tell = visible pit + falling-sand particles. Drags everything within 4.5 toward it (players on their own client,
+  mobs on the server), bites 8 + Slowness IV 1 s in reach. Off sand it's a plain slow melee bug.
+- **Tomb Scorpion** (desert): pincer 5 + Slowness I 1 s; within 3.4 a 0.75 s raised-sting tell (glowing turquoise
+  sting, rattle) then a 3.8-reach sting: 8 + Sandbound 3 s. Black lacquer, gold trim, linen-wrapped tail.
+- **Canopy Assassin** (rainforest): hangs under ceilings/leaves (3-6 up), rendered flipped (AssassinRenderer negates
+  yaw under the Z flip). Tell = silk thread + drips while a player is within 10. Drops 0.5 s after a player passes
+  within 2.5 sideways: 8 + a Bleeding stack. Climbs back after 10 calm s. Shooting it down knocks it off.
+- **Pouncer** (rainforest): jumping spider. From 3-7 blocks: 0.75 s crouch (front legs raised, eye-glint sparks),
+  then a ballistic leap aimed at where you stood -> 7 dmg on contact. 3 s between leaps, bites 4.
+- Loot: Bogspinner string, Honeyguard/Spitter honeycomb, Tomb Scorpion gold nuggets. Biome spawn weights 15-30.
+- Verified (dev server, mobtest): every mechanic above; dev client loads all 8 models/animations with no errors.
+  Not verified: how they look/animate in game, natural spawning, the Assassin flip and Leech ride on a real client.
+- Test gotcha: ServerLevel increments tickCount, not Entity.tick(); hand-ticked mobs need `tickCount++` or their
+  goals (run on alternate ticks) never select.
+
 ## Pets (locked 2026-11-11, not built yet)
 Glenn: "very trimmed down". One pet per meteor. Each pet is ridden, flown or neither, depending on the pet. Some pets
 have a gear-making job (feed them X, after a while they drop Y). They come BEFORE each meteor's boss, but you get one by

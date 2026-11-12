@@ -179,4 +179,123 @@ def lantern_moth():
     })
 
 
-ALL = [twigwalker, bloommantis, leafcutter, lantern_moth]
+def canopy_assassin():
+    """Assassin bug ~1.5 blocks: a narrow head on a long neck with bulging red eyes and a curved
+    stabbing beak folded under it, a spiny shield-shaped pronotum, leathery green wings over a flat
+    abdomen whose wide edges are banded crimson and black, long spiny legs. Hangs from ceilings
+    upside-down (the renderer flips it)."""
+    pal = {'body': '#2a3a1e', 'dark': '#141a0e', 'red': '#c0302a', 'wing': '#4e6232', 'vein': '#2a3a1a', 'eye': '#d8402a', 'beak': '#3a1a14', 'spine': '#5a7a36'}
+    P = lambda k: f'canopy_assassin_{k}'
+    mobparts.mobkit.PALETTE.update({P(k): v for k, v in pal.items()})
+    band = lambda: both(stripes_x(P('red'), 4, 0), stripes_x(P('red'), 4, 1))
+    bones = [dict(name='body', pivot=[0, 8, 0])]
+    cubes = [
+        box('body', (0, 8.5, -2), (7, 4, 6), P('body'), 'chitin', decor={'up': both(stripes_y(P('dark'), 99, 2), dots(P('red'), [(1, 4), (5, 4)]))}),
+        box('body', (0, 10.8, -0.5), (8, 1, 3), P('body'), 'chitin', decor={'up': outline(P('dark'))}),
+        box('body', (4.2, 11, 0), (1, 2, 1), P('spine'), 'chitin'),
+        box('body', (-4.2, 11, 0), (1, 2, 1), P('spine'), 'chitin'),
+        box('body', (0, 7.5, 7), (10, 2, 12), P('dark'), 'chitin', decor={'east': band(), 'west': band(), 'up': stripes_y(P('red'), 99, 0)}),
+        box('body', (0, 6.5, 7), (6, 1, 10), P('body'), 'chitin'),
+        # leathery wings folded flat over the abdomen, membrane tips overlapping
+        box('body', (0, 8.8, 6), (7, 0.5, 11), P('wing'), 'leather', decor={'up': both(stripes_y(P('vein'), 4, 2), stripes_x(P('vein'), 99, 3))}),
+        box('body', (0, 8.9, 13), (5, 0.4, 3), P('vein') + '@210', rim=False),
+    ]
+    bones.append(dict(name='neck', parent='body', pivot=[0, 9, -5], rotation=[-12, 0, 0]))
+    cubes.append(box('neck', (0, 9, -6.5), (2, 2, 3), P('body'), 'chitin'))
+    bones.append(dict(name='head', parent='neck', pivot=[0, 9, -8], rotation=[12, 0, 0]))
+    cubes += [
+        box('head', (0, 9.5, -11), (3, 3, 6), P('body'), 'chitin', decor={'up': stripes_y(P('dark'), 99, 1)}),
+        box('head', (2, 10, -10), (1.5, 2, 2), P('eye'), 'facet'),
+        box('head', (-2, 10, -10), (1.5, 2, 2), P('eye'), 'facet'),
+    ]
+    bones.append(dict(name='beak', parent='head', pivot=[0, 8, -13.5], rotation=[70, 0, 0]))
+    cubes += [box('beak', (0, 8, -15.5), (1, 1, 4), P('beak'), 'chitin'), box('beak', (0, 8, -18), (1, 1, 1), P('dark'), 'chitin')]
+    for side in (1, -1):
+        chain_x(f'antenna_{"l" if side > 0 else "r"}', 'head', (side * 1, 11, -13.5), side,
+                [(0, 1, [0, 65, 0], P('dark'), None), (5, 1, [0, 0, -45], P('dark'), None), (6, 1, [0, 0, 20], P('red'), None), (5, 1, [0, 0, 15], P('dark'), None)], bones, cubes)
+    legs = leg_pairs('leg', 'body', [
+        ((3, 7, z), [(6, 1, [0, yaw, -35], P('body'), 'chitin'), (8, 1, [0, 0, 95], P('red' if i == 0 else 'dark'), 'chitin'), (4, 1, [0, 0, 25], P('dark'), None)])
+        for i, (z, yaw) in enumerate(((-3.5, 45), (-1, 0), (1.5, -45)))
+    ], bones, cubes)
+    for names, i, side in legs:    # spines on each femur
+        cubes.append(box(names[0], (side * (3 + 3), 7.8, (-3.5, -1, 1.5)[i]), (1, 1, 1), P('spine'), 'chitin'))
+    make('canopy_assassin', bones, cubes, 91, bounds=(2.4, 1.2, 0.4))
+    ant = {f'antenna_{s}1': {'rotation': [0, 0, sin(90, 8, 0 if s == 'l' else 90)]} for s in 'lr'}
+    stab = {'beak': {'rotation': {'0.0': [70, 0, 0], '0.08': [0, 0, 0], '0.3': [70, 0, 0]}},
+            'neck': {'rotation': {'0.0': [0, 0, 0], '0.08': [14, 0, 0], '0.3': [0, 0, 0]}},
+            'body': {'position': {'0.0': [0, 0, 0], '0.08': [0, 0, -2], '0.3': [0, 0, 0]}}}
+    cling = dict(ant)
+    cling['neck'] = {'rotation': [sin(40, 6), sin(25, 12), 0]}
+    cling['beak'] = {'rotation': [sin(200, 6, 0, 70) if False else 55, 0, 0]}
+    anim('canopy_assassin', {
+        'misc.idle': {'loop': True, 'animation_length': 6.0, 'bones': ant},
+        'move.walk': {'loop': True, 'animation_length': 0.8, 'bones': gait(legs, 450, 18, 14, dict(ant))},
+        'misc.cling': {'loop': True, 'animation_length': 8.0, 'bones': cling},
+        'attack.strike': {'loop': False, 'animation_length': 0.3, 'bones': stab},
+        'misc.drop': {'loop': 'hold_on_last_frame', 'animation_length': 0.3, 'bones': {
+            'beak': {'rotation': {'0.0': [70, 0, 0], '0.15': [0, 0, 0]}},
+            **{names[0]: {'rotation': {'0.0': [0, 0, 0], '0.2': [0, -20 * side, -30 * side]}} for names, i, side in legs}}},
+    })
+
+
+def pouncer():
+    """Jumping spider ~1 block: chunky and fuzzy, teal-black with white bands, a square face with
+    two huge glinting front eyes, iridescent green chelicerae, short stout legs, the front pair
+    thick and banded white (raised to signal before a leap)."""
+    from mobs_templates import spider_legs, chevrons
+    pal = {'body': '#1a2a2a', 'dark': '#0a1212', 'band': '#d8e8e0', 'legband': '#2e4444', 'fur': '#2e4444', 'eye': '#0a0e0e', 'glint': '#bff8ff',
+           'chel': '#2ec46c', 'chel_dk': '#14804a'}
+    P = lambda k: f'pouncer_{k}'
+    mobparts.mobkit.PALETTE.update({P(k): v for k, v in pal.items()})
+    mobparts.mobkit.GLOW_KEYS.add(P('glint'))
+    bones = [dict(name='body', pivot=[0, 7, -2])]
+    cubes = [
+        box('body', (0, 8, -3.5), (9, 7, 8), P('body'), 'fur', decor={'up': both(stripes_x(P('band'), 99, 0), stripes_x(P('band'), 99, 8),
+                                                                                 stripes_y(P('band'), 99, 7)),
+                                                                      'east': stripes_y(P('band'), 99, 6), 'west': stripes_y(P('band'), 99, 6)}),
+        box('body', (0, 11.8, -4), (7, 1, 6), P('fur'), 'fur'),
+        # the face: two huge medians with glints, two smaller laterals beside them
+        box('body', (1.7, 9, -7.8), (3, 3, 1), P('eye'), 'facet', decor={'north': dots(P('glint'), [(0, 0), (1, 0)])}),
+        box('body', (-1.7, 9, -7.8), (3, 3, 1), P('eye'), 'facet', decor={'north': dots(P('glint'), [(1, 0), (2, 0)])}),
+        box('body', (4, 10, -7.5), (1, 2, 1), P('eye'), 'facet', decor={'north': dots(P('glint'), [(0, 0)])}),
+        box('body', (-4, 10, -7.5), (1, 2, 1), P('eye'), 'facet', decor={'north': dots(P('glint'), [(0, 0)])}),
+        box('body', (0, 11.5, -7.7), (8, 1, 1), P('band'), 'fur'),
+    ]
+    for side in (1, -1):
+        n = f'chelicera_{"l" if side > 0 else "r"}'
+        bones.append(dict(name=n, parent='body', pivot=[side * 1.5, 7, -7.5]))
+        cubes.append(box(n, (side * 1.5, 6, -8), (2, 3, 2), P('chel'), 'chitin', decor={'all': dots(P('chel_dk'), [(0, -1), (1, -1)])}))
+        chain_x(f'palp_{"l" if side > 0 else "r"}', 'body', (side * 3, 6.5, -7.5), side,
+                [(0, 1, [0, 75, 0], P('band'), None), (2, 1, [0, 0, 20], P('band'), 'fur'), (2, 1, [0, 0, 30], P('band'), 'fur')], bones, cubes)
+    bones.append(dict(name='abdomen', parent='body', pivot=[0, 7.5, 0.5], rotation=[10, 0, 0]))
+    cubes += [
+        box('abdomen', (0, 7.5, 4.5), (8, 6, 8), P('body'), 'fur', decor={'up': both(chevrons(P('band'), 3, 2), stripes_y(P('band'), 99, 0))}),
+        box('abdomen', (0, 7.5, 4.5), (6, 8, 6), P('fur'), 'fur', decor={'up': chevrons(P('band'), 3, 1)}),
+        box('abdomen', (0, 7, 8.8), (4, 3, 1), P('dark'), 'fur'),
+    ]
+    legs = spider_legs(P, [(4, -6, 55), (4.3, -4.5, 25), (4.3, -3, -15), (4, -1.5, -50)], 5, 6, 3, bones, cubes, 7, thick=2, raise_front=20)
+    cubes.append(box(legs[0][0][0], (4 + 3, 7.5, -6), (3, 2, 2), P('band'), 'fur'))     # white tufts on the front femurs
+    cubes.append(box(legs[1][0][0], (-4 - 3, 7.5, -6), (3, 2, 2), P('band'), 'fur'))
+    make('pouncer', bones, cubes, 93, bounds=(2, 1.2, 0.4), glow=True)
+    palps = {f'palp_{s}1': {'rotation': [0, 0, sin(240, 15, 0 if s == 'l' else 90)]} for s in 'lr'}
+    front = [l for l in legs if l[1] == 0]
+    crouch = {'body': {'position': {'0.0': [0, 0, 0], '0.75': [0, -2.5, 1]}, 'rotation': {'0.0': [0, 0, 0], '0.75': [-8, 0, 0]}}}
+    for names, i, side in front:   # signal: front legs lift and wave
+        crouch[names[0]] = {'rotation': {'0.0': [0, 0, 0], '0.3': [0, 0, -35 * side], '0.75': [0, 0, -35 * side]}}
+    crouch.update(palps)
+    leap = {'body': {'rotation': [12, 0, 0]}}
+    for names, i, side in legs:
+        leap[names[0]] = {'rotation': [0, (25 if i < 2 else -25) * side, -25 * side]}
+    anim('pouncer', {
+        'misc.idle': {'loop': True, 'animation_length': 4.0, 'bones': dict(palps) | {'abdomen': {'rotation': [sin(90, 3, 0, 10), 0, 0]}}},
+        'move.walk': {'loop': True, 'animation_length': 0.5, 'bones': gait(legs, 720, 16, 14, dict(palps))},
+        'attack.windup': {'loop': 'hold_on_last_frame', 'animation_length': 0.75, 'bones': crouch},
+        'move.leap': {'loop': True, 'animation_length': 1.0, 'bones': leap},
+        'attack.strike': {'loop': False, 'animation_length': 0.3, 'bones': {
+            'chelicera_l': {'rotation': {'0.0': [0, 0, 0], '0.1': [-30, 0, 0], '0.3': [0, 0, 0]}},
+            'chelicera_r': {'rotation': {'0.0': [0, 0, 0], '0.1': [-30, 0, 0], '0.3': [0, 0, 0]}},
+            'body': {'rotation': {'0.0': [0, 0, 0], '0.1': [10, 0, 0], '0.3': [0, 0, 0]}}}},
+    })
+
+
+ALL = [twigwalker, bloommantis, leafcutter, lantern_moth, canopy_assassin, pouncer]

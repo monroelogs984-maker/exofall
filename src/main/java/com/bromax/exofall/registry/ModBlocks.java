@@ -55,6 +55,17 @@ public final class ModBlocks {
             () -> new ShellrockTableBlock(Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE).strength(5.0F, 1200.0F)
                     .requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE_TILES).mapColor(MapColor.TERRACOTTA_WHITE)));
 
+    // ---- mob-made blocks (no items, no drops, they vanish on their own) ----
+
+    /** Bogspinner web: a cobweb that disappears after 30 s. */
+    public static final DeferredBlock<com.bromax.exofall.block.BogsilkWebBlock> BOGSILK_WEB = BLOCKS.register("bogsilk_web",
+            () -> new com.bromax.exofall.block.BogsilkWebBlock(Properties.ofFullCopy(Blocks.COBWEB).noLootTable()));
+    /** Propolis Spitter puddle: slows like honey, gone after 10 s. */
+    public static final DeferredBlock<com.bromax.exofall.block.PropolisBlock> PROPOLIS = BLOCKS.register("propolis",
+            () -> new com.bromax.exofall.block.PropolisBlock(Properties.of().mapColor(MapColor.COLOR_ORANGE).noCollission().instabreak()
+                    .speedFactor(0.35F).jumpFactor(0.5F).sound(SoundType.HONEY_BLOCK).noLootTable().replaceable().noOcclusion()
+                    .pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY)));
+
     // ---- boss arenas ----
 
     /** Fills the arena door until the sigil opens it; closes again behind the players while the boss fight lasts. */

@@ -72,6 +72,44 @@ public final class MobRenderers {
         }
     }
 
+    /** Honeyguard: its wax shield is only drawn while it still has one. */
+    public static class HoneyguardRenderer extends BugRenderer<com.bromax.exofall.entity.mob.hive.Honeyguard> {
+        public HoneyguardRenderer(EntityRendererProvider.Context ctx) {
+            super(ctx, "honeyguard", 1.0f, true, false);
+        }
+
+        @Override
+        public void preRender(PoseStack pose, com.bromax.exofall.entity.mob.hive.Honeyguard g, BakedGeoModel model, @Nullable MultiBufferSource buffers,
+                              @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int light, int overlay, int colour) {
+            model.getBone("shield").ifPresent(b -> b.setHidden(!g.hasShield()));
+            super.preRender(pose, g, model, buffers, buffer, isReRender, partialTick, light, overlay, colour);
+        }
+    }
+
+    /** Canopy Assassin: drawn upside-down, feet on the ceiling, while it clings or climbs. */
+    public static class AssassinRenderer extends BugRenderer<com.bromax.exofall.entity.mob.rainforest.CanopyAssassin> {
+        public AssassinRenderer(EntityRendererProvider.Context ctx) {
+            super(ctx, "canopy_assassin", 0.6f, true, false);
+        }
+
+        private static boolean flipped(com.bromax.exofall.entity.mob.rainforest.CanopyAssassin a) {
+            return a.state() == com.bromax.exofall.entity.mob.rainforest.CanopyAssassin.CLINGING
+                    || a.state() == com.bromax.exofall.entity.mob.rainforest.CanopyAssassin.CLIMBING;
+        }
+
+        @Override
+        protected void applyRotations(com.bromax.exofall.entity.mob.rainforest.CanopyAssassin a, PoseStack pose, float age, float yaw, float partialTick, float nativeScale) {
+            if (flipped(a)) {
+                // flip about Z; under the flip a Y turn runs backwards, so the yaw is negated to keep the heading
+                pose.translate(0, a.getBbHeight(), 0);
+                pose.mulPose(com.mojang.math.Axis.ZP.rotationDegrees(180));
+                super.applyRotations(a, pose, age, -yaw, partialTick, nativeScale);
+            } else {
+                super.applyRotations(a, pose, age, yaw, partialTick, nativeScale);
+            }
+        }
+    }
+
     /** Roller: the boulder it pushes is only drawn while it has one. */
     public static class RollerRenderer extends BugRenderer<Roller> {
         public RollerRenderer(EntityRendererProvider.Context ctx) {

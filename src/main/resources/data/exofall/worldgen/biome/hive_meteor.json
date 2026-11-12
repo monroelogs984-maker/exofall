@@ -59,6 +59,18 @@
         "weight": 20,
         "minCount": 1,
         "maxCount": 3
+      },
+      {
+        "type": "exofall:honeyguard",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "exofall:propolis_spitter",
+        "weight": 25,
+        "minCount": 1,
+        "maxCount": 2
       }
     ],
     "creature": [],

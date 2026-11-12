@@ -335,4 +335,106 @@ def reedmantis():
                           'wing': '#8f9a4c', 'vein': '#5a6230'}, 43)
 
 
-ALL = [mudgrub, glasswing, bloodgnat, divebell_beetle, reedmantis]
+
+
+def bogspinner():
+    """Fishing spider ~1.8 blocks across the legs: olive-brown fur with pale side stripes, a glossy
+    ovoid abdomen with a silk-white chevron, a row of black eyes with two big glinting medians,
+    banded legs, silk spinnerets under the tail."""
+    from mobs_templates import spider_legs, chevrons
+    pal = {'body': '#4e4630', 'dark': '#221e14', 'band': '#6e6444', 'legband': '#6e6444', 'stripe': '#d8d0a0', 'eye': '#0e0c0a',
+           'glint': '#e8f4e0', 'silk': '#e8f0e0', 'fang': '#120e0a'}
+    P = lambda k: f'bogspinner_{k}'
+    mobparts.mobkit.PALETTE.update({P(k): v for k, v in pal.items()})
+    side_stripe = stripes_y(P('stripe'), 99, 1)
+    bones = [dict(name='body', pivot=[0, 8, -2])]
+    cubes = [
+        box('body', (0, 8, -3), (8, 4, 8), P('body'), 'fur', decor={'up': both(stripes_x(P('stripe'), 99, 0), stripes_x(P('stripe'), 99, 7),
+                                                                              stripes_x(P('dark'), 99, 3), stripes_x(P('dark'), 99, 4)),
+                                                                   'east': side_stripe, 'west': side_stripe}),
+        box('body', (0, 10.5, -4), (5, 1, 5), P('body'), 'fur', decor={'up': dots(P('dark'), [(2, 1), (2, 2)])}),
+        # eye row on the front of the head: two big medians with a glint, small laterals
+        box('body', (1.5, 10, -7.5), (2, 2, 1), P('eye'), 'facet', decor={'north': dots(P('glint'), [(0, 0)])}),
+        box('body', (-1.5, 10, -7.5), (2, 2, 1), P('eye'), 'facet', decor={'north': dots(P('glint'), [(0, 0)])}),
+        box('body', (3.2, 10.6, -7), (1, 1, 1), P('eye'), 'facet'),
+        box('body', (-3.2, 10.6, -7), (1, 1, 1), P('eye'), 'facet'),
+    ]
+    for side in (1, -1):   # chelicerae with hooked fangs
+        n = f'chelicera_{"l" if side > 0 else "r"}'
+        bones.append(dict(name=n, parent='body', pivot=[side * 1.3, 8, -7]))
+        cubes += [box(n, (side * 1.3, 7, -7.8), (2, 3, 2), P('body'), 'fur'),
+                  box(n, (side * 0.9, 5.3, -8.2), (1, 1, 1), P('fang'), 'chitin')]
+        chain_x(f'palp_{"l" if side > 0 else "r"}', 'body', (side * 2.5, 7.5, -7), side,
+                [(0, 1, [0, 75, 0], P('band'), None), (3, 1, [0, 0, 25], P('band'), 'chitin'), (3, 1, [0, 0, 40], P('dark'), None)], bones, cubes)
+    bones.append(dict(name='abdomen', parent='body', pivot=[0, 8.5, 1], rotation=[8, 0, 0]))
+    cubes += [
+        box('abdomen', (0, 8.5, 6.5), (9, 7, 11), P('body'), 'chitin', decor={'up': edge(P('dark'), 'left'), 'east': side_stripe, 'west': side_stripe}),
+        box('abdomen', (0, 8.5, 6.5), (11, 5, 9), P('body'), 'chitin', decor={'east': side_stripe, 'west': side_stripe}),
+        box('abdomen', (0, 8.5, 6.5), (7, 9, 9), P('body'), 'chitin', decor={'up': both(chevrons(P('dark'), 4, 0), chevrons(P('silk'), 4, 2))}),
+        box('abdomen', (0, 8.5, 12.5), (6, 5, 1), P('dark'), 'chitin'),
+        box('abdomen', (0.8, 6.5, 13.3), (1, 1, 2), P('silk'), 'fur'),
+        box('abdomen', (-0.8, 6.5, 13.3), (1, 1, 2), P('silk'), 'fur'),
+    ]
+    legs = spider_legs(P, [(3.5, -5.5, 60), (3.8, -3.8, 25), (3.8, -2, -15), (3.5, -0.5, -50)], 7, 9, 5, bones, cubes, 8)
+    make('bogspinner', bones, cubes, 81, bounds=(3, 1.6, 0.4))
+    palps = {f'palp_{s}1': {'rotation': [0, 0, sin(180, 14, 0 if s == 'l' else 90)]} for s in 'lr'}
+    idle = dict(palps)
+    idle['abdomen'] = {'rotation': [sin(70, 2, 0, 8), 0, 0], 'scale': [1, sin(70, 0.02, 0, 1), 1]}
+    walk = gait(legs, 520, 16, 14, dict(palps))
+    walk['abdomen'] = {'rotation': [sin(1040, 2, 0, 8), sin(520, 3), 0]}
+    strike = {'body': {'rotation': {'0.0': [0, 0, 0], '0.1': [10, 0, 0], '0.35': [0, 0, 0]}, 'position': {'0.0': [0, 0, 0], '0.1': [0, -1, -2], '0.35': [0, 0, 0]}}}
+    for s, sg in (('l', 1), ('r', -1)):
+        strike[f'chelicera_{s}'] = {'rotation': {'0.0': [0, 0, 0], '0.1': [-35, 0, 0], '0.25': [20, 0, 0], '0.35': [0, 0, 0]}}
+    # tell before a web shot: rears up on the back legs, abdomen tips under to aim the spinnerets
+    windup = {'body': {'rotation': {'0.0': [0, 0, 0], '0.75': [-22, 0, 0]}, 'position': {'0.0': [0, 0, 0], '0.75': [0, 2, 0]}},
+              'abdomen': {'rotation': {'0.0': [8, 0, 0], '0.75': [-30, 0, 0]}}}
+    windup.update({k: v for k, v in palps.items()})
+    anim('bogspinner', {
+        'misc.idle': {'loop': True, 'animation_length': 6.0, 'bones': idle},
+        'move.walk': {'loop': True, 'animation_length': 0.7, 'bones': walk},
+        'attack.strike': {'loop': False, 'animation_length': 0.35, 'bones': strike},
+        'attack.windup': {'loop': 'hold_on_last_frame', 'animation_length': 0.75, 'bones': windup},
+        'attack.shoot': {'loop': False, 'animation_length': 0.4, 'bones': {
+            'abdomen': {'rotation': {'0.0': [-30, 0, 0], '0.08': [-45, 0, 0], '0.4': [8, 0, 0]}},
+            'body': {'rotation': {'0.0': [-22, 0, 0], '0.4': [0, 0, 0]}, 'position': {'0.0': [0, 2, 0], '0.4': [0, 0, 0]}}}},
+    })
+
+
+def mire_leech():
+    """Leech ~1.4 blocks long, flat and glossy: olive-black with two orange dorsal stripes and a
+    row of dark spots, a narrow head with a ringed oral sucker, a wide rear sucker disc."""
+    pal = {'body': '#2e3622', 'dark': '#161a10', 'belly': '#5a5a32', 'stripe': '#c8742a', 'spot': '#0c0e08', 'mouth': '#3a1a14', 'ring': '#8a6a4a'}
+    P = lambda k: f'mire_leech_{k}'
+    mobparts.mobkit.PALETTE.update({P(k): v for k, v in pal.items()})
+
+    def back(w):
+        return both(stripes_x(P('stripe'), 99, 1), stripes_x(P('stripe'), 99, w - 2), dots(P('spot'), [(w // 2, 1)]))
+    bones = [dict(name='root', pivot=[0, 2, -10])]
+    widths = [4, 5, 7, 8, 9, 9, 9, 8, 7, 6]
+    segs = [(2, w, 3 if i == 0 else 4, 2, 0, P('body'), 'flesh',
+             {'up': back(w), 'down': stripes_y(P('belly'), 1), 'east': stripes_x(P('dark'), 99, 1), 'west': stripes_x(P('dark'), 99, 0)})
+            for i, w in enumerate(widths)]
+    body, end = chain_z('seg', 'root', -10, segs, bones, cubes := [])
+    cubes += [
+        box('seg0', (0, 2, -10.5), (4, 3, 1), P('ring'), 'flesh', decor={'north': both(outline(P('ring')), dots(P('mouth'), [(1, 1), (2, 1)]))}),
+        box(body[-1], (0, 1.5, end + 2), (8, 3, 5), P('body'), 'flesh', decor={'up': both(outline(P('dark')), stripes_y(P('stripe'), 99, 1))}),
+        box(body[-1], (0, 0.5, end + 2), (10, 1, 6), P('belly'), 'flesh'),
+    ]
+    make('mire_leech', bones, cubes, 83, bounds=(1.5, 0.8, 0.2))
+    swim = {b: {'rotation': [0, sin(400, 9, -i * 45), 0]} for i, b in enumerate(body)}
+    crawl = {b: {'rotation': [sin(240, 7, -i * 35), 0, 0]} for i, b in enumerate(body)}
+    latch = {b: {'rotation': [sin(300, 5, -i * 30), 0, 0]} for i, b in enumerate(body[3:], 3)}
+    latch['seg0'] = {'rotation': [-35, 0, 0]}
+    latch['seg1'] = {'rotation': [-25, 0, 0]}
+    for i, b in enumerate(body[2:8]):
+        latch.setdefault(b, {})['scale'] = [f'1 + math.max(0, math.sin(query.anim_time * 360 - {i * 50})) * 0.12', 1, 1]
+    anim('mire_leech', {
+        'misc.idle': {'loop': True, 'animation_length': 6.0, 'bones': {b: {'rotation': [0, sin(60, 3, -i * 30), 0]} for i, b in enumerate(body)}},
+        'move.walk': {'loop': True, 'animation_length': 1.5, 'bones': crawl},
+        'move.swim': {'loop': True, 'animation_length': 0.9, 'bones': swim},
+        'misc.latch': {'loop': True, 'animation_length': 1.0, 'bones': latch},
+        'attack.strike': {'loop': False, 'animation_length': 0.3, 'bones': {'seg0': {'rotation': {'0.0': [0, 0, 0], '0.1': [-30, 0, 0], '0.3': [0, 0, 0]}}}},
+    })
+
+
+ALL = [mudgrub, glasswing, bloodgnat, divebell_beetle, reedmantis, bogspinner, mire_leech]

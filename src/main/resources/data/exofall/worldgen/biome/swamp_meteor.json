@@ -47,6 +47,18 @@
         "weight": 25,
         "minCount": 1,
         "maxCount": 1
+      },
+      {
+        "type": "exofall:bogspinner",
+        "weight": 25,
+        "minCount": 1,
+        "maxCount": 2
+      },
+      {
+        "type": "exofall:mire_leech",
+        "weight": 30,
+        "minCount": 1,
+        "maxCount": 3
       }
     ],
     "creature": [

@@ -69,8 +69,8 @@ public final class BaubleSelfTest {
     }
 
     /** A fake player that can be hurt (NeoForge's ignores all damage). */
-    private static final class TestPlayer extends FakePlayer {
-        TestPlayer(ServerLevel level) {
+    public static final class TestPlayer extends FakePlayer {
+        public TestPlayer(ServerLevel level) {
             super(level, new com.mojang.authlib.GameProfile(java.util.UUID.fromString("e0f0a11a-0000-4000-8000-0000000000b5"), "[ExofallTest]"));
             try {   // skip the 3 s post-spawn damage immunity (mojmap name; this is a dev-only test)
                 var f = net.minecraft.server.level.ServerPlayer.class.getDeclaredField("spawnInvulnerableTime");
@@ -79,6 +79,11 @@ public final class BaubleSelfTest {
             } catch (ReflectiveOperationException e) {
                 throw new IllegalStateException(e);
             }
+        }
+
+        /** FakePlayer never ticks, so refresh "am I in water" by hand. */
+        public void refreshFluids() {
+            updateInWaterStateAndDoFluidPushing();
         }
 
         @Override

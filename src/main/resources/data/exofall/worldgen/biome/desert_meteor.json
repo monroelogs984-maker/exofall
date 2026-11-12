@@ -47,6 +47,18 @@
         "weight": 25,
         "minCount": 1,
         "maxCount": 1
+      },
+      {
+        "type": "exofall:antlion",
+        "weight": 20,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "exofall:tomb_scorpion",
+        "weight": 25,
+        "minCount": 1,
+        "maxCount": 2
       }
     ],
     "creature": [

@@ -34,6 +34,7 @@ public final class ModItems {
         // Block items, in registration order (stones, woods, plants).
         for (DeferredHolder<Block, ? extends Block> holder : ModBlocks.BLOCKS.getEntries()) {
             String id = holder.getId().getPath();
+            if (id.equals("bogsilk_web") || id.equals("propolis")) continue;   // mob-made, no items
             ITEMS.register(id, () -> {
                 Block b = holder.get();
                 if (b instanceof DoorBlock || b instanceof DoublePlantBlock) return new DoubleHighBlockItem(b, new Item.Properties());
@@ -116,6 +117,22 @@ public final class ModItems {
         }
     }
 
+    public static final DeferredItem<DeferredSpawnEggItem> BOGSPINNER_SPAWN_EGG = ITEMS.register("bogspinner_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.BOGSPINNER, 0x4E4630, 0xD8D0A0, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> MIRE_LEECH_SPAWN_EGG = ITEMS.register("mire_leech_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.MIRE_LEECH, 0x2E3622, 0xC8742A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> HONEYGUARD_SPAWN_EGG = ITEMS.register("honeyguard_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.HONEYGUARD, 0xC8862A, 0xF0C860, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> PROPOLIS_SPITTER_SPAWN_EGG = ITEMS.register("propolis_spitter_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.PROPOLIS_SPITTER, 0x24160C, 0xFFAE2A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> ANTLION_SPAWN_EGG = ITEMS.register("antlion_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.ANTLION, 0x7A6650, 0x2E2014, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> TOMB_SCORPION_SPAWN_EGG = ITEMS.register("tomb_scorpion_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.TOMB_SCORPION, 0x2A2420, 0xC8962E, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> CANOPY_ASSASSIN_SPAWN_EGG = ITEMS.register("canopy_assassin_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.CANOPY_ASSASSIN, 0x2A3A1E, 0xC0302A, new Item.Properties()));
+    public static final DeferredItem<DeferredSpawnEggItem> POUNCER_SPAWN_EGG = ITEMS.register("pouncer_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.POUNCER, 0x1A2A2A, 0x2EC46C, new Item.Properties()));
     public static final DeferredItem<DeferredSpawnEggItem> TERROR_OF_THE_BOG_SPAWN_EGG = ITEMS.register("terror_of_the_bog_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.TERROR_OF_THE_BOG, 0x4A3A22, 0x8A9A3A, new Item.Properties()));
     public static final DeferredItem<DeferredSpawnEggItem> WAXEN_QUEEN_SPAWN_EGG = ITEMS.register("waxen_queen_spawn_egg",
