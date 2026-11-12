@@ -23,6 +23,11 @@ public class RainforestInterior implements MeteorInterior {
     private record Extra(List<Tree> trees, int ceiling, int vineLength, int topKind) {}
 
     @Override
+    public int surface(MeteorPiece m, int x, int z) {
+        return floorTop(m, x, z);
+    }
+
+    @Override
     public Column column(MeteorPiece m, int x, int z) {
         int ft = floorTop(m, x, z);
         List<Tree> trees = new ArrayList<>(2);
@@ -55,7 +60,7 @@ public class RainforestInterior implements MeteorInterior {
             int tx = gx * TREE_GRID + 1 + (int) (m.hash(gx, 1, gz, 41) * (TREE_GRID - 2));
             int tz = gz * TREE_GRID + 1 + (int) (m.hash(gx, 2, gz, 42) * (TREE_GRID - 2));
             int ft = floorTop(m, tx, tz);
-            if (ft > m.baseFloor() && m.classify(tx, ft + 1, tz) == MeteorPiece.INTERIOR) {
+            if (ft > m.baseFloor() && m.classify(tx, ft + 1, tz) == MeteorPiece.INTERIOR && !com.bromax.exofall.world.dungeon.Dungeon.excludes(m, tx, tz)) {
                 int ceiling = m.ceilingAbove(tx, ft, tz, Interiors.CEILING_SCAN);
                 int base = ft + 1;
                 int top = base + 10 + (int) (m.hash(gx, 3, gz, 43) * 9);

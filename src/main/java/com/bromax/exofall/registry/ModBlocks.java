@@ -66,6 +66,22 @@ public final class ModBlocks {
                     .speedFactor(0.35F).jumpFactor(0.5F).sound(SoundType.HONEY_BLOCK).noLootTable().replaceable().noOcclusion()
                     .pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY)));
 
+    // ---- Warrens (dungeons) ----
+
+    /** One bug nest per meteor: mire nest, brood comb, sand burrow, rotwood hollow. */
+    public static final java.util.Map<com.bromax.exofall.world.MeteorStyle, DeferredBlock<NestBlock>> NESTS = new java.util.EnumMap<>(com.bromax.exofall.world.MeteorStyle.class);
+
+    static {
+        NESTS.put(com.bromax.exofall.world.MeteorStyle.SWAMP, BLOCKS.register("mire_nest", () -> new NestBlock(com.bromax.exofall.world.MeteorStyle.SWAMP,
+                Properties.ofFullCopy(Blocks.PACKED_MUD).strength(4.0F, 6.0F).sound(SoundType.MUD).mapColor(MapColor.TERRACOTTA_BROWN))));
+        NESTS.put(com.bromax.exofall.world.MeteorStyle.HIVE, BLOCKS.register("brood_comb", () -> new NestBlock(com.bromax.exofall.world.MeteorStyle.HIVE,
+                Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK).strength(4.0F, 6.0F).sound(SoundType.CORAL_BLOCK).mapColor(MapColor.COLOR_ORANGE))));
+        NESTS.put(com.bromax.exofall.world.MeteorStyle.DESERT, BLOCKS.register("sand_burrow", () -> new NestBlock(com.bromax.exofall.world.MeteorStyle.DESERT,
+                Properties.ofFullCopy(Blocks.SANDSTONE).strength(4.0F, 6.0F).sound(SoundType.SAND).mapColor(MapColor.SAND))));
+        NESTS.put(com.bromax.exofall.world.MeteorStyle.RAINFOREST, BLOCKS.register("rotwood_hollow", () -> new NestBlock(com.bromax.exofall.world.MeteorStyle.RAINFOREST,
+                Properties.ofFullCopy(Blocks.STRIPPED_MANGROVE_WOOD).strength(4.0F, 6.0F).sound(SoundType.NETHER_WOOD).mapColor(MapColor.TERRACOTTA_GREEN))));
+    }
+
     // ---- boss arenas ----
 
     /** Fills the arena door until the sigil opens it; closes again behind the players while the boss fight lasts. */

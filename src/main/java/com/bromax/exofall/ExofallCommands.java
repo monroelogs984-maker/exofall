@@ -11,6 +11,18 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 /** /exofall grow <pos>: grow the alien sapling at pos right away (ops only; for testing). */
 public final class ExofallCommands {
+    /** The meteor whose structure start is in or near the source's chunk. */
+    static com.bromax.exofall.world.MeteorPiece meteorAt(CommandSourceStack src) {
+        var level = src.getLevel();
+        var reg = level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.STRUCTURE);
+        BlockPos here = BlockPos.containing(src.getPosition());
+        for (var start : level.structureManager().startsForStructure(new net.minecraft.world.level.ChunkPos(here),
+                s -> reg.getKey(s) != null && reg.getKey(s).getNamespace().equals("exofall"))) {
+            for (var piece : start.getPieces()) if (piece instanceof com.bromax.exofall.world.MeteorPiece m) return m;
+        }
+        return null;
+    }
+
     public static void register(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> d = event.getDispatcher();
         d.register(Commands.literal("exofall").requires(s -> s.hasPermission(2))
@@ -59,6 +71,26 @@ public final class ExofallCommands {
                     src.sendFailure(Component.literal("Not inside a meteor"));
                     return 0;
                 })))
+                // /exofall dungeon check | where: walkability self-test / entrance list for the meteor you're in
+                .then(Commands.literal("dungeon")
+                        .then(Commands.literal("check").executes(ctx -> {
+                            var src = ctx.getSource();
+                            var m = meteorAt(src);
+                            if (m == null) { src.sendFailure(Component.literal("Not inside a meteor")); return 0; }
+                            for (String line : com.bromax.exofall.world.dungeon.DungeonCheck.run(src.getLevel(), m))
+                                src.sendSuccess(() -> Component.literal(line), false);
+                            return 1;
+                        }))
+                        .then(Commands.literal("where").executes(ctx -> {
+                            var src = ctx.getSource();
+                            var m = meteorAt(src);
+                            if (m == null) { src.sendFailure(Component.literal("Not inside a meteor")); return 0; }
+                            m.initNoise();
+                            var dg = com.bromax.exofall.world.dungeon.Dungeon.of(m);
+                            for (var s : dg.shacks)
+                                src.sendSuccess(() -> Component.literal((s.entry ? "Entrance" : "Nest shack") + " at " + s.x + " " + s.floor + " " + s.z), false);
+                            return 1;
+                        })))
                 // /exofall boss fight: skip the nearest boss's dormant and intro steps (testing)
                 .then(Commands.literal("boss").then(Commands.literal("fight").executes(ctx -> {
                     var src = ctx.getSource();

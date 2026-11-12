@@ -70,6 +70,8 @@ public class MeteorPiece extends StructurePiece {
     private volatile ImprovedNoise shellNoise, noiseA, noiseB;
     /** Per-meteor cache for styles (e.g. tree layouts). Chunks generate on several threads. */
     public final Map<Long, Object> cache = new ConcurrentHashMap<>();
+    /** The Warrens layout under this meteor, built on first use (see dungeon.Dungeon). */
+    public volatile Object dungeon;
 
     public MeteorPiece(BlockPos centre, int radius, long seed, ResourceKey<Biome> interiorBiome, MeteorStyle style) {
         super(ModWorldgen.METEOR_PIECE.get(), 0, box(centre, radius));
@@ -123,7 +125,7 @@ public class MeteorPiece extends StructurePiece {
         return new BoundingBox(c.getX() - h, c.getY() - v, c.getZ() - h, c.getX() + h, c.getY() + v, c.getZ() + h);
     }
 
-    private void initNoise() {
+    public void initNoise() {
         if (noiseB == null) {
             synchronized (this) {
                 if (noiseB == null) {
@@ -209,6 +211,8 @@ public class MeteorPiece extends StructurePiece {
         MeteorInterior interior = style.interior();
         boolean anyInterior = false;
 
+        com.bromax.exofall.world.dungeon.DungeonGen.Local dungeon = com.bromax.exofall.world.dungeon.DungeonGen.forChunk(this, chunkPos.x, chunkPos.z);
+        List<BlockPos> containers = new java.util.ArrayList<>();
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
         for (int x = minX; x <= maxX; x++) {
             for (int z = minZ; z <= maxZ; z++) {
@@ -223,9 +227,17 @@ public class MeteorPiece extends StructurePiece {
                     }
                     anyInterior = true;
                     if (col == null) col = interior.column(this, x, z);
-                    level.setBlock(pos, ArenaGen.apply(this, style, col.floorTop(), x, y, z, interior.block(this, col, x, y, z)), 2);
+                    BlockState b = ArenaGen.apply(this, style, col.floorTop(), x, y, z, interior.block(this, col, x, y, z));
+                    b = dungeon.apply(x, y, z, b);
+                    level.setBlock(pos, b, 2);
+                    if (b.is(Blocks.CHEST) || b.is(Blocks.BARREL)) containers.add(pos.immutable());
                 }
             }
+        }
+
+        for (BlockPos c : containers) {
+            net.minecraft.world.RandomizableContainer.setBlockEntityLootTable(level, random, c,
+                    com.bromax.exofall.world.dungeon.DungeonGen.lootFor(this, c, level.getBlockState(c)));
         }
 
         if (anyInterior) {

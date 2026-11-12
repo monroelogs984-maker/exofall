@@ -38,6 +38,11 @@ public class SwampInterior implements MeteorInterior {
     }
 
     @Override
+    public int surface(MeteorPiece m, int x, int z) {
+        return floorTop(m, x, z);
+    }
+
+    @Override
     public Column column(MeteorPiece m, int x, int z) {
         int ft = floorTop(m, x, z);
         int water = m.baseFloor();

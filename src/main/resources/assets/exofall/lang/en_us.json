@@ -238,5 +238,9 @@
   "item.exofall.pouncer_spawn_egg": "Pouncer Spawn Egg",
   "entity.exofall.spit_glob": "Spat Glob",
   "block.exofall.bogsilk_web": "Bogsilk Web",
-  "block.exofall.propolis": "Propolis"
+  "block.exofall.propolis": "Propolis",
+  "block.exofall.mire_nest": "Mire Nest",
+  "block.exofall.brood_comb": "Brood Comb",
+  "block.exofall.sand_burrow": "Sand Burrow",
+  "block.exofall.rotwood_hollow": "Rotwood Hollow"
 }

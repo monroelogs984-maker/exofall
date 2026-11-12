@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "exofall:block/rotwood_hollow_top",
+    "bottom": "exofall:block/rotwood_hollow_top",
+    "side": "exofall:block/rotwood_hollow"
+  }
+}

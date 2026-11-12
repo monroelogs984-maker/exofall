@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "exofall:block/brood_comb_top",
+    "bottom": "exofall:block/brood_comb_top",
+    "side": "exofall:block/brood_comb"
+  }
+}

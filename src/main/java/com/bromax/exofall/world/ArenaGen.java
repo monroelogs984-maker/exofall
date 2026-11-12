@@ -34,7 +34,7 @@ public final class ArenaGen {
     /** Whether a tree or pillar rooted at (x, z) would intrude on the arena or its plaza. */
     public static boolean excludes(MeteorPiece m, int x, int z) {
         int dx = x - m.centre().getX(), dz = z - m.centre().getZ();
-        return dx * dx + dz * dz < EXCLUDE_R * EXCLUDE_R;
+        return dx * dx + dz * dz < EXCLUDE_R * EXCLUDE_R || com.bromax.exofall.world.dungeon.Dungeon.excludes(m, x, z);
     }
 
     private static double smooth(double e0, double e1, double v) {
@@ -242,7 +242,7 @@ public final class ArenaGen {
         };
     }
 
-    private static BlockState light(MeteorStyle style) {
+    public static BlockState light(MeteorStyle style) {
         return switch (style) {
             case SWAMP -> s(Blocks.VERDANT_FROGLIGHT);
             case HIVE -> s(Blocks.SHROOMLIGHT);

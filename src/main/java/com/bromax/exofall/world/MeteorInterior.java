@@ -12,6 +12,9 @@ public interface MeteorInterior {
 
     Column column(MeteorPiece m, int x, int z);
 
+    /** Top floor block at (x, z), from terrain noise only (no trees), so layouts can read it without recursion. */
+    int surface(MeteorPiece m, int x, int z);
+
     /** Block for an interior cell (never called for crust or outside cells). */
     BlockState block(MeteorPiece m, Column col, int x, int y, int z);
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "exofall:block/mire_nest_top",
+    "bottom": "exofall:block/mire_nest_top",
+    "side": "exofall:block/mire_nest"
+  }
+}
