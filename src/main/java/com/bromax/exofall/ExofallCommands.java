@@ -107,6 +107,13 @@ public final class ExofallCommands {
                         src.sendSuccess(() -> Component.literal(line), false);
                     return 1;
                 }))
+                // /exofall armortest: stats and perks of the four armour sets (testing)
+                .then(Commands.literal("armortest").executes(ctx -> {
+                    var src = ctx.getSource();
+                    for (String line : com.bromax.exofall.item.ArmorSelfTest.run(src.getLevel(), BlockPos.containing(src.getPosition())))
+                        src.sendSuccess(() -> Component.literal(line), false);
+                    return 1;
+                }))
                 // /exofall baubletest: checks the baubles' hooks on a fake player (testing)
                 .then(Commands.literal("baubletest").executes(ctx -> {
                     var src = ctx.getSource();

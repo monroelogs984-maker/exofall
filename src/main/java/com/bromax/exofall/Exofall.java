@@ -24,6 +24,7 @@ public final class Exofall {
 
     public Exofall(IEventBus modBus, ModContainer container) {
         ModBlocks.BLOCKS.register(modBus);
+        com.bromax.exofall.item.ArmorSet.register(modBus);
         ModItems.ITEMS.register(modBus);
         com.bromax.exofall.registry.ModBlockEntities.TYPES.register(modBus);
         com.bromax.exofall.registry.ModEffects.EFFECTS.register(modBus);

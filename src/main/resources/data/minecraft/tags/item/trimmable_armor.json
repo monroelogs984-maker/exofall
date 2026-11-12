@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "exofall:mireweave_helmet",
+    "exofall:crystallized_honey_helmet",
+    "exofall:reinforced_carapace_helmet",
+    "exofall:ancientstone_helmet",
+    "exofall:mireweave_chestplate",
+    "exofall:crystallized_honey_chestplate",
+    "exofall:reinforced_carapace_chestplate",
+    "exofall:ancientstone_chestplate",
+    "exofall:mireweave_leggings",
+    "exofall:crystallized_honey_leggings",
+    "exofall:reinforced_carapace_leggings",
+    "exofall:ancientstone_leggings",
+    "exofall:mireweave_boots",
+    "exofall:crystallized_honey_boots",
+    "exofall:reinforced_carapace_boots",
+    "exofall:ancientstone_boots"
+  ]
+}

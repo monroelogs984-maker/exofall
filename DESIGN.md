@@ -191,6 +191,14 @@ Stats, sounds (vanilla stand-ins) and textures are placeholders. Each meteor now
   entity ids (use countdowns); a plain Entity collides with pushable mobs like a boat (boulder shattered on its own
   Roller; override canCollideWith); NeoForge makes canBreatheUnderwater final (override canDrownInFluidType).
 
+## Warrens (dungeons, 2026-11-12)
+world/dungeon: Dungeon (layout from the meteor seed), DungeonGen (blocks, priority rule), DungeonCheck
+(`/exofall dungeon check`: flood-fill walk test, chests/nests reachable, shack doors lead out, no water/gaps; writes
+top-down maps to the run folder). Level 0 at baseFloor-12, level 1 at baseFloor-24 with one vault; spiral stair
+shafts; 3 entrance shacks over level-0 rooms, 4-6 nest shacks. Nest blocks (Mire Nest, Brood Comb, Sand Burrow,
+Rotwood Hollow) spawn the meteor's bugs (block/NestBlockEntity). Loot: loot_table/chests/warren_*. All 4 meteor types
+pass the check on seed 20261109.
+
 ## Dungeon-era mobs (2026-11-12, Glenn: "Add all those, they passed"; 2 more per meteor for dungeon variety)
 Same 2x GeckoLib style (`tools/mobs`; shared `spider_legs`/`chevrons` + wasp `kind='spitter'` in mobs_templates.py).
 Stats/sounds are placeholders. Each has a readable tell. `/exofall mobtest` (entity/mob/MobSelfTest) runs every
@@ -294,6 +302,14 @@ dungeons exist). Armour may or may not end up separate from the weapons. Meteors
   toughness / 0.1 KB / ~1.15x Netherite durability.
 - **Ancientstone** (desert): "10-damage-sword tier" tank, -2.5% speed per piece. Proposed 24 armour / 6 toughness /
   0.2 KB / 2x Netherite durability.
+
+**Built 2026-11-12** (item/ArmorSet, ExofallArmorItem, ArmorEvents; `/exofall armortest` passes): numbers as proposed
+above, defence per piece boots/legs/chest/helmet: Mireweave 3/6/8/3, Honey 3/6/8/3 (2 toughness), Carapace 4/7/8/3,
+Ancientstone 4/7/9/4; toughness and KB are per piece (vanilla convention). Mireweave scales per piece (12.5% notice
+range, +7.5% ambush each), Carapace 10% projectile block per piece. Repair items are placeholders (Bog Eye, Royal Honey
+Drop, Mantis Eye, Terror Leg); recipes come with the 5x5 table recipes. EPIC, fire resistant, trimmable, enchantable.
+Textures: tools/armor/gen_armor.py (Netherite silhouette + shading remapped onto each set's ramp, details painted in
+box-UV face space; preview on tools/armor/stand.geo.json with tools/mobs/preview.py).
 
 ## Legendary weapons (2026-11-12, Glenn's designs + numbers; built, uncraftable for now)
 One per meteor, standalone `ExofallWeaponItem` (SwordItem on the METEORIC tier, 3000 uses placeholder), EPIC, in the

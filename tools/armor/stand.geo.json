@@ -1,0 +1,12 @@
+{"format_version":"1.12.0","minecraft:geometry":[{"description":{"identifier":"geometry.armor_stand","texture_width":64,"texture_height":64},
+"bones":[
+{"name":"head","pivot":[0,24,0],"cubes":[{"origin":[-4,24,-4],"size":[8,8,8],"uv":[0,0],"inflate":1.0}]},
+{"name":"body","pivot":[0,24,0],"cubes":[{"origin":[-4,12,-2],"size":[8,12,4],"uv":[16,16],"inflate":1.0}]},
+{"name":"rarm","pivot":[-5,22,0],"cubes":[{"origin":[-8,12,-2],"size":[4,12,4],"uv":[40,16],"inflate":1.0}]},
+{"name":"larm","pivot":[5,22,0],"cubes":[{"origin":[4,12,-2],"size":[4,12,4],"uv":[40,16],"inflate":1.0,"mirror":true}]},
+{"name":"waist","pivot":[0,24,0],"cubes":[{"origin":[-4,12,-2],"size":[8,12,4],"uv":[16,48],"inflate":0.5}]},
+{"name":"rleg2","pivot":[-2,12,0],"cubes":[{"origin":[-4,0,-2],"size":[4,12,4],"uv":[0,48],"inflate":0.5}]},
+{"name":"lleg2","pivot":[2,12,0],"cubes":[{"origin":[0,0,-2],"size":[4,12,4],"uv":[0,48],"inflate":0.5,"mirror":true}]},
+{"name":"rboot","pivot":[-2,12,0],"cubes":[{"origin":[-4,0,-2],"size":[4,12,4],"uv":[0,16],"inflate":1.0}]},
+{"name":"lboot","pivot":[2,12,0],"cubes":[{"origin":[0,0,-2],"size":[4,12,4],"uv":[0,16],"inflate":1.0,"mirror":true}]}
+]}]}
