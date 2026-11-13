@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "exofall:mistcap"
+    },
+    {
+      "item": "exofall:umbrella_fern"
+    }
+  ],
+  "result": {
+    "id": "exofall:mistcap_morsel",
+    "count": 4
+  }
+}

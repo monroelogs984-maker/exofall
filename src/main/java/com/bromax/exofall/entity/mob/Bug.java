@@ -29,7 +29,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  * Hostile bugs implement {@link Enemy}: they despawn in Peaceful. Persistent-category bugs
  * (creatures) don't despawn when far away, like animals.
  */
-public abstract class Bug extends PathfinderMob implements GeoEntity {
+public abstract class Bug extends PathfinderMob implements GeoEntity, com.bromax.exofall.entity.mob.pet.Pet,
+        com.bromax.exofall.entity.mob.pet.Pets.BabySize {
     public static final RawAnimation IDLE = RawAnimation.begin().thenLoop("misc.idle");
     public static final RawAnimation WALK = RawAnimation.begin().thenLoop("move.walk");
     public static final RawAnimation FLY = RawAnimation.begin().thenLoop("move.fly");
@@ -52,13 +53,9 @@ public abstract class Bug extends PathfinderMob implements GeoEntity {
 
     @Override
     public boolean shouldDespawnInPeaceful() {
-        return this instanceof Enemy;
+        return this instanceof Enemy && !petState.tamed;
     }
 
-    @Override
-    public boolean removeWhenFarAway(double distance) {
-        return !getType().getCategory().isPersistent();
-    }
 
     @Override
     public boolean doHurtTarget(Entity target) {
@@ -114,5 +111,80 @@ public abstract class Bug extends PathfinderMob implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    // ---- pets (only the PetPair species use this; see pet.Pets)
+    private static final net.minecraft.network.syncher.EntityDataAccessor<Boolean> PET_BABY =
+            net.minecraft.network.syncher.SynchedEntityData.defineId(Bug.class, net.minecraft.network.syncher.EntityDataSerializers.BOOLEAN);
+    private final com.bromax.exofall.entity.mob.pet.PetState petState = new com.bromax.exofall.entity.mob.pet.PetState();
+
+    @Override
+    public com.bromax.exofall.entity.mob.pet.PetState petState() {
+        return petState;
+    }
+
+    private boolean isPetSpecies() {
+        return com.bromax.exofall.entity.mob.pet.PetPair.of(getType()) != null;
+    }
+
+    @Override
+    public boolean isBaby() {
+        return entityData.get(PET_BABY);
+    }
+
+    @Override
+    public void setBabySize(boolean baby) {
+        entityData.set(PET_BABY, baby);
+    }
+
+    @Override
+    public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?> key) {
+        if (PET_BABY.equals(key)) refreshDimensions();
+        super.onSyncedDataUpdated(key);
+    }
+
+    @Override
+    protected net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand) {
+        var r = com.bromax.exofall.entity.mob.pet.Pets.interact(this, this, player, hand, isBaby());
+        return r != net.minecraft.world.InteractionResult.PASS ? r : super.mobInteract(player, hand);
+    }
+
+    @Override
+    public void setTarget(@Nullable net.minecraft.world.entity.LivingEntity target) {
+        super.setTarget(com.bromax.exofall.entity.mob.pet.Pets.refuses(this, target) ? null : target);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!level().isClientSide && isPetSpecies()) {
+            com.bromax.exofall.entity.mob.pet.Pets.tick(this, this, l -> (net.minecraft.world.entity.Mob) getType().create(l), this::setBabySize);
+        }
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double distance) {
+        return !petState.tamed && !getType().getCategory().isPersistent();
+    }
+
+    @Override
+    protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(PET_BABY, false);
+    }
+
+    @Override
+    public void addAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        if (isPetSpecies()) petState.save(tag);
+    }
+
+    @Override
+    public void readAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        if (isPetSpecies()) {
+            petState.load(tag);
+            setBabySize(petState.age < 0);
+        }
     }
 }

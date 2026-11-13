@@ -56,7 +56,7 @@ public class Nursemaid extends FlyingBug implements Enemy, HiveMob {
 
     @Override
     protected void registerGoals() {
-        goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 6, 1.0, 1.4));
+        goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, e -> !isTamedPet(), 6, 1.0, 1.4, net.minecraft.world.entity.EntitySelector.NO_CREATIVE_OR_SPECTATOR::test));
         goalSelector.addGoal(2, new TendGoal());
         goalSelector.addGoal(6, new WaterAvoidingRandomFlyingGoal(this, 1.0));
     }

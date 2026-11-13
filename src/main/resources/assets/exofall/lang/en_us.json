@@ -270,5 +270,13 @@
   "item.exofall.tomb_stinger": "Tomb Stinger",
   "item.exofall.assassin_hook": "Assassin Hook",
   "item.exofall.pouncer_shell": "Pouncer Shell",
-  "item.exofall.crustbreaker": "Crustbreaker"
+  "item.exofall.crustbreaker": "Crustbreaker",
+  "item.exofall.sapcane_candy": "Sapcane Candy",
+  "item.exofall.sapcane_candy.desc": "Treat for the Glasswing and Mudgrub: tames a wild one, gets tamed adults to breed.",
+  "item.exofall.nectar_drop": "Nectar Drop",
+  "item.exofall.nectar_drop.desc": "Treat for the Combwasp and Nursemaid: tames a wild one, gets tamed adults to breed.",
+  "item.exofall.dune_pellet": "Dune Pellet",
+  "item.exofall.dune_pellet.desc": "Treat for the Golden Scarab and Shieldback: tames a wild one, gets tamed adults to breed.",
+  "item.exofall.mistcap_morsel": "Mistcap Morsel",
+  "item.exofall.mistcap_morsel.desc": "Treat for the Bloommantis and Reedmantis: tames a wild one, gets tamed adults to breed."
 }

@@ -42,7 +42,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  * Swamp meteor prey: a slow, harmless larva that rummages in the mud. Glasswings and Bloodgnats
  * hunt it. Players can breed it with Sapcane (what it is farmed for is not decided yet).
  */
-public class Mudgrub extends Animal implements GeoEntity {
+public class Mudgrub extends Animal implements GeoEntity, com.bromax.exofall.entity.mob.pet.Pet {
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("misc.idle");
     private static final RawAnimation WALK = RawAnimation.begin().thenLoop("move.walk");
 
@@ -76,13 +76,49 @@ public class Mudgrub extends Animal implements GeoEntity {
 
     @Override
     public boolean isFood(ItemStack stack) {
-        return stack.is(ModBlocks.SAPCANE.get().asItem());
+        return stack.is(ModBlocks.SAPCANE.get().asItem()) || stack.is(com.bromax.exofall.registry.ModItems.SAPCANE_CANDY.get());
+    }
+
+    // ---- pet: already passive and breedable (vanilla animal breeding); the treat tames it for cross-breeding later
+    private final com.bromax.exofall.entity.mob.pet.PetState petState = new com.bromax.exofall.entity.mob.pet.PetState();
+
+    @Override
+    public com.bromax.exofall.entity.mob.pet.PetState petState() {
+        return petState;
+    }
+
+    @Override
+    public net.minecraft.world.InteractionResult mobInteract(Player player, net.minecraft.world.InteractionHand hand) {
+        if (!petState.tamed) {
+            var r = com.bromax.exofall.entity.mob.pet.Pets.interact(this, this, player, hand, isBaby());
+            if (r != net.minecraft.world.InteractionResult.PASS) return r;
+        }
+        return super.mobInteract(player, hand);
+    }
+
+    @Override
+    public void addAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        petState.save(tag);
+    }
+
+    @Override
+    public void readAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        petState.load(tag);
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double distance) {
+        return !petState.tamed && super.removeWhenFarAway(distance);
     }
 
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob other) {
-        return ModEntities.MUDGRUB.get().create(level);
+        Mudgrub baby = ModEntities.MUDGRUB.get().create(level);
+        if (baby != null && petState.tamed && other instanceof Mudgrub o && o.petState.tamed) baby.petState.tamed = true;
+        return baby;
     }
 
     @Override

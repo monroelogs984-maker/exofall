@@ -1,5 +1,7 @@
 package com.bromax.exofall.entity.mob;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.EnumSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -39,7 +41,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  * straight line at where the target was when the wind-up ended. Step aside and it misses; hit it
  * during the wind-up and it breaks off. Also hunts Bloodgnats and Mudgrubs.
  */
-public class Glasswing extends Monster implements GeoEntity {
+public class Glasswing extends Monster implements GeoEntity, com.bromax.exofall.entity.mob.pet.Pet,
+        com.bromax.exofall.entity.mob.pet.Pets.BabySize {
     public static final byte CRUISE = 0, WINDUP = 1, DIVE = 2;
     private static final EntityDataAccessor<Byte> PHASE = SynchedEntityData.defineId(Glasswing.class, EntityDataSerializers.BYTE);
 
@@ -71,6 +74,7 @@ public class Glasswing extends Monster implements GeoEntity {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(PHASE, CRUISE);
+        builder.define(PET_BABY, false);
     }
 
     public byte phase() {
@@ -284,5 +288,77 @@ public class Glasswing extends Monster implements GeoEntity {
             }
             return t.position().add(away.x * 4, 2, away.z * 4);
         }
+    }
+    // ---- pets (only the PetPair species use this; see pet.Pets)
+    private static final net.minecraft.network.syncher.EntityDataAccessor<Boolean> PET_BABY =
+            net.minecraft.network.syncher.SynchedEntityData.defineId(Glasswing.class, net.minecraft.network.syncher.EntityDataSerializers.BOOLEAN);
+    private final com.bromax.exofall.entity.mob.pet.PetState petState = new com.bromax.exofall.entity.mob.pet.PetState();
+
+    @Override
+    public com.bromax.exofall.entity.mob.pet.PetState petState() {
+        return petState;
+    }
+
+    private boolean isPetSpecies() {
+        return true;
+    }
+
+    @Override
+    public boolean isBaby() {
+        return entityData.get(PET_BABY);
+    }
+
+    @Override
+    public void setBabySize(boolean baby) {
+        entityData.set(PET_BABY, baby);
+    }
+
+    @Override
+    public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?> key) {
+        if (PET_BABY.equals(key)) refreshDimensions();
+        super.onSyncedDataUpdated(key);
+    }
+
+    @Override
+    protected net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand) {
+        var r = com.bromax.exofall.entity.mob.pet.Pets.interact(this, this, player, hand, isBaby());
+        return r != net.minecraft.world.InteractionResult.PASS ? r : super.mobInteract(player, hand);
+    }
+
+    @Override
+    public void setTarget(@Nullable net.minecraft.world.entity.LivingEntity target) {
+        super.setTarget(com.bromax.exofall.entity.mob.pet.Pets.refuses(this, target) ? null : target);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!level().isClientSide && isPetSpecies()) {
+            com.bromax.exofall.entity.mob.pet.Pets.tick(this, this, l -> (net.minecraft.world.entity.Mob) getType().create(l), this::setBabySize);
+        }
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double distance) {
+        return !petState.tamed && super.removeWhenFarAway(distance);
+    }
+
+
+    @Override
+    public boolean shouldDespawnInPeaceful() {
+        return !petState.tamed;
+    }
+
+    @Override
+    public void addAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        petState.save(tag);
+    }
+
+    @Override
+    public void readAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        petState.load(tag);
+        setBabySize(petState.age < 0);
     }
 }

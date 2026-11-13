@@ -180,6 +180,12 @@ public final class ModItems {
     public static final DeferredItem<Item> ASSASSIN_HOOK = mobDrop("assassin_hook");       // Canopy Assassin
     public static final DeferredItem<Item> POUNCER_SHELL = mobDrop("pouncer_shell");       // Pouncer
 
+    // ---- Pet treats: one per breeding pair (entity/mob/pet/PetPair). Tame a wild parent (1 in 3), breed tamed adults.
+    public static final DeferredItem<Item> SAPCANE_CANDY = ITEMS.register("sapcane_candy", () -> new com.bromax.exofall.item.TreatItem(new Item.Properties()));   // Glasswing + Mudgrub
+    public static final DeferredItem<Item> NECTAR_DROP = ITEMS.register("nectar_drop", () -> new com.bromax.exofall.item.TreatItem(new Item.Properties()));       // Combwasp + Nursemaid
+    public static final DeferredItem<Item> DUNE_PELLET = ITEMS.register("dune_pellet", () -> new com.bromax.exofall.item.TreatItem(new Item.Properties()));       // Golden Scarab + Shieldback
+    public static final DeferredItem<Item> MISTCAP_MORSEL = ITEMS.register("mistcap_morsel", () -> new com.bromax.exofall.item.TreatItem(new Item.Properties())); // Bloommantis + Reedmantis
+
     // ---- Legendary boss weapons (3D models; uncraftable for now, Shellrock Crafting Table recipes come later)
     private static DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> legendary(String id,
             com.bromax.exofall.item.ExofallWeaponItem.Kind kind, double damage, double speed) {

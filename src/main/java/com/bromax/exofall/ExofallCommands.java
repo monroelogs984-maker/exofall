@@ -121,6 +121,13 @@ public final class ExofallCommands {
                         src.sendSuccess(() -> Component.literal(line), false);
                     return 1;
                 }))
+                // /exofall pettest: taming, breeding and growing the eight pair species (testing)
+                .then(Commands.literal("pettest").executes(ctx -> {
+                    var src = ctx.getSource();
+                    for (String line : com.bromax.exofall.entity.mob.pet.PetSelfTest.run(src.getLevel(), BlockPos.containing(src.getPosition())))
+                        src.sendSuccess(() -> Component.literal(line), false);
+                    return 1;
+                }))
                 // /exofall baubletest: checks the baubles' hooks on a fake player (testing)
                 .then(Commands.literal("baubletest").executes(ctx -> {
                     var src = ctx.getSource();

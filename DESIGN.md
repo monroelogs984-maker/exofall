@@ -238,6 +238,16 @@ have a gear-making job (feed them X, after a while they drop Y). They come BEFOR
 capturing and breeding that meteor's existing bugs (not by taming a rare wild spawn). Which bugs, the capture item and
 each pet's stats are still open. Keep them below Ice and Fire dragon power but still strong.
 
+**Step 1 built 2026-11-12 (Glenn: "only the 8 parents breed")** — entity/mob/pet (PetPair, Pets, PetState):
+pairs Swamp = Glasswing x Mudgrub, Hive = Combwasp x Nursemaid, Desert = Golden Scarab x Shieldback (Shieldback my
+pick, Glenn didn't name the beetle), Rainforest = Bloommantis x Reedmantis. One treat per pair (vanilla table, 4 per
+craft): Sapcane Candy (sapcane + sugar), Nectar Drop (nectar bell + honeycomb), Dune Pellet (dunespine + bone meal),
+Mistcap Morsel (mistcap + umbrella fern); names are working names. Treat on a wild parent: 1 in 3 tames it (passive to
+players and other tamed pets, never despawns, scarab/nursemaid stop fleeing). Treat on two tamed adults: tamed baby,
+half size, grows up in 24000 ticks (treats speed it up), 5 min cooldown. Mudgrub keeps vanilla breeding (sapcane or
+candy). Tamed/bred Golden Scarabs drop nothing (no Desert Sigil farm). Cross-breeding (PetPair.CROSS_TREATS) waits for
+the hybrids. `/exofall pettest` passes (runs at world spawn: entity lookups need entity-ticking chunks).
+
 ## Bosses, arenas, sigils (2026-11-11; Glenn: "detailed and have a short cinematic after you encounter them. Worry about the arenas too and how to unlock them; then make them spawn in the middle of each meteor (we can later build AROUND them)")
 - **Arena** (`world/ArenaLayout`, `world/ArenaGen`): sealed dome at every meteor's centre, inner 15 x 12 tall, on a
   paved plaza (radius 24, cleared 16 up) that blends back into the ground by 32; trees/pillars are kept out to 38.

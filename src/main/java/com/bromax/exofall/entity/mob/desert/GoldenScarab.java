@@ -40,8 +40,14 @@ public class GoldenScarab extends Bug {
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(1, new PanicGoal(this, 1.7));
-        goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 10, 1.3, 1.7));
+        goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, e -> !isTamedPet(), 10, 1.3, 1.7, net.minecraft.world.entity.EntitySelector.NO_CREATIVE_OR_SPECTATOR::test));
         goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.9));
         goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+    }
+
+    /** Tamed and bred scarabs drop nothing, so the Desert Sigil can't be farmed. */
+    @Override
+    protected void dropFromLootTable(net.minecraft.world.damagesource.DamageSource source, boolean recent) {
+        if (!isTamedPet()) super.dropFromLootTable(source, recent);
     }
 }
