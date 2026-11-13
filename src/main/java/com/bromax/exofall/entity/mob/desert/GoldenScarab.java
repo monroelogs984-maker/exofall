@@ -15,8 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 /**
- * Rare gold-encrusted scarab: heavily armoured, runs from players. Planned to drop the sigil that
- * summons the Dozen-legged Wrath (sigils not built yet; drops gold nuggets for now).
+ * Rare gold-encrusted scarab: heavily armoured, runs from players. Drops gold nuggets and, when a player
+ * kills it, the Desert Sigil that opens the Dozen-legged Wrath's arena.
  */
 public class GoldenScarab extends Bug {
     private static final BugSounds SOUNDS = BugSounds.of(null, SoundEvents.ARMADILLO_HURT, SoundEvents.SILVERFISH_DEATH,

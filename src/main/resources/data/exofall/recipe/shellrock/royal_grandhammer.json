@@ -1,0 +1,32 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    "GWRWG",
+    "GGPGG",
+    "  L  ",
+    "  L  ",
+    "  L  "
+  ],
+  "key": {
+    "G": {
+      "item": "exofall:honeyguard_plate"
+    },
+    "L": {
+      "item": "exofall:combwood_log"
+    },
+    "P": {
+      "item": "exofall:propolis_gland"
+    },
+    "R": {
+      "item": "exofall:royal_honey_drop"
+    },
+    "W": {
+      "item": "exofall:crystallized_wing"
+    }
+  },
+  "result": {
+    "id": "exofall:royal_grandhammer",
+    "count": 1
+  }
+}

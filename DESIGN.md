@@ -62,8 +62,10 @@ biome cells keep biome-filtered overworld features out. Not done yet: crater rin
 - **Crust gating**: `exofall:needs_meteoric_tool` (crust) is in every vanilla `incorrect_for_*_tool` tag, netherite
   included. Tier `ModTiers.METEORIC`: 3000 uses, speed 10, +4 damage, enchant 15, repaired with echo shards (placeholder
   numbers). Crust hardness 60 (obsidian 50), still blast-proof.
-- **Placeholder Crustbreaker** pickaxe (name not final, netherite pickaxe texture). Placeholder recipe:
-  echo shard / nether star / echo shard over netherite ingot / netherite pickaxe / netherite ingot.
+- **Crustbreaker** pickaxe (2026-11-12, real: id `crustbreaker`, EPIC, 32x32 sprite from
+  textures-src/item/gen_crustbreaker.py: pearl Shellrock head with hammer face + spike, echo-shard collar). Vanilla
+  crafting table (you need it to get into a meteor): echo shard / nether star / echo shard, netherite ingot /
+  netherite pickaxe / netherite ingot, breeze rod under.
 - Caveat: modded pickaxes whose tier uses its own empty `incorrect_for` tag can still mine crust. Check S202's
   above-netherite tools when the pack integration happens.
 
@@ -310,6 +312,16 @@ range, +7.5% ambush each), Carapace 10% projectile block per piece. Repair items
 Drop, Mantis Eye, Terror Leg); recipes come with the 5x5 table recipes. EPIC, fire resistant, trimmable, enchantable.
 Textures: tools/armor/gen_armor.py (Netherite silhouette + shading remapped onto each set's ramp, details painted in
 box-UV face space; preview on tools/armor/stand.geo.json with tools/mobs/preview.py).
+
+## Recipes and dungeon-mob drops (2026-11-12)
+Each dungeon mob drops one crafting material, 1 in 3 per player kill (+10%/Looting level): Bogspinner = Bogsilk
+Spool, Mire Leech = Leech Fang, Honeyguard = Honeyguard Plate, Propolis Spitter = Propolis Gland, Antlion = Antlion
+Mandible, Tomb Scorpion = Tomb Stinger, Canopy Assassin = Assassin Hook, Pouncer = Pouncer Shell. All armour, the 4
+legendary weapons and the 6 baubles are crafted in the Shellrock table from these + boss drops (tools/gen_recipes.py
+writes data/exofall/recipe/shellrock; it trims empty pattern edges, which the table requires). Armour per set: 18
+main drop, 9 second drop, 3 boss drop (helmet/chest/legs), meteor block filler (Sapcane, Royal Amber, Shellrock,
+Polished Chitinstone). Armour repairs with the set's main drop. `/exofall recipetest` checks every recipe in a real
+5x5 grid and the drop rates. Not in JEI yet (no JEI plugin for the table).
 
 ## Legendary weapons (2026-11-12, Glenn's designs + numbers; built, uncraftable for now)
 One per meteor, standalone `ExofallWeaponItem` (SwordItem on the METEORIC tier, 3000 uses placeholder), EPIC, in the

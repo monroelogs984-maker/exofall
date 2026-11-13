@@ -1,0 +1,32 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    "SSSE ",
+    "S  LF",
+    "  C  ",
+    " L   ",
+    "L    "
+  ],
+  "key": {
+    "C": {
+      "item": "exofall:bogsilk_spool"
+    },
+    "E": {
+      "item": "exofall:bog_eye"
+    },
+    "F": {
+      "item": "exofall:lethal_proboscis"
+    },
+    "L": {
+      "item": "exofall:stiltreed_log"
+    },
+    "S": {
+      "item": "exofall:leech_fang"
+    }
+  },
+  "result": {
+    "id": "exofall:glasswing_scythe",
+    "count": 1
+  }
+}

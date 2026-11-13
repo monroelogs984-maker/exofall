@@ -1,0 +1,24 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    " HHH ",
+    "HRDRH",
+    " HHH "
+  ],
+  "key": {
+    "D": {
+      "item": "exofall:royal_honey_drop"
+    },
+    "H": {
+      "item": "minecraft:honeycomb"
+    },
+    "R": {
+      "item": "exofall:propolis_gland"
+    }
+  },
+  "result": {
+    "id": "exofall:nursemaids_wax_charm",
+    "count": 1
+  }
+}

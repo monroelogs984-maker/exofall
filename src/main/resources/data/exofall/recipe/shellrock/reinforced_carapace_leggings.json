@@ -1,0 +1,28 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "reinforced_carapace",
+  "pattern": [
+    "PKBKP",
+    "PS SP",
+    "K   K",
+    "K   K"
+  ],
+  "key": {
+    "B": {
+      "item": "exofall:mantis_eye"
+    },
+    "K": {
+      "item": "exofall:shellrock"
+    },
+    "P": {
+      "item": "exofall:pouncer_shell"
+    },
+    "S": {
+      "item": "exofall:assassin_hook"
+    }
+  },
+  "result": {
+    "id": "exofall:reinforced_carapace_leggings",
+    "count": 1
+  }
+}

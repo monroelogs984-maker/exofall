@@ -1,0 +1,29 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "ancientstone",
+  "pattern": [
+    "K   K",
+    "PKBKP",
+    "SPKPS",
+    "KPSPK",
+    " KPK "
+  ],
+  "key": {
+    "B": {
+      "item": "exofall:terror_leg"
+    },
+    "K": {
+      "item": "exofall:polished_chitinstone"
+    },
+    "P": {
+      "item": "exofall:tomb_stinger"
+    },
+    "S": {
+      "item": "exofall:antlion_mandible"
+    }
+  },
+  "result": {
+    "id": "exofall:ancientstone_chestplate",
+    "count": 1
+  }
+}

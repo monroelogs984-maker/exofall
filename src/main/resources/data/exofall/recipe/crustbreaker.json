@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "EHE",
+    "NPN",
+    " B "
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:echo_shard"
+    },
+    "H": {
+      "item": "minecraft:nether_star"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "P": {
+      "item": "minecraft:netherite_pickaxe"
+    },
+    "B": {
+      "item": "minecraft:breeze_rod"
+    }
+  },
+  "result": {
+    "id": "exofall:crustbreaker",
+    "count": 1
+  }
+}

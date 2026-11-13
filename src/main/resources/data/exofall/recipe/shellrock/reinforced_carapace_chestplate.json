@@ -1,0 +1,29 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "reinforced_carapace",
+  "pattern": [
+    "K   K",
+    "PKBKP",
+    "SPKPS",
+    "KPSPK",
+    " KPK "
+  ],
+  "key": {
+    "B": {
+      "item": "exofall:mantis_eye"
+    },
+    "K": {
+      "item": "exofall:shellrock"
+    },
+    "P": {
+      "item": "exofall:pouncer_shell"
+    },
+    "S": {
+      "item": "exofall:assassin_hook"
+    }
+  },
+  "result": {
+    "id": "exofall:reinforced_carapace_chestplate",
+    "count": 1
+  }
+}

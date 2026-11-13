@@ -1,0 +1,25 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    " GGG ",
+    "G   G",
+    "G R G",
+    " GPG "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "P": {
+      "item": "exofall:honeyguard_plate"
+    },
+    "R": {
+      "item": "exofall:propolis_gland"
+    }
+  },
+  "result": {
+    "id": "exofall:stinger_fang_ring",
+    "count": 1
+  }
+}

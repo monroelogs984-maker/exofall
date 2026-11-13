@@ -1,0 +1,27 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    " LHL ",
+    "LGEGL",
+    " LHL "
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "H": {
+      "item": "exofall:assassin_hook"
+    },
+    "L": {
+      "item": "exofall:veilpine_leaves"
+    }
+  },
+  "result": {
+    "id": "exofall:leafcutter_charm",
+    "count": 1
+  }
+}

@@ -21,18 +21,18 @@ import java.util.function.Supplier;
 
 /**
  * The four meteor armour sets (DESIGN.md "Armour sets"). They differ in role, not in unlock order. Defence is per piece
- * (boots, leggings, chestplate, helmet); durability is a multiple of the per-slot base, Netherite = 37. Repair items are
- * placeholders (each set's boss drop) until the Shellrock table recipes go in.
+ * (boots, leggings, chestplate, helmet); durability is a multiple of the per-slot base, Netherite = 37. Repaired with the
+ * set's main dungeon-mob drop.
  */
 public enum ArmorSet {
     /** Swamp stealth: mobs notice you at up to half range, ambush bonus. 20 armour / 2.5 toughness. */
-    MIREWEAVE("mireweave", new int[]{3, 6, 8, 3}, 2.5F, 0.0F, 37, 15, SoundEvents.ARMOR_EQUIP_LEATHER, () -> ModItems.BOG_EYE.get()),
+    MIREWEAVE("mireweave", new int[]{3, 6, 8, 3}, 2.5F, 0.0F, 37, 15, SoundEvents.ARMOR_EQUIP_LEATHER, () -> ModItems.BOGSILK_SPOOL.get()),
     /** Hive: full set gives +15% speed and constant Regeneration I. Diamond protection. */
-    CRYSTALLIZED_HONEY("crystallized_honey", new int[]{3, 6, 8, 3}, 2.0F, 0.0F, 37, 18, SoundEvents.ARMOR_EQUIP_GOLD, () -> ModItems.ROYAL_HONEY_DROP.get()),
+    CRYSTALLIZED_HONEY("crystallized_honey", new int[]{3, 6, 8, 3}, 2.0F, 0.0F, 37, 18, SoundEvents.ARMOR_EQUIP_GOLD, () -> ModItems.PROPOLIS_GLAND.get()),
     /** Rainforest: projectile protection. 22 armour / 4 toughness. */
-    REINFORCED_CARAPACE("reinforced_carapace", new int[]{4, 7, 8, 3}, 4.0F, 0.1F, 43, 15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> ModItems.MANTIS_EYE.get()),
+    REINFORCED_CARAPACE("reinforced_carapace", new int[]{4, 7, 8, 3}, 4.0F, 0.1F, 43, 15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> ModItems.POUNCER_SHELL.get()),
     /** Desert tank: 24 armour / 6 toughness, -2.5% speed per piece. */
-    ANCIENTSTONE("ancientstone", new int[]{4, 7, 9, 4}, 6.0F, 0.2F, 74, 10, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> ModItems.TERROR_LEG.get());
+    ANCIENTSTONE("ancientstone", new int[]{4, 7, 9, 4}, 6.0F, 0.2F, 74, 10, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> ModItems.TOMB_STINGER.get());
 
     public static final DeferredRegister<ArmorMaterial> MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, Exofall.MOD_ID);
 

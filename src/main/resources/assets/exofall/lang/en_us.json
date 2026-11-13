@@ -171,7 +171,6 @@
   "item.exofall.mantis_greatclaw": "Mantis Greatclaw",
   "item.exofall.mudgrub_spawn_egg": "Mudgrub Spawn Egg",
   "item.exofall.nursemaid_spawn_egg": "Nursemaid Spawn Egg",
-  "item.exofall.placeholder_crustbreaker": "Placeholder Crustbreaker",
   "item.exofall.rainforest_sigil": "Rainforest Sigil",
   "item.exofall.rainforest_sigil_fragment": "Rainforest Sigil Fragment",
   "item.exofall.reedmantis_spawn_egg": "Reedmantis Spawn Egg",
@@ -262,5 +261,14 @@
   "item.exofall.ancientstone_helmet": "Ancientstone Helmet",
   "item.exofall.ancientstone_chestplate": "Ancientstone Chestplate",
   "item.exofall.ancientstone_leggings": "Ancientstone Leggings",
-  "item.exofall.ancientstone_boots": "Ancientstone Boots"
+  "item.exofall.ancientstone_boots": "Ancientstone Boots",
+  "item.exofall.bogsilk_spool": "Bogsilk Spool",
+  "item.exofall.leech_fang": "Leech Fang",
+  "item.exofall.honeyguard_plate": "Honeyguard Plate",
+  "item.exofall.propolis_gland": "Propolis Gland",
+  "item.exofall.antlion_mandible": "Antlion Mandible",
+  "item.exofall.tomb_stinger": "Tomb Stinger",
+  "item.exofall.assassin_hook": "Assassin Hook",
+  "item.exofall.pouncer_shell": "Pouncer Shell",
+  "item.exofall.crustbreaker": "Crustbreaker"
 }

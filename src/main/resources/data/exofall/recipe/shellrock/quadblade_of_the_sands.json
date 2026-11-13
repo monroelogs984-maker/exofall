@@ -1,0 +1,29 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    "M   M",
+    " TVT ",
+    "  L  ",
+    " TLT ",
+    "M   M"
+  ],
+  "key": {
+    "L": {
+      "item": "exofall:ribwood_log"
+    },
+    "M": {
+      "item": "exofall:antlion_mandible"
+    },
+    "T": {
+      "item": "exofall:terror_leg"
+    },
+    "V": {
+      "item": "exofall:venomjaw"
+    }
+  },
+  "result": {
+    "id": "exofall:quadblade_of_the_sands",
+    "count": 1
+  }
+}

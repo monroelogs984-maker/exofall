@@ -1,0 +1,27 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "crystallized_honey",
+  "pattern": [
+    "KPPPK",
+    "PSBSP",
+    "K   K"
+  ],
+  "key": {
+    "B": {
+      "item": "exofall:royal_honey_drop"
+    },
+    "K": {
+      "item": "exofall:royal_amber"
+    },
+    "P": {
+      "item": "exofall:propolis_gland"
+    },
+    "S": {
+      "item": "exofall:honeyguard_plate"
+    }
+  },
+  "result": {
+    "id": "exofall:crystallized_honey_helmet",
+    "count": 1
+  }
+}

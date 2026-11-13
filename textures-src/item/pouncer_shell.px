@@ -1,0 +1,35 @@
+size 16 16
+// Pouncer Shell (Pouncer drop): its domed back plate, dark leaf-green chitin with banded segments and pale spots.
+gradramp shell 9 #0c1a0c #16301a #224626 #305e30 #427838 #5a9444 #7cb05a #a8d07e
+layer dome
+key X #427838
+grid 0 0
+................
+................
+......XXXX......
+....XXXXXXXX....
+...XXXXXXXXXX...
+..XXXXXXXXXXXX..
+..XXXXXXXXXXXX..
+.XXXXXXXXXXXXXX.
+.XXXXXXXXXXXXXX.
+.XXXXXXXXXXXXXX.
+..XXXXXXXXXXXX..
+..XXXXXXXXXXXX..
+...XXXXXXXXXX...
+.....XXXXXX.....
+................
+................
+end
+shade shell light=-1,-1 depth=4 contrast=0.65 base=0.5
+layer bands
+line 3 6 12 6 shell.2
+line 2 9 13 9 shell.2
+line 3 12 12 12 shell.2
+layer midline
+line 7 3 7 12 shell.6
+layer spots
+px 5 4 shell.8
+px 10 7 shell.7
+px 4 10 shell.7
+px 11 10 shell.6

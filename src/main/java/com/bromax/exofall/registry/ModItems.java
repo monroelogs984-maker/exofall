@@ -24,10 +24,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public final class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Exofall.MOD_ID);
 
-    /** Crust-breaker pickaxe: the only tool that drops meteor crust. Name and recipe are placeholders. */
-    public static final DeferredItem<PickaxeItem> PLACEHOLDER_CRUSTBREAKER = ITEMS.register("placeholder_crustbreaker",
+    /** The Crustbreaker: the only tool that mines Shellrock (meteor crust). Crafted from vanilla endgame materials,
+     *  since you need it to get into a meteor in the first place. */
+    public static final DeferredItem<PickaxeItem> CRUSTBREAKER = ITEMS.register("crustbreaker",
             () -> new PickaxeItem(ModTiers.METEORIC, new Item.Properties()
-                    .fireResistant()
+                    .fireResistant().rarity(net.minecraft.world.item.Rarity.EPIC)
                     .attributes(PickaxeItem.createAttributes(ModTiers.METEORIC, 1.0F, -2.8F))));
 
     static {
@@ -164,6 +165,20 @@ public final class ModItems {
             () -> new net.minecraft.world.item.SwordItem(ModTiers.METEORIC, new Item.Properties()
                     .rarity(net.minecraft.world.item.Rarity.RARE).fireResistant()
                     .attributes(weapon(8.0, 1.3))));
+
+    // ---- Dungeon mob drops (uncommon, 1 in 3 per player kill): crafting materials for meteor gear
+    private static DeferredItem<Item> mobDrop(String id) {
+        return ITEMS.register(id, () -> new Item(new Item.Properties().rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
+    }
+
+    public static final DeferredItem<Item> BOGSILK_SPOOL = mobDrop("bogsilk_spool");       // Bogspinner
+    public static final DeferredItem<Item> LEECH_FANG = mobDrop("leech_fang");             // Mire Leech
+    public static final DeferredItem<Item> HONEYGUARD_PLATE = mobDrop("honeyguard_plate"); // Honeyguard
+    public static final DeferredItem<Item> PROPOLIS_GLAND = mobDrop("propolis_gland");     // Propolis Spitter
+    public static final DeferredItem<Item> ANTLION_MANDIBLE = mobDrop("antlion_mandible"); // Antlion
+    public static final DeferredItem<Item> TOMB_STINGER = mobDrop("tomb_stinger");         // Tomb Scorpion
+    public static final DeferredItem<Item> ASSASSIN_HOOK = mobDrop("assassin_hook");       // Canopy Assassin
+    public static final DeferredItem<Item> POUNCER_SHELL = mobDrop("pouncer_shell");       // Pouncer
 
     // ---- Legendary boss weapons (3D models; uncraftable for now, Shellrock Crafting Table recipes come later)
     private static DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> legendary(String id,

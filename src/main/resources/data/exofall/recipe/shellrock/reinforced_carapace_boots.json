@@ -1,0 +1,23 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "reinforced_carapace",
+  "pattern": [
+    "K   K",
+    "PS SP"
+  ],
+  "key": {
+    "K": {
+      "item": "exofall:shellrock"
+    },
+    "P": {
+      "item": "exofall:pouncer_shell"
+    },
+    "S": {
+      "item": "exofall:assassin_hook"
+    }
+  },
+  "result": {
+    "id": "exofall:reinforced_carapace_boots",
+    "count": 1
+  }
+}

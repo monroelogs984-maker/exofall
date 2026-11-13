@@ -1,0 +1,26 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    " C C ",
+    "C   C",
+    " GBG ",
+    " BBB ",
+    "  G  "
+  ],
+  "key": {
+    "B": {
+      "item": "exofall:bubble_sac"
+    },
+    "C": {
+      "item": "exofall:bogsilk_spool"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "id": "exofall:divebell_locket",
+    "count": 1
+  }
+}

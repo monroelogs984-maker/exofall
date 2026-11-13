@@ -1,0 +1,28 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "ancientstone",
+  "pattern": [
+    "PKBKP",
+    "PS SP",
+    "K   K",
+    "K   K"
+  ],
+  "key": {
+    "B": {
+      "item": "exofall:terror_leg"
+    },
+    "K": {
+      "item": "exofall:polished_chitinstone"
+    },
+    "P": {
+      "item": "exofall:tomb_stinger"
+    },
+    "S": {
+      "item": "exofall:antlion_mandible"
+    }
+  },
+  "result": {
+    "id": "exofall:ancientstone_leggings",
+    "count": 1
+  }
+}

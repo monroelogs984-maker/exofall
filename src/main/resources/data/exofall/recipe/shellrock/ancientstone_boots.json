@@ -1,0 +1,23 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "ancientstone",
+  "pattern": [
+    "K   K",
+    "PS SP"
+  ],
+  "key": {
+    "K": {
+      "item": "exofall:polished_chitinstone"
+    },
+    "P": {
+      "item": "exofall:tomb_stinger"
+    },
+    "S": {
+      "item": "exofall:antlion_mandible"
+    }
+  },
+  "result": {
+    "id": "exofall:ancientstone_boots",
+    "count": 1
+  }
+}

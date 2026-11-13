@@ -1,0 +1,29 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    "C C",
+    " C ",
+    "GLG",
+    "LML",
+    " G "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "L": {
+      "item": "exofall:lanternpod"
+    },
+    "M": {
+      "item": "exofall:glowmarl"
+    }
+  },
+  "result": {
+    "id": "exofall:lantern_moth_pendant",
+    "count": 1
+  }
+}

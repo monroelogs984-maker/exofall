@@ -114,6 +114,13 @@ public final class ExofallCommands {
                         src.sendSuccess(() -> Component.literal(line), false);
                     return 1;
                 }))
+                // /exofall recipetest: every Shellrock table recipe crafts its item; mob drop rates (testing)
+                .then(Commands.literal("recipetest").executes(ctx -> {
+                    var src = ctx.getSource();
+                    for (String line : com.bromax.exofall.crafting.RecipeSelfTest.run(src.getLevel(), BlockPos.containing(src.getPosition())))
+                        src.sendSuccess(() -> Component.literal(line), false);
+                    return 1;
+                }))
                 // /exofall baubletest: checks the baubles' hooks on a fake player (testing)
                 .then(Commands.literal("baubletest").executes(ctx -> {
                     var src = ctx.getSource();

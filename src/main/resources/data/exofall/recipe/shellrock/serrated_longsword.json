@@ -1,0 +1,32 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "meteor_gear",
+  "pattern": [
+    "   HH",
+    "  HCH",
+    " SEH ",
+    " LS  ",
+    "L    "
+  ],
+  "key": {
+    "C": {
+      "item": "exofall:mantis_greatclaw"
+    },
+    "E": {
+      "item": "exofall:mantis_eye"
+    },
+    "H": {
+      "item": "exofall:assassin_hook"
+    },
+    "L": {
+      "item": "exofall:veilpine_log"
+    },
+    "S": {
+      "item": "exofall:pouncer_shell"
+    }
+  },
+  "result": {
+    "id": "exofall:serrated_longsword",
+    "count": 1
+  }
+}

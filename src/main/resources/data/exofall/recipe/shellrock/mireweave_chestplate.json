@@ -1,0 +1,29 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "mireweave",
+  "pattern": [
+    "K   K",
+    "PKBKP",
+    "SPKPS",
+    "KPSPK",
+    " KPK "
+  ],
+  "key": {
+    "B": {
+      "item": "exofall:bog_eye"
+    },
+    "K": {
+      "item": "exofall:sapcane"
+    },
+    "P": {
+      "item": "exofall:bogsilk_spool"
+    },
+    "S": {
+      "item": "exofall:leech_fang"
+    }
+  },
+  "result": {
+    "id": "exofall:mireweave_chestplate",
+    "count": 1
+  }
+}
