@@ -43,3 +43,10 @@ type="required"
 versionRange="[9.0,)"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.exofall]]
+modId="jei"
+type="optional"
+versionRange="[19.0,)"
+ordering="NONE"
+side="CLIENT"

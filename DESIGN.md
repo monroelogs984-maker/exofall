@@ -321,7 +321,7 @@ legendary weapons and the 6 baubles are crafted in the Shellrock table from thes
 writes data/exofall/recipe/shellrock; it trims empty pattern edges, which the table requires). Armour per set: 18
 main drop, 9 second drop, 3 boss drop (helmet/chest/legs), meteor block filler (Sapcane, Royal Amber, Shellrock,
 Polished Chitinstone). Armour repairs with the set's main drop. `/exofall recipetest` checks every recipe in a real
-5x5 grid and the drop rates. Not in JEI yet (no JEI plugin for the table).
+5x5 grid and the drop rates. JEI page with "+" transfer (compat/jei, optional dep; dev NeoForge bumped to 21.1.265 because JEI 19.64 needs 21.1.238+).
 
 ## Legendary weapons (2026-11-12, Glenn's designs + numbers; built, uncraftable for now)
 One per meteor, standalone `ExofallWeaponItem` (SwordItem on the METEORIC tier, 3000 uses placeholder), EPIC, in the

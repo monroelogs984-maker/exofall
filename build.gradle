@@ -23,12 +23,14 @@ runs {
 }
 
 dependencies {
-    implementation "net.neoforged:neoforge:21.1.233"
+    implementation "net.neoforged:neoforge:21.1.265"
     // Mob models/animations. Compiled against the exact GeckoLib jar S202 ships (copy it into libs/,
     // libs/ is git-ignored: ~/Documents/curseforge/minecraft/Instances/S202Neoforge/mods/).
     implementation files('libs/geckolib-neoforge-1.21.1-4.9.3.jar')
     // Baubles (Curios slots). Same jar S202 ships, also git-ignored in libs/.
     implementation files('libs/curios-neoforge-9.5.1+1.21.1.jar')
+    // JEI page for the Shellrock table (optional at runtime). Same jar as the Exofall Testing instance, git-ignored in libs/.
+    compileOnly files('libs/jei-1.21.1-neoforge-19.64.0.455.jar')
 }
 
 jar {
