@@ -1,0 +1,90 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:shellrock"
+    },
+    "title": {
+      "translate": "advancement.exofall.root"
+    },
+    "description": {
+      "translate": "advancement.exofall.root.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "background": "exofall:textures/block/chitinstone_bricks.png"
+  },
+  "criteria": {
+    "swamp": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "exofall:swamp_meteor"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "hive": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "exofall:hive_meteor"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "desert": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "exofall:desert_meteor"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "rainforest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "exofall:rainforest_meteor"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "swamp",
+      "hive",
+      "desert",
+      "rainforest"
+    ]
+  ]
+}

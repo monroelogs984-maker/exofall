@@ -1,0 +1,134 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:ancientstone_chestplate"
+    },
+    "title": {
+      "translate": "advancement.exofall.full_set"
+    },
+    "description": {
+      "translate": "advancement.exofall.full_set.desc"
+    },
+    "frame": "goal",
+    "hidden": false
+  },
+  "criteria": {
+    "mireweave": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "head": {
+                  "items": "exofall:mireweave_helmet"
+                },
+                "chest": {
+                  "items": "exofall:mireweave_chestplate"
+                },
+                "legs": {
+                  "items": "exofall:mireweave_leggings"
+                },
+                "feet": {
+                  "items": "exofall:mireweave_boots"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "crystallized_honey": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "head": {
+                  "items": "exofall:crystallized_honey_helmet"
+                },
+                "chest": {
+                  "items": "exofall:crystallized_honey_chestplate"
+                },
+                "legs": {
+                  "items": "exofall:crystallized_honey_leggings"
+                },
+                "feet": {
+                  "items": "exofall:crystallized_honey_boots"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "reinforced_carapace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "head": {
+                  "items": "exofall:reinforced_carapace_helmet"
+                },
+                "chest": {
+                  "items": "exofall:reinforced_carapace_chestplate"
+                },
+                "legs": {
+                  "items": "exofall:reinforced_carapace_leggings"
+                },
+                "feet": {
+                  "items": "exofall:reinforced_carapace_boots"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "ancientstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "head": {
+                  "items": "exofall:ancientstone_helmet"
+                },
+                "chest": {
+                  "items": "exofall:ancientstone_chestplate"
+                },
+                "legs": {
+                  "items": "exofall:ancientstone_leggings"
+                },
+                "feet": {
+                  "items": "exofall:ancientstone_boots"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:armour",
+  "requirements": [
+    [
+      "mireweave",
+      "crystallized_honey",
+      "reinforced_carapace",
+      "ancientstone"
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:bog_eye"
+    },
+    "title": {
+      "translate": "advancement.exofall.kill_terror_of_the_bog"
+    },
+    "description": {
+      "translate": "advancement.exofall.kill_terror_of_the_bog.desc"
+    },
+    "frame": "goal",
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "exofall:terror_of_the_bog"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:sigil",
+  "rewards": {
+    "experience": 100
+  }
+}

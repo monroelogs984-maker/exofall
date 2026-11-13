@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:divebell_locket"
+    },
+    "title": {
+      "translate": "advancement.exofall.bauble"
+    },
+    "description": {
+      "translate": "advancement.exofall.bauble.desc"
+    },
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "exofall:divebell_locket",
+              "exofall:ember_beetle_brooch",
+              "exofall:leafcutter_charm",
+              "exofall:stinger_fang_ring",
+              "exofall:nursemaids_wax_charm",
+              "exofall:lantern_moth_pendant"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:table"
+}

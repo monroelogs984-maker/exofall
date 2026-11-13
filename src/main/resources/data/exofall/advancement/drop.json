@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:bogsilk_spool"
+    },
+    "title": {
+      "translate": "advancement.exofall.drop"
+    },
+    "description": {
+      "translate": "advancement.exofall.drop.desc"
+    },
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "exofall:bogsilk_spool",
+              "exofall:leech_fang",
+              "exofall:honeyguard_plate",
+              "exofall:propolis_gland",
+              "exofall:antlion_mandible",
+              "exofall:tomb_stinger",
+              "exofall:assassin_hook",
+              "exofall:pouncer_shell"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:crustbreaker"
+}

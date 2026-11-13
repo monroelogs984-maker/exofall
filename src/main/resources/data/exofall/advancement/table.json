@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:shellrock_crafting_table"
+    },
+    "title": {
+      "translate": "advancement.exofall.table"
+    },
+    "description": {
+      "translate": "advancement.exofall.table.desc"
+    },
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "exofall:shellrock_crafting_table"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:crustbreaker"
+}

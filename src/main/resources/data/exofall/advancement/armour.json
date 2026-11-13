@@ -1,0 +1,45 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:mireweave_chestplate"
+    },
+    "title": {
+      "translate": "advancement.exofall.armour"
+    },
+    "description": {
+      "translate": "advancement.exofall.armour.desc"
+    },
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "exofall:mireweave_helmet",
+              "exofall:mireweave_chestplate",
+              "exofall:mireweave_leggings",
+              "exofall:mireweave_boots",
+              "exofall:crystallized_honey_helmet",
+              "exofall:crystallized_honey_chestplate",
+              "exofall:crystallized_honey_leggings",
+              "exofall:crystallized_honey_boots",
+              "exofall:reinforced_carapace_helmet",
+              "exofall:reinforced_carapace_chestplate",
+              "exofall:reinforced_carapace_leggings",
+              "exofall:reinforced_carapace_boots",
+              "exofall:ancientstone_helmet",
+              "exofall:ancientstone_chestplate",
+              "exofall:ancientstone_leggings",
+              "exofall:ancientstone_boots"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:table"
+}

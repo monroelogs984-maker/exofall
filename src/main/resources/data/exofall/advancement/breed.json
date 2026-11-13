@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:nectar_drop"
+    },
+    "title": {
+      "translate": "advancement.exofall.breed"
+    },
+    "description": {
+      "translate": "advancement.exofall.breed.desc"
+    },
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "bred": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "exofall:tame"
+}

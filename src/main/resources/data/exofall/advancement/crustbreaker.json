@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:crustbreaker"
+    },
+    "title": {
+      "translate": "advancement.exofall.crustbreaker"
+    },
+    "description": {
+      "translate": "advancement.exofall.crustbreaker.desc"
+    },
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "exofall:crustbreaker"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:root"
+}

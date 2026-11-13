@@ -128,6 +128,17 @@ public final class ExofallCommands {
                         src.sendSuccess(() -> Component.literal(line), false);
                     return 1;
                 }))
+                // /exofall dumpids: every exofall registry id to exofall_ids.txt in the run folder (asset audit)
+                .then(Commands.literal("dumpids").executes(ctx -> {
+                    StringBuilder sb = new StringBuilder();
+                    for (var e : net.minecraft.core.registries.BuiltInRegistries.ITEM.keySet()) if (e.getNamespace().equals("exofall")) sb.append("item ").append(e.getPath()).append('\n');
+                    for (var e : net.minecraft.core.registries.BuiltInRegistries.BLOCK.keySet()) if (e.getNamespace().equals("exofall")) sb.append("block ").append(e.getPath()).append('\n');
+                    for (var e : net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.keySet()) if (e.getNamespace().equals("exofall")) sb.append("entity ").append(e.getPath()).append('\n');
+                    for (var e : net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.keySet()) if (e.getNamespace().equals("exofall")) sb.append("effect ").append(e.getPath()).append('\n');
+                    try { java.nio.file.Files.writeString(java.nio.file.Path.of("exofall_ids.txt"), sb); } catch (java.io.IOException ex) { throw new RuntimeException(ex); }
+                    ctx.getSource().sendSuccess(() -> Component.literal("wrote exofall_ids.txt"), false);
+                    return 1;
+                }))
                 // /exofall baubletest: checks the baubles' hooks on a fake player (testing)
                 .then(Commands.literal("baubletest").executes(ctx -> {
                     var src = ctx.getSource();

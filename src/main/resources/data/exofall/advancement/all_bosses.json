@@ -1,0 +1,77 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:mantis_greatclaw"
+    },
+    "title": {
+      "translate": "advancement.exofall.all_bosses"
+    },
+    "description": {
+      "translate": "advancement.exofall.all_bosses.desc"
+    },
+    "frame": "challenge",
+    "hidden": false
+  },
+  "criteria": {
+    "terror_of_the_bog": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "exofall:terror_of_the_bog"
+            }
+          }
+        ]
+      }
+    },
+    "waxen_queen": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "exofall:waxen_queen"
+            }
+          }
+        ]
+      }
+    },
+    "dozen_legged_wrath": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "exofall:dozen_legged_wrath"
+            }
+          }
+        ]
+      }
+    },
+    "apex_mantis": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "exofall:apex_mantis"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:kill_apex_mantis",
+  "rewards": {
+    "experience": 500
+  }
+}

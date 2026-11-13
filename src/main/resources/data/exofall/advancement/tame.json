@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:sapcane_candy"
+    },
+    "title": {
+      "translate": "advancement.exofall.tame"
+    },
+    "description": {
+      "translate": "advancement.exofall.tame.desc"
+    },
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "tamed": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "exofall:root"
+}

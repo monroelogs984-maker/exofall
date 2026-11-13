@@ -32,6 +32,16 @@ public final class Pets {
     }
 
     /** Right-click with a treat. Returns PASS when it isn't this pet's treat, so the mob's own interaction runs. */
+    /** Grants one of Exofall's code-awarded advancements (criterion trigger "minecraft:impossible"). */
+    public static void award(Player player, String advancement, String criterion) {
+        if (!(player instanceof net.minecraft.server.level.ServerPlayer sp) || sp.getServer() == null) return;
+        var adv = sp.getServer().getAdvancements().get(com.bromax.exofall.Exofall.id(advancement));
+        if (adv != null) sp.getAdvancements().award(adv, criterion);
+    }
+
+    /** Last player who fed this pet a treat, so a birth can credit them. */
+    private static final java.util.Map<java.util.UUID, java.util.UUID> FEEDER = new java.util.concurrent.ConcurrentHashMap<>();
+
     public static InteractionResult interact(Mob mob, Pet pet, Player player, InteractionHand hand, boolean baby) {
         PetPair pair = PetPair.of(mob.getType());
         ItemStack stack = player.getItemInHand(hand);
@@ -43,6 +53,7 @@ public final class Pets {
             if (mob.getRandom().nextInt(TAME_ODDS) == 0) {
                 st.tamed = true;
                 mob.setPersistenceRequired();
+                award(player, "tame", "tamed");
                 mob.setTarget(null);
                 mob.getNavigation().stop();
                 particles(mob, true);
@@ -60,6 +71,7 @@ public final class Pets {
         if (st.love > 0 || st.cooldown > 0) return InteractionResult.PASS;
         use(player, stack);
         st.love = LOVE_TICKS;
+        FEEDER.put(mob.getUUID(), player.getUUID());
         particles(mob, true);
         return InteractionResult.CONSUME;
     }
@@ -107,6 +119,8 @@ public final class Pets {
             ps.cooldown = COOLDOWN;
         }
         particles(mob, true);
+        java.util.UUID who = FEEDER.remove(mob.getUUID());
+        if (who != null && level.getPlayerByUUID(who) instanceof Player p) award(p, "breed", "bred");
         level.addFreshEntity(new ExperienceOrb(level, mob.getX(), mob.getY(), mob.getZ(), 1 + mob.getRandom().nextInt(7)));
     }
 

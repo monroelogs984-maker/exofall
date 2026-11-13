@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:serrated_longsword"
+    },
+    "title": {
+      "translate": "advancement.exofall.legendary"
+    },
+    "description": {
+      "translate": "advancement.exofall.legendary.desc"
+    },
+    "frame": "goal",
+    "hidden": false
+  },
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "exofall:glasswing_scythe",
+              "exofall:royal_grandhammer",
+              "exofall:quadblade_of_the_sands",
+              "exofall:serrated_longsword"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:table"
+}

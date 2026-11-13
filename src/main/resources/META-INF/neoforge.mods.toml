@@ -1,16 +1,23 @@
 modLoader="javafml"
 loaderVersion="[4,)"
 license="MIT"
-issueTrackerURL="https://github.com/monroelogs984-maker/exofall/issues"
 
 [[mods]]
 modId="exofall"
 version="${file.jarVersion}"
 displayName="BROMAX's Exofall"
+logoFile="exofall_logo.png"
 authors="BROMAX"
 credits="Inspired by The Erebus by vadis365 and team. No Erebus code or assets are used."
 description='''
-Huge half-buried meteors, each a self-contained biome of insects, strange plants, dungeons and legendary gear.
+Huge meteors have crashed into the world, each one a sealed shell with a living world inside.
+
+Crack the crust with a Crustbreaker and explore four meteors (Swamp, Hive, Desert and Rainforest), each with its
+own alien plants and woods and over thirty giant bugs that hunt each other and you. Dig into the Warrens beneath
+them, take sigils to the domes at their hearts, and fight four bosses for the parts to craft meteor armour,
+legendary weapons and baubles on the 5x5 Shellrock Crafting Table. Tame and breed the meteors' bugs.
+
+With Patchouli installed, the Exofall Field Guide explains all of it.
 '''
 
 [[mixins]]

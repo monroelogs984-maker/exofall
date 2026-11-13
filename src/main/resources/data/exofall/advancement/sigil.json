@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "id": "exofall:swamp_sigil"
+    },
+    "title": {
+      "translate": "advancement.exofall.sigil"
+    },
+    "description": {
+      "translate": "advancement.exofall.sigil.desc"
+    },
+    "frame": "task",
+    "hidden": false
+  },
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "exofall:swamp_sigil",
+              "exofall:hive_sigil",
+              "exofall:desert_sigil",
+              "exofall:rainforest_sigil"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "exofall:drop"
+}
