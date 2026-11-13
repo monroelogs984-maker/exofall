@@ -1,0 +1,29 @@
+{
+  "name": "Mireweave",
+  "icon": "exofall:mireweave_chestplate",
+  "category": "exofall:gear",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Swamp stealth cloth. $(thing)Each piece$(): mobs notice you 12.5% closer, and you deal 7.5% more damage to mobs that aren't targeting you. A full set halves how far mobs see you and adds 30% ambush damage. Bosses aren't fooled.$(br2)Armour like Netherite, toughness 2.5.",
+      "title": "Mireweave"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/mireweave_helmet"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/mireweave_chestplate"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/mireweave_leggings"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/mireweave_boots"
+    }
+  ]
+}

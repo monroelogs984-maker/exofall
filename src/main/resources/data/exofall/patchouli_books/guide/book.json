@@ -1,0 +1,10 @@
+{
+  "name": "Exofall Field Guide",
+  "landing_text": "Notes on the meteors: how to get in, what lives inside, what it drops and what to make from it.$(br2)Start with $(l:basics/welcome)Getting Started$(/l).",
+  "use_resource_pack": true,
+  "creative_tab": "exofall:main",
+  "book_texture": "patchouli:textures/gui/book_green.png",
+  "filler_texture": "patchouli:textures/gui/page_filler.png",
+  "show_progress": false,
+  "i18n": false
+}

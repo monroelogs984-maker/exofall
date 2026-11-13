@@ -1,0 +1,17 @@
+{
+  "name": "Inside a Meteor",
+  "icon": "exofall:glowmarl",
+  "category": "exofall:meteors",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Inside, the shell is lined with Chitinstone and lit by glowing plants and stone, not the sun, so it's never fully dark and never fully day. No Overworld mobs spawn here, only the meteor's own bugs.$(br2)The bugs hunt each other: you'll see dragonflies chasing grubs and mantises eating moths.",
+      "title": "Inside a Meteor"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "At the very centre stands a sealed $(l:bosses/arenas)boss dome$(/l) on a paved plaza. Under the floor run the $(l:warrens/warrens)Warrens$(/l), and shacks dot the ground above them.$(br2)Alien plants only grow on $(item)Glowmarl$(). You can carry them out, but they won't spread on normal ground."
+    }
+  ]
+}

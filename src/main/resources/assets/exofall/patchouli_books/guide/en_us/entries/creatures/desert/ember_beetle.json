@@ -1,0 +1,19 @@
+{
+  "name": "Ember Beetle",
+  "icon": "exofall:ember_beetle_spawn_egg",
+  "category": "exofall:creatures/desert",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:ember_beetle",
+      "scale": 0.9,
+      "text": "Glowing, harmless prey."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A small glowing beetle the hunters feed on. Harmless.",
+      "title": "Ember Beetle"
+    }
+  ]
+}

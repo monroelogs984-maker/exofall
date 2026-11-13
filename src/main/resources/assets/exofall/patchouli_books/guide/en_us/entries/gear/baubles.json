@@ -1,0 +1,73 @@
+{
+  "name": "Baubles",
+  "icon": "exofall:divebell_locket",
+  "category": "exofall:gear",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Trinkets worn in Curios slots (necklace, body, charm, ring). The two necklaces share one slot, and so do the two charms, so pick.",
+      "title": "Baubles"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:divebell_locket",
+      "text": "Necklace. Breathe underwater and mine at normal speed underwater.",
+      "title": "Divebell Locket"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/divebell_locket"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:lantern_moth_pendant",
+      "text": "Necklace. In the dark, hostile mobs within 8 blocks get outlined.",
+      "title": "Lantern Moth Pendant"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/lantern_moth_pendant"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:ember_beetle_brooch",
+      "text": "Body. Fire damage is halved.",
+      "title": "Ember Beetle Brooch"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/ember_beetle_brooch"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:leafcutter_charm",
+      "text": "Charm. Cobwebs and berry bushes don't slow or hurt you; leaves, vines and webs break instantly.",
+      "title": "Leafcutter Charm"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/leafcutter_charm"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:nursemaids_wax_charm",
+      "text": "Charm. Food fills 50% more, and you heal while standing on honey or honeycomb.",
+      "title": "Nursemaid's Wax Charm"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/nursemaids_wax_charm"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:stinger_fang_ring",
+      "text": "Ring. Fully charged hits poison for 2 s.",
+      "title": "Stinger Fang Ring"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/stinger_fang_ring"
+    }
+  ]
+}

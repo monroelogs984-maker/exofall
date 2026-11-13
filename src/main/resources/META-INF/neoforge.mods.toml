@@ -50,3 +50,10 @@ type="optional"
 versionRange="[19.0,)"
 ordering="NONE"
 side="CLIENT"
+
+[[dependencies.exofall]]
+modId="patchouli"
+type="optional"
+versionRange="*"
+ordering="NONE"
+side="BOTH"

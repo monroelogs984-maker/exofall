@@ -1,0 +1,19 @@
+{
+  "name": "Bogspinner",
+  "icon": "exofall:bogspinner_spawn_egg",
+  "category": "exofall:creatures/swamp",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:bogspinner",
+      "scale": 0.6,
+      "text": "Fishing spider that spits silk."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Strings webs across gaps. From range it rears up ($(thing)tell$()) and spits silk that leaves a web where it lands. Its bite is half again as strong on anything stuck in a web. Webs vanish after 30 s.$(br2)Drops $(item)Bogsilk Spool$().",
+      "title": "Bogspinner"
+    }
+  ]
+}

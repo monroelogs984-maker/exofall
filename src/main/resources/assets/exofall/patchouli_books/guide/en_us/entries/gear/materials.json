@@ -1,0 +1,61 @@
+{
+  "name": "Crafting Materials",
+  "icon": "exofall:bogsilk_spool",
+  "category": "exofall:gear",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Meteor gear is made from what the bugs drop. Each $(l:warrens/warrens)Warren$(/l) bug drops a crafting part about 1 kill in 3 (more with Looting) when a player kills it. Bosses always drop their parts.",
+      "title": "Crafting Materials"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:bogsilk_spool",
+      "text": "From Bogspinners (swamp).",
+      "title": "Bogsilk Spool"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:leech_fang",
+      "text": "From Mire Leeches (swamp).",
+      "title": "Leech Fang"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:honeyguard_plate",
+      "text": "From Honeyguards (hive).",
+      "title": "Honeyguard Plate"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:propolis_gland",
+      "text": "From Propolis Spitters (hive).",
+      "title": "Propolis Gland"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:antlion_mandible",
+      "text": "From Antlions (desert).",
+      "title": "Antlion Mandible"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:tomb_stinger",
+      "text": "From Tomb Scorpions (desert).",
+      "title": "Tomb Stinger"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:assassin_hook",
+      "text": "From Canopy Assassins (rainforest).",
+      "title": "Assassin Hook"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:pouncer_shell",
+      "text": "From Pouncers (rainforest).",
+      "title": "Pouncer Shell"
+    }
+  ]
+}

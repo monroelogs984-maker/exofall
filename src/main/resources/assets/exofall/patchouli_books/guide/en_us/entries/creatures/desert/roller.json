@@ -1,0 +1,19 @@
+{
+  "name": "Roller",
+  "icon": "exofall:roller_spawn_egg",
+  "category": "exofall:creatures/desert",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:roller",
+      "scale": 0.6,
+      "text": "Rolls boulders down at you."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Keeps 5 to 16 blocks away. $(thing)Tell:$() it rears up for a second, then rolls a heavy boulder at you. It takes 8 s to make another. Dodge sideways.",
+      "title": "Roller"
+    }
+  ]
+}

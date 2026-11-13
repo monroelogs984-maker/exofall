@@ -1,0 +1,13 @@
+{
+  "name": "Armour Sets",
+  "icon": "exofall:ancientstone_chestplate",
+  "category": "exofall:gear",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Four sets, one per meteor. They aren't steps on a ladder: each suits a different way to play. All of them are around Netherite or better, can't burn, take enchantments and trims, and repair with their meteor's main crafting drop.",
+      "title": "Armour Sets"
+    }
+  ]
+}

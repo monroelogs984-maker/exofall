@@ -1,0 +1,19 @@
+{
+  "name": "Pouncer",
+  "icon": "exofall:pouncer_spawn_egg",
+  "category": "exofall:creatures/rainforest",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:pouncer",
+      "scale": 0.6,
+      "text": "Jumping spider."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Tell:$() it crouches with its front legs raised and its eyes glint. Then it leaps at where you stood, so move.$(br2)Drops $(item)Pouncer Shell$().",
+      "title": "Pouncer"
+    }
+  ]
+}

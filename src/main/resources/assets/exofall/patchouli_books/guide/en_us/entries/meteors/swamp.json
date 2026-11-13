@@ -1,0 +1,43 @@
+{
+  "name": "Swamp Meteor",
+  "icon": "exofall:lanternpod",
+  "category": "exofall:meteors",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A bug swamp: mud floors, shallow pools under Driftmoss and Bladderpads, and Glowmarl banks. $(item)Stiltreed$() trees stand on arching roots with frond caps. Lanternpods and Weepvines hang from the ceiling, and green froglights glow in the crust.",
+      "title": "Swamp Meteor"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:lanternpod",
+      "text": "Glowing bulb that hangs from the ceiling. Bright light (12).",
+      "title": "Lanternpod"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:bladderpad",
+      "text": "A lily pad full of gas. Step on it and it pops into a slowing cloud.",
+      "title": "Bladderpad"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:snaretongue",
+      "text": "Pitcher plant. Slows and nips anything that walks into it, like a berry bush.",
+      "title": "Snaretongue"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:sapcane",
+      "text": "Tall sweet reed. Mudgrubs love it, and Reedmantises hide in it. Watch for rustling.",
+      "title": "Sapcane"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:weepvine",
+      "text": "Ceiling vine you can climb.",
+      "title": "Weepvine"
+    }
+  ]
+}

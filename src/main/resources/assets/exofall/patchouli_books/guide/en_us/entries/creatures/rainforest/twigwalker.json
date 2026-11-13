@@ -1,0 +1,19 @@
+{
+  "name": "Twigwalker",
+  "icon": "exofall:twigwalker_spawn_egg",
+  "category": "exofall:creatures/rainforest",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:twigwalker",
+      "scale": 0.6,
+      "text": "A stick insect."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Neutral. It freezes like a twig when you come within 8 blocks, and kicks if you bother it.",
+      "title": "Twigwalker"
+    }
+  ]
+}

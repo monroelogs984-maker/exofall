@@ -1,0 +1,19 @@
+{
+  "name": "Reedmantis",
+  "icon": "exofall:reedmantis_spawn_egg",
+  "category": "exofall:creatures/swamp",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:reedmantis",
+      "scale": 0.6,
+      "text": "Ambush mantis hiding in Sapcane."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hides in Sapcane. $(thing)Tell:$() the reeds rustle and shed bits, then it rocks back with its arms up for a second before it strikes. Eats Mudgrubs.$(br2)A $(l:pets/pets)pet parent$(/l), paired with the Bloommantis.",
+      "title": "Reedmantis"
+    }
+  ]
+}

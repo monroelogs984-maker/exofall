@@ -1,0 +1,7 @@
+{
+  "name": "Desert Creatures",
+  "description": "Bugs of the Desert meteor.",
+  "icon": "exofall:shieldback_spawn_egg",
+  "sortnum": 2,
+  "parent": "exofall:creatures"
+}

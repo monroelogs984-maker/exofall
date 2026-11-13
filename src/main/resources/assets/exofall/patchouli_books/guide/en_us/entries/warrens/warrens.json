@@ -1,0 +1,21 @@
+{
+  "name": "The Warrens",
+  "icon": "exofall:brood_comb",
+  "category": "exofall:warrens",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Under every meteor's floor runs a Warren: mineshaft-style tunnels with wooden supports and old rails, joining rooms on two levels. Store rooms hold chests and barrels, nest rooms hold spawners, and pillared halls hold whatever's living there.",
+      "title": "The Warrens"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Getting in:$() look for the large wooden entrance huts with doors. A spiral stair inside goes down to the first level. Another spiral stair leads to the deep level and its $(thing)vault$(), which has the best loot and nests in its corners.$(br2)Small huts without stairs have a nest inside, and a chest."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Side tunnels end in a chest, a nest or a cave-in. The tunnels are dark, so the meteor's bugs spawn there on their own too. Bring light.$(br2)The Warrens are where the $(l:gear/materials)crafting drops$(/l) come from: the dungeon bugs spawn from the nests here."
+    }
+  ]
+}

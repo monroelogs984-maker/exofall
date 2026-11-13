@@ -1,0 +1,19 @@
+{
+  "name": "Waxmite",
+  "icon": "exofall:waxmite_spawn_egg",
+  "category": "exofall:creatures/hive",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:waxmite",
+      "scale": 0.9,
+      "text": "Scavenger that eats dropped food."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Scuttles around eating food items you drop. It leaves you alone, unless you fall below half health.",
+      "title": "Waxmite"
+    }
+  ]
+}

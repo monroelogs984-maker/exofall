@@ -1,0 +1,19 @@
+{
+  "name": "Tomb Scorpion",
+  "icon": "exofall:tomb_scorpion_spawn_egg",
+  "category": "exofall:creatures/desert",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:tomb_scorpion",
+      "scale": 0.5,
+      "text": "Pincers and a glowing sting."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Its pincers slow you. Up close it raises its glowing turquoise sting ($(thing)tell$()), then strikes with long reach, hitting hard and leaving you Sandbound.$(br2)Drops $(item)Tomb Stinger$().",
+      "title": "Tomb Scorpion"
+    }
+  ]
+}

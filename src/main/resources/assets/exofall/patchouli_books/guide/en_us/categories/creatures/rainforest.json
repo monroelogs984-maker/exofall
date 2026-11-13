@@ -1,0 +1,7 @@
+{
+  "name": "Rainforest Creatures",
+  "description": "Bugs of the Rainforest meteor.",
+  "icon": "exofall:bloommantis_spawn_egg",
+  "sortnum": 3,
+  "parent": "exofall:creatures"
+}

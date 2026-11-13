@@ -1,0 +1,26 @@
+{
+  "name": "Meteor Stones",
+  "icon": "exofall:chitinstone",
+  "category": "exofall:basics",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:shellrock",
+      "text": "The crust. Pearly, blast-proof and harder than obsidian. Only a $(l:basics/crustbreaker)Crustbreaker$(/l) can mine it.",
+      "title": "Shellrock"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:chitinstone",
+      "text": "The main stone inside, made of fossil shell plates. Polish it, brick it or carve pillars from it (stonecutter or crafting). Stairs, slabs and walls too.",
+      "title": "Chitinstone"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:glowmarl",
+      "text": "Soft glowing soil-stone. Alien plants and saplings only grow on Glowmarl, so take some home if you want a meteor garden.",
+      "title": "Glowmarl"
+    }
+  ]
+}

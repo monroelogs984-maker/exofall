@@ -1,0 +1,31 @@
+{
+  "name": "Hive Meteor",
+  "icon": "exofall:royal_amber",
+  "category": "exofall:meteors",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A giant wasp nest. Parallel comb sheets run from floor to ceiling, torn open by holes and low doorways. Honey patches and Glowmarl beds cover the floor. Thick $(item)Combwood$() trunks grow up through the comb with hollow, larva-filled cores.",
+      "title": "Hive Meteor"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:nectar_bell",
+      "text": "Soft-glowing flower on the Glowmarl beds.",
+      "title": "Nectar Bell"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:waxcap",
+      "text": "A waxy orange fungus.",
+      "title": "Waxcap"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:royal_amber",
+      "text": "Glowing amber crystals (light 9). A crafting block for the Crystallized Honey armour.",
+      "title": "Royal Amber"
+    }
+  ]
+}

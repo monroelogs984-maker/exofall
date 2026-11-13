@@ -1,0 +1,19 @@
+{
+  "name": "Canopy Assassin",
+  "icon": "exofall:canopy_assassin_spawn_egg",
+  "category": "exofall:creatures/rainforest",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:canopy_assassin",
+      "scale": 0.5,
+      "text": "Hangs from the ceiling and drops."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hangs upside down under ceilings and leaves. $(thing)Tell:$() a silk thread and drips. When you pass close underneath, it drops on you and makes you bleed. Shoot it down first.$(br2)Drops $(item)Assassin Hook$().",
+      "title": "Canopy Assassin"
+    }
+  ]
+}

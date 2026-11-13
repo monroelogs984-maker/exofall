@@ -1,0 +1,18 @@
+{
+  "name": "Shellrock Crafting Table",
+  "icon": "exofall:shellrock_crafting_table",
+  "category": "exofall:basics",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Meteor gear is too big for a normal crafting table. The Shellrock Crafting Table has a $(thing)5x5$() grid for armour, legendary weapons and baubles, and it still crafts everything a normal table does.$(br2)With JEI installed, its recipes show up there too, with a button that fills the grid for you.",
+      "title": "The 5x5 Table"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:shellrock_crafting_table",
+      "text": "Four Shellrock around a crafting table."
+    }
+  ]
+}

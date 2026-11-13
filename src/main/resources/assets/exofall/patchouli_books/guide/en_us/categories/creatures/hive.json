@@ -1,0 +1,7 @@
+{
+  "name": "Hive Creatures",
+  "description": "Bugs of the Hive meteor.",
+  "icon": "exofall:combwasp_spawn_egg",
+  "sortnum": 1,
+  "parent": "exofall:creatures"
+}

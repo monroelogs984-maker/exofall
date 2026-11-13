@@ -31,6 +31,8 @@ dependencies {
     implementation files('libs/curios-neoforge-9.5.1+1.21.1.jar')
     // JEI page for the Shellrock table (optional at runtime). Same jar as the Exofall Testing instance, git-ignored in libs/.
     compileOnly files('libs/jei-1.21.1-neoforge-19.64.0.455.jar')
+    // Field Guide (optional at runtime): 5x5 recipe page processor. Same jar S202 ships, git-ignored in libs/.
+    compileOnly files('libs/Patchouli-1.21.1-93-NEOFORGE.jar')
 }
 
 jar {

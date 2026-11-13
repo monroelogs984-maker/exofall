@@ -1,0 +1,29 @@
+{
+  "name": "Ancientstone",
+  "icon": "exofall:ancientstone_chestplate",
+  "category": "exofall:gear",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Carved desert stone: the tank set. The most armour and toughness, strong knockback resistance and twice Netherite's durability.$(br2)$(thing)Each piece$() makes you 2.5% slower.",
+      "title": "Ancientstone"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/ancientstone_helmet"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/ancientstone_chestplate"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/ancientstone_leggings"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/ancientstone_boots"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Finding a Meteor",
+  "icon": "minecraft:compass",
+  "category": "exofall:basics",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Meteors land on dry ground, never in lakes or the sea. They sit about half buried in a wide crater: levelled ground, a raised rim and a scatter of gravel, tuff and coarse dirt. They're big (55 to 78 blocks across the middle) and about 550 blocks apart on average.",
+      "title": "Finding a Meteor"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Look for the crater rim from a hill, or the pale shell rising out of the ground. The shell is $(l:basics/stones)Shellrock$(/l): nothing but a $(l:basics/crustbreaker)Crustbreaker$(/l) can mine it, and explosions don't touch it.$(br2)Ops can find the nearest one with $(thing)/locate structure exofall:swamp_meteor$() (or hive, desert, rainforest)."
+    }
+  ]
+}

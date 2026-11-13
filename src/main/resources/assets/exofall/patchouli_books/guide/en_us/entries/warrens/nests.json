@@ -1,0 +1,37 @@
+{
+  "name": "Nests",
+  "icon": "exofall:mire_nest",
+  "category": "exofall:warrens",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Nests are lumps riddled with holes, with something always stirring inside. While you're within 16 blocks, a nest lets out 1 or 2 of its meteor's bugs every 10 to 25 seconds, until 6 are around it. Break a nest to stop it. They drop a good amount of experience.",
+      "title": "Nests"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:mire_nest",
+      "text": "Swamp: Bogspinners, Glasswings, Bloodgnats and Reedmantises.",
+      "title": "Mire Nest"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:brood_comb",
+      "text": "Hive: Combwasps, Stingers, Propolis Spitters, Honeyguards and Waxmites.",
+      "title": "Brood Comb"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:sand_burrow",
+      "text": "Desert: Tomb Scorpions, Sanddivers, Shieldbacks and Antlions.",
+      "title": "Sand Burrow"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:rotwood_hollow",
+      "text": "Rainforest: Pouncers, Canopy Assassins, Twigwalkers, Bloommantises and Lantern Moths.",
+      "title": "Rotwood Hollow"
+    }
+  ]
+}

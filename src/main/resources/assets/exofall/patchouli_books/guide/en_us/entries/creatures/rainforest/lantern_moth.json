@@ -1,0 +1,19 @@
+{
+  "name": "Lantern Moth",
+  "icon": "exofall:lantern_moth_spawn_egg",
+  "category": "exofall:creatures/rainforest",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:lantern_moth",
+      "scale": 0.8,
+      "text": "Drawn to your light."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Harmless. It circles players holding a light and sheds glowing dust.",
+      "title": "Lantern Moth"
+    }
+  ]
+}

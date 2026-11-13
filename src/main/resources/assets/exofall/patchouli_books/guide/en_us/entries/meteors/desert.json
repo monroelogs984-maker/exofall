@@ -1,0 +1,31 @@
+{
+  "name": "Desert Meteor",
+  "icon": "exofall:rattlegrass",
+  "category": "exofall:meteors",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Beetle desert: sand and red-sand dunes over Chitinstone with buried bone. The dips between dunes are Glowmarl flats where everything grows, including the pale, spiralling $(item)Ribwood$() trees. Banded Chitinstone pillars hold up the dome.",
+      "title": "Desert Meteor"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:rattlegrass",
+      "text": "Rattles when you walk through it, and the noise alerts nearby beetles. Sneak to stay quiet.",
+      "title": "Rattlegrass"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:dunespine",
+      "text": "A hollow cactus that nips like a berry bush.",
+      "title": "Dunespine"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:nightbloom",
+      "text": "A pale blue glowing flower.",
+      "title": "Nightbloom"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Welcome to Exofall",
+  "icon": "minecraft:writable_book",
+  "category": "exofall:basics",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Huge meteors have fallen across the world. Each one is a sealed shell with a living world inside: alien plants, alien woods and swarms of giant bugs. There are four kinds: $(l:meteors/swamp)Swamp$(/l), $(l:meteors/hive)Hive$(/l), $(l:meteors/desert)Desert$(/l) and $(l:meteors/rainforest)Rainforest$(/l).",
+      "title": "Welcome"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Every meteor holds the same three dangers: the bugs of its interior, the $(l:warrens/warrens)Warrens$(/l) dug under its floor, and a boss sealed in the dome at its heart.$(br2)The meteors don't come in any order. Each one gives different gear: pick the one that suits how you play."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A tip before you go in: every bug that ambushes has a $(thing)tell$(), a sound or sight that gives it away a moment before it strikes. Learn them and the meteors get a lot fairer. The $(l:creatures/swamp/glasswing)creature pages$(/l) list them all."
+    }
+  ]
+}

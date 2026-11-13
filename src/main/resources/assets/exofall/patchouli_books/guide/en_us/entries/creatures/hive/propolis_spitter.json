@@ -1,0 +1,19 @@
+{
+  "name": "Propolis Spitter",
+  "icon": "exofall:propolis_spitter_spawn_egg",
+  "category": "exofall:creatures/hive",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:propolis_spitter",
+      "scale": 0.6,
+      "text": "Flying wasp that spits sticky resin."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Keeps its distance. $(thing)Tell:$() its belly glows and pumps, dripping honey. The spit slows you and leaves sticky puddles that last 10 s.$(br2)Drops $(item)Propolis Gland$().",
+      "title": "Propolis Spitter"
+    }
+  ]
+}

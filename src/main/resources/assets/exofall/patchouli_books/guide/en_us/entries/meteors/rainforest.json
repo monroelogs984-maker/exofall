@@ -1,0 +1,31 @@
+{
+  "name": "Rainforest Meteor",
+  "icon": "exofall:glowmoss_curtain",
+  "category": "exofall:meteors",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A misty conifer forest. Glowmarl floors with Umbrella Ferns and Mistcaps, tall blue-grey $(item)Veilpine$() trees and curtains of glowing lichen hanging from the ceiling.",
+      "title": "Rainforest Meteor"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:umbrella_fern",
+      "text": "A tall broad fern.",
+      "title": "Umbrella Fern"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:mistcap",
+      "text": "A pale blue mushroom with a faint glow.",
+      "title": "Mistcap"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:glowmoss_curtain",
+      "text": "Glowing lichen curtain (light 7). You can climb it.",
+      "title": "Glowmoss Curtain"
+    }
+  ]
+}

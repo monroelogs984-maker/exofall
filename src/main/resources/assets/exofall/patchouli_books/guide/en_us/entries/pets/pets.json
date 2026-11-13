@@ -1,0 +1,38 @@
+{
+  "name": "Taming and Breeding",
+  "icon": "exofall:sapcane_candy",
+  "category": "exofall:pets",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Eight bugs can be tamed, in four pairs. Each pair shares a $(thing)treat$().$(br2)Feed a wild one its treat: each treat has a 1 in 3 chance to tame it (hearts) or not (smoke). Tamed bugs never attack you or other tamed bugs, and they never despawn.",
+      "title": "Taming"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Feed two tamed adults of the same kind and they'll find each other and have a tamed baby. Babies are half size and grow up in one day (treats speed that up). Parents rest for 5 minutes before breeding again.$(br2)Crossing the two kinds in a pair is coming in a later version.",
+      "title": "Breeding"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:sapcane_candy",
+      "text": "Swamp: Glasswing and Mudgrub."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:nectar_drop",
+      "text": "Hive: Combwasp and Nursemaid."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:dune_pellet",
+      "text": "Desert: Gold-Encrusted Scarab and Shieldback."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:mistcap_morsel",
+      "text": "Rainforest: Bloommantis and Reedmantis."
+    }
+  ]
+}

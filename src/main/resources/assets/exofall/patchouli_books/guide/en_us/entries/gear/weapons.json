@@ -1,0 +1,53 @@
+{
+  "name": "Legendary Weapons",
+  "icon": "exofall:glasswing_scythe",
+  "category": "exofall:gear",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "One legendary weapon per meteor, made from its boss's drops. Each has its own effect.",
+      "title": "Legendary Weapons"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:glasswing_scythe",
+      "text": "Swamp. Fast, and each hit launches the target 2 blocks up (4 s cooldown, not bosses).",
+      "title": "Glasswing Scythe"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/glasswing_scythe"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:royal_grandhammer",
+      "text": "Hive. Slow and crushing, and it heals you for 10% of the damage it deals.",
+      "title": "Royal Grandhammer"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/royal_grandhammer"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:quadblade_of_the_sands",
+      "text": "Desert. Four blades. Hits slow the target by 10% for 3 s.",
+      "title": "Quadblade of the Sands"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/quadblade_of_the_sands"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:serrated_longsword",
+      "text": "Rainforest. The fastest. Hits stack Bleeding: 1 damage a second per stack, up to 3.",
+      "title": "Serrated Longsword"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/serrated_longsword"
+    }
+  ]
+}

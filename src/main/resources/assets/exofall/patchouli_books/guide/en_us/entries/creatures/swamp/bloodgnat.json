@@ -1,0 +1,19 @@
+{
+  "name": "Bloodgnat",
+  "icon": "exofall:bloodgnat_spawn_egg",
+  "category": "exofall:creatures/swamp",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:bloodgnat",
+      "scale": 0.9,
+      "text": "Mosquito swarms with a constant whine."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Comes in swarms of 3 to 5. Each bite heals it and weakens you. After 3 bites a gnat is full and leaves for 30 seconds, so a swarm wears itself out.$(br2)Smoke from a lit campfire below them scatters them.",
+      "title": "Bloodgnat"
+    }
+  ]
+}

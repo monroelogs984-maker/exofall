@@ -1,0 +1,37 @@
+{
+  "name": "Alien Woods",
+  "icon": "exofall:stiltreed_planks",
+  "category": "exofall:meteors",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Each meteor has its own wood with the full set: logs, planks, stairs, slabs, fences, gates, doors, trapdoors, buttons, pressure plates and boats. Strip logs with an axe.$(br2)Saplings only grow on $(item)Glowmarl$().",
+      "title": "Alien Woods"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:stiltreed_log",
+      "text": "Swamp. Segmented olive reed-trees on stilt roots.",
+      "title": "Stiltreed"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:combwood_log",
+      "text": "Hive. Wax-coated amber wood with a comb pattern.",
+      "title": "Combwood"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:ribwood_log",
+      "text": "Desert. Pale, leafless and spiralling like a ribcage.",
+      "title": "Ribwood"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:veilpine_log",
+      "text": "Rainforest. Blue-grey conifer.",
+      "title": "Veilpine"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Stinger",
+  "icon": "exofall:stinger_spawn_egg",
+  "category": "exofall:creatures/hive",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:stinger",
+      "scale": 0.6,
+      "text": "Soldier with a slow, deadly sting."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Tell:$() a long wind-up of more than a second. Then it hits hard and poisons badly. Step back out of reach when it winds up.$(br2)Drops a $(l:bosses/arenas)Hive Sigil Fragment$(/l) when you kill it.",
+      "title": "Stinger"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Glasswing",
+  "icon": "exofall:glasswing_spawn_egg",
+  "category": "exofall:creatures/swamp",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:glasswing",
+      "scale": 0.5,
+      "text": "Giant dragonfly. Hovers, then dives."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hovers to the side and above you. $(thing)Tell:$() a high swooping cry and a curled abdomen, then it dives in a straight line at where you stood. Sidestep it. Hitting it during the wind-up breaks the dive off.$(br2)Drops a $(l:bosses/arenas)Swamp Sigil Fragment$(/l) when you kill it.",
+      "title": "Glasswing"
+    }
+  ]
+}

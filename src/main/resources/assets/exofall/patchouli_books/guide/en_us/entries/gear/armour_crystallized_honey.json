@@ -1,0 +1,29 @@
+{
+  "name": "Crystallized Honey",
+  "icon": "exofall:crystallized_honey_chestplate",
+  "category": "exofall:gear",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Amber glass from the hive. Protects like diamond, lasts like Netherite.$(br2)$(thing)Full set$(): +15% speed and a Regeneration that never runs out.",
+      "title": "Crystallized Honey"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/crystallized_honey_helmet"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/crystallized_honey_chestplate"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/crystallized_honey_leggings"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/crystallized_honey_boots"
+    }
+  ]
+}

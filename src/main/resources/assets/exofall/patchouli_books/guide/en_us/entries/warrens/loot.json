@@ -1,0 +1,17 @@
+{
+  "name": "Warren Loot",
+  "icon": "minecraft:chest",
+  "category": "exofall:warrens",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Chests$() hold iron, gold, food, arrows, experience bottles, Glowmarl, saplings and things from their meteor. Now and then there's a diamond or an enchanted book. One chest in five holds a $(l:bosses/arenas)sigil fragment$(/l).$(br2)$(thing)Barrels$() hold supplies: torches, coal, string, rails.",
+      "title": "Warren Loot"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Vault$() chests (deep level) are much richer: diamonds, emeralds, golden apples, netherite scrap, echo shards, enchanted books and gear. Each holds one or two sigil fragments (gold blocks in the Desert, whose sigil comes from the Scarab)."
+    }
+  ]
+}

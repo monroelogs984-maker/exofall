@@ -1,0 +1,19 @@
+{
+  "name": "Bloommantis",
+  "icon": "exofall:bloommantis_spawn_egg",
+  "category": "exofall:creatures/rainforest",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:bloommantis",
+      "scale": 0.6,
+      "text": "Flower-mimic mantis."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Looks like a flower. $(thing)Tell:$() petals shiver loose and it chimes before it strikes. Eats Lantern Moths.$(br2)Drops a $(l:bosses/arenas)Rainforest Sigil Fragment$(/l). A $(l:pets/pets)pet parent$(/l), paired with the Reedmantis.",
+      "title": "Bloommantis"
+    }
+  ]
+}

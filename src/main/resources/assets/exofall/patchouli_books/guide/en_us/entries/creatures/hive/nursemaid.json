@@ -1,0 +1,19 @@
+{
+  "name": "Nursemaid",
+  "icon": "exofall:nursemaid_spawn_egg",
+  "category": "exofall:creatures/hive",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:nursemaid",
+      "scale": 0.7,
+      "text": "Heals hurt hive bugs."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Never attacks. It flies to hurt hive bugs and heals them, and it runs from you. Kill it first in a big fight.$(br2)A $(l:pets/pets)pet parent$(/l), paired with the Combwasp.",
+      "title": "Nursemaid"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Swamp Creatures",
+  "description": "Bugs of the Swamp meteor.",
+  "icon": "exofall:glasswing_spawn_egg",
+  "sortnum": 0,
+  "parent": "exofall:creatures"
+}

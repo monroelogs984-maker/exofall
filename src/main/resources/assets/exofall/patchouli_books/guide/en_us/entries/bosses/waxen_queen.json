@@ -1,0 +1,28 @@
+{
+  "name": "Waxen Queen",
+  "icon": "exofall:waxen_queen_spawn_egg",
+  "category": "exofall:bosses",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:waxen_queen",
+      "scale": 0.25,
+      "text": "Mother of the hive. Hive."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "She flies. Her $(thing)sting dive$() leaves her dazed on the floor for a moment: that's your opening. She sprays wax in a fan, lays cocoons that are nearly ripe, and buffets you with her wings if you stand under her.",
+      "title": "Waxen Queen"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hive bugs defend her and Nursemaids heal her, so kill the Nursemaids first. When angry she calls Stingers."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "4 $(item)Royal Honey Drops$() and 2 $(item)Crystallized Wings$(), always. They make the $(l:gear/weapons)Royal Grandhammer$(/l) and the $(l:gear/armour)Crystallized Honey$(/l) armour.",
+      "title": "Drops"
+    }
+  ]
+}

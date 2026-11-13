@@ -1,0 +1,28 @@
+{
+  "name": "Dozen-legged Wrath",
+  "icon": "exofall:dozen_legged_wrath_spawn_egg",
+  "category": "exofall:bosses",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:dozen_legged_wrath",
+      "scale": 0.2,
+      "text": "A giant red centipede. Desert."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "About 11 blocks long, and every body segment can be hit. It bites, and it $(thing)charges$(): if it hits a wall it's stunned, so stand in front of one and step aside. It $(thing)burrows$() (sand puffs show where it'll come up) and sweeps its tail at anyone beside or behind it.",
+      "title": "Dozen-legged Wrath"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Below 40% health it speeds up and charges twice in a row."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "16 $(item)Terror Legs$() and a $(item)Venomjaw$(), always. They make the $(l:gear/weapons)Quadblade of the Sands$(/l) and the $(l:gear/armour)Ancientstone$(/l) armour.",
+      "title": "Drops"
+    }
+  ]
+}

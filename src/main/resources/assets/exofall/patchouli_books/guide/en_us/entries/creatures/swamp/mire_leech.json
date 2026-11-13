@@ -1,0 +1,19 @@
+{
+  "name": "Mire Leech",
+  "icon": "exofall:mire_leech_spawn_egg",
+  "category": "exofall:creatures/swamp",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:mire_leech",
+      "scale": 0.7,
+      "text": "Lurks in water and latches on."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Only hunts things in water. $(thing)Tell:$() ripples on the surface above it. Its bite latches on and drains you. Get out of the water, or hit it, to knock it off.$(br2)Drops $(item)Leech Fang$().",
+      "title": "Mire Leech"
+    }
+  ]
+}

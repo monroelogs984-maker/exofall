@@ -1,0 +1,19 @@
+{
+  "name": "Leafcutter",
+  "icon": "exofall:leafcutter_spawn_egg",
+  "category": "exofall:creatures/rainforest",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:leafcutter",
+      "scale": 0.8,
+      "text": "Marches in columns carrying leaves."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Columns of ants marching with leaves. They ignore you unless you block the column. Stand in the way for 2 s ($(thing)tell:$() angry chittering at 1 s) and the whole column attacks.",
+      "title": "Leafcutter"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Apex Mantis",
+  "icon": "exofall:apex_mantis_spawn_egg",
+  "category": "exofall:bosses",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:apex_mantis",
+      "scale": 0.25,
+      "text": "A great green mantis. Rainforest."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "It swings a 3-hit blade combo and leaps at you. Hit it 3 times quickly and it $(thing)guards$(): it parries hits from the front and strikes back, so back off or get behind it.",
+      "title": "Apex Mantis"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When angry it vanishes into camouflage. Listen for rustling and chimes: a loud chime comes half a second before it strikes. Hitting it reveals it."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A $(item)Mantis Eye$() and the $(item)Mantis Greatclaw$(), always. The Greatclaw is a weak blade on purpose: it's the base of the $(l:gear/weapons)Serrated Longsword$(/l).",
+      "title": "Drops"
+    }
+  ]
+}

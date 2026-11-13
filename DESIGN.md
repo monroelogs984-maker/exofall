@@ -248,6 +248,13 @@ half size, grows up in 24000 ticks (treats speed it up), 5 min cooldown. Mudgrub
 candy). Tamed/bred Golden Scarabs drop nothing (no Desert Sigil farm). Cross-breeding (PetPair.CROSS_TREATS) waits for
 the hybrids. `/exofall pettest` passes (runs at world spawn: entity lookups need entity-ticking chunks).
 
+## Field Guide (2026-11-12, Patchouli, optional)
+`tools/gen_guide.py` writes the whole book (11 categories, 55 entries, 182 pages: basics, meteors, every creature
+with an entity render, Warrens, bosses + sigils, gear with real 5x5 recipe pages, pets). 5x5 pages = template
+`exofall:shellrock` + compat/patchouli/ShellrockProcessor. Crafted from book + flint (recipe only loads with
+Patchouli). Checked in a dev client: every spread screenshotted, no text overflow. Gotcha: /open-patchouli-book needs
+the full entry id (exofall:basics/welcome); without it Patchouli 93 disconnects the client.
+
 ## Bosses, arenas, sigils (2026-11-11; Glenn: "detailed and have a short cinematic after you encounter them. Worry about the arenas too and how to unlock them; then make them spawn in the middle of each meteor (we can later build AROUND them)")
 - **Arena** (`world/ArenaLayout`, `world/ArenaGen`): sealed dome at every meteor's centre, inner 15 x 12 tall, on a
   paved plaza (radius 24, cleared 16 up) that blends back into the ground by 32; trees/pillars are kept out to 38.

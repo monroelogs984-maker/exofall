@@ -1,0 +1,18 @@
+{
+  "name": "The Crustbreaker",
+  "icon": "exofall:crustbreaker",
+  "category": "exofall:basics",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The only tool that mines $(item)Shellrock$(), so it's your key into every meteor. It's also a strong pickaxe in its own right, a step past Netherite.$(br2)You need it before you can reach anything meteoric, so it's made from late-game Overworld, Nether and Deep Dark materials on a normal crafting table.",
+      "title": "The Crustbreaker"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:crustbreaker",
+      "text": "Netherite pick, Netherite, echo shards, a nether star and a breeze rod."
+    }
+  ]
+}

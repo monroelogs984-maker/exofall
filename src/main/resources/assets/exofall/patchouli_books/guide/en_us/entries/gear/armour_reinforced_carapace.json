@@ -1,0 +1,29 @@
+{
+  "name": "Reinforced Carapace",
+  "icon": "exofall:reinforced_carapace_chestplate",
+  "category": "exofall:gear",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mantis-green chitin. A little tougher than Netherite, with some knockback resistance.$(br2)$(thing)Each piece$() blocks 10% of projectile damage, so a full set blocks 40%.",
+      "title": "Reinforced Carapace"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/reinforced_carapace_helmet"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/reinforced_carapace_chestplate"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/reinforced_carapace_leggings"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/reinforced_carapace_boots"
+    }
+  ]
+}

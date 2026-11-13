@@ -1,0 +1,19 @@
+{
+  "name": "Divebell Beetle",
+  "icon": "exofall:divebell_beetle_spawn_egg",
+  "category": "exofall:creatures/swamp",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:divebell_beetle",
+      "scale": 0.7,
+      "text": "A neutral diving beetle."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Swims and dives in the pools. It leaves you alone unless you hit it, and then it alerts the bugs around it.$(br2)Drops $(item)Bubble Sacs$(), used for the Divebell Locket.",
+      "title": "Divebell Beetle"
+    }
+  ]
+}

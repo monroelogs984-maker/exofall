@@ -1,0 +1,19 @@
+{
+  "name": "Combwasp",
+  "icon": "exofall:combwasp_spawn_egg",
+  "category": "exofall:creatures/hive",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:combwasp",
+      "scale": 0.7,
+      "text": "Swarming worker wasp."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Comes in swarms. Its sting poisons briefly. Hurt one hive fighter and every fighter within 16 blocks comes for you.$(br2)A $(l:pets/pets)pet parent$(/l), paired with the Nursemaid.",
+      "title": "Combwasp"
+    }
+  ]
+}

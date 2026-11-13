@@ -1,0 +1,19 @@
+{
+  "name": "Sanddiver",
+  "icon": "exofall:sanddiver_spawn_egg",
+  "category": "exofall:creatures/desert",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:sanddiver",
+      "scale": 0.7,
+      "text": "Burrows in sand and bursts out."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hides buried in sand. $(thing)Tell:$() a puff of sand just before it bursts out and bites. It burrows again after 5 calm seconds.",
+      "title": "Sanddiver"
+    }
+  ]
+}

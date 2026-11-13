@@ -1,0 +1,19 @@
+{
+  "name": "Larva Cocoon",
+  "icon": "exofall:larva_cocoon_spawn_egg",
+  "category": "exofall:creatures/hive",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:larva_cocoon",
+      "scale": 0.8,
+      "text": "Hatches into a wasp if left alone."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Ripens over about 2 minutes while a player is near, then hatches a Combwasp, or sometimes a Stinger. Break cocoons before they hatch.",
+      "title": "Larva Cocoon"
+    }
+  ]
+}

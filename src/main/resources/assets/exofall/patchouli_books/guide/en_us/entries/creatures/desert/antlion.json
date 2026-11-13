@@ -1,0 +1,19 @@
+{
+  "name": "Antlion",
+  "icon": "exofall:antlion_spawn_egg",
+  "category": "exofall:creatures/desert",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:antlion",
+      "scale": 0.6,
+      "text": "Digs a pit trap in the sand."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Digs a funnel in sand and sits buried at the bottom. $(thing)Tell:$() the pit and the trickling sand. It drags everything nearby toward it, then bites and roots you in place. Off sand it's just a slow bug.$(br2)Drops $(item)Antlion Mandible$().",
+      "title": "Antlion"
+    }
+  ]
+}

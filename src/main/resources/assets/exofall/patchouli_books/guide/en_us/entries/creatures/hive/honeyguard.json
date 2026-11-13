@@ -1,0 +1,19 @@
+{
+  "name": "Honeyguard",
+  "icon": "exofall:honeyguard_spawn_egg",
+  "category": "exofall:creatures/hive",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:honeyguard",
+      "scale": 0.5,
+      "text": "Slow wasp behind a comb shield."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Blocks most of the damage from the front, and every blocked hit wears its shield down. Heavy hits wear it fast (the Royal Grandhammer breaks it in one). It reseals after 30 s. It hits hard and knocks you back.$(br2)Drops $(item)Honeyguard Plate$().",
+      "title": "Honeyguard"
+    }
+  ]
+}

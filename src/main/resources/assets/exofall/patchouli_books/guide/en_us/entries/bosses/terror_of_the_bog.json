@@ -1,0 +1,28 @@
+{
+  "name": "Terror of the Bog",
+  "icon": "exofall:terror_of_the_bog_spawn_egg",
+  "category": "exofall:bosses",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:terror_of_the_bog",
+      "scale": 0.25,
+      "text": "A giant water scorpion. Swamp."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Every attack has a wind-up. It $(thing)snaps$() up close and $(thing)grabs$(): if it catches you, it holds you for a few seconds. Hit it hard enough while held and it lets go, stunned.",
+      "title": "Terror of the Bog"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "It $(thing)submerges$() and bursts up under you: watch for the bubbles boiling up. It spits mud, three at a time when angry. At half health it calls Bloodgnats."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(item)Lethal Proboscis$() and 2 $(item)Bog Eyes$(), always. They make the $(l:gear/weapons)Glasswing Scythe$(/l) and the $(l:gear/armour)Mireweave$(/l) armour.",
+      "title": "Drops"
+    }
+  ]
+}

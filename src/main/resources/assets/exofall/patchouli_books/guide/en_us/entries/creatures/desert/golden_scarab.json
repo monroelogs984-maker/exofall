@@ -1,0 +1,19 @@
+{
+  "name": "Gold-Encrusted Scarab",
+  "icon": "exofall:golden_scarab_spawn_egg",
+  "category": "exofall:creatures/desert",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "exofall:golden_scarab",
+      "scale": 0.7,
+      "text": "Rare, armoured, runs away."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Rare and heavily armoured, and it flees from you. Catch it: a wild one drops the $(l:bosses/arenas)Desert Sigil$(/l) that opens the Dozen-legged Wrath's arena.$(br2)Tamed and bred ones drop nothing. A $(l:pets/pets)pet parent$(/l), paired with the Shieldback.",
+      "title": "Gold-Encrusted Scarab"
+    }
+  ]
+}

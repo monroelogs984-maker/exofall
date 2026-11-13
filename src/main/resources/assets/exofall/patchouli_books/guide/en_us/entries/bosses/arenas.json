@@ -1,0 +1,41 @@
+{
+  "name": "Arenas and Sigils",
+  "icon": "exofall:desert_sigil",
+  "category": "exofall:bosses",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Each meteor's centre holds a sealed dome. Its door is shut by an unbreakable $(item)Sigil Seal$(), with a $(item)Sigil Socket$() in the door post. Use the meteor's sigil on the socket to open the door.$(br2)The dome is warded: its walls and floor can't be mined or blown up.",
+      "title": "Arenas"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Inside, the boss lies dormant until you step in. Then the door seals behind you and the fight begins (with a short introduction the first time). If everyone leaves for 10 seconds, the boss heals, goes back to sleep and the door opens. Beat it and the door opens. Another sigil wakes it again.",
+      "title": "The Fight"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:desert_sigil",
+      "text": "Dropped whole by a wild $(l:creatures/desert/golden_scarab)Gold-Encrusted Scarab$(/l) when you kill it. Opens the Dozen-legged Wrath's arena.",
+      "title": "Desert Sigil"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The other three sigils are crafted from $(thing)4 fragments$(). Fragments drop from every $(l:creatures/swamp/glasswing)Glasswing$(/l), $(l:creatures/hive/stinger)Stinger$(/l) and $(l:creatures/rainforest/bloommantis)Bloommantis$(/l) you kill, and from Warren chests.",
+      "title": "Sigil Fragments"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:swamp_sigil"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:hive_sigil"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "exofall:rainforest_sigil"
+    }
+  ]
+}
