@@ -41,7 +41,7 @@ public final class BossCinematic {
 
     public static void start(CinematicPayload p) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level == null || mc.player == null) return;
+        if (mc.level == null || mc.player == null || !com.bromax.exofall.config.ExofallClientConfig.BOSS_CINEMATIC.get()) return;
         Entity boss = mc.level.getEntity(p.entityId());
         if (!(boss instanceof ExofallBoss)) return;
         stop();

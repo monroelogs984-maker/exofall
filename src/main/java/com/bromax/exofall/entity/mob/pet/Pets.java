@@ -10,6 +10,17 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
+import com.bromax.exofall.config.ExofallConfig;
+import com.bromax.exofall.item.BugArmorItem;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.OwnableEntity;
+import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.UUID;
 import java.util.function.Consumer;
 
 /**
@@ -24,7 +35,10 @@ import java.util.function.Consumer;
  * setTarget, and saves {@link PetState}. Baby size goes through {@code setBaby}.
  */
 public final class Pets {
-    public static final int TAME_ODDS = 3, LOVE_TICKS = 600, COOLDOWN = 6000, GROW_TICKS = 24000;
+    private static int tameOdds() { return ExofallConfig.PET_TAME_ODDS.get(); }
+    private static int loveTicks() { return ExofallConfig.PET_LOVE_TICKS.get(); }
+    private static int cooldown() { return ExofallConfig.PET_BREED_COOLDOWN.get(); }
+    public static int growTicks() { return ExofallConfig.PET_GROW_TICKS.get(); }
 
     public interface Breeder {
         /** Makes a baby of this mob's type (not yet in the world). */
@@ -45,14 +59,14 @@ public final class Pets {
     public static InteractionResult interact(Mob mob, Pet pet, Player player, InteractionHand hand, boolean baby) {
         PetPair pair = PetPair.of(mob.getType());
         ItemStack stack = player.getItemInHand(hand);
-        if (pair == null || !stack.is(pair.treat())) return InteractionResult.PASS;
+        if (pair == null) return InteractionResult.PASS;
+        if (!stack.is(pair.treat())) return ownerInteract(mob, pet, player, hand);
         PetState st = pet.petState();
         if (mob.level().isClientSide) return InteractionResult.SUCCESS;
         if (!st.tamed) {
             use(player, stack);
-            if (mob.getRandom().nextInt(TAME_ODDS) == 0) {
-                st.tamed = true;
-                mob.setPersistenceRequired();
+            if (mob.getRandom().nextInt(tameOdds()) == 0) {
+                tame(mob, pet, player);
                 award(player, "tame", "tamed");
                 mob.setTarget(null);
                 mob.getNavigation().stop();
@@ -64,13 +78,13 @@ public final class Pets {
         }
         if (baby) {   // treats speed a baby up, like vanilla animals
             use(player, stack);
-            st.age = Math.min(0, st.age + GROW_TICKS / 10);
+            st.age = Math.min(0, st.age + growTicks() / 10);
             particles(mob, true);
             return InteractionResult.CONSUME;
         }
         if (st.love > 0 || st.cooldown > 0) return InteractionResult.PASS;
         use(player, stack);
-        st.love = LOVE_TICKS;
+        st.love = loveTicks();
         FEEDER.put(mob.getUUID(), player.getUUID());
         particles(mob, true);
         return InteractionResult.CONSUME;
@@ -108,15 +122,17 @@ public final class Pets {
         if (baby == null) return;
         PetState bs = ((Pet) baby).petState();
         bs.tamed = true;
-        bs.age = -GROW_TICKS;
+        bs.owner = pet.petState().owner;
+        bs.age = -growTicks();
         baby.setPersistenceRequired();
         baby.moveTo(mob.getX(), mob.getY(), mob.getZ(), mob.getYRot(), 0);
         level.addFreshEntityWithPassengers(baby);
         if (baby instanceof BabySize b) b.setBabySize(true);
+        PetStats.apply(baby);
         for (Mob parent : new Mob[]{mob, mate}) {
             PetState ps = ((Pet) parent).petState();
             ps.love = 0;
-            ps.cooldown = COOLDOWN;
+            ps.cooldown = cooldown();
         }
         particles(mob, true);
         java.util.UUID who = FEEDER.remove(mob.getUUID());
@@ -128,10 +144,92 @@ public final class Pets {
         level.sendParticles(ParticleTypes.HEART, mob.getX(), mob.getY() + mob.getBbHeight(), mob.getZ(), 1, 0.2, 0.1, 0.2, 0);
     }
 
-    /** A tamed pet won't target players or other tamed pets. */
+    /** A tamed pet won't target players, other tamed pets, or anything else its owner owns (wolves, cats...). */
     public static boolean refuses(Pet pet, LivingEntity target) {
         if (!pet.isTamedPet() || target == null) return false;
-        return target instanceof Player || target instanceof Pet p && p.isTamedPet();
+        if (target instanceof Player || target instanceof Pet p && p.isTamedPet()) return true;
+        return target instanceof OwnableEntity o && o.getOwnerUUID() != null && o.getOwnerUUID().equals(pet.petState().owner);
+    }
+
+    // ---- owners
+
+    /** Makes it a tamed pet of {@code player}: persistent, passive, tamed stats. */
+    public static void tame(Mob mob, Pet pet, Player player) {
+        PetState st = pet.petState();
+        st.tamed = true;
+        st.owner = player.getUUID();
+        st.mode = PetState.Mode.FOLLOW;
+        mob.setPersistenceRequired();
+        PetStats.apply(mob);
+    }
+
+    @Nullable
+    public static Player owner(Mob mob, Pet pet) {
+        UUID id = pet.petState().owner;
+        return id == null ? null : mob.level().getPlayerByUUID(id);
+    }
+
+    /** Is {@code e} owned by the same player as this pet (the owner, one of the owner's pets, or a vanilla tamable)? */
+    public static boolean sameSide(Pet pet, @Nullable net.minecraft.world.entity.Entity e) {
+        UUID owner = pet.petState().owner;
+        if (owner == null || e == null) return false;
+        if (e.getUUID().equals(owner)) return true;
+        if (e instanceof Pet p && p.isTamedPet() && owner.equals(p.petState().owner)) return true;
+        return e instanceof OwnableEntity o && owner.equals(o.getOwnerUUID());
+    }
+
+    /**
+     * The owner's right-click without a treat: bug armour puts it on (adults only), shears take it off, an empty hand
+     * cycles Follow / Stay / Wander. An ownerless tamed pet (tamed before owners existed) is claimed by whoever clicks it.
+     */
+    public static InteractionResult ownerInteract(Mob mob, Pet pet, Player player, InteractionHand hand) {
+        PetState st = pet.petState();
+        if (!st.tamed) return InteractionResult.PASS;
+        ItemStack stack = player.getItemInHand(hand);
+        boolean armour = stack.getItem() instanceof BugArmorItem, shears = stack.is(Items.SHEARS);
+        if (!armour && !shears && !stack.isEmpty()) return InteractionResult.PASS;
+        if (st.owner != null && !st.owner.equals(player.getUUID())) {
+            if (stack.isEmpty() && hand == InteractionHand.MAIN_HAND && !mob.level().isClientSide)
+                player.displayClientMessage(Component.translatable("pet.exofall.not_yours", mob.getDisplayName()), true);
+            return stack.isEmpty() ? InteractionResult.sidedSuccess(mob.level().isClientSide) : InteractionResult.PASS;
+        }
+        if (mob.level().isClientSide) return InteractionResult.SUCCESS;
+        if (st.owner == null) st.owner = player.getUUID();
+        if (armour) {
+            if (mob.isBaby()) {
+                player.displayClientMessage(Component.translatable("pet.exofall.too_young"), true);
+                return InteractionResult.CONSUME;
+            }
+            ItemStack old = mob.getItemBySlot(EquipmentSlot.BODY);
+            mob.setItemSlot(EquipmentSlot.BODY, stack.copyWithCount(1));
+            mob.setGuaranteedDrop(EquipmentSlot.BODY);
+            if (!player.getAbilities().instabuild) stack.shrink(1);
+            if (!old.isEmpty() && !player.getInventory().add(old)) mob.spawnAtLocation(old);
+            mob.level().playSound(null, mob, ((BugArmorItem) mob.getItemBySlot(EquipmentSlot.BODY).getItem()).getEquipSound().value(), SoundSource.NEUTRAL, 1.0f, 1.0f);
+            return InteractionResult.CONSUME;
+        }
+        if (shears) {
+            ItemStack old = mob.getItemBySlot(EquipmentSlot.BODY);
+            if (old.isEmpty()) return InteractionResult.PASS;
+            mob.setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
+            if (!player.getInventory().add(old)) mob.spawnAtLocation(old);
+            mob.level().playSound(null, mob, SoundEvents.ARMOR_UNEQUIP_WOLF, SoundSource.NEUTRAL, 1.0f, 1.0f);
+            stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+            return InteractionResult.CONSUME;
+        }
+        if (hand != InteractionHand.MAIN_HAND) return InteractionResult.PASS;
+        setMode(mob, st, st.mode.next());
+        player.displayClientMessage(Component.translatable("pet.exofall.mode." + st.mode.name().toLowerCase(java.util.Locale.ROOT),
+                mob.getDisplayName(), (int) Math.ceil(mob.getHealth()), (int) Math.ceil(mob.getMaxHealth())), true);
+        return InteractionResult.CONSUME;
+    }
+
+    public static void setMode(Mob mob, PetState st, PetState.Mode mode) {
+        st.mode = mode;
+        if (mode == PetState.Mode.STAY) {
+            mob.setTarget(null);
+            mob.getNavigation().stop();
+        }
     }
 
     /** Implemented by pets whose baby size is synced data. */

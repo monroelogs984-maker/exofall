@@ -44,7 +44,7 @@ public class TombScorpion extends Bug implements Enemy {
 
     static final int WINDUP_TICKS = 15, COOLDOWN = 60;
     static final double START = 3.4, HIT = 3.8;
-    static final float STING_DAMAGE = 8;
+    static final float STING_DAMAGE = 26;
 
     private int cooldown = 20;
 
@@ -54,7 +54,7 @@ public class TombScorpion extends Bug implements Enemy {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(34, 5, 8, 0.27);
+        return attrs(70, 12, 8, 0.27);
     }
 
     @Override

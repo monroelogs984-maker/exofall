@@ -55,7 +55,7 @@ public class CanopyAssassin extends Bug implements Enemy {
 
     static final int TELL_TICKS = 10, CALM_TO_CLIMB = 200, MAX_CEILING = 6;
     static final double TRIGGER = 2.5, WARN = 10;
-    static final float DROP_DAMAGE = 8;
+    static final float DROP_DAMAGE = 24;
 
     private int tell, calm;
     @Nullable private LivingEntity prey;
@@ -66,7 +66,7 @@ public class CanopyAssassin extends Bug implements Enemy {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(22, 4, 2, 0.32);
+        return attrs(45, 10, 2, 0.32);
     }
 
     @Override

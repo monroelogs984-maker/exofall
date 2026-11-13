@@ -25,6 +25,11 @@ ARMOUR_SHAPES = {
     "boots": ["K   K",
               "PS SP"],
 }
+# bug armour for tamed pets: no boss drop (pets come before each meteor's boss)
+BUG_ARMOUR_SHAPE = ["K   K",
+                    "PSPSP",
+                    "PPKPP",
+                    " P P "]
 SETS = {
     "mireweave":           dict(P="exofall:bogsilk_spool",  S="exofall:leech_fang",       B="exofall:bog_eye",          K="exofall:sapcane"),
     "crystallized_honey":  dict(P="exofall:propolis_gland", S="exofall:honeyguard_plate", B="exofall:royal_honey_drop", K="exofall:royal_amber"),
@@ -119,6 +124,9 @@ for s, mats in SETS.items():
         key = {c: mats[c] for c in {c for row in shape for c in row if c != " "}}
         json.dump(recipe(shape, key, f"{s}_{piece}", s), open(os.path.join(OUT, f"{s}_{piece}.json"), "w"), indent=2)
         n += 1
+    key = {c: mats[c] for c in {c for row in BUG_ARMOUR_SHAPE for c in row if c != " "}}
+    json.dump(recipe(BUG_ARMOUR_SHAPE, key, f"{s}_bug_armour", "bug_armour"), open(os.path.join(OUT, f"{s}_bug_armour.json"), "w"), indent=2)
+    n += 1
 for item, (shape, key) in OTHER.items():
     json.dump(recipe(shape, key, item, "meteor_gear"), open(os.path.join(OUT, f"{item}.json"), "w"), indent=2)
     n += 1

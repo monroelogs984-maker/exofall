@@ -43,7 +43,7 @@ public class ApexMantis extends ExofallBoss {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return bossAttrs(400, 16, 12, 0.32);
+        return bossAttrs(950, 26, 12, 0.32);
     }
 
     @Override
@@ -106,9 +106,9 @@ public class ApexMantis extends ExofallBoss {
                 if (t == 0 && target != null) lockedYaw = yawTo(target.position());
                 if (t < 8 || (t > 14 && t < 20) || (t > 24 && t < 30)) aim(target, 8);
                 faceYaw(lockedYaw);
-                if (t == 12) slash(12, 4.5, 70, false);
-                if (t == 22) slash(12, 4.5, 70, false);
-                if (t == 36) slash(18, 5.0, 50, true);
+                if (t == 12) slash(26, 4.5, 70, false);
+                if (t == 22) slash(26, 4.5, 70, false);
+                if (t == 36) slash(42, 5.0, 50, true);
                 if (t >= 46) {
                     cooldown(CD_COMBO, 40);
                     endMove();
@@ -158,7 +158,7 @@ public class ApexMantis extends ExofallBoss {
             setDeltaMovement(Vec3.ZERO);
             playSound(SoundEvents.GENERIC_EXPLODE.value(), 1.2f, 1.2f);
             particlesAt(new BlockParticleOption(ParticleTypes.BLOCK, getBlockStateOn()), position(), 40, 2.0, 0.2);
-            hitRadius(position(), 3.2, 14, knock(this, 0.9, 0.4));
+            hitRadius(position(), 3.2, 36, knock(this, 0.9, 0.4));
         }
         if ((landedAt >= 0 && t >= landedAt + 12) || t > 70) {
             cooldown(CD_LEAP, 140);
@@ -197,7 +197,7 @@ public class ApexMantis extends ExofallBoss {
             playSound(SoundEvents.AMETHYST_BLOCK_RESONATE, 2.5f, 1.6f);
             particlesAt(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.AZALEA_LEAVES.defaultBlockState()), position().add(0, 2, 0), 40, 1.2, 0.2);
         }
-        if (t == revealAt + 10) slash(22, 4.5, 80, true);
+        if (t == revealAt + 10) slash(55, 4.5, 80, true);
         if (t >= revealAt + 22) {
             cooldown(CD_CAMO, 360);
             endMove();
@@ -218,7 +218,7 @@ public class ApexMantis extends ExofallBoss {
                     triggerAnim("action", "riposte");
                     lockedYaw = yawTo(attacker.position());
                     faceYaw(lockedYaw);
-                    hitCone(lockedYaw, 5.0, 80, 20, knock(this, 1.4, 0.4));
+                    hitCone(lockedYaw, 5.0, 80, 48, knock(this, 1.4, 0.4));
                     return false;
                 }
             }

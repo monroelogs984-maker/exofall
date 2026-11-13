@@ -38,7 +38,7 @@ public class Waxmite extends Bug implements Enemy, HiveMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(8, 3, 2, 0.3);
+        return attrs(16, 7, 2, 0.3);
     }
 
     @Override

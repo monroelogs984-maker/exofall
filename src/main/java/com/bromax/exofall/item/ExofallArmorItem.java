@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 
 /** A piece of a meteor {@link ArmorSet}. Set perks live in {@link ArmorEvents}; Ancientstone's slowdown is per piece here. */
 public class ExofallArmorItem extends ArmorItem {
+    /** Default per-piece slowdown; the live value is config gear.armour.ancientstoneSlowPerPiece (applied in GearScaling). */
     public static final double ANCIENTSTONE_SLOW = -0.025;
     private final ArmorSet set;
     private final Supplier<ItemAttributeModifiers> modifiers;

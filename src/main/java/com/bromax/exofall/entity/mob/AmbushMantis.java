@@ -126,7 +126,7 @@ public abstract class AmbushMantis extends Bug implements Enemy {
     }
 
     /** Walk into cover, crouch, wait, tell, lunge. Only runs while it has no target. */
-    class AmbushGoal extends Goal {
+    class AmbushGoal extends Goal implements com.bromax.exofall.entity.mob.pet.WildOnly {
         @Nullable private BlockPos cover;
         @Nullable private LivingEntity prey;
         private int tellTicks;

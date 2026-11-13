@@ -48,7 +48,7 @@ public class Stinger extends FlyingBug implements Enemy, HiveMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return flyingAttrs(30, 12, 4, 0.55);
+        return flyingAttrs(70, 28, 4, 0.55);
     }
 
     @Override

@@ -2,7 +2,9 @@ plugins {
     id 'net.neoforged.gradle.userdev' version '7.1.38'
 }
 
-version = '1.0.0-1.21.1'
+// mod_version is what the game shows (mods list, neoforge.mods.toml via the manifest); the jar name adds the MC version
+ext.mod_version = '1.1.0'
+version = "${mod_version}-1.21.1"
 group = 'com.bromax.exofall'
 
 base {
@@ -43,7 +45,7 @@ jar {
             'Specification-Vendor'  : 'BROMAX',
             'Specification-Version' : '1',
             'Implementation-Title'  : project.name,
-            'Implementation-Version': "${version}",
+            'Implementation-Version': "${mod_version}",
             'Implementation-Vendor' : 'BROMAX',
         ])
     }

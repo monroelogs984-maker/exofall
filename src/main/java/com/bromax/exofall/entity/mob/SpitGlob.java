@@ -72,7 +72,7 @@ public class SpitGlob extends ThrowableItemProjectile {
         super.onHitEntity(hit);
         Entity owner = getOwner();
         if (hit.getEntity() instanceof LivingEntity le) {
-            le.hurt(damageSources().mobProjectile(this, owner instanceof LivingEntity o ? o : null), isPropolis() ? 4 : 2);
+            le.hurt(damageSources().mobProjectile(this, owner instanceof LivingEntity o ? o : null), isPropolis() ? 12 : 6);
             if (isPropolis()) le.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
         }
     }

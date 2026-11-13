@@ -21,11 +21,7 @@ import net.neoforged.neoforge.common.Tags;
 public class ExofallWeaponItem extends SwordItem {
     public enum Kind { QUADBLADE, GRANDHAMMER, SCYTHE, LONGSWORD }
 
-    /** Glasswing Scythe launch: upward speed for a ~2 block rise, and its cooldown. */
-    public static final double LAUNCH_SPEED = 0.54;
-    public static final int LAUNCH_COOLDOWN = 80;
-    /** Royal Grandhammer: share of damage dealt that heals the wielder. */
-    public static final float LIFESTEAL = 0.10F;
+    // perk values (launch, lifesteal, Sandbound time) are in the config: config/ExofallConfig "gear.weapons"
 
     public final Kind kind;
 
@@ -38,7 +34,7 @@ public class ExofallWeaponItem extends SwordItem {
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!attacker.level().isClientSide) {
             switch (kind) {
-                case QUADBLADE -> target.addEffect(new MobEffectInstance(ModEffects.SANDBOUND, 60, 0), attacker);
+                case QUADBLADE -> target.addEffect(new MobEffectInstance(ModEffects.SANDBOUND, com.bromax.exofall.config.ExofallConfig.QUADBLADE_SLOW_TICKS.get(), 0), attacker);
                 case LONGSWORD -> BleedingEffect.addStack(target, attacker);
                 case SCYTHE -> launch(target, attacker);
                 case GRANDHAMMER -> { }
@@ -48,13 +44,14 @@ public class ExofallWeaponItem extends SwordItem {
     }
 
     private void launch(LivingEntity target, LivingEntity attacker) {
-        if (target instanceof ExofallBoss || target.getType().is(Tags.EntityTypes.BOSSES)) return;
+        double speed = com.bromax.exofall.config.ExofallConfig.SCYTHE_LAUNCH_SPEED.get();
+        if (speed <= 0 || target instanceof ExofallBoss || target.getType().is(Tags.EntityTypes.BOSSES)) return;
         if (attacker instanceof Player p) {
             if (p.getCooldowns().isOnCooldown(this)) return;
-            p.getCooldowns().addCooldown(this, LAUNCH_COOLDOWN);
+            p.getCooldowns().addCooldown(this, com.bromax.exofall.config.ExofallConfig.SCYTHE_LAUNCH_COOLDOWN.get());
         }
         Vec3 v = target.getDeltaMovement();
-        target.setDeltaMovement(v.x, Math.max(v.y, LAUNCH_SPEED), v.z);
+        target.setDeltaMovement(v.x, Math.max(v.y, speed), v.z);
         target.hasImpulse = true;
         target.hurtMarked = true;
     }

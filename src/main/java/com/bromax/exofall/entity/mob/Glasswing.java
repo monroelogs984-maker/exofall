@@ -65,7 +65,7 @@ public class Glasswing extends Monster implements GeoEntity, com.bromax.exofall.
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.ATTACK_DAMAGE, 7)
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 50).add(Attributes.ATTACK_DAMAGE, 20)
                 .add(Attributes.ARMOR, 2).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.FLYING_SPEED, 0.7)
                 .add(Attributes.FOLLOW_RANGE, 24);
     }
@@ -346,6 +346,12 @@ public class Glasswing extends Monster implements GeoEntity, com.bromax.exofall.
 
     @Override
     public boolean shouldDespawnInPeaceful() {
+        return !petState.tamed;
+    }
+
+    /** A tamed Glasswing doesn't count as a monster nearby when its owner goes to bed. */
+    @Override
+    public boolean isPreventingPlayerRest(net.minecraft.world.entity.player.Player player) {
         return !petState.tamed;
     }
 

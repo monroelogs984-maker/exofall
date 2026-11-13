@@ -27,7 +27,7 @@ public class Reedmantis extends AmbushMantis {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(30, 8, 4, 0.3);
+        return attrs(60, 18, 4, 0.3);
     }
 
     @Override

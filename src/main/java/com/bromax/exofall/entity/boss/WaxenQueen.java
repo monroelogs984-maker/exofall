@@ -58,7 +58,7 @@ public class WaxenQueen extends ExofallBoss implements HiveMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return bossAttrs(380, 12, 10, 0.3).add(Attributes.FLYING_SPEED, 0.55);
+        return bossAttrs(900, 22, 10, 0.3).add(Attributes.FLYING_SPEED, 0.55);
     }
 
     @Override
@@ -146,7 +146,7 @@ public class WaxenQueen extends ExofallBoss implements HiveMob {
                     Vec3 from = position().add(0, 0.8, 0);
                     Vec3 to = target.position().add(0, target.getBbHeight() * 0.5, 0).subtract(from);
                     for (int i = 0; i < n; i++) {
-                        BossGlob g = BossGlob.shoot(this, Items.HONEYCOMB, 6, MobEffects.MOVEMENT_SLOWDOWN, 80, 1);
+                        BossGlob g = BossGlob.shoot(this, Items.HONEYCOMB, 20, MobEffects.MOVEMENT_SLOWDOWN, 80, 1);
                         g.setPos(from);
                         Vec3 dir = to.yRot((float) Math.toRadians((i - (n - 1) / 2.0) * 11));
                         g.shoot(dir.x, dir.y + Math.sqrt(dir.x * dir.x + dir.z * dir.z) * 0.08, dir.z, 1.1f, 2f);
@@ -179,7 +179,7 @@ public class WaxenQueen extends ExofallBoss implements HiveMob {
                     playSound(SoundEvents.ENDER_DRAGON_FLAP, 3f, 0.7f);
                     Vec3 below = position().add(0, -2.5, 0);
                     particlesAt(ParticleTypes.CLOUD, below, 30, 2.5, 0.1);
-                    hitRadius(below, 5.5, 6, knock(this, 1.3, 0.2));
+                    hitRadius(below, 5.5, 22, knock(this, 1.3, 0.2));
                 }
                 if (t >= 22) {
                     cooldown(CD_BUFFET, 160);
@@ -226,7 +226,7 @@ public class WaxenQueen extends ExofallBoss implements HiveMob {
                 setDeltaMovement(to.normalize().scale(1.1));
                 for (LivingEntity e : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.8), this::hittable)) {
                     if (hitThisDive.add(e.getId())) {
-                        hurtTarget(e, 18);
+                        hurtTarget(e, 50);
                         e.addEffect(new net.minecraft.world.effect.MobEffectInstance(MobEffects.POISON, 100, 1));
                     }
                 }
@@ -234,7 +234,7 @@ public class WaxenQueen extends ExofallBoss implements HiveMob {
             }
             diving = false;
             setDeltaMovement(Vec3.ZERO);
-            hitRadius(position(), 2.2, 10, e -> {
+            hitRadius(position(), 2.2, 28, e -> {
                 if (hitThisDive.add(e.getId())) e.addEffect(new net.minecraft.world.effect.MobEffectInstance(MobEffects.POISON, 100, 1));
             });
             particlesAt(ParticleTypes.CLOUD, position(), 20, 1.5, 0.05);

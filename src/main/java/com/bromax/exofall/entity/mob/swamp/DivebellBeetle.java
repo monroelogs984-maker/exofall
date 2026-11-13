@@ -46,7 +46,7 @@ public class DivebellBeetle extends Bug {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(24, 6, 6, 1.0);
+        return attrs(50, 14, 6, 1.0);
     }
 
     public static boolean checkSpawnRules(EntityType<DivebellBeetle> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {

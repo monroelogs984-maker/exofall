@@ -63,7 +63,7 @@ public class Sanddiver extends Bug implements Enemy, Hideable {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(26, 7, 4, 0.3);
+        return attrs(55, 18, 4, 0.3);
     }
 
     @Override

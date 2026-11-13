@@ -31,8 +31,7 @@ public class BaubleItem extends Item implements ICurioItem {
     public enum Kind { DIVEBELL_LOCKET, EMBER_BEETLE_BROOCH, LEAFCUTTER_CHARM, STINGER_FANG_RING, NURSEMAIDS_WAX_CHARM, LANTERN_MOTH_PENDANT }
 
     /** Lantern Moth Pendant: hostiles this close are outlined while the wearer stands in the dark. */
-    public static final double MOTH_RANGE = 8.0;
-    public static final int MOTH_DARK = 7;
+    // Lantern Moth range and light level: config/ExofallConfig "gear.baubles"
 
     public final Kind kind;
 
@@ -62,9 +61,10 @@ public class BaubleItem extends Item implements ICurioItem {
                 }
             }
             case LANTERN_MOTH_PENDANT -> {
-                if (e.tickCount % 10 == 0 && sl.getMaxLocalRawBrightness(e.blockPosition().above()) < MOTH_DARK) {
-                    for (Mob m : sl.getEntitiesOfClass(Mob.class, e.getBoundingBox().inflate(MOTH_RANGE),
-                            m -> m instanceof Enemy && m.distanceToSqr(e) <= MOTH_RANGE * MOTH_RANGE)) {
+                if (e.tickCount % 10 == 0 && sl.getMaxLocalRawBrightness(e.blockPosition().above()) < com.bromax.exofall.config.ExofallConfig.MOTH_DARK.get()) {
+                    double mothRange = com.bromax.exofall.config.ExofallConfig.MOTH_RANGE.get();
+                    for (Mob m : sl.getEntitiesOfClass(Mob.class, e.getBoundingBox().inflate(mothRange),
+                            m -> m instanceof Enemy && m.distanceToSqr(e) <= mothRange * mothRange)) {
                         m.addEffect(new MobEffectInstance(MobEffects.GLOWING, 15, 0, false, false));
                     }
                 }

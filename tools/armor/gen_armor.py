@@ -253,10 +253,75 @@ def paint(src, painter, R, layer=None, icon=False):
 
 ICON_DETAIL = {}
 
+BUG_SHELL = ["................",
+             "................",
+             "................",
+             ".....######.....",
+             "...##########...",
+             "..############..",
+             ".#...........#..",
+             ".#...........#..",
+             ".#...........#..",
+             ".#...........#..",
+             ".##.########.##.",
+             ".#...........#..",
+             "................",
+             "................",
+             "................",
+             "................"]
+
+def bug_shell_source():
+    """Grey source for the bug armour icon: an arched shell of three overlapping segments (seams at x 5 and 10, each
+    segment's front edge lit), lit from the top-left, a dark rim along the bottom and two strap hooks."""
+    img = Image.new("RGBA", (16, 16))
+    for y, row in enumerate(BUG_SHELL):
+        for x, ch in enumerate(row):
+            if ch != "#":
+                continue
+            l = 0.95 - (y - 3) * 0.085 - (x - 4) * 0.018
+            seg = 0 if x < 5 else 1 if x < 11 else 2
+            start = (0, 5, 11)[seg]
+            if x == start and seg and y < 10:
+                l = 0.12                    # seam shadow under the previous segment
+            elif x == start + 1 and seg and y < 10:
+                l += 0.18                   # lit leading edge of the next segment
+            if y >= 10:
+                l = 0.2                     # rim + hooks
+            v = int(max(0.0, min(1.0, l)) * 255)
+            img.putpixel((x, y), (v, v, v, 255))
+    return img
+
+BUG_ICON_DETAIL = {
+    "crystallized_honey": lambda R: [(7, 6, R["gem"][4]), (8, 6, R["gem"][3]), (7, 7, R["gem"][2]), (8, 7, R["gem"][1]), (7, 5, (255, 250, 220))],
+    "ancientstone": lambda R: [(x, 9, R["turq"][2 if x % 2 else 1]) for x in range(2, 14)] + [(7, 6, R["gold"][4]), (8, 6, R["gold"][3])],
+    "mireweave": lambda R: [(x, y, R["bind"][2]) for x, y in ((3, 5), (4, 6), (5, 7), (6, 8), (10, 8), (11, 7), (12, 6))] + [(8, 8, R["clasp"][3])],
+    "reinforced_carapace": lambda R: [(x, 4, R["base"][8]) for x in range(4, 9)],
+}
+
+def bug_plate(painter, R, size=32):
+    """A tiling 32x32 plate of the set's surface, one texel per model pixel: the painter sees one big front face with a
+    soft mid-tone (gentle low-frequency light so it isn't flat), no rims. Used on every body cube of a tamed bug."""
+    img = Image.new("RGBA", (size, size))
+    for y in range(size):
+        for x in range(size):
+            lum = 0.5 + 0.12 * math.sin(2 * math.pi * x / size) * math.cos(2 * math.pi * y / size) + (hsh(x, y, 21) - 0.5) * 0.08
+            fw = size
+            if painter is mireweave:
+                lum += 0.2
+            if painter is carapace:
+                fw = 3                      # its glossy streak lands on column 0 (a lit leading edge), not mid-tile
+            c = Ctx(x, y, lum, False, ("plate", "front", x, y, fw, size), False, None)
+            col = painter(c, R)
+            if painter is mireweave and y % 8 in (6, 7):
+                col = R["bind"][2 if y % 8 == 6 else 1]   # reed-green binding cords across the weave
+            img.putpixel((x, y), (*col[:3], 255))
+    return img
+
 def main():
     ICON_DETAIL.update(_icon_detail())
     l1, l2 = vimg("models/armor/netherite_layer_1.png"), vimg("models/armor/netherite_layer_2.png")
     icons = {k: vimg(f"item/netherite_{k}.png") for k in ("helmet", "chestplate", "leggings", "boots")}
+    shell = bug_shell_source()
     prev = sys.argv[1] if len(sys.argv) > 1 else None
     for name, (painter, R) in SETS.items():
         a, b = paint(l1, painter, R, 1), paint(l2, painter, R, 2)
@@ -269,6 +334,17 @@ def main():
                 if ic.getpixel((x, y))[3]:
                     im.putpixel((x, y), (*col, 255))
             im.save(os.path.join(TEX, f"item/{name}_{k}.png"))
+        # bug armour (tamed pets): icon on vanilla's wolf armour silhouette + a 32x32 tiling plate for the render layer
+        bug_icon = paint(shell, painter, R, icon=True)
+        for (x, y, col) in BUG_ICON_DETAIL.get(name, lambda R: [])(R):
+            bug_icon.putpixel((x, y), (*col[:3], 255))
+        bug_icon.save(os.path.join(TEX, f"item/{name}_bug_armour.png"))
+        plate = bug_plate(painter, R)
+        os.makedirs(os.path.join(TEX, "entity/bug_armour"), exist_ok=True)
+        plate.save(os.path.join(TEX, f"entity/bug_armour/{name}.png"))
+        if prev:
+            bug_icon.save(os.path.join(prev, f"{name}_bug_armour.png"))
+            plate.save(os.path.join(prev, f"{name}_plate.png"))
         if prev:
             st = Image.new("RGBA", (64, 64))
             st.paste(a, (0, 0)); st.paste(b, (0, 32))

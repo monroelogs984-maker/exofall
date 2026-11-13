@@ -1,0 +1,23 @@
+{
+  "name": "Pets at Work",
+  "icon": "exofall:dune_pellet",
+  "category": "exofall:pets",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A tamed bug is yours, and tougher than a wild one (+50% health). $(thing)Right-click it with an empty hand$() to switch between $(thing)Follow$(), $(thing)Stay$() and $(thing)Wander$(). A following pet comes back when you walk off and teleports to you if you get far away. You and your pets can't hurt each other.",
+      "title": "Your Pet"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Fighters$() attack whatever hurts you and whatever you hit, and fight back when hurt (not while staying).$(br2)$(li)Glasswing: its dive, aimed for you.$(li)Combwasp: poison stings.$(li)Shieldback: monsters near it that go for you switch to it instead.$(li)Reedmantis and Bloommantis: the first hit on each new target deals double.",
+      "title": "Fighters"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Helpers$() never fight.$(br2)$(li)$(thing)Nursemaid$(): flies to you or your hurt pets and heals with wax.$(li)$(thing)Mudgrub$(): every few minutes it digs up something from soft ground (clay, slime, nuggets, sometimes Bubble Sacs or Bogsilk).$(li)$(thing)Gold-Encrusted Scarab$(): senses nearby ores, gold first, and tells you where. Now and then it digs up gold.",
+      "title": "Helpers"
+    }
+  ]
+}

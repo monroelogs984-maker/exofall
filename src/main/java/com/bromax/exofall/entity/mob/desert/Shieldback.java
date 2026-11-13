@@ -39,7 +39,7 @@ public class Shieldback extends Bug implements Enemy {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(40, 9, 8, 0.2).add(Attributes.KNOCKBACK_RESISTANCE, 0.8);
+        return attrs(100, 20, 8, 0.2).add(Attributes.KNOCKBACK_RESISTANCE, 0.8);
     }
 
     @Override

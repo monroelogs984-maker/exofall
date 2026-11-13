@@ -1,0 +1,25 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "bug_armour",
+  "pattern": [
+    "K   K",
+    "PSPSP",
+    "PPKPP",
+    " P P "
+  ],
+  "key": {
+    "K": {
+      "item": "exofall:sapcane"
+    },
+    "P": {
+      "item": "exofall:bogsilk_spool"
+    },
+    "S": {
+      "item": "exofall:leech_fang"
+    }
+  },
+  "result": {
+    "id": "exofall:mireweave_bug_armour",
+    "count": 1
+  }
+}

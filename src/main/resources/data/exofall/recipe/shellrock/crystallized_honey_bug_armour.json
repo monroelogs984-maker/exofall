@@ -1,0 +1,25 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "bug_armour",
+  "pattern": [
+    "K   K",
+    "PSPSP",
+    "PPKPP",
+    " P P "
+  ],
+  "key": {
+    "K": {
+      "item": "exofall:royal_amber"
+    },
+    "P": {
+      "item": "exofall:propolis_gland"
+    },
+    "S": {
+      "item": "exofall:honeyguard_plate"
+    }
+  },
+  "result": {
+    "id": "exofall:crystallized_honey_bug_armour",
+    "count": 1
+  }
+}

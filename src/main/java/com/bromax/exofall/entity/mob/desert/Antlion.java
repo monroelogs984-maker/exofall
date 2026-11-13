@@ -61,7 +61,7 @@ public class Antlion extends Bug implements Enemy {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(32, 8, 6, 0.2).add(Attributes.KNOCKBACK_RESISTANCE, 1.0);
+        return attrs(70, 20, 6, 0.2).add(Attributes.KNOCKBACK_RESISTANCE, 1.0);
     }
 
     @Override

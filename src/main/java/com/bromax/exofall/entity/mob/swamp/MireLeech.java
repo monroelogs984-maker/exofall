@@ -50,7 +50,7 @@ public class MireLeech extends Bug implements Enemy {
     private static final BugSounds SOUNDS = BugSounds.of(null, SoundEvents.SLIME_HURT_SMALL, SoundEvents.SLIME_DEATH_SMALL, null, 0.7f);
 
     static final int DRAIN_EVERY = 40, MAX_LATCH = 600, DRY_LIMIT = 10;
-    static final float DRAIN = 2;
+    static final float DRAIN = 6;
 
     private int latched, dry, relatch;
 
@@ -63,7 +63,7 @@ public class MireLeech extends Bug implements Enemy {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(10, 2, 0, 1.0);
+        return attrs(24, 4, 0, 1.0);
     }
 
     public static boolean checkSpawnRules(EntityType<MireLeech> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {

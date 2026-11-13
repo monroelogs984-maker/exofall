@@ -29,7 +29,7 @@ import java.util.function.Supplier;
  * out onto free floor within 4 blocks. Stops while 6 bugs are already round it. Not in Peaceful.
  */
 public class NestBlockEntity extends BlockEntity {
-    private static final int RANGE = 16, CAP = 6, SPREAD = 4;
+    private static final int SPREAD = 4;   // range, cap and delays: config/ExofallConfig "nests"
     private int delay = 40;
 
     private record Entry(Supplier<? extends EntityType<? extends Mob>> type, int weight) {}
@@ -56,9 +56,10 @@ public class NestBlockEntity extends BlockEntity {
         RandomSource r = level.random;
         be.delay = 40;
         if (level.getDifficulty() == Difficulty.PEACEFUL) return;
-        if (level.getNearestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, RANGE, EntitySelector.NO_SPECTATORS) == null) return;
-        if (level.getEntitiesOfClass(Bug.class, new AABB(pos).inflate(10)).size() >= CAP) return;
-        be.delay = 200 + r.nextInt(300);
+        if (level.getNearestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, com.bromax.exofall.config.ExofallConfig.NEST_RANGE.get(), EntitySelector.NO_SPECTATORS) == null) return;
+        if (level.getEntitiesOfClass(Bug.class, new AABB(pos).inflate(10)).size() >= com.bromax.exofall.config.ExofallConfig.NEST_CAP.get()) return;
+        int lo = com.bromax.exofall.config.ExofallConfig.NEST_DELAY_MIN.get(), hi = Math.max(lo, com.bromax.exofall.config.ExofallConfig.NEST_DELAY_MAX.get());
+        be.delay = lo + r.nextInt(hi - lo + 1);
         int count = 1 + r.nextInt(2), spawned = 0;
         for (int i = 0; i < count; i++) if (spawnOne(server, pos, pool(nest.style()), r)) spawned++;
         if (spawned > 0) {

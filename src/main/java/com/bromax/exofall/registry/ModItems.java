@@ -194,13 +194,13 @@ public final class ModItems {
     }
 
     public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> QUADBLADE_OF_THE_SANDS =
-            legendary("quadblade_of_the_sands", com.bromax.exofall.item.ExofallWeaponItem.Kind.QUADBLADE, 15.0, 0.7);
+            legendary("quadblade_of_the_sands", com.bromax.exofall.item.ExofallWeaponItem.Kind.QUADBLADE, 25.0, 0.7);
     public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> ROYAL_GRANDHAMMER =
-            legendary("royal_grandhammer", com.bromax.exofall.item.ExofallWeaponItem.Kind.GRANDHAMMER, 20.0, 0.5);
+            legendary("royal_grandhammer", com.bromax.exofall.item.ExofallWeaponItem.Kind.GRANDHAMMER, 32.0, 0.5);
     public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> GLASSWING_SCYTHE =
-            legendary("glasswing_scythe", com.bromax.exofall.item.ExofallWeaponItem.Kind.SCYTHE, 11.0, 1.2);
+            legendary("glasswing_scythe", com.bromax.exofall.item.ExofallWeaponItem.Kind.SCYTHE, 14.5, 1.2);
     public static final DeferredItem<com.bromax.exofall.item.ExofallWeaponItem> SERRATED_LONGSWORD =
-            legendary("serrated_longsword", com.bromax.exofall.item.ExofallWeaponItem.Kind.LONGSWORD, 9.0, 1.7);
+            legendary("serrated_longsword", com.bromax.exofall.item.ExofallWeaponItem.Kind.LONGSWORD, 9.5, 1.7);
 
     // ---- Baubles (Curios; uncraftable for now)
     private static DeferredItem<com.bromax.exofall.item.BaubleItem> bauble(com.bromax.exofall.item.BaubleItem.Kind kind) {

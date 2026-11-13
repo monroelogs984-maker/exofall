@@ -248,6 +248,25 @@ half size, grows up in 24000 ticks (treats speed it up), 5 min cooldown. Mudgrub
 candy). Tamed/bred Golden Scarabs drop nothing (no Desert Sigil farm). Cross-breeding (PetPair.CROSS_TREATS) waits for
 the hybrids. `/exofall pettest` passes (runs at world spawn: entity lookups need entity-ticking chunks).
 
+**Step 2 built 2026-11-13 (Glenn: hybrids SCRAPPED, own baubles scrapped for v1; picked my recommended options):**
+pet/PetGoals adds the AI on join (wild-only goals are gated off once tamed, so the mob classes barely change), pet/PetEvents
+the event rules. Owner = whoever tamed/bred it (older ownerless pets: first clicker claims). Empty hand cycles
+Follow/Stay/Wander; Follow teleports past 24 blocks. Tamed = x2 health, fighters x1.5 damage (config). Fighters
+(Glasswing, Combwasp, Shieldback, Reedmantis, Bloommantis) take the owner's attacker and target; Shieldback taunts
+monsters off its owner every 3 s (not bosses); mantis first hit on each new target x2. Helpers: Nursemaid heals owner
+1 / pets 2 every 2 s; Mudgrub digs `gameplay/mudgrub_dig` from soft ground every ~5 min (this is its farm product);
+scarab senses c:ores (gold first) every 30 s within 10 blocks (action-bar text + glint trail) and digs
+`gameplay/scarab_dig` gold. No friendly fire, golems ignore pets, owner gets a death message. Bug armour
+(item/BugArmorItem, body slot like wolf armour, never wears out, 5x5 recipe P+S+K, no boss drop): Mireweave = noticed
+at half range, Honey = 1 hp / 3 s, Carapace = 60% projectile damage, Ancientstone = +0.3 knockback resistance. Drawn by
+client/PetArmourLayer as inflated shells over the body bones with a 32x32 plate per set (tools/armor/gen_armor.py also
+makes the icons). Every number is in the config `pets` section. `/exofall pettest` covers all of it.
+
+## Config (2026-11-13)
+exofall-common.toml: gear (+ weapons/armour/baubles perk values), mobs and bosses (health via a permanent modifier
+refreshed on load, damage via LivingIncomingDamageEvent on any hit sourced from an Exofall mob; tamed pets skipped),
+nests, pets. exofall-client.toml: boss cinematic, pet armour drawing. Meteor spacing/loot/recipes stay datapack.
+
 ## Release 1.0.0 (2026-11-12)
 Config gear multipliers now applied (config/GearScaling, ItemAttributeModifierEvent; tested x2 armour). CHANGELOG.md, mod logo, 17 advancements. CF project not created yet (Glenn).
 
@@ -379,3 +398,20 @@ the single default slot of each (a choice, easy to retag).
   so other players see the outline too).
 - Verified (`/exofall baubletest`, damageable fake player): locket breathing + mining speed, brooch 4 -> 2 fire damage,
   leafcutter (berry damage cancelled, web slowdown skipped, leaves speed 1000), wax charm +3 food from bread. Not verified: ring, pendant, icons in game.
+
+## Balance pass (2026-11-13, Glenn: "balanced to the planned progression level... based on attrition and should feel slightly overwhelming even to appropriately geared players")
+The model and every number live in **tools/balance.py** (run it; keep the code in sync). Reference player = late
+Act 3 S202: netherite-class 20 armour / 12 toughness, EPF 12, ~35 hearts, a late BMM weapon (13.6-16 base DPS,
+~13.5 per swing). Before this pass the bugs had vanilla-overworld stats (a Combwasp died to one hit and did 0.4 hp
+through that armour) and bosses died in ~25 s with heavy hits worth ~5% health.
+- Lesser mobs ~2-2.5x health, ~2.5x damage: fodder 1-2% of health a hit, standard 3-5% (3-5 hits to kill), elites
+  6-10% telegraphed (6-9 hits). Special attacks scaled the same (sting 26, drop 24, leap 20, boulder 24, globs 12/6,
+  leech drain 6 / 2 s, Nursemaid heal 5, Honeyguard shield 60 / heavy 28).
+- Bosses 900-1000 hp (2-3 min fights), light hits 5-9%, telegraphed heavies 18-26% (33% max enraged), never a one-shot.
+- Nests 8-18 s between spawns (was 10-25 s), cap 6.
+- Legendaries re-based to 17.6 DPS (Flaming Ruby +10%, BMM trait-tax rule): Quadblade 25/0.7, Grandhammer 32/0.5,
+  Scythe 14.5/1.2, Longsword 9.5/1.7. These were GLENN's numbers (15/20/11/9) -> flagged to him; at 10-15 DPS they were
+  below a crafted Aeternium BMM weapon.
+- Armour (my numbers): Carapace toughness 4 -> 3.5/piece, Ancientstone 24 armour/6 toughness -> 22/4 per piece
+  (armour above 20 + toughness 24 made it take ~20% of every mob hit). Still above netherite ("9/10-damage-sword tier").
+- Pets: wild stats are late-game now, so tamed multipliers dropped to x1.5 health / x1.0 damage; pet heal 4.

@@ -78,12 +78,14 @@ public final class PetSelfTest {
                     made.clear();
                 }
             }
+            out.addAll(PetJobTest.run(level, pad, fp, bad));
             // tamed scarab: no drops
             Mob s = spawn(level, ModEntities.GOLDEN_SCARAB.get(), pad, 0, made);
             ((Pet) s).petState().tamed = true;
             s.hurt(level.damageSources().playerAttack(fp), 1000);
             int drops = level.getEntitiesOfClass(ItemEntity.class, new AABB(pad).inflate(6)).size();
-            out.add("tamed golden scarab killed by a player: " + drops + " item drops (want 0)");
+            out.add("tamed golden scarab killed by a player: " + drops + " item drops (want 0) "
+                    + level.getEntitiesOfClass(ItemEntity.class, new AABB(pad).inflate(6)).stream().map(i -> i.getItem().toString()).toList());
             if (drops > 0) bad.add("tamed scarab dropped loot");
             level.getEntitiesOfClass(ItemEntity.class, new AABB(pad).inflate(6)).forEach(ItemEntity::discard);
         } finally {

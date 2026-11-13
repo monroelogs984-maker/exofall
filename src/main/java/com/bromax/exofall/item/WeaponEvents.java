@@ -17,7 +17,7 @@ public final class WeaponEvents {
         ItemStack held = attacker.getMainHandItem();
         if (held.getItem() instanceof ExofallWeaponItem w && w.kind == ExofallWeaponItem.Kind.GRANDHAMMER
                 && event.getNewDamage() > 0) {
-            attacker.heal(event.getNewDamage() * ExofallWeaponItem.LIFESTEAL);
+            attacker.heal(event.getNewDamage() * com.bromax.exofall.config.ExofallConfig.GRANDHAMMER_LIFESTEAL.get().floatValue());
         }
     }
 

@@ -1,0 +1,53 @@
+{
+  "name": "Bug Armour",
+  "icon": "exofall:ancientstone_bug_armour",
+  "category": "exofall:pets",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Any tamed adult bug can wear any bug armour. $(thing)Right-click$() your pet with it to put it on, $(thing)shears$() take it off. Each one adds armour and a small perk from its meteor's set.",
+      "title": "Bug Armour"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:mireweave_bug_armour",
+      "text": "Monsters only notice the pet from close by, unless it hits them.",
+      "title": "Mireweave"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/mireweave_bug_armour"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:crystallized_honey_bug_armour",
+      "text": "The pet slowly heals.",
+      "title": "Crystallized Honey"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/crystallized_honey_bug_armour"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:reinforced_carapace_bug_armour",
+      "text": "The pet takes less damage from projectiles.",
+      "title": "Reinforced Carapace"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/reinforced_carapace_bug_armour"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "exofall:ancientstone_bug_armour",
+      "text": "The heaviest: the pet is hard to knock back.",
+      "title": "Ancientstone"
+    },
+    {
+      "type": "exofall:shellrock",
+      "recipe": "exofall:shellrock/ancientstone_bug_armour"
+    }
+  ]
+}

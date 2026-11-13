@@ -45,7 +45,7 @@ public class LarvaCocoon extends Bug implements Enemy, HiveMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(10, 0, 2, 0).add(Attributes.KNOCKBACK_RESISTANCE, 1.0);
+        return attrs(30, 0, 2, 0).add(Attributes.KNOCKBACK_RESISTANCE, 1.0);
     }
 
     @Override

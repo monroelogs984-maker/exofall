@@ -41,7 +41,7 @@ public class Leafcutter extends Bug {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(10, 4, 4, 0.3);
+        return attrs(18, 8, 4, 0.3);
     }
 
     @Override

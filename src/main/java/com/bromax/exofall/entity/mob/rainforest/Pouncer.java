@@ -43,7 +43,7 @@ public class Pouncer extends Bug implements Enemy {
 
     static final int CROUCH_TICKS = 15, COOLDOWN = 60;
     static final double MIN = 3, MAX = 7;
-    static final float LEAP_DAMAGE = 7;
+    static final float LEAP_DAMAGE = 20;
 
     private int cooldown = 20, leapTicks;
     private boolean leapHit;
@@ -54,7 +54,7 @@ public class Pouncer extends Bug implements Enemy {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(20, 4, 2, 0.3);
+        return attrs(45, 10, 2, 0.3);
     }
 
     @Override

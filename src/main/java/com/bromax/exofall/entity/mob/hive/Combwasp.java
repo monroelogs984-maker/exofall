@@ -32,7 +32,7 @@ public class Combwasp extends FlyingBug implements Enemy, HiveMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return flyingAttrs(12, 4, 2, 0.7);
+        return flyingAttrs(30, 10, 2, 0.7);
     }
 
     @Override

@@ -32,7 +32,7 @@ public class Nursemaid extends FlyingBug implements Enemy, HiveMob {
     private static final RawAnimation TEND = RawAnimation.begin().thenPlay("attack.tend");
     private static final BugSounds SOUNDS = new BugSounds(SoundEvents.BEE_LOOP, SoundEvents.BEE_HURT, SoundEvents.BEE_DEATH, null, 1.1f, 0.6f);
 
-    static final float HEAL = 3;
+    static final float HEAL = 5;
     static final double RANGE = 16;
 
     public Nursemaid(EntityType<? extends PathfinderMob> type, Level level) {
@@ -41,7 +41,7 @@ public class Nursemaid extends FlyingBug implements Enemy, HiveMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return flyingAttrs(16, 0, 0, 0.6);
+        return flyingAttrs(34, 0, 0, 0.6);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Nursemaid extends FlyingBug implements Enemy, HiveMob {
         action.triggerableAnim("tend", TEND);
     }
 
-    class TendGoal extends Goal {
+    class TendGoal extends Goal implements com.bromax.exofall.entity.mob.pet.WildOnly {
         @Nullable private LivingEntity patient;
         private int ticks, searchDelay;
 

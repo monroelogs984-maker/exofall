@@ -1,0 +1,25 @@
+{
+  "type": "exofall:shellrock_crafting",
+  "group": "bug_armour",
+  "pattern": [
+    "K   K",
+    "PSPSP",
+    "PPKPP",
+    " P P "
+  ],
+  "key": {
+    "K": {
+      "item": "exofall:polished_chitinstone"
+    },
+    "P": {
+      "item": "exofall:tomb_stinger"
+    },
+    "S": {
+      "item": "exofall:antlion_mandible"
+    }
+  },
+  "result": {
+    "id": "exofall:ancientstone_bug_armour",
+    "count": 1
+  }
+}

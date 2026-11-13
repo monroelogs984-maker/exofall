@@ -6,7 +6,7 @@ Breaking through a meteor's crust takes the Crustbreaker, a pickaxe forged from 
 
 Built for the late game of the **Sovereign 202** modpack, but it works on its own. Gear power can be scaled in the config (`gear.damageMultiplier`, `gear.armorMultiplier`).
 
-**Status:** 1.0.0, first release. Requires GeckoLib and Curios; Patchouli (Field Guide) and JEI (5x5 recipe pages) are optional. See [CHANGELOG.md](CHANGELOG.md).
+**Status:** 1.1.0, first public release. Requires GeckoLib and Curios; Patchouli (Field Guide) and JEI (5x5 recipe pages) are optional. See [CHANGELOG.md](CHANGELOG.md).
 
 ## Credits
 Inspired by **The Erebus** by vadis365 and team. Exofall is an original mod: no Erebus code, assets or names are used.

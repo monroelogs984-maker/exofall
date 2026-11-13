@@ -1,6 +1,6 @@
-# BROMAX's Exofall 1.0.0 (Minecraft 1.21.1, NeoForge)
+# BROMAX's Exofall 1.1.0 (Minecraft 1.21.1, NeoForge)
 
-First release.
+First public release (1.0.0 was an internal build). Balanced for late-game modpacks: an attrition mod where the meteors keep sending bugs until you're worn down.
 
 **Requires:** GeckoLib 4.7+, Curios 9+. **Optional:** Patchouli (the Exofall Field Guide), JEI (5x5 recipe pages).
 
@@ -29,11 +29,18 @@ First release.
 - Everything is crafted from Warren-bug drops and boss drops.
 
 ## Pets
-- Tame eight of the bugs with treats. They become passive and never despawn.
+- Tame eight of the bugs with treats. Tamed bugs are yours: +50% health, never despawn, can't hurt you.
+- Right-click with an empty hand to switch between Follow, Stay and Wander. Following pets teleport to you when you get far away.
+- **Fighters** join your fights: Glasswing (dive), Combwasp (poison), Shieldback (pulls monsters off you), Reedmantis and Bloommantis (double-damage first strike).
+- **Helpers**: the Nursemaid heals you and your pets, the Mudgrub digs up swamp loot, the Gold-Encrusted Scarab senses ores and digs up gold.
+- **Bug armour**: four sets made from the meteor armour materials, each with a small perk. Any pet wears any. Shears take it off.
 - Breed two tamed adults of the same kind for a tamed baby.
-- Cross-breeding into hybrids comes in a later version.
+
+## Balance
+- Tuned for players in late-game gear (netherite-class armour and better): no bug kills you alone, but packs and nests wear you down. Bosses are 2-3 minute fights with telegraphed heavy hits.
+- Every number can be scaled in the config (mob and boss health/damage multipliers, gear, perks, nests, pets).
 
 ## Also
 - **Exofall Field Guide** (Patchouli): every mob, mechanic and recipe. Craft it from a book and flint.
 - 17 advancements.
-- Config: `gear.damageMultiplier` and `gear.armorMultiplier` scale Exofall weapon damage and armour/toughness for other packs.
+- Detailed config (`exofall-common.toml`): gear, weapon and armour perks, baubles, meteor mob and boss health/damage, nests, and every pet value. Changes apply without a restart. `exofall-client.toml`: boss cinematic and pet armour drawing.

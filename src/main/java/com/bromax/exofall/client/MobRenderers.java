@@ -27,6 +27,7 @@ public final class MobRenderers {
         public SeeThrough(EntityRendererProvider.Context ctx, String model, float shadow) {
             super(ctx, new DefaultedEntityGeoModel<>(Exofall.id(model), false));
             this.shadowRadius = shadow;
+            addRenderLayer(new PetArmourLayer<>(this));
         }
 
         @Override
@@ -54,6 +55,7 @@ public final class MobRenderers {
             this.shadow = shadow;
             this.translucent = translucent;
             if (glow) addRenderLayer(new AutoGlowingGeoLayer<>(this));
+            addRenderLayer(new PetArmourLayer<>(this));
         }
 
         @Override
@@ -159,6 +161,7 @@ public final class MobRenderers {
         public Mudgrub(EntityRendererProvider.Context ctx) {
             super(ctx, new DefaultedEntityGeoModel<>(Exofall.id("mudgrub"), false));
             this.shadowRadius = 0.6f;
+            addRenderLayer(new PetArmourLayer<>(this));
         }
 
         @Override

@@ -64,7 +64,7 @@ public class DozenLeggedWrath extends ExofallBoss {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return bossAttrs(450, 15, 14, 0.3);
+        return bossAttrs(1000, 26, 14, 0.3);
     }
 
     @Override
@@ -187,7 +187,7 @@ public class DozenLeggedWrath extends ExofallBoss {
                 faceYaw(lockedYaw);
                 if (t == 10) {
                     playSound(SoundEvents.EVOKER_FANGS_ATTACK, 2f, 0.6f);
-                    hitCone(lockedYaw, 3.5, 70, 15, effect(MobEffects.POISON, 80, 1));
+                    hitCone(lockedYaw, 3.5, 70, 40, effect(MobEffects.POISON, 80, 1));
                 }
                 if (t >= 18) {
                     cooldown(CD_BITE, 25);
@@ -203,8 +203,8 @@ public class DozenLeggedWrath extends ExofallBoss {
             case SWEEP -> {
                 if (t == 12) {
                     playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 2.5f, 0.4f);
-                    hitRadius(midBody(), 4.5, 10, knock(this, 1.4, 0.4));
-                    hitRadius(position(), 3.0, 10, knock(this, 1.4, 0.4));
+                    hitRadius(midBody(), 4.5, 28, knock(this, 1.4, 0.4));
+                    hitRadius(position(), 3.0, 28, knock(this, 1.4, 0.4));
                 }
                 if (t >= 22) {
                     cooldown(CD_SWEEP, 80);
@@ -231,7 +231,7 @@ public class DozenLeggedWrath extends ExofallBoss {
         particlesAt(new BlockParticleOption(ParticleTypes.BLOCK, getBlockStateOn()), position(), 4, 0.8, 0.05);
         for (LivingEntity e : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.6), this::hittable)) {
             if (hitThisCharge.add(e.getId())) {
-                hurtTarget(e, 18);
+                hurtTarget(e, 50);
                 knock(this, 1.8, 0.5).accept(e);
             }
         }
@@ -281,7 +281,7 @@ public class DozenLeggedWrath extends ExofallBoss {
             triggerAnim("action", "erupt");
             playSound(SoundEvents.GENERIC_EXPLODE.value(), 1.5f, 0.7f);
             particlesAt(sand, lockedPoint.add(0, 0.5, 0), 60, 2.0, 0.3);
-            hitRadius(lockedPoint, 3.2, 16, knock(this, 0.5, 1.0));
+            hitRadius(lockedPoint, 3.2, 44, knock(this, 0.5, 1.0));
         }
         if (t >= 50) {
             cooldown(CD_BURROW, 260);

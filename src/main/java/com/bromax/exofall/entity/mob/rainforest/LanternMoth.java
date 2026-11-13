@@ -29,7 +29,7 @@ public class LanternMoth extends FlyingBug {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return flyingAttrs(4, 0, 0, 0.5);
+        return flyingAttrs(8, 0, 0, 0.5);
     }
 
     static boolean isLight(ItemStack stack) {

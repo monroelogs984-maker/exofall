@@ -29,10 +29,10 @@ public enum ArmorSet {
     MIREWEAVE("mireweave", new int[]{3, 6, 8, 3}, 2.5F, 0.0F, 37, 15, SoundEvents.ARMOR_EQUIP_LEATHER, () -> ModItems.BOGSILK_SPOOL.get()),
     /** Hive: full set gives +15% speed and constant Regeneration I. Diamond protection. */
     CRYSTALLIZED_HONEY("crystallized_honey", new int[]{3, 6, 8, 3}, 2.0F, 0.0F, 37, 18, SoundEvents.ARMOR_EQUIP_GOLD, () -> ModItems.PROPOLIS_GLAND.get()),
-    /** Rainforest: projectile protection. 22 armour / 4 toughness. */
-    REINFORCED_CARAPACE("reinforced_carapace", new int[]{4, 7, 8, 3}, 4.0F, 0.1F, 43, 15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> ModItems.POUNCER_SHELL.get()),
-    /** Desert tank: 24 armour / 6 toughness, -2.5% speed per piece. */
-    ANCIENTSTONE("ancientstone", new int[]{4, 7, 9, 4}, 6.0F, 0.2F, 74, 10, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> ModItems.TOMB_STINGER.get());
+    /** Rainforest: projectile protection. 22 armour / 14 toughness. */
+    REINFORCED_CARAPACE("reinforced_carapace", new int[]{4, 7, 8, 3}, 3.5F, 0.1F, 43, 15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> ModItems.POUNCER_SHELL.get()),
+    /** Desert tank: 22 armour / 16 toughness (the most), 0.8 knockback resistance, -2.5% speed per piece. */
+    ANCIENTSTONE("ancientstone", new int[]{4, 7, 8, 3}, 4.0F, 0.2F, 74, 10, SoundEvents.ARMOR_EQUIP_NETHERITE, () -> ModItems.TOMB_STINGER.get());
 
     public static final DeferredRegister<ArmorMaterial> MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, Exofall.MOD_ID);
 
@@ -44,6 +44,8 @@ public enum ArmorSet {
     private final Supplier<Item> repair;
     private DeferredHolder<ArmorMaterial, ArmorMaterial> material;
     public final Map<ArmorItem.Type, DeferredItem<ExofallArmorItem>> pieces = new EnumMap<>(ArmorItem.Type.class);
+    /** Armour for a tamed bug (see {@link BugArmorItem}). */
+    public DeferredItem<BugArmorItem> bugArmour;
 
     ArmorSet(String id, int[] defense, float toughness, float knockback, int durability, int enchant, Holder<SoundEvent> sound, Supplier<Item> repair) {
         this.id = id;
@@ -73,6 +75,10 @@ public enum ArmorSet {
                         new Item.Properties().durability(t.getDurability(s.durability)).fireResistant()
                                 .rarity(net.minecraft.world.item.Rarity.EPIC))));
             }
+        }
+        for (ArmorSet s : values()) {
+            s.bugArmour = ModItems.ITEMS.register(s.id + "_bug_armour", () -> new BugArmorItem(s,
+                    new Item.Properties().stacksTo(1).fireResistant().rarity(net.minecraft.world.item.Rarity.RARE)));
         }
         MATERIALS.register(bus);
     }

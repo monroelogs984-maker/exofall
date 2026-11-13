@@ -36,7 +36,7 @@ public class Twigwalker extends Bug {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(20, 5, 2, 0.2);
+        return attrs(40, 12, 2, 0.2);
     }
 
     @Override

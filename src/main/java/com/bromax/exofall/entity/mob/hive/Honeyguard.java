@@ -44,7 +44,7 @@ public class Honeyguard extends Bug implements Enemy, HiveMob {
     private static final RawAnimation BLOCK = RawAnimation.begin().thenPlay("misc.block");
     private static final BugSounds SOUNDS = new BugSounds(SoundEvents.BEE_LOOP, SoundEvents.BEE_HURT, SoundEvents.BEE_DEATH, SoundEvents.SPIDER_STEP, 0.5f, 0.6f);
 
-    public static final float SHIELD_MAX = 24, HEAVY = 12;
+    public static final float SHIELD_MAX = 60, HEAVY = 28;
     static final float FRONT_TAKEN = 0.15f;
     static final double FRONT_CONE = 0.35;
     static final int RESEAL = 600;
@@ -57,7 +57,7 @@ public class Honeyguard extends Bug implements Enemy, HiveMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(50, 6, 10, 0.18).add(Attributes.KNOCKBACK_RESISTANCE, 1.0).add(Attributes.ATTACK_KNOCKBACK, 2.5);
+        return attrs(100, 16, 10, 0.18).add(Attributes.KNOCKBACK_RESISTANCE, 1.0).add(Attributes.ATTACK_KNOCKBACK, 2.5);
     }
 
     @Override

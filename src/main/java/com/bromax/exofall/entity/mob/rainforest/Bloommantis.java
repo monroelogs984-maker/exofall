@@ -26,7 +26,7 @@ public class Bloommantis extends AmbushMantis {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(28, 8, 3, 0.3);
+        return attrs(60, 18, 3, 0.3);
     }
 
     @Override

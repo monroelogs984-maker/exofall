@@ -415,12 +415,40 @@ entry("pets", "pets", "Taming and Breeding", E + "sapcane_candy", [
          "bugs, and they never despawn.", "Taming"),
     text("Feed two tamed adults of the same kind and they'll find each other and have a tamed baby. Babies are half "
          "size and grow up in one day (treats speed that up). Parents rest for 5 minutes before breeding "
-         "again.$(br2)Crossing the two kinds in a pair is coming in a later version.", "Breeding"),
+         "again.", "Breeding"),
     craft(E + "sapcane_candy", "Swamp: Glasswing and Mudgrub."),
     craft(E + "nectar_drop", "Hive: Combwasp and Nursemaid."),
     craft(E + "dune_pellet", "Desert: Gold-Encrusted Scarab and Shieldback."),
     craft(E + "mistcap_morsel", "Rainforest: Bloommantis and Reedmantis."),
 ], 0)
+
+entry("pets", "pet_jobs", "Pets at Work", E + "dune_pellet", [
+    text("A tamed bug is yours, and tougher than a wild one (+50% health). $(thing)Right-click it with an empty "
+         "hand$() to switch between $(thing)Follow$(), $(thing)Stay$() and $(thing)Wander$(). A following pet comes "
+         "back when you walk off and teleports to you if you get far away. You and your pets can't hurt each other.",
+         "Your Pet"),
+    text("$(thing)Fighters$() attack whatever hurts you and whatever you hit, and fight back when hurt (not while "
+         "staying).$(br2)$(li)Glasswing: its dive, aimed for you."
+         "$(li)Combwasp: poison stings.$(li)Shieldback: monsters near it that go for you switch to it instead."
+         "$(li)Reedmantis and Bloommantis: the first hit on each new target deals double.", "Fighters"),
+    text("$(thing)Helpers$() never fight.$(br2)$(li)$(thing)Nursemaid$(): flies to you or your hurt pets and "
+         "heals with wax.$(li)$(thing)Mudgrub$(): every few minutes it digs up something from soft ground (clay, slime, "
+         "nuggets, sometimes Bubble Sacs or Bogsilk).$(li)$(thing)Gold-Encrusted Scarab$(): senses nearby ores, gold "
+         "first, and tells you where. Now and then it digs up gold.", "Helpers"),
+], 1)
+
+entry("pets", "bug_armour", "Bug Armour", E + "ancientstone_bug_armour", [
+    text("Any tamed adult bug can wear any bug armour. $(thing)Right-click$() your pet with it to put it on, "
+         "$(thing)shears$() take it off. Each one adds armour and a small perk from its meteor's set.", "Bug Armour"),
+    spot(E + "mireweave_bug_armour", "Monsters only notice the pet from close by, unless it hits them.", "Mireweave"),
+    table("mireweave_bug_armour"),
+    spot(E + "crystallized_honey_bug_armour", "The pet slowly heals.", "Crystallized Honey"),
+    table("crystallized_honey_bug_armour"),
+    spot(E + "reinforced_carapace_bug_armour", "The pet takes less damage from projectiles.", "Reinforced Carapace"),
+    table("reinforced_carapace_bug_armour"),
+    spot(E + "ancientstone_bug_armour", "The heaviest: the pet is hard to knock back.", "Ancientstone"),
+    table("ancientstone_bug_armour"),
+], 2)
 
 # ================================================================ write
 TEMPLATE = {

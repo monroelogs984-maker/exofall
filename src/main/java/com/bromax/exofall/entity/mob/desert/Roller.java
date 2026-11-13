@@ -48,7 +48,7 @@ public class Roller extends Bug implements Enemy {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(30, 5, 6, 0.25);
+        return attrs(60, 12, 6, 0.25);
     }
 
     @Override

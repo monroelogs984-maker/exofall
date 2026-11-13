@@ -47,7 +47,7 @@ public class TerrorOfTheBog extends ExofallBoss {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return bossAttrs(420, 14, 12, 0.26);
+        return bossAttrs(1000, 26, 12, 0.26);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class TerrorOfTheBog extends ExofallBoss {
                 faceYaw(lockedYaw);
                 if (t == 14) {
                     playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 2f, 0.5f);
-                    hitCone(lockedYaw, 4.5, 60, 16, effect(MobEffects.MOVEMENT_SLOWDOWN, 40, 1));
+                    hitCone(lockedYaw, 4.5, 60, 42, effect(MobEffects.MOVEMENT_SLOWDOWN, 40, 1));
                 }
                 if (t >= 24) {
                     cooldown(CD_SNAP, 30);
@@ -120,7 +120,7 @@ public class TerrorOfTheBog extends ExofallBoss {
                 if (t == 16 && target != null) {
                     int n = enraged() ? 3 : 1;
                     for (int i = 0; i < n; i++) {
-                        BossGlob g = BossGlob.shoot(this, Items.MUD, 8, MobEffects.MOVEMENT_SLOWDOWN, 60, 2);
+                        BossGlob g = BossGlob.shoot(this, Items.MUD, 26, MobEffects.MOVEMENT_SLOWDOWN, 60, 2);
                         Vec3 from = position().add(forward(lockedYaw).scale(2.0)).add(0, 1.3, 0);
                         g.setPos(from);
                         Vec3 to = target.position().add(0, target.getBbHeight() * 0.5, 0).subtract(from);
@@ -161,7 +161,7 @@ public class TerrorOfTheBog extends ExofallBoss {
             if (target != null && hittable(target)) {
                 Vec3 to = target.position().subtract(position());
                 double dist = Math.sqrt(to.x * to.x + to.z * to.z) - getBbWidth() / 2 - target.getBbWidth() / 2;
-                if (dist <= 3.5 && new Vec3(to.x, 0, to.z).normalize().dot(forward(lockedYaw)) > 0.6 && hurtTarget(target, 6)) {
+                if (dist <= 3.5 && new Vec3(to.x, 0, to.z).normalize().dot(forward(lockedYaw)) > 0.6 && hurtTarget(target, 20)) {
                     grabbed = target;
                 }
             }
@@ -191,7 +191,7 @@ public class TerrorOfTheBog extends ExofallBoss {
                 else grabbed.teleportTo(hold.x, hold.y, hold.z);
             }
             grabbed.setDeltaMovement(Vec3.ZERO);
-            if (t % 10 == 0) hurtTarget(grabbed, 5);
+            if (t % 10 == 0) hurtTarget(grabbed, 8);
             if (t >= 70) {
                 Vec3 f = forward(lockedYaw);
                 grabbed.push(f.x * 1.4, 0.6, f.z * 1.4);
@@ -226,7 +226,7 @@ public class TerrorOfTheBog extends ExofallBoss {
             triggerAnim("action", "erupt");
             playSound(SoundEvents.GENERIC_EXPLODE.value(), 1.5f, 0.6f);
             particlesAt(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.MUD.defaultBlockState()), lockedPoint.add(0, 0.5, 0), 60, 2.0, 0.3);
-            hitRadius(lockedPoint, 3.2, 18, knock(this, 0.6, 0.9));
+            hitRadius(lockedPoint, 3.2, 50, knock(this, 0.6, 0.9));
         }
         if (t >= 52) {
             cooldown(CD_SUBMERGE, 260);

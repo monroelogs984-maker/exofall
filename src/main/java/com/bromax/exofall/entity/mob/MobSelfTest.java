@@ -78,7 +78,7 @@ public final class MobSelfTest {
             clearAbove(level, o);
             ((BaubleSelfTest.TestPlayer) fp).refreshFluids();
             tick(le, fp, 12);
-            out.add("mire leech: latched " + latched + ", drained " + drained + " in 4 s (want 4), let go on dry land " + !le.isLatched());
+            out.add("mire leech: latched " + latched + ", drained " + drained + " in 4 s (drain 6 every 2 s, from 20 hp), let go on dry land " + !le.isLatched());
             le.discard();
 
             // Honeyguard: front hits do 15% and wear the shield; a 20-damage blow breaks it
@@ -92,8 +92,8 @@ public final class MobSelfTest {
             float g1 = hg.getHealth();
             boolean shieldAfter8 = hg.hasShield();
             hg.invulnerableTime = 0;
-            hg.hurt(level.damageSources().playerAttack(fp), 20);
-            out.add("honeyguard: front 8 -> lost " + (g0 - g1) + " (want 1.2), shield kept " + shieldAfter8 + "; 20 blow -> shield broken " + !hg.hasShield());
+            hg.hurt(level.damageSources().playerAttack(fp), 30);
+            out.add("honeyguard: front 8 -> lost " + (g0 - g1) + " (15% of 8, then its armour), shield kept " + shieldAfter8 + "; 30 (heavy) blow -> shield broken " + !hg.hasShield());
             hg.discard();
 
             // Antlion: digs a funnel on sand and drags nearby mobs in

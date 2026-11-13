@@ -38,6 +38,7 @@ public final class Exofall {
         NeoForge.EVENT_BUS.addListener(Stripping::onToolModify);
         NeoForge.EVENT_BUS.addListener(ExofallCommands::register);
         container.registerConfig(ModConfig.Type.COMMON, ExofallConfig.SPEC);
+        container.registerConfig(ModConfig.Type.CLIENT, com.bromax.exofall.config.ExofallClientConfig.SPEC);
         LOGGER.info("BROMAX's Exofall loading");
     }
 

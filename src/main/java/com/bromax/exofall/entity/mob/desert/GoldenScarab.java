@@ -28,7 +28,7 @@ public class GoldenScarab extends Bug {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(20, 0, 10, 0.3);
+        return attrs(45, 0, 10, 0.3);
     }
 
     @Override

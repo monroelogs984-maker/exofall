@@ -29,7 +29,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public class RolledBoulder extends Entity implements GeoEntity {
     private static final RawAnimation ROLL = RawAnimation.begin().thenLoop("misc.idle");
     static final double SPEED = 0.55;
-    static final float DAMAGE = 10;
+    static final float DAMAGE = 24;
     static final int LIFETIME = 100;
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);

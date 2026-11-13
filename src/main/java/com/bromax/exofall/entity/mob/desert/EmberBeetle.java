@@ -26,7 +26,7 @@ public class EmberBeetle extends Bug {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(8, 0, 2, 0.25);
+        return attrs(16, 0, 2, 0.25);
     }
 
     @Override

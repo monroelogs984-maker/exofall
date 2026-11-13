@@ -61,7 +61,7 @@ public class Bogspinner extends Bug implements Enemy {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return attrs(24, 5, 2, 0.3);
+        return attrs(50, 12, 2, 0.3);
     }
 
     @Override

@@ -50,7 +50,7 @@ public class PropolisSpitter extends FlyingBug implements Enemy, HiveMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return flyingAttrs(20, 3, 2, 0.5);
+        return flyingAttrs(44, 8, 2, 0.5);
     }
 
     @Override

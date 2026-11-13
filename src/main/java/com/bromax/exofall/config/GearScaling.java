@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Applies the config's gear multipliers: Exofall weapons' attack damage (the whole hit, fist included) and Exofall
- * armour's armour and toughness. Done when stacks build their attributes, so a config change applies at once.
+ * armour's armour and toughness, and the Ancientstone per-piece slowdown. Done when stacks build their attributes, so a config change applies at once.
  */
 @EventBusSubscriber(modid = Exofall.MOD_ID)
 public final class GearScaling {
@@ -27,7 +27,8 @@ public final class GearScaling {
         boolean weapon = item instanceof SwordItem, armour = item instanceof ArmorItem;
         if (!weapon && !armour) return;
         double dmg = ExofallConfig.GEAR_DAMAGE_MULTIPLIER.get(), arm = ExofallConfig.GEAR_ARMOR_MULTIPLIER.get();
-        if (dmg == 1.0 && arm == 1.0) return;
+        double slow = -ExofallConfig.ANCIENTSTONE_SLOW.get();
+        if (dmg == 1.0 && arm == 1.0 && slow == com.bromax.exofall.item.ExofallArmorItem.ANCIENTSTONE_SLOW) return;
         List<Runnable> changes = new ArrayList<>();
         for (var e : event.getModifiers()) {
             AttributeModifier m = e.modifier();
@@ -36,6 +37,8 @@ public final class GearScaling {
                 v = (v + 1) * dmg - 1;   // the base 1 (fist) is part of the hit, so scale the whole hit
             } else if (armour && (e.attribute().is(Attributes.ARMOR) || e.attribute().is(Attributes.ARMOR_TOUGHNESS))) {
                 v = v * arm;
+            } else if (armour && e.attribute().is(Attributes.MOVEMENT_SPEED) && m.id().getPath().startsWith("ancientstone_")) {
+                v = slow;
             } else continue;
             AttributeModifier scaled = new AttributeModifier(m.id(), v, m.operation());
             var attr = e.attribute();

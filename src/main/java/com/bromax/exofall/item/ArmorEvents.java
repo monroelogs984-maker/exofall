@@ -31,7 +31,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
  */
 @EventBusSubscriber(modid = Exofall.MOD_ID)
 public final class ArmorEvents {
-    public static final double MIRE_SIGHT = 0.125, MIRE_AMBUSH = 0.075, CARAPACE_BLOCK = 0.10, HONEY_SPEED = 0.15;
+    // perk values are in the config (config/ExofallConfig "gear.armour")
     private static final net.minecraft.resources.ResourceLocation HONEY_SPEED_ID = Exofall.id("crystallized_honey_set");
 
     static boolean isBoss(Entity e) {
@@ -43,7 +43,7 @@ public final class ArmorEvents {
         Entity looker = event.getLookingEntity();
         if (looker == null || isBoss(looker)) return;
         int n = ExofallArmorItem.worn(event.getEntity(), ArmorSet.MIREWEAVE);
-        if (n > 0) event.modifyVisibility(1 - MIRE_SIGHT * n);
+        if (n > 0) event.modifyVisibility(1 - com.bromax.exofall.config.ExofallConfig.MIRE_SIGHT.get() * n);
     }
 
     @SubscribeEvent
@@ -52,12 +52,12 @@ public final class ArmorEvents {
         var src = event.getSource();
         if (src.is(DamageTypeTags.IS_PROJECTILE)) {
             int n = ExofallArmorItem.worn(target, ArmorSet.REINFORCED_CARAPACE);
-            if (n > 0) event.setAmount(event.getAmount() * (float) (1 - CARAPACE_BLOCK * n));
+            if (n > 0) event.setAmount(event.getAmount() * (float) (1 - com.bromax.exofall.config.ExofallConfig.CARAPACE_BLOCK.get() * n));
         }
         if (src.getEntity() instanceof LivingEntity attacker && src.getDirectEntity() == attacker
                 && target instanceof Mob mob && !isBoss(mob) && mob.getTarget() != attacker) {
             int n = ExofallArmorItem.worn(attacker, ArmorSet.MIREWEAVE);
-            if (n > 0) event.setAmount(event.getAmount() * (float) (1 + MIRE_AMBUSH * n));
+            if (n > 0) event.setAmount(event.getAmount() * (float) (1 + com.bromax.exofall.config.ExofallConfig.MIRE_AMBUSH.get() * n));
         }
     }
 
@@ -73,11 +73,10 @@ public final class ArmorEvents {
         boolean full = ExofallArmorItem.worn(p, ArmorSet.CRYSTALLIZED_HONEY) == 4;
         AttributeInstance speed = p.getAttribute(Attributes.MOVEMENT_SPEED);
         if (speed != null) {
-            boolean has = speed.getModifier(HONEY_SPEED_ID) != null;
-            if (full && !has) speed.addTransientModifier(new AttributeModifier(HONEY_SPEED_ID, HONEY_SPEED, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-            else if (!full && has) speed.removeModifier(HONEY_SPEED_ID);
+            if (full) speed.addOrUpdateTransientModifier(new AttributeModifier(HONEY_SPEED_ID, com.bromax.exofall.config.ExofallConfig.HONEY_SPEED.get(), AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+            else speed.removeModifier(HONEY_SPEED_ID);
         }
-        if (full) {
+        if (full && com.bromax.exofall.config.ExofallConfig.HONEY_REGEN.get()) {
             MobEffectInstance cur = p.getEffect(MobEffects.REGENERATION);
             // ticks down from 80 through 50, where Regeneration I heals, before it's topped up again
             if (cur == null || cur.getAmplifier() == 0 && cur.getDuration() < 25) {

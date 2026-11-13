@@ -53,7 +53,7 @@ public class Mudgrub extends Animal implements GeoEntity, com.bromax.exofall.ent
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 8).add(Attributes.MOVEMENT_SPEED, 0.15);
+        return Animal.createMobAttributes().add(Attributes.MAX_HEALTH, 16).add(Attributes.MOVEMENT_SPEED, 0.15);
     }
 
     /** Spawns on meteor soil, mud or moss at any light level (meteor interiors are dim). */
@@ -79,7 +79,7 @@ public class Mudgrub extends Animal implements GeoEntity, com.bromax.exofall.ent
         return stack.is(ModBlocks.SAPCANE.get().asItem()) || stack.is(com.bromax.exofall.registry.ModItems.SAPCANE_CANDY.get());
     }
 
-    // ---- pet: already passive and breedable (vanilla animal breeding); the treat tames it for cross-breeding later
+    // ---- pet: already passive and breedable (vanilla animal breeding); the treat tames it, tamed grubs dig (pet.PetGoals)
     private final com.bromax.exofall.entity.mob.pet.PetState petState = new com.bromax.exofall.entity.mob.pet.PetState();
 
     @Override
@@ -89,10 +89,9 @@ public class Mudgrub extends Animal implements GeoEntity, com.bromax.exofall.ent
 
     @Override
     public net.minecraft.world.InteractionResult mobInteract(Player player, net.minecraft.world.InteractionHand hand) {
-        if (!petState.tamed) {
-            var r = com.bromax.exofall.entity.mob.pet.Pets.interact(this, this, player, hand, isBaby());
-            if (r != net.minecraft.world.InteractionResult.PASS) return r;
-        }
+        var r = petState.tamed ? com.bromax.exofall.entity.mob.pet.Pets.ownerInteract(this, this, player, hand)
+                : com.bromax.exofall.entity.mob.pet.Pets.interact(this, this, player, hand, isBaby());
+        if (r != net.minecraft.world.InteractionResult.PASS) return r;
         return super.mobInteract(player, hand);
     }
 
@@ -117,7 +116,11 @@ public class Mudgrub extends Animal implements GeoEntity, com.bromax.exofall.ent
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob other) {
         Mudgrub baby = ModEntities.MUDGRUB.get().create(level);
-        if (baby != null && petState.tamed && other instanceof Mudgrub o && o.petState.tamed) baby.petState.tamed = true;
+        if (baby != null && petState.tamed && other instanceof Mudgrub o && o.petState.tamed) {
+            baby.petState.tamed = true;
+            baby.petState.owner = petState.owner;
+            baby.setPersistenceRequired();
+        }
         return baby;
     }
 

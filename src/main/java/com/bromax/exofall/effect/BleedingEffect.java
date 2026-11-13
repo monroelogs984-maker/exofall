@@ -39,7 +39,7 @@ public class BleedingEffect extends MobEffect {
         int amp = 0;
         int dur = DURATION;
         if (cur != null) {
-            amp = Math.min(MAX_STACKS - 1, cur.getAmplifier() + 1);
+            amp = Math.min(com.bromax.exofall.config.ExofallConfig.LONGSWORD_BLEED_STACKS.get() - 1, cur.getAmplifier() + 1);
             int d = cur.getDuration();
             dur = d >= DURATION ? d : d + 20 * (int) Math.ceil((DURATION - d) / 20.0);
         }
