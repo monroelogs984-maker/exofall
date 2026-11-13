@@ -248,6 +248,9 @@ half size, grows up in 24000 ticks (treats speed it up), 5 min cooldown. Mudgrub
 candy). Tamed/bred Golden Scarabs drop nothing (no Desert Sigil farm). Cross-breeding (PetPair.CROSS_TREATS) waits for
 the hybrids. `/exofall pettest` passes (runs at world spawn: entity lookups need entity-ticking chunks).
 
+## Release 1.0.0 (2026-11-12)
+Config gear multipliers now applied (config/GearScaling, ItemAttributeModifierEvent; tested x2 armour). CHANGELOG.md, mod logo, 17 advancements. CF project not created yet (Glenn).
+
 ## Field Guide (2026-11-12, Patchouli, optional)
 `tools/gen_guide.py` writes the whole book (11 categories, 55 entries, 182 pages: basics, meteors, every creature
 with an entity render, Warrens, bosses + sigils, gear with real 5x5 recipe pages, pets). 5x5 pages = template
